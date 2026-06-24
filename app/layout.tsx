@@ -15,7 +15,7 @@ const dmMono = localFont({
   weight: "400",
 });
 
-const SITE_URL = "https://lafabriknumerique.fr";
+const SITE_URL = "https://lafabrique-numerique-site.vercel.app";
 const TITLE = "La Fabrik Numérique — Atelier de création web & logiciel";
 const DESCRIPTION =
   "La Fabrik Numérique conçoit des sites web, applications et logiciels sur mesure. Circuits & idées.";
