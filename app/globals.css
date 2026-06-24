@@ -1,26 +1,59 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #060912;
+  --background-deep: #04060c;
+  --panel: #0c1322;
+  --foreground: #eef2f8;
+  --muted: #7f8ba3;
+  --cyan: #5fd8e8;
+  --amber: #e8a14f;
+  --line: #1c2a40;
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-background-deep: var(--background-deep);
+  --color-panel: var(--panel);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-muted: var(--muted);
+  --color-cyan: var(--cyan);
+  --color-amber: var(--amber);
+  --color-line: var(--line);
+  --font-display: var(--font-display);
+  --font-mono-brand: var(--font-mono-brand);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-mono-brand), monospace;
+}
+
+.font-display {
+  font-family: var(--font-display), sans-serif;
+}
+
+.circuit-bg {
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 48px 48px;
+  background-position: -1px -1px;
+}
+
+.fig-label {
+  font-family: var(--font-mono-brand), monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.node-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 8px var(--cyan);
 }
