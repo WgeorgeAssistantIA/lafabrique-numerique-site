@@ -1,15 +1,24 @@
 "use client";
 
-import Image from "next/image";
 import { useLanguage } from "@/lib/i18n";
+import CircuitCanvas from "./CircuitCanvas";
 
 export default function Hero() {
   const { t } = useLanguage();
   const h = t.hero;
 
   return (
-    <section id="top" className="relative pt-32 pb-24 circuit-bg border-b border-line overflow-hidden">
-      <div className="mx-auto max-w-6xl px-6 relative">
+    <section
+      id="top"
+      className="relative pt-32 pb-24 border-b border-line overflow-hidden bg-background-deep"
+    >
+      <div className="absolute inset-0 z-0">
+        <CircuitCanvas />
+      </div>
+      <div className="absolute inset-0 z-[1] pointer-events-none bg-gradient-to-r from-background-deep via-background-deep/85 to-background-deep/30" />
+      <div className="absolute inset-x-0 bottom-0 z-[1] h-24 pointer-events-none bg-gradient-to-t from-background-deep to-transparent" />
+
+      <div className="mx-auto max-w-6xl px-6 relative z-10">
         <p className="fig-label mb-6">{h.figLabel}</p>
         <h1 className="font-display uppercase text-5xl sm:text-7xl leading-[0.95] max-w-3xl">
           {h.titleA} <span className="text-cyan">{h.titleHighlight}</span> {h.titleB}
@@ -34,13 +43,6 @@ export default function Hero() {
           5,0 — {h.rating}
         </div>
       </div>
-      <Image
-        src="/img/logo.png"
-        alt=""
-        width={420}
-        height={420}
-        className="pointer-events-none select-none absolute -right-24 top-10 opacity-20 hidden lg:block"
-      />
     </section>
   );
 }
