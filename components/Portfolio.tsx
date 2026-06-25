@@ -23,7 +23,10 @@ export default function Portfolio() {
               </div>
               <h3 className="font-display uppercase text-2xl mt-4">{item.title}</h3>
               <p className="fig-label text-amber mt-1">{item.type}</p>
-              <p className="text-muted text-sm leading-relaxed mt-4 flex-1">{item.desc}</p>
+              <p className="text-muted text-sm leading-relaxed mt-4">{item.desc}</p>
+              <p className="text-foreground text-sm leading-relaxed mt-3 flex-1 border-l-2 border-amber pl-3">
+                {item.result}
+              </p>
               <div className="flex flex-wrap gap-2 mt-5">
                 {item.tags.map((tag) => (
                   <span key={tag} className="fig-label border border-line px-2 py-1 text-[0.65rem]">

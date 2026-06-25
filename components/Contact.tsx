@@ -14,8 +14,10 @@ export default function Contact() {
           <h2 className="font-display uppercase text-4xl mb-6">{c.title}</h2>
           <p className="text-muted leading-relaxed mb-8 max-w-md">{c.desc}</p>
           <div className="space-y-2 fig-label">
-            <p>contact@lafabriknumerique.fr</p>
-            <p>+33 6 00 00 00 00</p>
+            <a href={`mailto:${c.emailAddress}`} className="block text-cyan hover:text-amber transition-colors">
+              {c.emailAddress}
+            </a>
+            <p className="text-muted">{c.responseTime}</p>
           </div>
         </div>
         <form className="space-y-4 border border-line p-8 bg-background-deep">
