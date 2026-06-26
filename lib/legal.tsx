@@ -80,6 +80,13 @@ const fr: LegalContent = {
         ],
       },
       {
+        h: "Application InOneShot",
+        p: [
+          "L'application de bureau InOneShot fonctionne entièrement en local : vos fichiers PDF, vos fichiers Excel et le contenu de vos documents ne sont jamais collectés ni transmis à des tiers.",
+          "Seules les données strictement nécessaires à l'activation de la licence Pro sont transmises à notre prestataire Lemon Squeezy : votre clé de licence et le nom de votre ordinateur, afin de valider l'activation par appareil. Aucune autre donnée n'est envoyée, et aucune mesure d'audience n'est effectuée dans l'application.",
+        ],
+      },
+      {
         h: "Finalité et base légale",
         p: [
           "Les données du formulaire sont utilisées uniquement pour répondre à votre demande et, le cas échéant, établir une proposition commerciale.",
@@ -189,6 +196,13 @@ const en: LegalContent = {
         p: [
           "Through the contact form: your name, email address and the content of your message. This information is provided voluntarily by you.",
           "For technical purposes, the host may record connection data (IP address, server logs) necessary for the operation and security of the site.",
+        ],
+      },
+      {
+        h: "InOneShot application",
+        p: [
+          "The InOneShot desktop application runs entirely locally: your PDF files, your Excel files and the content of your documents are never collected or transmitted to third parties.",
+          "Only the data strictly necessary to activate the Pro license is transmitted to our provider Lemon Squeezy: your license key and your computer name, to validate per-device activation. No other data is sent, and no analytics are performed inside the application.",
         ],
       },
       {
