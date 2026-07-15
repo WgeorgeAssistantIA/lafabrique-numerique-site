@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { LanguageProvider, useLanguage, type Lang } from "@/lib/i18n";
 import { blogContent, getSlugPair, type BlogPost } from "@/lib/blog";
-import BlogHeader from "./BlogHeader";
+import Header from "./Header";
 import Footer from "./Footer";
 
 export default function BlogPostPage({ lang, post }: { lang: Lang; post: BlogPost }) {
@@ -27,9 +27,9 @@ function BlogArticle({ post }: { post: BlogPost }) {
 
   return (
     <>
-      <BlogHeader />
+      <Header />
       <main className="flex-1">
-        <article className="py-24 circuit-bg">
+        <article className="pt-32 pb-24 circuit-bg">
           <div className="mx-auto max-w-3xl px-6">
             <Link href={base} className="fig-label text-cyan hover:text-amber transition-colors">
               {b.backBlog}

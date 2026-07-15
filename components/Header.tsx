@@ -3,32 +3,39 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useLanguage } from "@/lib/i18n";
 import LangToggle from "./LangToggle";
 
 export default function Header() {
   const { t, lang } = useLanguage();
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const homePath = lang === "en" ? "/en" : "/";
+  // Section anchors only work when already on the homepage — everywhere else
+  // (blog, etc.) they need to link back to it first.
+  const isHome = pathname === "/" || pathname === "/en";
+  const withHome = (anchor: string) => (isHome ? anchor : `${homePath}${anchor}`);
 
   const navItems = [
-    { href: "#services", label: t.nav.services },
-    { href: "#competences", label: t.nav.competences },
-    { href: "#realisations", label: t.nav.realisations },
-    { href: "#tarifs", label: t.nav.tarifs },
-    { href: "#about", label: t.nav.about },
+    { href: withHome("#services"), label: t.nav.services },
+    { href: withHome("#competences"), label: t.nav.competences },
+    { href: withHome("#realisations"), label: t.nav.realisations },
+    { href: withHome("#tarifs"), label: t.nav.tarifs },
+    { href: withHome("#about"), label: t.nav.about },
     { href: lang === "en" ? "/en/blog" : "/blog", label: t.nav.blog },
-    { href: "#contact", label: t.nav.contact },
+    { href: withHome("#contact"), label: t.nav.contact },
   ];
 
   return (
     <header className="fixed top-0 inset-x-0 z-50 border-b border-line bg-background-deep/90 backdrop-blur">
       <div className="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between gap-4">
-        <a href="#top" className="flex items-center gap-3" onClick={() => setOpen(false)}>
+        <Link href={isHome ? "#top" : homePath} className="flex items-center gap-3" onClick={() => setOpen(false)}>
           <Image src="/img/logo.png" alt="La Fabrik Numérique" width={32} height={32} />
           <span className="font-display text-sm tracking-widest uppercase">
             La Fabrik Numérique
           </span>
-        </a>
+        </Link>
         <nav className="hidden md:flex items-center gap-8 fig-label nav-label">
           {navItems.map((item) =>
             item.href.startsWith("#") ? (
@@ -44,12 +51,21 @@ export default function Header() {
         </nav>
         <div className="flex items-center gap-3">
           <LangToggle />
-          <a
-            href="#contact"
-            className="hidden sm:inline fig-label border border-cyan text-cyan px-4 py-2 hover:bg-cyan hover:text-background-deep transition-colors"
-          >
-            {t.cta.quote}
-          </a>
+          {isHome ? (
+            <a
+              href="#contact"
+              className="hidden sm:inline fig-label border border-cyan text-cyan px-4 py-2 hover:bg-cyan hover:text-background-deep transition-colors"
+            >
+              {t.cta.quote}
+            </a>
+          ) : (
+            <Link
+              href={withHome("#contact")}
+              className="hidden sm:inline fig-label border border-cyan text-cyan px-4 py-2 hover:bg-cyan hover:text-background-deep transition-colors"
+            >
+              {t.cta.quote}
+            </Link>
+          )}
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
@@ -88,13 +104,23 @@ export default function Header() {
                 </Link>
               )
             )}
-            <a
-              href="#contact"
-              onClick={() => setOpen(false)}
-              className="fig-label border border-cyan text-cyan px-4 py-3 text-center hover:bg-cyan hover:text-background-deep transition-colors"
-            >
-              {t.cta.quote}
-            </a>
+            {isHome ? (
+              <a
+                href="#contact"
+                onClick={() => setOpen(false)}
+                className="fig-label border border-cyan text-cyan px-4 py-3 text-center hover:bg-cyan hover:text-background-deep transition-colors"
+              >
+                {t.cta.quote}
+              </a>
+            ) : (
+              <Link
+                href={withHome("#contact")}
+                onClick={() => setOpen(false)}
+                className="fig-label border border-cyan text-cyan px-4 py-3 text-center hover:bg-cyan hover:text-background-deep transition-colors"
+              >
+                {t.cta.quote}
+              </Link>
+            )}
           </div>
         </nav>
       )}

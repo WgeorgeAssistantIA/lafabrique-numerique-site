@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { LanguageProvider, useLanguage, type Lang } from "@/lib/i18n";
 import { blogContent } from "@/lib/blog";
-import BlogHeader from "./BlogHeader";
+import Header from "./Header";
 import Footer from "./Footer";
 
 export default function BlogIndexPage({ lang }: { lang: Lang }) {
@@ -21,9 +21,9 @@ function BlogIndex() {
 
   return (
     <>
-      <BlogHeader />
+      <Header />
       <main className="flex-1">
-        <section className="py-24 circuit-bg">
+        <section className="pt-32 pb-24 circuit-bg">
           <div className="mx-auto max-w-3xl px-6">
             <Link href={lang === "en" ? "/en" : "/"} className="fig-label text-cyan hover:text-amber transition-colors">
               {b.backHome}
