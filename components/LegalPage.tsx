@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useLanguage } from "@/lib/i18n";
+import { LanguageProvider, useLanguage } from "@/lib/i18n";
 import { legalContent, type LegalDoc } from "@/lib/legal";
 import LangToggle from "./LangToggle";
 import Footer from "./Footer";
@@ -10,6 +10,14 @@ import Footer from "./Footer";
 type DocKey = "mentions" | "privacy";
 
 export default function LegalPage({ docKey }: { docKey: DocKey }) {
+  return (
+    <LanguageProvider>
+      <LegalContent docKey={docKey} />
+    </LanguageProvider>
+  );
+}
+
+function LegalContent({ docKey }: { docKey: DocKey }) {
   const { lang } = useLanguage();
   const c = legalContent[lang];
   const doc: LegalDoc = c[docKey];

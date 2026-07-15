@@ -27,7 +27,7 @@ export default function Header() {
             La Fabrik Numérique
           </span>
         </a>
-        <nav className="hidden md:flex items-center gap-8 fig-label">
+        <nav className="hidden md:flex items-center gap-8 fig-label nav-label">
           {navItems.map((item) => (
             <a key={item.href} href={item.href} className="hover:text-cyan transition-colors">
               {item.label}
@@ -58,7 +58,7 @@ export default function Header() {
 
       {open && (
         <nav className="md:hidden border-t border-line bg-background-deep">
-          <div className="mx-auto max-w-6xl px-6 py-4 flex flex-col gap-4 fig-label">
+          <div className="mx-auto max-w-6xl px-6 py-4 flex flex-col gap-4 fig-label nav-label">
             {navItems.map((item) => (
               <a
                 key={item.href}

@@ -50,6 +50,20 @@ body {
   text-transform: uppercase;
 }
 
+/* Main navigation: same style as fig-label but slightly larger for readability */
+.nav-label {
+  font-size: 0.78rem;
+}
+
+/* Scroll-reveal animation is disabled for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
 .node-dot {
   width: 6px;
   height: 6px;

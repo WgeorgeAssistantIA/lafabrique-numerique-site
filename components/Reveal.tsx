@@ -15,39 +15,31 @@ export default function Reveal({
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) {
-      setVisible(true);
-      return;
-    }
     const el = ref.current;
     if (!el) return;
 
-    const check = () => {
-      const rect = el.getBoundingClientRect();
-      // Reveal once the element's top crosses into the lower ~92% of the
-      // viewport — and keep anything already scrolled past (top < 0) revealed.
-      if (rect.top < window.innerHeight * 0.92) {
-        setVisible(true);
-        window.removeEventListener("scroll", check);
-        window.removeEventListener("resize", check);
-      }
-    };
-
-    check(); // reveal above-the-fold content immediately
-    window.addEventListener("scroll", check, { passive: true });
-    window.addEventListener("resize", check);
-    return () => {
-      window.removeEventListener("scroll", check);
-      window.removeEventListener("resize", check);
-    };
+    // Reveal once the element's top crosses into the lower ~92% of the
+    // viewport; anything already scrolled past is revealed immediately.
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting || entry.boundingClientRect.top < 0) {
+            setVisible(true);
+            observer.disconnect();
+          }
+        }
+      },
+      { rootMargin: "0px 0px -8% 0px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
   }, []);
 
   return (
     <div
       ref={ref}
       style={{ transitionDelay: visible ? `${delay}ms` : "0ms" }}
-      className={`transition-all duration-700 ease-out ${
+      className={`reveal transition-all duration-700 ease-out ${
         visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
       } ${className}`}
     >

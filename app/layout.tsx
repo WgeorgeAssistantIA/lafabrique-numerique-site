@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import { LanguageProvider } from "@/lib/i18n";
 import "./globals.css";
 
 const bigShoulders = localFont({
@@ -15,7 +14,7 @@ const dmMono = localFont({
   weight: "400",
 });
 
-const SITE_URL = "https://lafabriknumerique.fr";
+const SITE_URL = "https://www.lafabriknumerique.fr";
 const TITLE = "La Fabrik Numérique — Atelier de création web & logiciel";
 const DESCRIPTION =
   "La Fabrik Numérique conçoit des sites web, applications et logiciels sur mesure. Circuits & idées.";
@@ -29,7 +28,7 @@ export const metadata: Metadata = {
     description: DESCRIPTION,
     url: SITE_URL,
     siteName: "La Fabrik Numérique",
-    images: [{ url: "/img/og.png", width: 1200, height: 630, alt: "La Fabrik Numérique" }],
+    images: [{ url: "/img/og.png", width: 1640, height: 624, alt: "La Fabrik Numérique" }],
     locale: "fr_FR",
     type: "website",
   },
@@ -51,9 +50,7 @@ export default function RootLayout({
       lang="fr"
       className={`${bigShoulders.variable} ${dmMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
-        <LanguageProvider>{children}</LanguageProvider>
-      </body>
+      <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
 }

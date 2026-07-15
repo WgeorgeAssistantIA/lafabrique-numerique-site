@@ -40,7 +40,7 @@ export default function Hero() {
         </div>
         <div className="mt-16 flex items-center gap-3 fig-label">
           <span className="node-dot" />
-          5,0 — {h.rating}
+          {h.rating}
         </div>
       </div>
     </section>
