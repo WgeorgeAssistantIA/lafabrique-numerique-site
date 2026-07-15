@@ -17,16 +17,21 @@ const LanguageContext = createContext<LanguageContextValue | null>(null);
 export function LanguageProvider({
   children,
   initialLang,
+  routes,
 }: {
   children: ReactNode;
   // When set, the language is bound to the route (/ = fr, /en = en) and the
   // toggle navigates instead of swapping state. When omitted (legal pages),
   // the language switches client-side as before.
   initialLang?: Lang;
+  // FR/EN URL pair for the current page (e.g. a specific blog post, whose
+  // slug differs per language). Defaults to the homepage routes.
+  routes?: { fr: string; en: string };
 }) {
   const routed = initialLang !== undefined;
   const router = useRouter();
   const [lang, setLangState] = useState<Lang>(initialLang ?? "fr");
+  const targets = routes ?? { fr: "/", en: "/en" };
 
   useEffect(() => {
     const saved = localStorage.getItem("lfn-lang") as Lang | null;
@@ -36,7 +41,7 @@ export function LanguageProvider({
     if (routed) {
       // Only auto-redirect away from the default route, never off /en,
       // so a shared /en link is always respected.
-      if (initialLang === "fr" && preferred === "en") router.replace("/en");
+      if (initialLang === "fr" && preferred === "en") router.replace(targets.en);
     } else {
       // Post-hydration restore of the saved preference (SSR always renders fr)
       // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -56,7 +61,7 @@ export function LanguageProvider({
       // ignore
     }
     if (routed) {
-      router.push(l === "en" ? "/en" : "/");
+      router.push(l === "en" ? targets.en : targets.fr);
     } else {
       setLangState(l);
     }

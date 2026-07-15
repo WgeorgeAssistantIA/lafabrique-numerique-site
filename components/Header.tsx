@@ -2,11 +2,12 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { useLanguage } from "@/lib/i18n";
 import LangToggle from "./LangToggle";
 
 export default function Header() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const [open, setOpen] = useState(false);
 
   const navItems = [
@@ -15,6 +16,7 @@ export default function Header() {
     { href: "#realisations", label: t.nav.realisations },
     { href: "#tarifs", label: t.nav.tarifs },
     { href: "#about", label: t.nav.about },
+    { href: lang === "en" ? "/en/blog" : "/blog", label: t.nav.blog },
     { href: "#contact", label: t.nav.contact },
   ];
 
@@ -28,11 +30,17 @@ export default function Header() {
           </span>
         </a>
         <nav className="hidden md:flex items-center gap-8 fig-label nav-label">
-          {navItems.map((item) => (
-            <a key={item.href} href={item.href} className="hover:text-cyan transition-colors">
-              {item.label}
-            </a>
-          ))}
+          {navItems.map((item) =>
+            item.href.startsWith("#") ? (
+              <a key={item.href} href={item.href} className="hover:text-cyan transition-colors">
+                {item.label}
+              </a>
+            ) : (
+              <Link key={item.href} href={item.href} className="hover:text-cyan transition-colors">
+                {item.label}
+              </Link>
+            )
+          )}
         </nav>
         <div className="flex items-center gap-3">
           <LangToggle />
@@ -59,16 +67,27 @@ export default function Header() {
       {open && (
         <nav className="md:hidden border-t border-line bg-background-deep">
           <div className="mx-auto max-w-6xl px-6 py-4 flex flex-col gap-4 fig-label nav-label">
-            {navItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                onClick={() => setOpen(false)}
-                className="hover:text-cyan transition-colors"
-              >
-                {item.label}
-              </a>
-            ))}
+            {navItems.map((item) =>
+              item.href.startsWith("#") ? (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setOpen(false)}
+                  className="hover:text-cyan transition-colors"
+                >
+                  {item.label}
+                </a>
+              ) : (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setOpen(false)}
+                  className="hover:text-cyan transition-colors"
+                >
+                  {item.label}
+                </Link>
+              )
+            )}
             <a
               href="#contact"
               onClick={() => setOpen(false)}
