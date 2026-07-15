@@ -71,6 +71,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
         languages: { fr: `${SITE_URL}/blog`, en: `${SITE_URL}/en/blog` },
       },
     },
+    {
+      url: `${SITE_URL}/site-internet-roanne`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
     ...blogEntries,
   ];
 }

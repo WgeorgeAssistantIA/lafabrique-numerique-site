@@ -1,10 +1,11 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useLanguage } from "@/lib/i18n";
 
 export default function About() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const a = t.about;
 
   return (
@@ -14,7 +15,19 @@ export default function About() {
           <p className="fig-label mb-3">{a.figLabel}</p>
           <h2 className="font-display uppercase text-4xl mb-6">{a.title}</h2>
           <p className="text-muted leading-relaxed mb-4">{a.p1}</p>
-          <p className="text-muted leading-relaxed mb-8">{a.p2}</p>
+          <p className="text-muted leading-relaxed mb-8">
+            {a.p2}
+            {lang === "fr" && (
+              <>
+                {" "}
+                Basé à{" "}
+                <Link href="/site-internet-roanne" className="text-cyan hover:text-amber transition-colors">
+                  Roanne
+                </Link>
+                .
+              </>
+            )}
+          </p>
           <div className="space-y-5 border-t border-line pt-6">
             {a.why.map((w) => (
               <div key={w.ref} className="flex gap-4">
