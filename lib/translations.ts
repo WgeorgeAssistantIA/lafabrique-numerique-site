@@ -58,6 +58,7 @@ const fr = {
         tags: ["React", "Vite", "Traitement audio", "Product Hunt"],
         link: "https://voxcutpro.com",
         linkLabel: "voxcutpro.com",
+        image: "/img/portfolio-voxcut.webp",
       },
       {
         ref: "REF.02",
@@ -68,6 +69,7 @@ const fr = {
         tags: ["Next.js", "Claude API", "Supabase", "Resend"],
         link: "",
         linkLabel: "",
+        image: "",
       },
       {
         ref: "REF.03",
@@ -78,6 +80,7 @@ const fr = {
         tags: ["Python", "PyMuPDF", "openpyxl", "Desktop"],
         link: "https://inoneshot.fr",
         linkLabel: "inoneshot.fr",
+        image: "/img/portfolio-inoneshot.webp",
       },
       {
         ref: "REF.04",
@@ -88,6 +91,7 @@ const fr = {
         tags: ["Next.js", "Tailwind CSS", "i18n"],
         link: "",
         linkLabel: "",
+        image: "",
       },
     ],
   },
@@ -191,6 +195,7 @@ const en: Translation = {
         tags: ["React", "Vite", "Audio processing", "Product Hunt"],
         link: "https://voxcutpro.com",
         linkLabel: "voxcutpro.com",
+        image: "/img/portfolio-voxcut.webp",
       },
       {
         ref: "REF.02",
@@ -201,6 +206,7 @@ const en: Translation = {
         tags: ["Next.js", "Claude API", "Supabase", "Resend"],
         link: "",
         linkLabel: "",
+        image: "",
       },
       {
         ref: "REF.03",
@@ -211,6 +217,7 @@ const en: Translation = {
         tags: ["Python", "PyMuPDF", "openpyxl", "Desktop"],
         link: "https://inoneshot.fr",
         linkLabel: "inoneshot.fr",
+        image: "/img/portfolio-inoneshot.webp",
       },
       {
         ref: "REF.04",
@@ -221,6 +228,7 @@ const en: Translation = {
         tags: ["Next.js", "Tailwind CSS", "i18n"],
         link: "",
         linkLabel: "",
+        image: "",
       },
     ],
   },

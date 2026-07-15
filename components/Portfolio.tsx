@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useLanguage } from "@/lib/i18n";
 
 export default function Portfolio() {
@@ -15,8 +16,20 @@ export default function Portfolio() {
           {p.items.map((item) => (
             <article
               key={item.ref}
-              className="group relative border border-line p-6 flex flex-col hover:border-cyan transition-colors"
+              className="group relative border border-line flex flex-col hover:border-cyan transition-colors"
             >
+              {item.image ? (
+                <div className="relative aspect-video border-b border-line overflow-hidden bg-panel">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover object-top"
+                  />
+                </div>
+              ) : null}
+              <div className="p-6 flex flex-col flex-1">
               <div className="flex items-center justify-between">
                 <span className="fig-label">{item.ref}</span>
                 <span className="node-dot opacity-40 group-hover:opacity-100 transition-opacity" />
@@ -44,6 +57,7 @@ export default function Portfolio() {
                   {item.linkLabel} →
                 </a>
               ) : null}
+              </div>
             </article>
           ))}
         </div>
