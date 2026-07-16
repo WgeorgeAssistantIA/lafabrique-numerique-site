@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useLanguage } from "@/lib/i18n";
+import Reveal from "./Reveal";
 
 export default function Portfolio() {
   const { t } = useLanguage();
@@ -13,10 +14,10 @@ export default function Portfolio() {
         <p className="fig-label mb-3">{p.figLabel}</p>
         <h2 className="font-display uppercase text-4xl mb-12">{p.title}</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {p.items.map((item) => (
+          {p.items.map((item, i) => (
+            <Reveal key={item.ref} delay={i * 100} className="h-full">
             <article
-              key={item.ref}
-              className="group relative border border-line flex flex-col hover:border-cyan transition-colors"
+              className="card-lift group relative border border-line flex flex-col h-full hover:border-cyan"
             >
               {item.image ? (
                 <div className="relative aspect-video border-b border-line overflow-hidden bg-panel">
@@ -25,7 +26,7 @@ export default function Portfolio() {
                     alt={item.title}
                     fill
                     sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                    className="object-cover object-top"
+                    className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
               ) : null}
@@ -59,6 +60,7 @@ export default function Portfolio() {
               ) : null}
               </div>
             </article>
+            </Reveal>
           ))}
         </div>
       </div>

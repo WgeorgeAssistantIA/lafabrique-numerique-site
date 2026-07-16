@@ -24,6 +24,11 @@
   --font-mono-brand: var(--font-mono-brand);
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
@@ -55,19 +60,131 @@ body {
   font-size: 0.78rem;
 }
 
-/* Scroll-reveal animation is disabled for users who prefer reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .reveal {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-  }
-}
-
 .node-dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
   background: var(--cyan);
   box-shadow: 0 0 8px var(--cyan);
+}
+
+/* Fixed top bar that fills left-to-right as the page scrolls */
+.scroll-progress {
+  transform-origin: left;
+  background: linear-gradient(90deg, var(--cyan), var(--amber));
+  box-shadow: 0 0 10px rgba(95, 216, 232, 0.6);
+}
+
+/* One-shot fade-up entrance for hero content; stagger via inline animation-delay */
+@keyframes fade-up-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-in {
+  opacity: 0;
+  animation: fade-up-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Slow breathing glow on the hero's highlighted word */
+@keyframes glow-pulse {
+  0%,
+  100% {
+    text-shadow: 0 0 12px rgba(95, 216, 232, 0.35);
+  }
+  50% {
+    text-shadow: 0 0 26px rgba(95, 216, 232, 0.75);
+  }
+}
+
+.glow-pulse {
+  animation: glow-pulse 3.2s ease-in-out infinite;
+}
+
+/* Diagonal light sweep across primary buttons on hover */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shine::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(115deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.55s ease;
+  pointer-events: none;
+}
+
+.btn-shine:hover::before {
+  left: 130%;
+}
+
+/* Lift + cyan glow used on interactive cards (portfolio, pricing, services) */
+.card-lift {
+  transition:
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.35s ease,
+    border-color 0.35s ease,
+    background-color 0.35s ease;
+}
+
+.card-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px -18px rgba(95, 216, 232, 0.45);
+}
+
+/* Underline that grows from the left, used for the header's active-section indicator */
+.nav-active-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 2px;
+  background: var(--cyan);
+  box-shadow: 0 0 8px var(--cyan);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.nav-active .nav-active-line {
+  transform: scaleX(1);
+}
+
+/* Scroll-reveal / entrance animations are disabled for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .hero-in {
+    opacity: 1 !important;
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .glow-pulse {
+    animation: none !important;
+  }
+
+  .card-lift:hover {
+    transform: none !important;
+  }
 }

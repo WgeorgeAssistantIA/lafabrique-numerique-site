@@ -1,15 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useLanguage } from "@/lib/i18n";
 import LangToggle from "./LangToggle";
 
+const SECTION_IDS = ["services", "competences", "realisations", "tarifs", "about", "contact"];
+
 export default function Header() {
   const { t, lang } = useLanguage();
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [activeId, setActiveId] = useState<string | null>(null);
   const pathname = usePathname();
   const homePath = lang === "en" ? "/en" : "/";
   // Section anchors only work when already on the homepage — everywhere else
@@ -18,17 +22,46 @@ export default function Header() {
   const withHome = (anchor: string) => (isHome ? anchor : `${homePath}${anchor}`);
 
   const navItems = [
-    { href: withHome("#services"), label: t.nav.services },
-    { href: withHome("#competences"), label: t.nav.competences },
-    { href: withHome("#realisations"), label: t.nav.realisations },
-    { href: withHome("#tarifs"), label: t.nav.tarifs },
-    { href: withHome("#about"), label: t.nav.about },
-    { href: lang === "en" ? "/en/blog" : "/blog", label: t.nav.blog },
-    { href: withHome("#contact"), label: t.nav.contact },
+    { href: withHome("#services"), label: t.nav.services, id: "services" },
+    { href: withHome("#competences"), label: t.nav.competences, id: "competences" },
+    { href: withHome("#realisations"), label: t.nav.realisations, id: "realisations" },
+    { href: withHome("#tarifs"), label: t.nav.tarifs, id: "tarifs" },
+    { href: withHome("#about"), label: t.nav.about, id: "about" },
+    { href: lang === "en" ? "/en/blog" : "/blog", label: t.nav.blog, id: null },
+    { href: withHome("#contact"), label: t.nav.contact, id: "contact" },
   ];
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    if (!isHome) return;
+    const sections = SECTION_IDS.map((id) => document.getElementById(id)).filter(
+      (el): el is HTMLElement => el !== null
+    );
+    if (!sections.length) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) setActiveId(entry.target.id);
+        }
+      },
+      { rootMargin: "-45% 0px -50% 0px", threshold: 0 }
+    );
+    sections.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, [isHome]);
+
   return (
-    <header className="fixed top-0 inset-x-0 z-50 border-b border-line bg-background-deep/90 backdrop-blur">
+    <header
+      className={`fixed top-0 inset-x-0 z-50 border-b border-line bg-background-deep/90 backdrop-blur transition-shadow duration-300 ${
+        scrolled ? "shadow-[0_8px_24px_-12px_rgba(0,0,0,0.7)]" : ""
+      }`}
+    >
       <div className="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between gap-4">
         <Link href={isHome ? "#top" : homePath} className="flex items-center gap-3" onClick={() => setOpen(false)}>
           <Image src="/img/logo.png" alt="La Fabrik Numérique" width={32} height={32} />
@@ -37,17 +70,23 @@ export default function Header() {
           </span>
         </Link>
         <nav className="hidden md:flex items-center gap-8 fig-label nav-label">
-          {navItems.map((item) =>
-            item.href.startsWith("#") ? (
-              <a key={item.href} href={item.href} className="hover:text-cyan transition-colors">
+          {navItems.map((item) => {
+            const isActive = item.id !== null && activeId === item.id;
+            const linkClass = `relative py-1 transition-colors ${
+              isActive ? "nav-active text-cyan" : "hover:text-cyan"
+            }`;
+            return item.href.startsWith("#") ? (
+              <a key={item.href} href={item.href} className={linkClass}>
                 {item.label}
+                <span className="nav-active-line" />
               </a>
             ) : (
-              <Link key={item.href} href={item.href} className="hover:text-cyan transition-colors">
+              <Link key={item.href} href={item.href} className={linkClass}>
                 {item.label}
+                <span className="nav-active-line" />
               </Link>
-            )
-          )}
+            );
+          })}
         </nav>
         <div className="flex items-center gap-3">
           <LangToggle />

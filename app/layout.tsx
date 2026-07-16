@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import ScrollProgress from "@/components/ScrollProgress";
+import BackToTop from "@/components/BackToTop";
 import "./globals.css";
 
 const bigShoulders = localFont({
@@ -53,7 +55,11 @@ export default function RootLayout({
       lang="fr"
       className={`${bigShoulders.variable} ${dmMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <ScrollProgress />
+        {children}
+        <BackToTop />
+      </body>
     </html>
   );
 }

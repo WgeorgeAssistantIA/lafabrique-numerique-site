@@ -98,10 +98,12 @@ const fr = {
   pricing: {
     figLabel: "FIG. 05 — TARIFS",
     title: "Investissement",
+    launchBadge: "Offre de lancement",
+    launchNote: "Tarifs de lancement valables pour mes 3 premiers projets, en échange d'un retour d'expérience.",
     plans: [
-      { name: "Site standard", price: "à partir de 1 299 €", highlight: false, features: ["Site vitrine 5 pages", "Design sur mesure", "Responsive", "Mise en ligne incluse"] },
-      { name: "Application web", price: "sur devis", highlight: true, features: ["Cahier des charges", "Développement sur mesure", "Base de données", "Hébergement & suivi"] },
-      { name: "Logiciel métier", price: "sur devis", highlight: false, features: ["Étude des besoins", "Architecture dédiée", "Intégrations API", "Formation à l'usage"] },
+      { name: "Site vitrine", price: "à partir de 990 €", originalPrice: "à partir de 1 490 €", highlight: false, features: ["Site vitrine jusqu'à 5 pages", "Design sur mesure", "Responsive", "Mise en ligne incluse"] },
+      { name: "Application web", price: "à partir de 2 500 €", originalPrice: "à partir de 3 500 €", highlight: true, features: ["Cahier des charges", "Développement sur mesure", "Base de données", "Hébergement & suivi"] },
+      { name: "Logiciel métier", price: "à partir de 3 500 €", originalPrice: "à partir de 5 000 €", highlight: false, features: ["Étude des besoins", "Architecture dédiée", "Intégrations API", "Formation à l'usage"] },
       { name: "Accompagnement", price: "500 € / jour", highlight: false, features: ["Développement à la demande", "Maintenance évolutive", "Audit technique", "Support continu"] },
     ],
   },
@@ -235,10 +237,12 @@ const en: Translation = {
   pricing: {
     figLabel: "FIG. 05 — PRICING",
     title: "Investment",
+    launchBadge: "Launch offer",
+    launchNote: "Launch pricing for my first 3 projects, in exchange for a testimonial.",
     plans: [
-      { name: "Standard site", price: "from €1,299", highlight: false, features: ["5-page showcase site", "Custom design", "Responsive", "Launch included"] },
-      { name: "Web application", price: "by quote", highlight: true, features: ["Requirements scoping", "Custom development", "Database", "Hosting & support"] },
-      { name: "Business software", price: "by quote", highlight: false, features: ["Needs assessment", "Dedicated architecture", "API integrations", "Usage training"] },
+      { name: "Showcase site", price: "from €990", originalPrice: "from €1,490", highlight: false, features: ["Showcase site up to 5 pages", "Custom design", "Responsive", "Launch included"] },
+      { name: "Web application", price: "from €2,500", originalPrice: "from €3,500", highlight: true, features: ["Requirements scoping", "Custom development", "Database", "Hosting & support"] },
+      { name: "Business software", price: "from €3,500", originalPrice: "from €5,000", highlight: false, features: ["Needs assessment", "Dedicated architecture", "API integrations", "Usage training"] },
       { name: "Ongoing support", price: "€500 / day", highlight: false, features: ["On-demand development", "Evolutive maintenance", "Technical audit", "Continuous support"] },
     ],
   },

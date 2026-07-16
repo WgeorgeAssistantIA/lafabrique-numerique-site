@@ -19,15 +19,22 @@ export default function Hero() {
       <div className="absolute inset-x-0 bottom-0 z-[1] h-24 pointer-events-none bg-gradient-to-t from-background-deep to-transparent" />
 
       <div className="mx-auto max-w-6xl px-6 relative z-10">
-        <p className="fig-label mb-6">{h.figLabel}</p>
-        <h1 className="font-display uppercase text-5xl sm:text-7xl leading-[0.95] max-w-3xl">
-          {h.titleA} <span className="text-cyan">{h.titleHighlight}</span> {h.titleB}
+        <p className="hero-in fig-label mb-6" style={{ animationDelay: "0ms" }}>
+          {h.figLabel}
+        </p>
+        <h1
+          className="hero-in font-display uppercase text-5xl sm:text-7xl leading-[0.95] max-w-3xl"
+          style={{ animationDelay: "90ms" }}
+        >
+          {h.titleA} <span className="text-cyan glow-pulse">{h.titleHighlight}</span> {h.titleB}
         </h1>
-        <p className="mt-8 max-w-xl text-muted text-lg leading-relaxed">{h.desc}</p>
-        <div className="mt-10 flex flex-wrap items-center gap-4">
+        <p className="hero-in mt-8 max-w-xl text-muted text-lg leading-relaxed" style={{ animationDelay: "180ms" }}>
+          {h.desc}
+        </p>
+        <div className="hero-in mt-10 flex flex-wrap items-center gap-4" style={{ animationDelay: "270ms" }}>
           <a
             href="#contact"
-            className="fig-label bg-cyan text-background-deep px-6 py-3 hover:bg-amber transition-colors"
+            className="btn-shine fig-label bg-cyan text-background-deep px-6 py-3 hover:bg-amber transition-colors"
           >
             {t.cta.quote}
           </a>
@@ -38,7 +45,7 @@ export default function Hero() {
             {h.seeWork}
           </a>
         </div>
-        <div className="mt-16 flex items-center gap-3 fig-label">
+        <div className="hero-in mt-16 flex items-center gap-3 fig-label" style={{ animationDelay: "360ms" }}>
           <span className="node-dot" />
           {h.rating}
         </div>

@@ -106,7 +106,7 @@ export default function Contact() {
           <button
             type="submit"
             disabled={status === "sending"}
-            className="fig-label w-full bg-cyan text-background-deep px-6 py-3 hover:bg-amber transition-colors disabled:opacity-60"
+            className="btn-shine fig-label w-full bg-cyan text-background-deep px-6 py-3 hover:bg-amber transition-colors disabled:opacity-60"
           >
             {status === "sending" ? c.sending : t.cta.quote}
           </button>
