@@ -15,6 +15,13 @@ export async function generateMetadata({
   const { slug } = await params;
   const post = getPost("fr", slug);
   if (!post) return {};
+  if (post.canonicalUrl) {
+    return {
+      title: `${post.title} — La Fabrik Numérique`,
+      description: post.excerpt,
+      alternates: { canonical: post.canonicalUrl },
+    };
+  }
   const pair = getSlugPair(post.id);
   return {
     title: `${post.title} — La Fabrik Numérique`,

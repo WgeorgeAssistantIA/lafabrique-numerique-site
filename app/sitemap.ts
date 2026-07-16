@@ -6,8 +6,19 @@ const SITE_URL = "https://www.lafabriknumerique.fr";
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
 
-  const blogEntries: MetadataRoute.Sitemap = blogContent.fr.posts.flatMap((post) => {
-    const pair = getSlugPair(post.id);
+  // Union of post ids across both languages — a post syndicated from
+  // VoxCut/InOneShot may only exist in one language's array.
+  const postIds = new Set([...blogContent.fr.posts, ...blogContent.en.posts].map((p) => p.id));
+
+  const blogEntries: MetadataRoute.Sitemap = Array.from(postIds).flatMap((id) => {
+    const frPost = blogContent.fr.posts.find((p) => p.id === id);
+    const enPost = blogContent.en.posts.find((p) => p.id === id);
+    // Syndicated posts canonicalize to the original article elsewhere —
+    // don't list our copy in the sitemap to avoid a mixed signal.
+    if (frPost?.canonicalUrl || enPost?.canonicalUrl) return [];
+
+    const pair = getSlugPair(id);
+    const post = frPost ?? enPost!;
     const languages: Record<string, string> = {};
     if (pair.fr) languages.fr = `${SITE_URL}/blog/${pair.fr}`;
     if (pair.en) languages.en = `${SITE_URL}/en/blog/${pair.en}`;

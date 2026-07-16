@@ -14,6 +14,10 @@ export type BlogPost = {
   tags: string[];
   sections: BlogSection[];
   links: BlogLink[];
+  // Set for posts syndicated from VoxCut/InOneShot: points to the original
+  // article so search engines attribute the content to its source instead
+  // of treating this copy as duplicate content.
+  canonicalUrl?: string;
 };
 
 export type BlogContent = {
@@ -83,6 +87,42 @@ const fr: BlogContent = {
         { label: "Découvrir InOneShot → inoneshot.fr", url: "https://inoneshot.fr" },
       ],
     },
+    {
+      id: "pdf-mail-merge-excel",
+      slug: "publipostage-pdf-depuis-excel",
+      title: "Comment générer des centaines de PDF personnalisés depuis un Excel (sans copier-coller)",
+      date: "2026-06-28",
+      dateLabel: "28 juin 2026",
+      excerpt:
+        "Attestations, factures, courriers, diplômes : voici comment produire un PDF par ligne de votre tableur, automatiquement, sans recommencer cent fois.",
+      tags: ["InOneShot", "Automatisation", "Tutoriel"],
+      canonicalUrl: "https://www.inoneshot.fr/blog/publipostage-pdf-depuis-excel",
+      sections: [
+        {
+          h: "Le principe du publipostage PDF",
+          p: [
+            "Le publipostage consiste à fusionner un modèle — la mise en page, fixe — avec une source de données : votre Excel, qui varie. Chaque ligne du tableur devient un document : la colonne « Nom » remplit le champ nom, la colonne « Montant » remplit le champ montant, et ainsi de suite, pour toutes les lignes.",
+          ],
+        },
+        {
+          h: "La méthode manuelle, et ce qu'elle coûte vraiment",
+          p: [
+            "À la main : ouvrir le modèle, copier-coller chaque valeur depuis Excel, exporter en PDF, puis renommer le fichier — ligne par ligne, en reprenant tout à la moindre faute de frappe. Sur cent documents, c'est facilement une demi-journée perdue, avec un vrai risque d'erreur.",
+          ],
+        },
+        {
+          h: "La méthode automatique avec InOneShot",
+          p: [
+            "InOneShot est une application Windows dédiée au publipostage PDF. Importez un modèle PDF et un fichier Excel, placez vos champs par glisser-déposer — colonnes, date du jour, image de signature, QR code — puis cliquez une fois : l'application génère un PDF par ligne, les nomme automatiquement et livre un ZIP prêt à envoyer. Tout se passe en local, sur l'ordinateur.",
+            "Une fois le modèle prêt, refaire le même lot le mois suivant ne prend plus que quelques secondes.",
+          ],
+        },
+      ],
+      links: [
+        { label: "Lire l'article original sur inoneshot.fr →", url: "https://www.inoneshot.fr/blog/publipostage-pdf-depuis-excel" },
+        { label: "Découvrir InOneShot → inoneshot.fr", url: "https://inoneshot.fr" },
+      ],
+    },
   ],
 };
 
@@ -139,6 +179,80 @@ const en: BlogContent = {
       ],
       links: [
         { label: "Discover VoxCut → voxcutpro.com", url: "https://voxcutpro.com" },
+        { label: "Discover InOneShot → inoneshot.fr", url: "https://inoneshot.fr" },
+      ],
+    },
+    {
+      id: "remove-podcast-silences",
+      slug: "how-to-remove-silences-from-a-podcast",
+      title: "How to Automatically Remove Silences From a Podcast (Without Manual Editing)",
+      date: "2026-06-17",
+      dateLabel: "June 17, 2026",
+      excerpt:
+        "Silences and dead air can eat 10–20% of an episode. Here's how to detect and cut them automatically, and edit your podcast in a fraction of the time.",
+      tags: ["VoxCut", "Audio", "Tutorial"],
+      canonicalUrl: "https://voxcutpro.com/blog/how-to-remove-silences-from-a-podcast",
+      sections: [
+        {
+          h: "Why silences matter more than you think",
+          p: [
+            "A few seconds of dead air feels harmless while recording. But across a 45-minute episode, those pauses add up — often to 10–20% of the total runtime: longer episodes that feel slower, more file size to host, and a less professional listening experience.",
+            "Removing silences makes content punchier and noticeably more polished, without changing a single word.",
+          ],
+        },
+        {
+          h: "The slow way vs. the fast way",
+          p: [
+            "The traditional approach is to open the recording in an editor, scrub through the waveform, find each gap, and delete it by hand — repeated a few hundred times per episode. It's the single biggest reason editing a podcast can take 2–3× longer than the recording itself.",
+            "Modern tools instead analyze the audio, detect every silent passage based on a volume threshold, and trim them all in one pass. What used to take an hour now takes a couple of minutes.",
+          ],
+        },
+        {
+          h: "How VoxCut does it",
+          p: [
+            "VoxCut is a Windows app built for exactly this. Drop in a recording and it shows a before/after waveform — blue for voice, grey for silence — so you can see precisely what gets removed before committing. One click, and the dead air is gone.",
+            "A few practical tips: leave a small natural pause (150–300 ms) between sentences so speech still sounds human, tune the threshold to your recording, and always keep the original file and trim a copy.",
+          ],
+        },
+      ],
+      links: [
+        { label: "Read the original article on voxcutpro.com →", url: "https://voxcutpro.com/blog/how-to-remove-silences-from-a-podcast" },
+        { label: "Discover VoxCut → voxcutpro.com", url: "https://voxcutpro.com" },
+      ],
+    },
+    {
+      id: "pdf-mail-merge-excel",
+      slug: "generate-pdfs-from-excel",
+      title: "How to Generate Hundreds of Personalized PDFs from an Excel File",
+      date: "2026-07-12",
+      dateLabel: "July 12, 2026",
+      excerpt:
+        "Certificates, invoices, letters, diplomas: here's how to turn every row of your spreadsheet into its own PDF — automatically, without copy-pasting a single value.",
+      tags: ["InOneShot", "Automation", "Tutorial"],
+      canonicalUrl: "https://www.inoneshot.fr/blog/generate-pdfs-from-excel",
+      sections: [
+        {
+          h: "How PDF mail merge works",
+          p: [
+            "A mail merge combines a template — the fixed layout — with a data source, your spreadsheet, which varies. Each row becomes one document: the “Name” column fills the name field, the “Amount” column fills the amount field, and so on, repeated automatically for every row.",
+          ],
+        },
+        {
+          h: "The manual way, and what it really costs",
+          p: [
+            "Doing it by hand means opening the template, copy-pasting each value from Excel, exporting to PDF, and renaming the file — row after row, starting over at the first typo. Across a hundred documents, that's easily half a day lost, with a real risk of mistakes.",
+          ],
+        },
+        {
+          h: "The automatic way with InOneShot",
+          p: [
+            "InOneShot is a Windows app built for PDF mail merge. Import a PDF template and an Excel file, place fields by drag and drop — columns, today's date, a signature image, a QR code — then click once: the app generates one PDF per row, names each file automatically, and delivers a ZIP ready to send. Everything runs locally; the data never leaves the machine.",
+            "Once the template is set up, running the same batch next month takes seconds.",
+          ],
+        },
+      ],
+      links: [
+        { label: "Read the original article on inoneshot.fr →", url: "https://www.inoneshot.fr/blog/generate-pdfs-from-excel" },
         { label: "Discover InOneShot → inoneshot.fr", url: "https://inoneshot.fr" },
       ],
     },
