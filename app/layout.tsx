@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Analytics } from "@vercel/analytics/next";
 import ScrollProgress from "@/components/ScrollProgress";
 import BackToTop from "@/components/BackToTop";
 import "./globals.css";
@@ -59,6 +60,7 @@ export default function RootLayout({
         <ScrollProgress />
         {children}
         <BackToTop />
+        <Analytics />
       </body>
     </html>
   );
