@@ -162,6 +162,20 @@ body {
   transform: scaleX(1);
 }
 
+/* Continuous slow spin on the header logo */
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.logo-spin {
+  animation: logo-spin 25s linear infinite;
+}
+
 /* Scroll-reveal / entrance animations are disabled for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -186,5 +200,9 @@ body {
 
   .card-lift:hover {
     transform: none !important;
+  }
+
+  .logo-spin {
+    animation: none !important;
   }
 }
