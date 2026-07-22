@@ -64,8 +64,22 @@ const FALLBACK_TIERS: Record<"fr" | "en", TierStatus[]> = {
 };
 
 const SHARE_TEXT = {
-  fr: "🦉 Il y a un secret sur lafabriknumerique.fr. Un vrai. Avec de vraies récompenses pour les premiers qui le percent. Premier indice : ceux qui ont grandi avec une manette connaissent déjà la clé d'entrée. ↑↑↓↓…",
-  en: "🦉 There's a secret on lafabriknumerique.fr. A real one. With real rewards for the first to crack it. First hint: if you grew up with a controller, you already know the way in. ↑↑↓↓…",
+  fr: `🦉 Un secret se cache sur lafabriknumerique.fr, avec de vraies récompenses pour les plus rapides.
+
+Devinette — « Qui suis-je ? »
+Je suis une petite vague née au pays du Soleil-Levant.
+Trois noms de famille assemblés ont fait de moi une grande maison du jeu vidéo.
+J'apparais toujours en premier, juste avant l'aventure — le temps d'un éclair, puis on m'oublie.
+Et depuis 1986, un code secret qui porte mon nom donne un avantage aux joueurs qui le connaissent.
+Qui suis-je ?`,
+  en: `🦉 A secret is hiding on lafabriknumerique.fr, with real rewards for the fastest.
+
+Riddle — "Who am I?"
+I am a little wave, born in the land of the rising sun.
+Three family names joined together made me a great house of video games.
+I always appear first, right before the adventure — a flash, and then I'm forgotten.
+And since 1986, a secret code bearing my name has given an edge to the players who know it.
+Who am I?`,
 };
 
 export default function AtelierSecretPage() {
