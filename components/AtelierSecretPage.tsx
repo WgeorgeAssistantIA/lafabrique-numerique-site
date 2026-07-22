@@ -388,6 +388,15 @@ function AtelierSecretContent() {
                         : "Free"
                       : `-${tier.percent}%`}
                   </p>
+                  <p className="text-sm text-muted mb-4">
+                    {tier.percent === 100
+                      ? lang === "fr"
+                        ? "Une licence complète, à vie, pour l'un de nos 3 logiciels desktop."
+                        : "A full, lifetime license for one of our 3 desktop apps."
+                      : lang === "fr"
+                        ? "-50% sur la licence à vie de l'un de nos 3 logiciels desktop."
+                        : "-50% off the lifetime license of one of our 3 desktop apps."}
+                  </p>
                   <button
                     type="button"
                     onClick={() => copyCode(tier.code)}
