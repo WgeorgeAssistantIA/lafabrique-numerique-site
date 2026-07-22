@@ -12,7 +12,9 @@ export default function Hero() {
       id="top"
       className="relative pt-32 pb-24 border-b border-line overflow-hidden bg-background-deep"
     >
-      <div className="absolute inset-0 z-0">
+      {/* No z-index here: it would create a stacking context and trap the
+          letter canvas (z-[2]) below the gradient overlays (z-[1]). */}
+      <div className="absolute inset-0">
         <CircuitCanvas lang={lang} />
       </div>
       <div className="absolute inset-0 z-[1] pointer-events-none bg-gradient-to-r from-background-deep via-background-deep/85 to-background-deep/30" />

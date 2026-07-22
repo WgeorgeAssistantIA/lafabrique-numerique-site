@@ -61,6 +61,11 @@ const FADE_MS = 700;
 
 export default function CircuitCanvas({ lang = "fr" }: { lang?: "fr" | "en" }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  // The letter draws on its own canvas layered ABOVE the hero's darkening
+  // gradient overlays — on the main canvas it would be hidden behind the
+  // near-opaque left side of the gradient (that's exactly what happened when
+  // the letter moved from the right side to under the CTA).
+  const letterCanvasRef = useRef<HTMLCanvasElement>(null);
   const langRef = useRef(lang);
   useEffect(() => {
     langRef.current = lang;
@@ -71,6 +76,8 @@ export default function CircuitCanvas({ lang = "fr" }: { lang?: "fr" | "en" }) {
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
+    const letterCanvas = letterCanvasRef.current;
+    const lctx = letterCanvas ? letterCanvas.getContext("2d") : null;
 
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -297,10 +304,13 @@ export default function CircuitCanvas({ lang = "fr" }: { lang?: "fr" | "en" }) {
       }
       ctx.globalAlpha = 1;
 
-      if (!reduce) drawLetter();
+      if (lctx) {
+        lctx.clearRect(0, 0, width, height);
+        if (!reduce) drawLetter(lctx);
+      }
     };
 
-    const drawLetter = () => {
+    const drawLetter = (out: CanvasRenderingContext2D) => {
       const activeLang = langRef.current;
       const now = Date.now();
 
@@ -366,15 +376,15 @@ export default function CircuitCanvas({ lang = "fr" }: { lang?: "fr" | "en" }) {
       const totalLen = strokeLengths.reduce((a, b) => a + b, 0);
       const target = totalLen * travelT;
 
-      ctx.save();
-      ctx.globalAlpha = alpha * 0.9;
-      ctx.strokeStyle = color;
-      ctx.fillStyle = color;
-      ctx.lineWidth = Math.max(1, letterW * 0.014);
-      ctx.lineCap = "round";
-      ctx.lineJoin = "round";
-      ctx.shadowColor = color;
-      ctx.shadowBlur = 8;
+      out.save();
+      out.globalAlpha = alpha * 0.9;
+      out.strokeStyle = color;
+      out.fillStyle = color;
+      out.lineWidth = Math.max(1, letterW * 0.014);
+      out.lineCap = "round";
+      out.lineJoin = "round";
+      out.shadowColor = color;
+      out.shadowBlur = 8;
 
       let consumed = 0;
       for (let s = 0; s < strokes.length && consumed < target; s++) {
@@ -382,16 +392,16 @@ export default function CircuitCanvas({ lang = "fr" }: { lang?: "fr" | "en" }) {
         const segLen = strokeLengths[s];
         const remaining = target - consumed;
 
-        ctx.beginPath();
+        out.beginPath();
         const p0 = toCanvas(pts[0]);
-        ctx.moveTo(p0.x, p0.y);
+        out.moveTo(p0.x, p0.y);
 
         if (remaining >= segLen) {
           for (let i = 1; i < pts.length; i++) {
             const p = toCanvas(pts[i]);
-            ctx.lineTo(p.x, p.y);
+            out.lineTo(p.x, p.y);
           }
-          ctx.stroke();
+          out.stroke();
         } else {
           let acc = 0;
           let tipX = p0.x;
@@ -401,7 +411,7 @@ export default function CircuitCanvas({ lang = "fr" }: { lang?: "fr" | "en" }) {
             const b = toCanvas(pts[i]);
             const segLenAB = Math.hypot(b.x - a.x, b.y - a.y);
             if (acc + segLenAB <= remaining) {
-              ctx.lineTo(b.x, b.y);
+              out.lineTo(b.x, b.y);
               acc += segLenAB;
               tipX = b.x;
               tipY = b.y;
@@ -409,23 +419,23 @@ export default function CircuitCanvas({ lang = "fr" }: { lang?: "fr" | "en" }) {
               const t = segLenAB === 0 ? 0 : (remaining - acc) / segLenAB;
               tipX = a.x + (b.x - a.x) * t;
               tipY = a.y + (b.y - a.y) * t;
-              ctx.lineTo(tipX, tipY);
+              out.lineTo(tipX, tipY);
               break;
             }
           }
-          ctx.stroke();
+          out.stroke();
           if (travelT < 1) {
-            ctx.save();
-            ctx.shadowBlur = 12;
-            ctx.beginPath();
-            ctx.arc(tipX, tipY, ctx.lineWidth * 0.9, 0, 6.283);
-            ctx.fill();
-            ctx.restore();
+            out.save();
+            out.shadowBlur = 12;
+            out.beginPath();
+            out.arc(tipX, tipY, out.lineWidth * 0.9, 0, 6.283);
+            out.fill();
+            out.restore();
           }
         }
         consumed += segLen;
       }
-      ctx.restore();
+      out.restore();
     };
 
     const loop = (now: number) => {
@@ -453,6 +463,11 @@ export default function CircuitCanvas({ lang = "fr" }: { lang?: "fr" | "en" }) {
       canvas.width = Math.round(width * dpr);
       canvas.height = Math.round(height * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      if (letterCanvas && lctx) {
+        letterCanvas.width = Math.round(width * dpr);
+        letterCanvas.height = Math.round(height * dpr);
+        lctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
 
       const ctaEl = document.querySelector<HTMLElement>('#top a[href="#contact"]');
       ctaCenterX = ctaEl
@@ -523,5 +538,17 @@ export default function CircuitCanvas({ lang = "fr" }: { lang?: "fr" | "en" }) {
     };
   }, []);
 
-  return <canvas ref={canvasRef} aria-hidden="true" className="absolute inset-0 h-full w-full" />;
+  return (
+    <>
+      <canvas ref={canvasRef} aria-hidden="true" className="absolute inset-0 h-full w-full" />
+      {/* Letter layer: above the hero's darkening gradients (z-[2] > z-[1]),
+          below the text content (z-10). Requires the wrapper in Hero.tsx to
+          NOT create its own stacking context. */}
+      <canvas
+        ref={letterCanvasRef}
+        aria-hidden="true"
+        className="absolute inset-0 h-full w-full z-[2] pointer-events-none"
+      />
+    </>
+  );
 }
