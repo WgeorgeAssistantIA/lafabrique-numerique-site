@@ -6,6 +6,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import { LanguageProvider, useLanguage } from "@/lib/i18n";
 import { SECRET_STORAGE_KEY } from "./EasterEggWord";
+import { FINDERS } from "@/lib/secretFinders";
 
 const CONTACT_EMAIL = "lafabriknumerique@outlook.com";
 
@@ -198,33 +199,68 @@ function AtelierSecretContent() {
                 {lang === "fr" ? "Bienvenue dans l'atelier." : "Welcome to the workshop."}
               </h1>
 
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-8 mb-4">
-                {unlocked?.hibou && (
-                  <button
-                    type="button"
-                    onClick={() => setOpenTrack("fr")}
-                    className="card-lift border border-cyan p-6 flex flex-col items-center gap-3 bg-panel"
-                  >
-                    <BlinkingOwl track="fr" size={120} />
-                    <span className="fig-label text-cyan">HIBOU</span>
-                  </button>
-                )}
-                {unlocked?.owl && (
-                  <button
-                    type="button"
-                    onClick={() => setOpenTrack("en")}
-                    className="card-lift border border-cyan p-6 flex flex-col items-center gap-3 bg-panel"
-                  >
-                    <BlinkingOwl track="en" size={120} />
-                    <span className="fig-label text-cyan">OWL</span>
-                  </button>
-                )}
-              </div>
+              {(() => {
+                // One owl only, matching the page language (fall back to the
+                // other track if it's the only one unlocked).
+                const preferred: "fr" | "en" = lang;
+                const other: "fr" | "en" = lang === "fr" ? "en" : "fr";
+                const isUnlocked = (t: "fr" | "en") =>
+                  t === "fr" ? unlocked?.hibou : unlocked?.owl;
+                const track = isUnlocked(preferred) ? preferred : other;
+                return (
+                  <div className="mb-4">
+                    <button
+                      type="button"
+                      onClick={() => setOpenTrack(track)}
+                      className="card-lift border border-cyan p-8 inline-flex flex-col items-center gap-4 bg-panel"
+                    >
+                      <BlinkingOwl track={track} size={240} />
+                      <span className="fig-label text-cyan">
+                        {track === "fr" ? "HIBOU" : "OWL"}
+                      </span>
+                    </button>
+                  </div>
+                );
+              })()}
               <p className="text-muted text-sm mb-16">
                 {lang === "fr"
                   ? "Clique sur le hibou pour réclamer ta récompense."
                   : "Click the owl to claim your reward."}
               </p>
+
+              <section className="mb-16 max-w-md mx-auto">
+                <p className="fig-label mb-6">
+                  {lang === "fr" ? "LE TABLEAU DES TROUVEURS" : "THE FINDERS' BOARD"}
+                </p>
+                {FINDERS[lang].length === 0 ? (
+                  <p className="text-muted text-sm">
+                    {lang === "fr"
+                      ? "Personne n'est encore inscrit — les premières places sont à prendre."
+                      : "No one on the board yet — the first spots are up for grabs."}
+                  </p>
+                ) : (
+                  <ol className="space-y-2 text-left inline-block">
+                    {FINDERS[lang].map((name, i) => (
+                      <li key={name} className="flex items-baseline gap-4">
+                        <span className="fig-label text-amber shrink-0 w-10">
+                          {lang === "fr"
+                            ? i === 0
+                              ? "1er"
+                              : `${i + 1}e`
+                            : i === 0
+                              ? "1st"
+                              : i === 1
+                                ? "2nd"
+                                : i === 2
+                                  ? "3rd"
+                                  : `${i + 1}th`}
+                        </span>
+                        <span className="text-foreground/90">{name}</span>
+                      </li>
+                    ))}
+                  </ol>
+                )}
+              </section>
 
               <section className="mb-16">
                 <p className="fig-label mb-6">
