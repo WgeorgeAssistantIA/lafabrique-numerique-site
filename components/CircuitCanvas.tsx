@@ -91,25 +91,6 @@ export default function CircuitCanvas({ lang = "fr" }: { lang?: "fr" | "en" }) {
     let signals: Signal[] = [];
     const mouse = { x: -9999, y: -9999, inside: false };
 
-    // Dev-only test trigger: press "L" to force the letter reveal to play
-    // immediately (cycling through every letter) instead of waiting for the
-    // real hourly/5-min schedule. Stripped out in production builds.
-    let testOverride: { letter: string; start: number } | null = null;
-    let testIdx = 0;
-    const TEST_LETTERS = ["H", "I", "B", "O", "U", "W", "L"];
-    const onTestKey = (e: KeyboardEvent) => {
-      if (e.key.toLowerCase() !== "l") return;
-      const active = document.activeElement;
-      if (active instanceof HTMLElement && (active.tagName === "INPUT" || active.tagName === "TEXTAREA" || active.isContentEditable)) {
-        return;
-      }
-      testOverride = { letter: TEST_LETTERS[testIdx % TEST_LETTERS.length], start: Date.now() };
-      testIdx++;
-    };
-    if (process.env.NODE_ENV !== "production") {
-      window.addEventListener("keydown", onTestKey);
-    }
-
     let raf = 0;
     let started = false;
     let last = performance.now();
@@ -314,26 +295,13 @@ export default function CircuitCanvas({ lang = "fr" }: { lang?: "fr" | "en" }) {
       const activeLang = langRef.current;
       const now = Date.now();
 
-      let letter: string;
-      let msIntoBlock: number;
-      if (testOverride) {
-        const elapsed = now - testOverride.start;
-        if (elapsed > FORM_MS + HOLD_MS + FADE_MS) {
-          testOverride = null;
-        }
-      }
-      if (testOverride) {
-        letter = testOverride.letter;
-        msIntoBlock = now - testOverride.start;
-      } else {
-        // The letter reveal only runs for players who solved levels 1 and 2 —
-        // for everyone else the circuit stays purely ambient.
-        if (!hasEggFlag(EGG_FLAGS.konami) || !hasEggFlag(EGG_FLAGS.rouage)) return;
-        const word = WORDS[activeLang];
-        const hourIdx = Math.floor(now / HOUR_MS) % word.length;
-        letter = word[hourIdx];
-        msIntoBlock = now % BLOCK_MS;
-      }
+      // The letter reveal only runs for players who solved levels 1 and 2 —
+      // for everyone else the circuit stays purely ambient.
+      if (!hasEggFlag(EGG_FLAGS.konami) || !hasEggFlag(EGG_FLAGS.rouage)) return;
+      const word = WORDS[activeLang];
+      const hourIdx = Math.floor(now / HOUR_MS) % word.length;
+      const letter = word[hourIdx];
+      const msIntoBlock = now % BLOCK_MS;
       const strokes = LETTER_STROKES[letter];
       if (!strokes) return;
 
@@ -538,9 +506,6 @@ export default function CircuitCanvas({ lang = "fr" }: { lang?: "fr" | "en" }) {
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("pointerdown", onClick);
       canvas.removeEventListener("pointerleave", onLeave);
-      if (process.env.NODE_ENV !== "production") {
-        window.removeEventListener("keydown", onTestKey);
-      }
       cleanup.forEach((fn) => fn());
     };
   }, []);
