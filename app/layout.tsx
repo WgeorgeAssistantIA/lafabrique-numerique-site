@@ -3,6 +3,9 @@ import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/next";
 import ScrollProgress from "@/components/ScrollProgress";
 import BackToTop from "@/components/BackToTop";
+import EasterEggKonami from "@/components/EasterEggKonami";
+import EasterEggConsole from "@/components/EasterEggConsole";
+import EasterEggWord from "@/components/EasterEggWord";
 import "./globals.css";
 
 const bigShoulders = localFont({
@@ -60,6 +63,9 @@ export default function RootLayout({
         <ScrollProgress />
         {children}
         <BackToTop />
+        <EasterEggKonami />
+        <EasterEggConsole />
+        <EasterEggWord />
         <Analytics />
       </body>
     </html>

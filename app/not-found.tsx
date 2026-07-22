@@ -11,6 +11,7 @@ export default function NotFound() {
           width={48}
           height={48}
           className="mx-auto mb-8"
+          data-easter-egg="logo"
         />
         <p className="fig-label mb-4">FIG. 404 — CIRCUIT OUVERT</p>
         <h1 className="font-display uppercase text-6xl">

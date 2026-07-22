@@ -1,0 +1,17 @@
+/* TEAM */
+Atelier : La Fabrik Numérique
+Contact : lafabriknumerique@outlook.com
+Devise : on assemble le numérique comme une horlogerie.
+
+/* CURIOUS VISITOR / VISITEUR CURIEUX */
+FR — Bravo d'être arrivé jusqu'ici.
+Le circuit n'a pas fini de parler. Ce qu'il cache ne se révèle qu'à qui prend le temps de le regarder vivre.
+Une fois trouvé : /atelier-secret (mais il dort tant que tu n'as pas réveillé le circuit).
+
+EN — Well done for making it this far.
+The circuit hasn't said everything yet. What it hides only reveals itself to those who take the time to watch it live.
+Once found: /atelier-secret (but it sleeps until you've woken the circuit).
+
+/* THANKS */
+Merci de faire tourner les engrenages avec nous.
+Thanks for keeping the gears turning with us.

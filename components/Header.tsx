@@ -64,7 +64,14 @@ export default function Header() {
     >
       <div className="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between gap-4">
         <Link href={isHome ? "#top" : homePath} className="flex items-center gap-3" onClick={() => setOpen(false)}>
-          <Image src="/img/logo.png" alt="La Fabrik Numérique" width={32} height={32} className="logo-spin" />
+          <Image
+            src="/img/logo.png"
+            alt="La Fabrik Numérique"
+            width={32}
+            height={32}
+            className="logo-spin"
+            data-easter-egg="logo"
+          />
           <span className="font-display text-sm tracking-widest uppercase">
             La Fabrik Numérique
           </span>

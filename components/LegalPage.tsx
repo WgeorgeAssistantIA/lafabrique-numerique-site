@@ -27,7 +27,13 @@ function LegalContent({ docKey }: { docKey: DocKey }) {
       <header className="border-b border-line">
         <div className="mx-auto max-w-3xl px-6 h-16 flex items-center justify-between gap-4">
           <Link href="/" className="flex items-center gap-3">
-            <Image src="/img/logo.png" alt="La Fabrik Numérique" width={32} height={32} />
+            <Image
+              src="/img/logo.png"
+              alt="La Fabrik Numérique"
+              width={32}
+              height={32}
+              data-easter-egg="logo"
+            />
             <span className="font-display text-sm tracking-widest uppercase">
               La Fabrik Numérique
             </span>

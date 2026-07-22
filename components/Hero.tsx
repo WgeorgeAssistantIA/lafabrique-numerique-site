@@ -4,7 +4,7 @@ import { useLanguage } from "@/lib/i18n";
 import CircuitCanvas from "./CircuitCanvas";
 
 export default function Hero() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const h = t.hero;
 
   return (
@@ -13,7 +13,7 @@ export default function Hero() {
       className="relative pt-32 pb-24 border-b border-line overflow-hidden bg-background-deep"
     >
       <div className="absolute inset-0 z-0">
-        <CircuitCanvas />
+        <CircuitCanvas lang={lang} />
       </div>
       <div className="absolute inset-0 z-[1] pointer-events-none bg-gradient-to-r from-background-deep via-background-deep/85 to-background-deep/30" />
       <div className="absolute inset-x-0 bottom-0 z-[1] h-24 pointer-events-none bg-gradient-to-t from-background-deep to-transparent" />

@@ -6,11 +6,64 @@ type Node = { x: number; y: number; pad: boolean; glow: number };
 type Edge = { a: number; b: number; mx: number; my: number; len: number; l1: number };
 type Signal = { edge: number; fromA: boolean; dist: number; speed: number; color: string; hops: number };
 
-const CYAN = "#5fd8e8";
+const CYAN = "#5fd8e8"; // halo bleu électrique — parcours HIBOU (fr), même bleu que "CIRCUITS" dans le Hero
 const AMBER = "#e8a14f";
+const HALO_EN = "#b026ff"; // halo violet électrique — parcours OWL (en)
 
-export default function CircuitCanvas() {
+// Ambient easter-egg reveal: once an hour, one letter of HIBOU (fr) / OWL (en)
+// forms in the circuit for a few seconds, purely cosmetic — never a capture
+// window. Each letter is a set of pen strokes (not connected to each other)
+// in a normalized 60x100 box; a point travels along them in order, the
+// already-drawn portion staying lit — a visible trace, not a fade-in.
+type StrokePoint = { x: number; y: number };
+const LETTER_STROKES: Record<string, StrokePoint[][]> = {
+  H: [
+    [{ x: 0, y: 0 }, { x: 0, y: 100 }],
+    [{ x: 60, y: 0 }, { x: 60, y: 100 }],
+    [{ x: 0, y: 50 }, { x: 60, y: 50 }],
+  ],
+  I: [
+    [{ x: 10, y: 0 }, { x: 50, y: 0 }],
+    [{ x: 30, y: 0 }, { x: 30, y: 100 }],
+    [{ x: 10, y: 100 }, { x: 50, y: 100 }],
+  ],
+  B: [
+    [{ x: 0, y: 0 }, { x: 0, y: 100 }],
+    [{ x: 0, y: 0 }, { x: 38, y: 0 }, { x: 50, y: 12 }, { x: 50, y: 38 }, { x: 38, y: 50 }, { x: 0, y: 50 }],
+    [{ x: 0, y: 50 }, { x: 42, y: 50 }, { x: 55, y: 63 }, { x: 55, y: 88 }, { x: 42, y: 100 }, { x: 0, y: 100 }],
+  ],
+  O: [
+    [
+      { x: 30, y: 0 }, { x: 48, y: 6 }, { x: 58, y: 22 }, { x: 60, y: 50 },
+      { x: 58, y: 78 }, { x: 48, y: 94 }, { x: 30, y: 100 }, { x: 12, y: 94 },
+      { x: 2, y: 78 }, { x: 0, y: 50 }, { x: 2, y: 22 }, { x: 12, y: 6 }, { x: 30, y: 0 },
+    ],
+  ],
+  U: [
+    [
+      { x: 0, y: 0 }, { x: 0, y: 65 }, { x: 4, y: 86 }, { x: 16, y: 98 },
+      { x: 30, y: 100 }, { x: 44, y: 98 }, { x: 56, y: 86 }, { x: 60, y: 65 }, { x: 60, y: 0 },
+    ],
+  ],
+  W: [[{ x: 0, y: 0 }, { x: 15, y: 100 }, { x: 30, y: 40 }, { x: 45, y: 100 }, { x: 60, y: 0 }]],
+  L: [
+    [{ x: 0, y: 0 }, { x: 0, y: 100 }],
+    [{ x: 0, y: 100 }, { x: 50, y: 100 }],
+  ],
+};
+const WORDS = { fr: "HIBOU", en: "OWL" };
+const HOUR_MS = 3_600_000;
+const BLOCK_MS = 5 * 60_000;
+const FORM_MS = 2600;
+const HOLD_MS = 900;
+const FADE_MS = 700;
+
+export default function CircuitCanvas({ lang = "fr" }: { lang?: "fr" | "en" }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const langRef = useRef(lang);
+  useEffect(() => {
+    langRef.current = lang;
+  }, [lang]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -23,11 +76,31 @@ export default function CircuitCanvas() {
 
     let width = 0;
     let height = 0;
+    let ctaCenterX = 0; // horizontal center of the "Demander un devis" CTA, read from the real DOM
     let nodes: Node[] = [];
     let edges: Edge[] = [];
     let adjE: number[][] = [];
     let signals: Signal[] = [];
     const mouse = { x: -9999, y: -9999, inside: false };
+
+    // Dev-only test trigger: press "L" to force the letter reveal to play
+    // immediately (cycling through every letter) instead of waiting for the
+    // real hourly/5-min schedule. Stripped out in production builds.
+    let testOverride: { letter: string; start: number } | null = null;
+    let testIdx = 0;
+    const TEST_LETTERS = ["H", "I", "B", "O", "U", "W", "L"];
+    const onTestKey = (e: KeyboardEvent) => {
+      if (e.key.toLowerCase() !== "l") return;
+      const active = document.activeElement;
+      if (active instanceof HTMLElement && (active.tagName === "INPUT" || active.tagName === "TEXTAREA" || active.isContentEditable)) {
+        return;
+      }
+      testOverride = { letter: TEST_LETTERS[testIdx % TEST_LETTERS.length], start: Date.now() };
+      testIdx++;
+    };
+    if (process.env.NODE_ENV !== "production") {
+      window.addEventListener("keydown", onTestKey);
+    }
 
     let raf = 0;
     let started = false;
@@ -222,6 +295,133 @@ export default function CircuitCanvas() {
         ctx.restore();
       }
       ctx.globalAlpha = 1;
+
+      if (!reduce) drawLetter();
+    };
+
+    const drawLetter = () => {
+      const activeLang = langRef.current;
+      const now = Date.now();
+
+      let letter: string;
+      let msIntoBlock: number;
+      if (testOverride) {
+        const elapsed = now - testOverride.start;
+        if (elapsed > FORM_MS + HOLD_MS + FADE_MS) {
+          testOverride = null;
+        }
+      }
+      if (testOverride) {
+        letter = testOverride.letter;
+        msIntoBlock = now - testOverride.start;
+      } else {
+        const word = WORDS[activeLang];
+        const hourIdx = Math.floor(now / HOUR_MS) % word.length;
+        letter = word[hourIdx];
+        msIntoBlock = now % BLOCK_MS;
+      }
+      const strokes = LETTER_STROKES[letter];
+      if (!strokes) return;
+
+      let alpha = 0;
+      let travelT = 1; // 0..1, how much of the letter has been traced so far
+      if (msIntoBlock < FORM_MS) {
+        alpha = 1;
+        travelT = msIntoBlock / FORM_MS;
+      } else if (msIntoBlock < FORM_MS + HOLD_MS) {
+        alpha = 1;
+      } else if (msIntoBlock < FORM_MS + HOLD_MS + FADE_MS) {
+        alpha = 1 - (msIntoBlock - FORM_MS - HOLD_MS) / FADE_MS;
+      } else {
+        return;
+      }
+      if (alpha <= 0) return;
+
+      // Bigger, horizontally centered under the "Demander un devis" CTA
+      // (its real position is read from the DOM in resize(), not guessed).
+      // Vertical position calibrated against a marked-up screenshot from
+      // William (2026-07-22): ~64% down the Hero.
+      const letterH = Math.max(160, Math.min(380, height * 0.4));
+      const letterW = letterH * 0.6;
+      const originX = ctaCenterX - letterW / 2;
+      const originY = height * 0.64 - letterH / 2;
+      const scaleX = letterW / 60;
+      const scaleY = letterH / 100;
+      const toCanvas = (p: StrokePoint) => ({ x: originX + p.x * scaleX, y: originY + p.y * scaleY });
+      const color = activeLang === "fr" ? CYAN : HALO_EN;
+
+      const strokeLengths = strokes.map((pts) => {
+        let len = 0;
+        for (let i = 1; i < pts.length; i++) {
+          const a = toCanvas(pts[i - 1]);
+          const b = toCanvas(pts[i]);
+          len += Math.hypot(b.x - a.x, b.y - a.y);
+        }
+        return len;
+      });
+      const totalLen = strokeLengths.reduce((a, b) => a + b, 0);
+      const target = totalLen * travelT;
+
+      ctx.save();
+      ctx.globalAlpha = alpha * 0.9;
+      ctx.strokeStyle = color;
+      ctx.fillStyle = color;
+      ctx.lineWidth = Math.max(1, letterW * 0.014);
+      ctx.lineCap = "round";
+      ctx.lineJoin = "round";
+      ctx.shadowColor = color;
+      ctx.shadowBlur = 8;
+
+      let consumed = 0;
+      for (let s = 0; s < strokes.length && consumed < target; s++) {
+        const pts = strokes[s];
+        const segLen = strokeLengths[s];
+        const remaining = target - consumed;
+
+        ctx.beginPath();
+        const p0 = toCanvas(pts[0]);
+        ctx.moveTo(p0.x, p0.y);
+
+        if (remaining >= segLen) {
+          for (let i = 1; i < pts.length; i++) {
+            const p = toCanvas(pts[i]);
+            ctx.lineTo(p.x, p.y);
+          }
+          ctx.stroke();
+        } else {
+          let acc = 0;
+          let tipX = p0.x;
+          let tipY = p0.y;
+          for (let i = 1; i < pts.length; i++) {
+            const a = toCanvas(pts[i - 1]);
+            const b = toCanvas(pts[i]);
+            const segLenAB = Math.hypot(b.x - a.x, b.y - a.y);
+            if (acc + segLenAB <= remaining) {
+              ctx.lineTo(b.x, b.y);
+              acc += segLenAB;
+              tipX = b.x;
+              tipY = b.y;
+            } else {
+              const t = segLenAB === 0 ? 0 : (remaining - acc) / segLenAB;
+              tipX = a.x + (b.x - a.x) * t;
+              tipY = a.y + (b.y - a.y) * t;
+              ctx.lineTo(tipX, tipY);
+              break;
+            }
+          }
+          ctx.stroke();
+          if (travelT < 1) {
+            ctx.save();
+            ctx.shadowBlur = 12;
+            ctx.beginPath();
+            ctx.arc(tipX, tipY, ctx.lineWidth * 0.9, 0, 6.283);
+            ctx.fill();
+            ctx.restore();
+          }
+        }
+        consumed += segLen;
+      }
+      ctx.restore();
     };
 
     const loop = (now: number) => {
@@ -249,6 +449,12 @@ export default function CircuitCanvas() {
       canvas.width = Math.round(width * dpr);
       canvas.height = Math.round(height * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      const ctaEl = document.querySelector<HTMLElement>('#top a[href="#contact"]');
+      ctaCenterX = ctaEl
+        ? (ctaEl.getBoundingClientRect().left + ctaEl.getBoundingClientRect().right) / 2 - rect.left
+        : width * 0.35;
+
       build();
       draw();
     };
@@ -306,6 +512,9 @@ export default function CircuitCanvas() {
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("pointerdown", onClick);
       canvas.removeEventListener("pointerleave", onLeave);
+      if (process.env.NODE_ENV !== "production") {
+        window.removeEventListener("keydown", onTestKey);
+      }
       cleanup.forEach((fn) => fn());
     };
   }, []);

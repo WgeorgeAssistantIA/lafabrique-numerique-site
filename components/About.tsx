@@ -41,7 +41,16 @@ export default function About() {
           </div>
         </div>
         <div className="relative border border-line p-8 flex items-center justify-center bg-panel">
-          <Image src="/img/logo.png" alt="La Fabrik Numérique" width={220} height={220} />
+          <div className="relative w-[220px] h-[220px]" data-atelier-owl-wrapper="true">
+            <Image
+              src="/img/logo.png"
+              alt="La Fabrik Numérique"
+              width={220}
+              height={220}
+              data-easter-egg="logo"
+              data-atelier-owl="true"
+            />
+          </div>
         </div>
       </div>
     </section>

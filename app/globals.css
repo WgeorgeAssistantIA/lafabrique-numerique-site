@@ -176,6 +176,48 @@ body {
   animation: logo-spin 25s linear infinite;
 }
 
+/* Konami-code reward: brief accelerated spin + glow burst on the logo, overrides .logo-spin while active */
+@keyframes logo-burst-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(1080deg);
+  }
+}
+
+@keyframes logo-burst-glow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 0 transparent);
+  }
+  50% {
+    filter: drop-shadow(0 0 10px rgba(95, 216, 232, 0.85));
+  }
+}
+
+.logo-burst {
+  animation:
+    logo-burst-spin 1.6s cubic-bezier(0.16, 1, 0.3, 1),
+    logo-burst-glow 1.6s ease-in-out;
+}
+
+/* Word-easter-egg reward: logo blinks and invites a click until found */
+@keyframes logo-awaiting-pulse {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 0 transparent);
+  }
+  50% {
+    filter: drop-shadow(0 0 8px rgba(95, 216, 232, 0.7));
+  }
+}
+
+.logo-awaiting {
+  animation: logo-awaiting-pulse 1.8s ease-in-out infinite;
+  cursor: pointer;
+}
+
 /* Scroll-reveal / entrance animations are disabled for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -203,6 +245,14 @@ body {
   }
 
   .logo-spin {
+    animation: none !important;
+  }
+
+  .logo-burst {
+    animation: logo-burst-glow 1.6s ease-in-out !important;
+  }
+
+  .logo-awaiting {
     animation: none !important;
   }
 }
