@@ -5,12 +5,14 @@ Devise : on assemble le numérique comme une horlogerie.
 
 /* CURIOUS VISITOR / VISITEUR CURIEUX */
 FR — Bravo d'être arrivé jusqu'ici.
-Le circuit n'a pas fini de parler. Ce qu'il cache ne se révèle qu'à qui prend le temps de le regarder vivre.
-Une fois trouvé : /atelier-secret (mais il dort tant que tu n'as pas réveillé le circuit).
+Une énigme, pour continuer :
+« Petit, denté, discret — sans moi, l'horloge se tait.
+  Écris mon nom au clavier, là où le circuit vit. »
 
 EN — Well done for making it this far.
-The circuit hasn't said everything yet. What it hides only reveals itself to those who take the time to watch it live.
-Once found: /atelier-secret (but it sleeps until you've woken the circuit).
+A riddle, to go further:
+"Small, toothed, silent — without me, the clock stops.
+  Type my name where the circuit lives."
 
 /* THANKS */
 Merci de faire tourner les engrenages avec nous.

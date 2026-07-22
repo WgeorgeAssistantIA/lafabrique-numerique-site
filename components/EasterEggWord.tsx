@@ -5,8 +5,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { playSecretFoundSound, playOwlHoot } from "@/lib/easterEggAudio";
+import { EGG_FLAGS, hasEggFlag, setEggFlag } from "@/lib/easterEggProgress";
 
 const WORDS = { fr: "hibou", en: "owl" };
+// Level-2 password, answer to the humans.txt riddle. Typing it (after the
+// Konami code) unlocks the circuit-letter reveal on the homepage.
+const PASSWORDS = { fr: "rouage", en: "gear" };
+const MAX_WORD_LEN = 6;
 
 // One wink cycle, played in sync with each hoot: neutral -> mid -> closed -> mid -> neutral.
 const WINK_CYCLE = {
@@ -42,6 +47,32 @@ const COPY = {
   },
 };
 
+// Small transient toasts (same placement/style as the Konami one) used to
+// steer players who type a word before unlocking the previous level, and to
+// confirm the level-2 password.
+const TOASTS = {
+  fr: {
+    locked: {
+      title: "Rien ne se passe.",
+      body: "Le circuit ne répond pas encore. Il manque des rouages — reprends depuis le début.",
+    },
+    password: {
+      title: "Un rouage s'enclenche.",
+      body: "Le circuit de la page d'accueil s'anime désormais. Prends le temps de le regarder vivre.",
+    },
+  },
+  en: {
+    locked: {
+      title: "Nothing happens.",
+      body: "The circuit isn't responding yet. Some gears are missing — start from the beginning.",
+    },
+    password: {
+      title: "A gear clicks into place.",
+      body: "The circuit on the homepage is now alive. Take the time to watch it.",
+    },
+  },
+};
+
 export const SECRET_STORAGE_KEY = { fr: "lfn:secret:hibou", en: "lfn:secret:owl" } as const;
 
 // next/image renders a `srcset`, which browsers prefer over `src` — clear it
@@ -68,22 +99,46 @@ export default function EasterEggWord() {
   const buffer = useRef("");
   const [revealed, setRevealed] = useState(false);
   const [frame, setFrame] = useState(0);
+  const [toast, setToast] = useState<{ title: string; body: string } | null>(null);
+  const toastTimer = useRef<number | null>(null);
 
-  // Word detection: types the target word anywhere on the site (not while
+  // Word detection: types a target word anywhere on the site (not while
   // typing in a form field), any time — the hourly circuit letter is only
-  // a cosmetic hint, never a capture window.
+  // a cosmetic hint, never a capture window. Levels are chained: the
+  // password needs the Konami flag, the final word needs both flags.
   useEffect(() => {
+    const showToast = (t: { title: string; body: string }) => {
+      setToast(t);
+      if (toastTimer.current) window.clearTimeout(toastTimer.current);
+      toastTimer.current = window.setTimeout(() => setToast(null), 6000);
+    };
+
     const onKeyDown = (e: KeyboardEvent) => {
       if (isTypingTarget(document.activeElement)) return;
       if (e.key.length !== 1 || !/[a-z]/i.test(e.key)) {
         buffer.current = "";
         return;
       }
-      const word = WORDS[lang];
-      buffer.current = (buffer.current + e.key.toLowerCase()).slice(-word.length);
-      if (buffer.current === word) {
+      buffer.current = (buffer.current + e.key.toLowerCase()).slice(-MAX_WORD_LEN);
+
+      if (buffer.current.endsWith(PASSWORDS[lang])) {
         buffer.current = "";
-        startWaking();
+        if (!hasEggFlag(EGG_FLAGS.konami)) {
+          showToast(TOASTS[lang].locked);
+        } else {
+          setEggFlag(EGG_FLAGS.rouage);
+          showToast(TOASTS[lang].password);
+        }
+        return;
+      }
+
+      if (buffer.current.endsWith(WORDS[lang])) {
+        buffer.current = "";
+        if (!hasEggFlag(EGG_FLAGS.konami) || !hasEggFlag(EGG_FLAGS.rouage)) {
+          showToast(TOASTS[lang].locked);
+        } else {
+          startWaking();
+        }
       }
     };
 
@@ -177,45 +232,59 @@ export default function EasterEggWord() {
     window.addEventListener("keydown", onKeyDown);
     return () => {
       window.removeEventListener("keydown", onKeyDown);
+      if (toastTimer.current) window.clearTimeout(toastTimer.current);
       stopBlinking(false);
     };
   }, [lang]);
 
-  if (!revealed) return null;
-
   return (
-    <div
-      role="dialog"
-      aria-modal="true"
-      aria-label={COPY[lang].title}
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-background-deep/85 backdrop-blur-sm px-6"
-    >
-      <div className="max-w-sm w-full border border-cyan bg-background-deep p-8 text-center shadow-[0_24px_48px_-20px_rgba(95,216,232,0.5)]">
-        <Image
-          src={REVEAL_FRAMES[lang][frame]}
-          alt="La Fabrik Numérique"
-          width={96}
-          height={96}
-          className="mx-auto mb-6"
-        />
-        <p className="fig-label text-cyan mb-2">{COPY[lang].title}</p>
-        <p className="text-sm text-foreground/90 mb-6">{COPY[lang].body}</p>
-        <div className="flex flex-col gap-3">
-          <Link
-            href="/atelier-secret"
-            className="fig-label bg-cyan text-background-deep px-6 py-3 hover:bg-amber transition-colors"
-          >
-            {COPY[lang].cta}
-          </Link>
-          <button
-            type="button"
-            onClick={() => setRevealed(false)}
-            className="fig-label text-muted hover:text-foreground transition-colors"
-          >
-            {COPY[lang].close}
-          </button>
-        </div>
+    <>
+      <div
+        role="status"
+        aria-live="polite"
+        className={`fixed bottom-6 left-6 z-50 max-w-xs border border-cyan bg-background-deep/95 backdrop-blur px-4 py-3 shadow-[0_16px_32px_-18px_rgba(95,216,232,0.45)] transition-all duration-500 ${
+          toast ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3 pointer-events-none"
+        }`}
+      >
+        <p className="fig-label text-cyan mb-1">{toast?.title}</p>
+        <p className="text-sm text-foreground/90">{toast?.body}</p>
       </div>
-    </div>
+
+      {revealed && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={COPY[lang].title}
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-background-deep/85 backdrop-blur-sm px-6"
+        >
+          <div className="max-w-sm w-full border border-cyan bg-background-deep p-8 text-center shadow-[0_24px_48px_-20px_rgba(95,216,232,0.5)]">
+            <Image
+              src={REVEAL_FRAMES[lang][frame]}
+              alt="La Fabrik Numérique"
+              width={96}
+              height={96}
+              className="mx-auto mb-6"
+            />
+            <p className="fig-label text-cyan mb-2">{COPY[lang].title}</p>
+            <p className="text-sm text-foreground/90 mb-6">{COPY[lang].body}</p>
+            <div className="flex flex-col gap-3">
+              <Link
+                href="/atelier-secret"
+                className="fig-label bg-cyan text-background-deep px-6 py-3 hover:bg-amber transition-colors"
+              >
+                {COPY[lang].cta}
+              </Link>
+              <button
+                type="button"
+                onClick={() => setRevealed(false)}
+                className="fig-label text-muted hover:text-foreground transition-colors"
+              >
+                {COPY[lang].close}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 }

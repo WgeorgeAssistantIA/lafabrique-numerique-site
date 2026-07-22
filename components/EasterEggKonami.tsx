@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
+import { EGG_FLAGS, setEggFlag } from "@/lib/easterEggProgress";
 
 const SEQUENCE = [
   "arrowup",
@@ -45,6 +46,7 @@ export default function EasterEggKonami() {
 
   useEffect(() => {
     const trigger = () => {
+      setEggFlag(EGG_FLAGS.konami);
       document.querySelectorAll<HTMLElement>('[data-easter-egg="logo"]').forEach((el) => {
         el.classList.remove("logo-burst");
         void el.offsetWidth; // restart the animation if re-triggered mid-burst

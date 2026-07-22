@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { EGG_FLAGS, hasEggFlag } from "@/lib/easterEggProgress";
 
 type Node = { x: number; y: number; pad: boolean; glow: number };
 type Edge = { a: number; b: number; mx: number; my: number; len: number; l1: number };
@@ -315,6 +316,9 @@ export default function CircuitCanvas({ lang = "fr" }: { lang?: "fr" | "en" }) {
         letter = testOverride.letter;
         msIntoBlock = now - testOverride.start;
       } else {
+        // The letter reveal only runs for players who solved levels 1 and 2 —
+        // for everyone else the circuit stays purely ambient.
+        if (!hasEggFlag(EGG_FLAGS.konami) || !hasEggFlag(EGG_FLAGS.rouage)) return;
         const word = WORDS[activeLang];
         const hourIdx = Math.floor(now / HOUR_MS) % word.length;
         letter = word[hourIdx];
