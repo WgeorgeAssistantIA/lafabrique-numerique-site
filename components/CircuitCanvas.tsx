@@ -389,14 +389,14 @@ export default function CircuitCanvas({ lang = "fr" }: { lang?: "fr" | "en" }) {
       // traveling tip dot keeps the previous stroke's size.
       const tipRadius = Math.max(2, letterW * 0.012);
       out.save();
-      out.globalAlpha = alpha * 0.9;
+      out.globalAlpha = alpha * 0.65;
       out.strokeStyle = color;
       out.fillStyle = color;
       out.lineWidth = 1;
       out.lineCap = "round";
       out.lineJoin = "round";
       out.shadowColor = color;
-      out.shadowBlur = 8;
+      out.shadowBlur = 4;
 
       let consumed = 0;
       for (let s = 0; s < strokes.length && consumed < target; s++) {
@@ -438,7 +438,7 @@ export default function CircuitCanvas({ lang = "fr" }: { lang?: "fr" | "en" }) {
           out.stroke();
           if (travelT < 1) {
             out.save();
-            out.shadowBlur = 12;
+            out.shadowBlur = 8;
             out.beginPath();
             out.arc(tipX, tipY, tipRadius, 0, 6.283);
             out.fill();
