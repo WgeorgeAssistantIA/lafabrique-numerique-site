@@ -85,6 +85,7 @@ export default function CircuitCanvas({ lang = "fr" }: { lang?: "fr" | "en" }) {
     let width = 0;
     let height = 0;
     let ctaCenterX = 0; // horizontal center of the "Demander un devis" CTA, read from the real DOM
+    let ctaBottom = 0; // bottom edge of the CTA — the letter draws BELOW it, not over it
     let nodes: Node[] = [];
     let edges: Edge[] = [];
     let adjE: number[][] = [];
@@ -351,14 +352,15 @@ export default function CircuitCanvas({ lang = "fr" }: { lang?: "fr" | "en" }) {
       }
       if (alpha <= 0) return;
 
-      // Bigger, horizontally centered under the "Demander un devis" CTA
-      // (its real position is read from the DOM in resize(), not guessed).
-      // Vertical position calibrated against a marked-up screenshot from
-      // William (2026-07-22): ~64% down the Hero.
-      const letterH = Math.max(160, Math.min(380, height * 0.4));
+      // Horizontally centered on the "Demander un devis" CTA and drawn
+      // BELOW it (never over the hero text/buttons) — both edges read from
+      // the real DOM in resize(), sized to the space left underneath.
+      const topY = ctaBottom + 20;
+      const available = height - topY - 16;
+      const letterH = Math.max(80, Math.min(380, available));
       const letterW = letterH * 0.6;
       const originX = ctaCenterX - letterW / 2;
-      const originY = height * 0.64 - letterH / 2;
+      const originY = topY;
       const scaleX = letterW / 60;
       const scaleY = letterH / 100;
       const toCanvas = (p: StrokePoint) => ({ x: originX + p.x * scaleX, y: originY + p.y * scaleY });
@@ -470,9 +472,14 @@ export default function CircuitCanvas({ lang = "fr" }: { lang?: "fr" | "en" }) {
       }
 
       const ctaEl = document.querySelector<HTMLElement>('#top a[href="#contact"]');
-      ctaCenterX = ctaEl
-        ? (ctaEl.getBoundingClientRect().left + ctaEl.getBoundingClientRect().right) / 2 - rect.left
-        : width * 0.35;
+      if (ctaEl) {
+        const ctaRect = ctaEl.getBoundingClientRect();
+        ctaCenterX = (ctaRect.left + ctaRect.right) / 2 - rect.left;
+        ctaBottom = ctaRect.bottom - rect.top;
+      } else {
+        ctaCenterX = width * 0.35;
+        ctaBottom = height * 0.6;
+      }
 
       build();
       draw();
