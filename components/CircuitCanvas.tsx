@@ -353,8 +353,20 @@ export default function CircuitCanvas({ lang = "fr" }: { lang?: "fr" | "en" }) {
       if (alpha <= 0) return;
 
       // Horizontally centered on the "Demander un devis" CTA and drawn
-      // BELOW it (never over the hero text/buttons) — both edges read from
-      // the real DOM in resize(), sized to the space left underneath.
+      // BELOW it (never over the hero text/buttons). The CTA position is
+      // read from the DOM on every draw — it shifts during the hero's
+      // entrance animation and on any layout change, so a one-time read at
+      // mount lands in the wrong place.
+      const canvasRect = canvas.getBoundingClientRect();
+      const ctaEl = document.querySelector<HTMLElement>('#top a[href="#contact"]');
+      if (ctaEl) {
+        const ctaRect = ctaEl.getBoundingClientRect();
+        ctaCenterX = (ctaRect.left + ctaRect.right) / 2 - canvasRect.left;
+        ctaBottom = ctaRect.bottom - canvasRect.top;
+      } else {
+        ctaCenterX = width * 0.35;
+        ctaBottom = height * 0.6;
+      }
       const topY = ctaBottom + 20;
       const available = height - topY - 16;
       const letterH = Math.max(80, Math.min(380, available));
@@ -469,16 +481,6 @@ export default function CircuitCanvas({ lang = "fr" }: { lang?: "fr" | "en" }) {
         letterCanvas.width = Math.round(width * dpr);
         letterCanvas.height = Math.round(height * dpr);
         lctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      }
-
-      const ctaEl = document.querySelector<HTMLElement>('#top a[href="#contact"]');
-      if (ctaEl) {
-        const ctaRect = ctaEl.getBoundingClientRect();
-        ctaCenterX = (ctaRect.left + ctaRect.right) / 2 - rect.left;
-        ctaBottom = ctaRect.bottom - rect.top;
-      } else {
-        ctaCenterX = width * 0.35;
-        ctaBottom = height * 0.6;
       }
 
       build();
