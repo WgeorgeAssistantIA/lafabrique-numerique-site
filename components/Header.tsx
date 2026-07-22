@@ -100,6 +100,7 @@ export default function Header() {
           {isHome ? (
             <a
               href="#contact"
+              data-egg-anchor="true"
               className="hidden sm:inline fig-label border border-cyan text-cyan px-4 py-2 hover:bg-cyan hover:text-background-deep transition-colors"
             >
               {t.cta.quote}

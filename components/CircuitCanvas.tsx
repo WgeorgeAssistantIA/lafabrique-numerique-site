@@ -84,8 +84,7 @@ export default function CircuitCanvas({ lang = "fr" }: { lang?: "fr" | "en" }) {
 
     let width = 0;
     let height = 0;
-    let ctaCenterX = 0; // horizontal center of the "Demander un devis" CTA, read from the real DOM
-    let ctaBottom = 0; // bottom edge of the CTA — the letter draws BELOW it, not over it
+    let ctaCenterX = 0; // horizontal center of the header CTA, read from the real DOM
     let nodes: Node[] = [];
     let edges: Edge[] = [];
     let adjE: number[][] = [];
@@ -352,27 +351,23 @@ export default function CircuitCanvas({ lang = "fr" }: { lang?: "fr" | "en" }) {
       }
       if (alpha <= 0) return;
 
-      // Horizontally centered on the "Demander un devis" CTA and drawn
-      // BELOW it (never over the hero text/buttons). The CTA position is
-      // read from the DOM on every draw — it shifts during the hero's
-      // entrance animation and on any layout change, so a one-time read at
-      // mount lands in the wrong place.
+      // Horizontally aligned under the header's "Demander un devis" /
+      // "Get a quote" button (top right, tagged data-egg-anchor), read from
+      // the DOM on every draw so layout shifts can't move the letter.
+      // Vertical center ~64% down the Hero — the placement William
+      // validated on screenshots (2026-07-22).
       const canvasRect = canvas.getBoundingClientRect();
-      const ctaEl = document.querySelector<HTMLElement>('#top a[href="#contact"]');
-      if (ctaEl) {
-        const ctaRect = ctaEl.getBoundingClientRect();
-        ctaCenterX = (ctaRect.left + ctaRect.right) / 2 - canvasRect.left;
-        ctaBottom = ctaRect.bottom - canvasRect.top;
+      const anchorEl = document.querySelector<HTMLElement>("[data-egg-anchor]");
+      if (anchorEl) {
+        const a = anchorEl.getBoundingClientRect();
+        ctaCenterX = (a.left + a.right) / 2 - canvasRect.left;
       } else {
-        ctaCenterX = width * 0.35;
-        ctaBottom = height * 0.6;
+        ctaCenterX = width * 0.85;
       }
-      const topY = ctaBottom + 20;
-      const available = height - topY - 16;
-      const letterH = Math.max(80, Math.min(380, available));
+      const letterH = Math.max(160, Math.min(380, height * 0.4));
       const letterW = letterH * 0.6;
       const originX = ctaCenterX - letterW / 2;
-      const originY = topY;
+      const originY = height * 0.64 - letterH / 2;
       const scaleX = letterW / 60;
       const scaleY = letterH / 100;
       const toCanvas = (p: StrokePoint) => ({ x: originX + p.x * scaleX, y: originY + p.y * scaleY });
