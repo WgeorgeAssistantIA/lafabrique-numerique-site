@@ -385,11 +385,14 @@ export default function CircuitCanvas({ lang = "fr" }: { lang?: "fr" | "en" }) {
       const totalLen = strokeLengths.reduce((a, b) => a + b, 0);
       const target = totalLen * travelT;
 
+      // The trail is as thin as the ambient circuit traces (1px); only the
+      // traveling tip dot keeps the previous stroke's size.
+      const tipRadius = Math.max(2, letterW * 0.012);
       out.save();
       out.globalAlpha = alpha * 0.9;
       out.strokeStyle = color;
       out.fillStyle = color;
-      out.lineWidth = Math.max(1, letterW * 0.014);
+      out.lineWidth = 1;
       out.lineCap = "round";
       out.lineJoin = "round";
       out.shadowColor = color;
@@ -437,7 +440,7 @@ export default function CircuitCanvas({ lang = "fr" }: { lang?: "fr" | "en" }) {
             out.save();
             out.shadowBlur = 12;
             out.beginPath();
-            out.arc(tipX, tipY, out.lineWidth * 0.9, 0, 6.283);
+            out.arc(tipX, tipY, tipRadius, 0, 6.283);
             out.fill();
             out.restore();
           }
