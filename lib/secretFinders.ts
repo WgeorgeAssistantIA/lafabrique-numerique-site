@@ -1,11 +1,12 @@
-// Tableau des trouveurs de l'atelier secret — tenu à la main.
+// Liste de secours / historique du tableau des trouveurs de l'atelier secret.
 //
-// Quand un gagnant envoie son retour par email, demander son accord pour
-// être affiché ici (obligatoire — ne jamais publier un nom sans
-// consentement explicite), puis ajouter une entrée et pousser.
-// Le rang est simplement l'ordre dans le tableau (1er en premier).
-// Format conseillé : prénom + initiale ("Maxime D.") — ou ce que la
-// personne préfère.
+// Depuis la mise en place du formulaire (app/api/secret-finder), les
+// nouvelles entrées sont enregistrées automatiquement dans Vercel KV
+// (consentement coché par la personne elle-même dans le formulaire — jamais
+// besoin de le demander à la main). Ce fichier ne sert plus que de valeurs
+// de repli si KV n'est pas configuré, ou pour des entrées historiques
+// ajoutées manuellement avant la mise en place du formulaire.
+// Format : prénom + initiale ("Maxime D.").
 
 export const FINDERS: Record<"fr" | "en", string[]> = {
   fr: [

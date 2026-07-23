@@ -6,9 +6,9 @@ import Header from "./Header";
 import Footer from "./Footer";
 import { LanguageProvider, useLanguage } from "@/lib/i18n";
 import { SECRET_STORAGE_KEY } from "./EasterEggWord";
-import { FINDERS } from "@/lib/secretFinders";
+import { FINDERS as STATIC_FINDERS } from "@/lib/secretFinders";
 
-const CONTACT_EMAIL = "lafabriknumerique@outlook.com";
+type FindersResponse = Record<"fr" | "en", string[]>;
 
 const PRODUCTS = [
   {
@@ -123,8 +123,11 @@ function AtelierSecretContent() {
   const [unlocked, setUnlocked] = useState<{ hibou: boolean; owl: boolean } | null>(null);
   const [openTrack, setOpenTrack] = useState<"fr" | "en" | null>(null);
   const [codes, setCodes] = useState<CodesResponse | null>(null);
+  const [finders, setFinders] = useState<FindersResponse>(STATIC_FINDERS);
   const [copied, setCopied] = useState(false);
   const [shared, setShared] = useState(false);
+  const [form, setForm] = useState({ firstName: "", lastName: "", email: "", consentPublic: false });
+  const [formStatus, setFormStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const fetched = useRef(false);
 
   useEffect(() => {
@@ -149,6 +152,10 @@ function AtelierSecretContent() {
       .then((r) => r.json())
       .then((data: CodesResponse) => setCodes(data))
       .catch(() => setCodes({ fallback: true }));
+    fetch("/api/secret-finders")
+      .then((r) => r.json())
+      .then((data: FindersResponse) => setFinders(data))
+      .catch(() => {});
   }, [anyUnlocked]);
 
   const tiersFor = (track: "fr" | "en"): TierStatus[] => {
@@ -174,13 +181,25 @@ function AtelierSecretContent() {
     window.setTimeout(() => setShared(false), 2500);
   };
 
-  const mailto = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
-    lang === "fr" ? "Mon retour — atelier secret" : "My feedback — secret workshop"
-  )}&body=${encodeURIComponent(
-    lang === "fr"
-      ? "Logiciel choisi :\nCe qui m'a plu :\nCe qui manque ou coince :\n"
-      : "Software I picked:\nWhat I liked:\nWhat's missing or clunky:\n"
-  )}`;
+  const submitFinderForm = async (track: "fr" | "en") => {
+    if (!form.firstName || !form.lastName || !form.email) return;
+    setFormStatus("sending");
+    try {
+      const res = await fetch("/api/secret-finder", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...form, track }),
+      });
+      if (!res.ok) throw new Error("request_failed");
+      setFormStatus("sent");
+      if (form.consentPublic) {
+        const displayName = `${form.firstName} ${form.lastName.charAt(0).toUpperCase()}.`;
+        setFinders((prev) => ({ ...prev, [track]: [...prev[track], displayName] }));
+      }
+    } catch {
+      setFormStatus("error");
+    }
+  };
 
   return (
     <>
@@ -246,7 +265,7 @@ function AtelierSecretContent() {
                 <p className="fig-label mb-6">
                   {lang === "fr" ? "LE TABLEAU DES TROUVEURS" : "THE FINDERS' BOARD"}
                 </p>
-                {FINDERS[lang].length === 0 ? (
+                {finders[lang].length === 0 ? (
                   <p className="text-muted text-sm">
                     {lang === "fr"
                       ? "Personne n'est encore inscrit — les premières places sont à prendre."
@@ -254,7 +273,7 @@ function AtelierSecretContent() {
                   </p>
                 ) : (
                   <ol className="space-y-2 text-left inline-block">
-                    {FINDERS[lang].map((name, i) => (
+                    {finders[lang].map((name, i) => (
                       <li key={name} className="flex items-baseline gap-4">
                         <span className="fig-label text-amber shrink-0 w-10">
                           {lang === "fr"
@@ -406,12 +425,76 @@ function AtelierSecretContent() {
                   </button>
                   <p className="text-sm text-foreground/90 leading-relaxed mb-4 text-left">
                     {lang === "fr"
-                      ? "L'atelier vient d'ouvrir et il a besoin de soutien pour décoller. En échange de cette récompense, est-ce que tu pourrais nous envoyer un retour honnête sur le logiciel que tu choisiras — ce qui t'a plu, ce qui manque, ce qui coince ? Quelques lignes suffisent, et ça nous aide énormément."
-                      : "The workshop just opened and needs support to take off. In exchange for this reward, could you send us honest feedback on the software you pick — what you liked, what's missing, what's clunky? A few lines are enough, and it helps enormously."}
+                      ? "L'atelier vient d'ouvrir et il a besoin de soutien pour décoller. Laisse-nous tes coordonnées pour qu'on garde le contact — et dis-nous si tu veux apparaître dans le tableau des trouveurs."
+                      : "The workshop just opened and needs support to take off. Leave us your details so we can stay in touch — and let us know if you'd like to appear on the finders' board."}
                   </p>
-                  <a href={mailto} className="fig-label text-cyan hover:text-amber transition-colors">
-                    {lang === "fr" ? "Envoyer mon retour →" : "Send my feedback →"}
-                  </a>
+                  {formStatus === "sent" ? (
+                    <p className="text-sm text-cyan">
+                      {lang === "fr" ? "Merci ! C'est enregistré." : "Thanks! You're all set."}
+                    </p>
+                  ) : (
+                    <form
+                      className="flex flex-col gap-2 text-left mb-2"
+                      onSubmit={(e) => {
+                        e.preventDefault();
+                        submitFinderForm(openTrack);
+                      }}
+                    >
+                      <input
+                        type="text"
+                        required
+                        placeholder={lang === "fr" ? "Prénom" : "First name"}
+                        value={form.firstName}
+                        onChange={(e) => setForm((f) => ({ ...f, firstName: e.target.value }))}
+                        className="bg-transparent border border-line px-3 py-2 text-sm"
+                      />
+                      <input
+                        type="text"
+                        required
+                        placeholder={lang === "fr" ? "Nom" : "Last name"}
+                        value={form.lastName}
+                        onChange={(e) => setForm((f) => ({ ...f, lastName: e.target.value }))}
+                        className="bg-transparent border border-line px-3 py-2 text-sm"
+                      />
+                      <input
+                        type="email"
+                        required
+                        placeholder="Email"
+                        value={form.email}
+                        onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
+                        className="bg-transparent border border-line px-3 py-2 text-sm"
+                      />
+                      <label className="flex items-start gap-2 text-xs text-muted">
+                        <input
+                          type="checkbox"
+                          checked={form.consentPublic}
+                          onChange={(e) => setForm((f) => ({ ...f, consentPublic: e.target.checked }))}
+                          className="mt-0.5"
+                        />
+                        {lang === "fr"
+                          ? "J'autorise l'affichage de mon prénom et de l'initiale de mon nom dans le tableau des trouveurs de cette page."
+                          : "I agree to have my first name and last initial shown on this page's finders' board."}
+                      </label>
+                      <button
+                        type="submit"
+                        disabled={formStatus === "sending"}
+                        className="fig-label border border-cyan text-cyan px-4 py-2 mt-1 hover:bg-cyan hover:text-background-deep transition-colors disabled:opacity-50"
+                      >
+                        {formStatus === "sending"
+                          ? lang === "fr"
+                            ? "Envoi..."
+                            : "Sending..."
+                          : lang === "fr"
+                            ? "Envoyer"
+                            : "Send"}
+                      </button>
+                      {formStatus === "error" && (
+                        <p className="text-xs text-amber">
+                          {lang === "fr" ? "Erreur, réessaie." : "Something went wrong, try again."}
+                        </p>
+                      )}
+                    </form>
+                  )}
                   <p className="text-muted text-sm mt-6 mb-2">
                     {lang === "fr"
                       ? "Utilise ce code au moment de payer sur l'un de ces produits :"

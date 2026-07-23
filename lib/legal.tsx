@@ -5,8 +5,8 @@ export const EDITOR_SIREN = "518 251 897";
 export const EDITOR_SIRET = "518 251 897 00048";
 
 export const EDITOR_EMAIL = "lafabriknumerique@outlook.com";
-export const LAST_UPDATED = "25 juin 2026";
-export const LAST_UPDATED_EN = "June 25, 2026";
+export const LAST_UPDATED = "23 juillet 2026";
+export const LAST_UPDATED_EN = "July 23, 2026";
 
 export type LegalSection = { h: string; p: string[] };
 export type LegalDoc = {
@@ -76,6 +76,7 @@ const fr: LegalContent = {
         h: "Données collectées",
         p: [
           "Via le formulaire de contact : votre nom, votre adresse email et le contenu de votre message. Ces informations sont fournies volontairement par vous.",
+          "Via le formulaire de la page « Atelier secret » (jeu-concours) : votre prénom, votre nom et votre adresse email, ainsi que votre choix d'autoriser ou non l'affichage de votre prénom et de l'initiale de votre nom dans le tableau public des gagnants. Ces informations sont fournies volontairement par vous et ne sont jamais publiées sans votre consentement explicite (case à cocher dédiée).",
           "À des fins techniques, l'hébergeur peut enregistrer des données de connexion (adresse IP, logs serveur) nécessaires au fonctionnement et à la sécurité du site.",
         ],
       },
@@ -89,26 +90,28 @@ const fr: LegalContent = {
       {
         h: "Finalité et base légale",
         p: [
-          "Les données du formulaire sont utilisées uniquement pour répondre à votre demande et, le cas échéant, établir une proposition commerciale.",
+          "Les données du formulaire de contact sont utilisées uniquement pour répondre à votre demande et, le cas échéant, établir une proposition commerciale.",
+          "Les données du formulaire « Atelier secret » sont utilisées pour vous attribuer votre récompense (code de réduction), échanger avec vous à ce sujet, et, si vous l'autorisez explicitement, afficher votre prénom et l'initiale de votre nom sur le tableau public des gagnants.",
           "La base légale est votre consentement et l'exécution de mesures précontractuelles prises à votre demande (article 6 du RGPD).",
         ],
       },
       {
         h: "Destinataires et sous-traitants",
         p: [
-          "Vos données ne sont jamais vendues. Elles sont uniquement traitées par l'éditeur et par ses sous-traitants techniques : Vercel Inc. (hébergement) et Resend (acheminement des emails du formulaire).",
+          "Vos données ne sont jamais vendues. Elles sont uniquement traitées par l'éditeur et par ses sous-traitants techniques : Vercel Inc. (hébergement et stockage technique via son offre KV, reposant sur l'infrastructure Upstash) et Resend (acheminement des emails).",
         ],
       },
       {
         h: "Transfert hors Union européenne",
         p: [
-          "Certains sous-traitants (Vercel, Resend) sont établis aux États-Unis. Les transferts éventuels sont encadrés par des garanties appropriées (clauses contractuelles types de la Commission européenne et/ou adhésion au Data Privacy Framework).",
+          "Certains sous-traitants (Vercel, Resend, Upstash) sont établis aux États-Unis. Les transferts éventuels sont encadrés par des garanties appropriées (clauses contractuelles types de la Commission européenne et/ou adhésion au Data Privacy Framework).",
         ],
       },
       {
         h: "Durée de conservation",
         p: [
-          "Les données issues du formulaire sont conservées pendant la durée nécessaire au traitement de votre demande, puis archivées au maximum 3 ans à compter du dernier contact, avant suppression.",
+          "Les données issues du formulaire de contact sont conservées pendant la durée nécessaire au traitement de votre demande, puis archivées au maximum 3 ans à compter du dernier contact, avant suppression.",
+          "Les données issues du formulaire « Atelier secret » sont conservées le temps de l'opération de jeu-concours puis au maximum 3 ans, à l'exception du prénom et de l'initiale du nom affichés publiquement avec votre consentement, qui restent visibles tant que vous ne demandez pas leur retrait.",
         ],
       },
       {
@@ -195,6 +198,7 @@ const en: LegalContent = {
         h: "Data collected",
         p: [
           "Through the contact form: your name, email address and the content of your message. This information is provided voluntarily by you.",
+          "Through the \"Secret workshop\" page form (prize game): your first name, last name and email address, along with your choice to allow or not the display of your first name and last-name initial on the public finders' board. This information is provided voluntarily by you and is never published without your explicit consent (dedicated checkbox).",
           "For technical purposes, the host may record connection data (IP address, server logs) necessary for the operation and security of the site.",
         ],
       },
@@ -208,26 +212,28 @@ const en: LegalContent = {
       {
         h: "Purpose and legal basis",
         p: [
-          "Form data is used solely to respond to your request and, where applicable, to prepare a commercial proposal.",
+          "Contact form data is used solely to respond to your request and, where applicable, to prepare a commercial proposal.",
+          "\"Secret workshop\" form data is used to grant you your reward (discount code), to communicate with you about it, and, only if you explicitly authorize it, to display your first name and last-name initial on the public finders' board.",
           "The legal basis is your consent and the performance of pre-contractual measures taken at your request (Article 6 GDPR).",
         ],
       },
       {
         h: "Recipients and processors",
         p: [
-          "Your data is never sold. It is processed only by the publisher and its technical processors: Vercel Inc. (hosting) and Resend (delivery of form emails).",
+          "Your data is never sold. It is processed only by the publisher and its technical processors: Vercel Inc. (hosting and technical storage via its KV offering, backed by Upstash infrastructure) and Resend (email delivery).",
         ],
       },
       {
         h: "Transfer outside the European Union",
         p: [
-          "Some processors (Vercel, Resend) are based in the United States. Any transfers are governed by appropriate safeguards (European Commission Standard Contractual Clauses and/or Data Privacy Framework certification).",
+          "Some processors (Vercel, Resend, Upstash) are based in the United States. Any transfers are governed by appropriate safeguards (European Commission Standard Contractual Clauses and/or Data Privacy Framework certification).",
         ],
       },
       {
         h: "Retention period",
         p: [
-          "Form data is kept for as long as necessary to handle your request, then archived for a maximum of 3 years from the last contact, before deletion.",
+          "Contact form data is kept for as long as necessary to handle your request, then archived for a maximum of 3 years from the last contact, before deletion.",
+          "\"Secret workshop\" form data is kept for the duration of the prize game, then for a maximum of 3 years, except for the first name and last-name initial displayed publicly with your consent, which remain visible until you request their removal.",
         ],
       },
       {
