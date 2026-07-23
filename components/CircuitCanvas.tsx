@@ -52,7 +52,14 @@ const LETTER_STROKES: Record<string, StrokePoint[][]> = {
     [{ x: 0, y: 100 }, { x: 50, y: 100 }],
   ],
 };
-const WORDS = { fr: "HIBOU", en: "OWL" };
+// Reveal order deliberately scrambled (not spelling order) so the hourly
+// letter never trivially spells the answer as it goes — same scramble for
+// everyone at a given hour, so the "which letter right now" social angle
+// still works, it just doesn't hand out the word for free.
+const REVEAL_ORDER: Record<"fr" | "en", string[]> = {
+  fr: ["B", "I", "H", "U", "O"],
+  en: ["L", "W", "O"],
+};
 const HOUR_MS = 3_600_000;
 const BLOCK_MS = 5 * 60_000;
 const FORM_MS = 2600;
@@ -298,9 +305,9 @@ export default function CircuitCanvas({ lang = "fr" }: { lang?: "fr" | "en" }) {
       // The letter reveal only runs for players who solved levels 1 and 2 —
       // for everyone else the circuit stays purely ambient.
       if (!hasEggFlag(EGG_FLAGS.konami) || !hasEggFlag(EGG_FLAGS.rouage)) return;
-      const word = WORDS[activeLang];
-      const hourIdx = Math.floor(now / HOUR_MS) % word.length;
-      const letter = word[hourIdx];
+      const order = REVEAL_ORDER[activeLang];
+      const hourIdx = Math.floor(now / HOUR_MS) % order.length;
+      const letter = order[hourIdx];
       const msIntoBlock = now % BLOCK_MS;
       const strokes = LETTER_STROKES[letter];
       if (!strokes) return;
