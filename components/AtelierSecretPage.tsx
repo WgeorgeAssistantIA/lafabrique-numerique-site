@@ -46,7 +46,7 @@ const WINK = {
   en: ["/img/logo.png", "/img/logo-wink-right-mid.png", "/img/logo-wink-right-closed.png", "/img/logo-wink-right-mid.png"],
 };
 
-type TierStatus = { code: string; percent: number; remaining: number | null };
+type TierStatus = { code: string; percent: number; remaining: number | null; max: number | null };
 type CodesResponse =
   | { fallback: true }
   | { fallback: false; fr: TierStatus[]; en: TierStatus[] };
@@ -54,12 +54,12 @@ type CodesResponse =
 // Static fallback when the Lemon Squeezy API is not configured/reachable.
 const FALLBACK_TIERS: Record<"fr" | "en", TierStatus[]> = {
   fr: [
-    { code: "KWMDQXOQ", percent: 100, remaining: null },
-    { code: "ROUAGE50", percent: 50, remaining: null },
+    { code: "KWMDQXOQ", percent: 100, remaining: null, max: null },
+    { code: "ROUAGE50", percent: 50, remaining: null, max: null },
   ],
   en: [
-    { code: "WG7F3KQ2", percent: 100, remaining: null },
-    { code: "OWL50", percent: 50, remaining: null },
+    { code: "WG7F3KQ2", percent: 100, remaining: null, max: null },
+    { code: "OWL50", percent: 50, remaining: null, max: null },
   ],
 };
 
@@ -392,13 +392,13 @@ function AtelierSecretContent() {
               return (
                 <>
                   <p className="fig-label text-cyan mb-2">
-                    {tier.remaining !== null
+                    {tier.remaining !== null && tier.max !== null
                       ? lang === "fr"
-                        ? `${tier.remaining}/5 ${tier.percent === 100 ? "licences offertes" : "codes -50%"} restant(s)`
-                        : `${tier.remaining}/5 ${tier.percent === 100 ? "free licenses" : "-50% codes"} left`
+                        ? `${tier.remaining}/${tier.max} ${tier.percent === 100 ? "licences offertes" : "codes -50%"} restant(s)`
+                        : `${tier.remaining}/${tier.max} ${tier.percent === 100 ? "free licenses" : "-50% codes"} left`
                       : lang === "fr"
-                        ? "Réservé aux 5 premiers."
-                        : "First 5 only."}
+                        ? "Réservé aux premiers."
+                        : "First ones only."}
                   </p>
                   <p className="font-display text-4xl uppercase mb-1">
                     {tier.percent === 100

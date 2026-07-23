@@ -22,7 +22,7 @@ const TRACKS = {
   ],
 } as const;
 
-type TierStatus = { code: string; percent: number; remaining: number | null };
+type TierStatus = { code: string; percent: number; remaining: number | null; max: number | null };
 
 async function lsFetch(path: string, apiKey: string) {
   const res = await fetch(`${LS_API}${path}`, {
@@ -57,14 +57,14 @@ export async function GET() {
 
     const resolveTier = async (tier: { code: string; percent: number }): Promise<TierStatus> => {
       const found = byCode.get(tier.code);
-      if (!found) return { ...tier, remaining: null };
-      if (found.max === null) return { ...tier, remaining: null };
+      if (!found) return { ...tier, remaining: null, max: null };
+      if (found.max === null) return { ...tier, remaining: null, max: null };
       const redemptions = await lsFetch(
         `/discount-redemptions?filter[discount_id]=${found.id}&page[size]=1`,
         apiKey
       );
       const used = redemptions.meta?.page?.total ?? 0;
-      return { ...tier, remaining: Math.max(0, found.max - used) };
+      return { ...tier, remaining: Math.max(0, found.max - used), max: found.max };
     };
 
     const [fr, en] = await Promise.all([
