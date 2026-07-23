@@ -54,11 +54,11 @@ type CodesResponse =
 // Static fallback when the Lemon Squeezy API is not configured/reachable.
 const FALLBACK_TIERS: Record<"fr" | "en", TierStatus[]> = {
   fr: [
-    { code: "ROUAGE100", percent: 100, remaining: null },
+    { code: "KWMDQXOQ", percent: 100, remaining: null },
     { code: "ROUAGE50", percent: 50, remaining: null },
   ],
   en: [
-    { code: "OWL100", percent: 100, remaining: null },
+    { code: "WG7F3KQ2", percent: 100, remaining: null },
     { code: "OWL50", percent: 50, remaining: null },
   ],
 };

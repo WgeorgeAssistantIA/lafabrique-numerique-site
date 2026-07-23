@@ -13,11 +13,11 @@ const LS_API = "https://api.lemonsqueezy.com/v1";
 // Tier order matters: the page offers the first tier with redemptions left.
 const TRACKS = {
   fr: [
-    { code: "ROUAGE100", percent: 100 },
+    { code: "KWMDQXOQ", percent: 100 },
     { code: "ROUAGE50", percent: 50 },
   ],
   en: [
-    { code: "OWL100", percent: 100 },
+    { code: "WG7F3KQ2", percent: 100 },
     { code: "OWL50", percent: 50 },
   ],
 } as const;
