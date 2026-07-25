@@ -66,7 +66,7 @@ export const roanneContent = {
   faq: [
     {
       q: "Combien coûte un site internet à Roanne ?",
-      a: "Un site vitrine standard démarre à 1 299 € (5 pages, design sur mesure, responsive, mise en ligne incluse). Les applications web et logiciels métier sont chiffrés sur devis, après un premier échange sur vos besoins. Le détail des tarifs est disponible sur la page d'accueil.",
+      a: "Un site vitrine standard démarre à 590 € (5 pages, design sur mesure, responsive, mise en ligne incluse). Les applications web et logiciels métier sont chiffrés sur devis, après un premier échange sur vos besoins. Le détail des tarifs est disponible sur la page d'accueil.",
     },
     {
       q: "Combien de temps pour créer un site internet ?",
@@ -78,7 +78,7 @@ export const roanneContent = {
     },
     {
       q: "Proposez-vous la maintenance après la mise en ligne ?",
-      a: "Oui, en accompagnement à la demande (500 € / jour) ou en formule de suivi évolutif — corrections, nouvelles fonctionnalités, audit technique.",
+      a: "Oui, en accompagnement à la demande (350 € / jour) ou en formule de suivi évolutif — corrections, nouvelles fonctionnalités, audit technique.",
     },
     {
       q: "Quelle est la différence avec un site fait sur Wix ou Shopify ?",
