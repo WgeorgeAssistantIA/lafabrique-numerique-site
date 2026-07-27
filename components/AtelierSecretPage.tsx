@@ -513,6 +513,11 @@ function AtelierSecretContent() {
                       </a>
                     ))}
                   </div>
+                  <p className="text-muted text-xs italic leading-relaxed mt-6 border-t border-line pt-4">
+                    {lang === "fr"
+                      ? "Et si aucun de ces logiciels ne t'est utile ? Pense à offrir ton code à quelqu'un qui en aura vraiment besoin — un proche, un collègue, une association. La récompense fera plus de bien là-bas qu'inutilisée dans ta boîte mail."
+                      : "And if none of these apps are useful to you? Consider passing your code on to someone who genuinely needs it — a friend, a colleague, a non-profit. The reward will do more good there than sitting unused in your inbox."}
+                  </p>
                 </>
               );
             })()}
