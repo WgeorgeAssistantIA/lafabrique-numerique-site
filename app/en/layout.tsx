@@ -6,24 +6,24 @@ import BackToTop from "@/components/BackToTop";
 import EasterEggKonami from "@/components/EasterEggKonami";
 import EasterEggConsole from "@/components/EasterEggConsole";
 import EasterEggWord from "@/components/EasterEggWord";
-import "./globals.css";
+import "../globals.css";
 
 const bigShoulders = localFont({
-  src: "./fonts/BigShoulders-Bold.ttf",
+  src: "../fonts/BigShoulders-Bold.ttf",
   variable: "--font-display",
   weight: "700",
 });
 
 const dmMono = localFont({
-  src: "./fonts/DMMono-Regular.ttf",
+  src: "../fonts/DMMono-Regular.ttf",
   variable: "--font-mono-brand",
   weight: "400",
 });
 
 const SITE_URL = "https://www.lafabriknumerique.fr";
-const TITLE = "La Fabrik Numérique — Atelier de création web & logiciel";
+const TITLE = "La Fabrik Numérique — Web & Software Studio";
 const DESCRIPTION =
-  "La Fabrik Numérique conçoit des sites web, applications et logiciels sur mesure. Circuits & idées.";
+  "La Fabrik Numérique builds custom websites, apps, and software. Circuits & ideas.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -35,10 +35,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: TITLE,
     description: DESCRIPTION,
-    url: SITE_URL,
+    url: `${SITE_URL}/en`,
     siteName: "La Fabrik Numérique",
     images: [{ url: "/img/og.png", width: 1640, height: 624, alt: "La Fabrik Numérique" }],
-    locale: "fr_FR",
+    locale: "en_US",
     type: "website",
   },
   twitter: {
@@ -49,14 +49,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default function EnRootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
     <html
-      lang="fr"
+      lang="en"
       className={`${bigShoulders.variable} ${dmMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
