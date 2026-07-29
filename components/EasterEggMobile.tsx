@@ -15,6 +15,9 @@ const LONG_PRESS_MS = 700;
 const MOVE_TOLERANCE_PX = 12;
 const CLOSE_AFTER_PROGRESS_MS = 450;
 const MAX_WORD_LEN = 6;
+// Longer than a tap-to-click delay, short enough that a real second tap on
+// the backdrop still closes the pad right away.
+const BACKDROP_GRACE_MS = 500;
 
 const COPY = {
   fr: {
@@ -51,6 +54,11 @@ export default function EasterEggMobile() {
 
   const isTouch = useCoarsePointer();
   const [open, setOpen] = useState(false);
+  // The finger that opens the pad is still resting on the logo, right where
+  // the pad's full-screen backdrop now sits — lifting it synthesizes a tap
+  // that would otherwise land on that backdrop and close the pad the instant
+  // it opened. Ignore backdrop dismissal for a moment after opening.
+  const openedAt = useRef(0);
   // The text field is an affordance the desktop doesn't need, so it only shows
   // up once level 1 is cleared — before that it would hint at what's coming.
   const [canType, setCanType] = useState(false);
@@ -85,6 +93,7 @@ export default function EasterEggMobile() {
         timer = null;
         setCanType(hasEggFlag(EGG_FLAGS.konami));
         setOpen(true);
+        openedAt.current = Date.now();
         navigator.vibrate?.(20);
       }, LONG_PRESS_MS);
     };
@@ -173,7 +182,10 @@ export default function EasterEggMobile() {
       aria-modal="true"
       aria-label={copy.label}
       className="fixed inset-0 z-[90] flex items-end justify-center bg-background-deep/85 backdrop-blur-sm"
-      onClick={() => setOpen(false)}
+      onClick={() => {
+        if (Date.now() - openedAt.current < BACKDROP_GRACE_MS) return;
+        setOpen(false);
+      }}
     >
       <div
         className="w-full border-t border-cyan bg-background-deep px-6 pt-5 pb-8"
