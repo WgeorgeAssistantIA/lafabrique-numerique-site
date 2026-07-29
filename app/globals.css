@@ -223,12 +223,18 @@ body {
    into the hold (assuming it might be a scroll or an image-save gesture),
    firing pointercancel long before our long-press timer — confirmed live on
    a Redmi Pad Pro 2 via remote debugging. -webkit-touch-callout stops the
-   native "save image" sheet from stealing the gesture too. */
+   native "save image" sheet from stealing the gesture too.
+   touch-action alone wasn't enough, though: <img> elements are natively
+   draggable in Chromium, and the slightest real-finger jitter during a hold
+   (a perfectly still synthetic touch never showed this) makes the browser
+   start a native drag instead, cancelling the pointer the same way —
+   -webkit-user-drag turns that off. */
 @media (any-pointer: coarse) {
   [data-easter-egg="logo"] {
     touch-action: none;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
+    -webkit-user-drag: none;
     user-select: none;
   }
 }
