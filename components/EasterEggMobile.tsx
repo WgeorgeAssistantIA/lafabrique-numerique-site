@@ -6,13 +6,25 @@ import { EGG_EVENT, EGG_FLAGS, hasEggFlag } from "@/lib/easterEggProgress";
 import { useCoarsePointer } from "@/lib/useCoarsePointer";
 
 // Touch counterpart of the hunt. Phones have no arrow keys and no console, so
-// a long press on the owl summons a small retro pad that replays the very same
-// keystrokes on `window` — EasterEggKonami and EasterEggWord stay the single
-// source of truth for every sequence, password and reward.
+// a double-tap on the owl summons a small retro pad that replays the very
+// same keystrokes on `window` — EasterEggKonami and EasterEggWord stay the
+// single source of truth for every sequence, password and reward.
+//
+// This used to be a long-press. Dropped after live remote debugging on a
+// Redmi Pad Pro 2 (real device, USB, Chrome DevTools) showed the browser
+// firing a native pointercancel at a near-identical ~400ms mark on every
+// attempt, with zero finger drift — consistent with a tablet-only OS/Chrome
+// large-screen gesture (e.g. drag-to-split-view) hijacking any sustained
+// hold, regardless of touch-action/-webkit-user-drag/draggable=false. The
+// same phone (same brand, same browser) never had this problem. A double-tap
+// never holds long enough to be mistaken for that gesture.
 
-const LONG_PRESS_MS = 700;
-// Past this much finger travel the gesture is a scroll, not a press.
-const MOVE_TOLERANCE_PX = 12;
+// Two taps within this window, close enough together, count as one gesture.
+const DOUBLE_TAP_MS = 350;
+// How far a single tap's own down->up may drift before it's a scroll, not a tap.
+const TAP_MOVE_TOLERANCE_PX = 12;
+// How far apart the two taps of a double-tap may land (thumbs aren't lasers).
+const DOUBLE_TAP_DRIFT_PX = 40;
 const CLOSE_AFTER_PROGRESS_MS = 450;
 const MAX_WORD_LEN = 6;
 
@@ -54,10 +66,9 @@ export default function EasterEggMobile() {
   // The finger that opens the pad is still resting on the logo, right where
   // the pad's full-screen backdrop now sits — lifting it synthesizes a tap
   // that would otherwise land on that backdrop and close the pad the instant
-  // it opened. A fixed timing window isn't reliable here (a real hold easily
-  // outlasts any grace period), so instead we identify the exact pointer
-  // that opened the pad and swallow only its own release, however long the
-  // hold lasted — any later, separate tap on the backdrop still closes it.
+  // it opened. Identify the exact pointer whose release opened the pad and
+  // swallow only its own resulting click; any later, separate tap on the
+  // backdrop still closes it normally.
   const openingPointerId = useRef<number | null>(null);
   const suppressNextBackdropClick = useRef(false);
   // The text field is an affordance the desktop doesn't need, so it only shows
@@ -66,19 +77,15 @@ export default function EasterEggMobile() {
   const [word, setWord] = useState("");
   const inputRef = useRef<HTMLInputElement | null>(null);
 
-  // Long press on any logo, via delegation so client-side navigation and
+  // Double-tap on any logo, via delegation so client-side navigation and
   // late-mounting logos are handled without re-binding anything.
   useEffect(() => {
     if (!isTouch) return;
 
-    let timer: number | null = null;
-    let startX = 0;
-    let startY = 0;
-
-    const cancel = () => {
-      if (timer) window.clearTimeout(timer);
-      timer = null;
-    };
+    let downX = 0;
+    let downY = 0;
+    let downId: number | null = null;
+    let lastTap: { x: number; y: number; t: number } | null = null;
 
     const onPointerDown = (e: PointerEvent) => {
       // No pointerType filter here: some browsers' "desktop site" mode (iPad
@@ -87,50 +94,54 @@ export default function EasterEggMobile() {
       // effect from ever attaching on a real, non-touch desktop.
       const target = e.target as Element | null;
       if (!target?.closest?.('[data-easter-egg="logo"]')) return;
-      // Suppress the ghost "click" the browser synthesizes when this touch
-      // ends — without this, lifting the finger off the logo (right where
-      // the newly-opened pad's full-screen backdrop now sits) immediately
-      // taps that backdrop and closes the pad before it's even seen.
       e.preventDefault();
-      startX = e.clientX;
-      startY = e.clientY;
-      openingPointerId.current = e.pointerId;
-      cancel();
-      timer = window.setTimeout(() => {
-        timer = null;
+      downX = e.clientX;
+      downY = e.clientY;
+      downId = e.pointerId;
+    };
+
+    const onPointerUp = (e: PointerEvent) => {
+      if (downId === null || e.pointerId !== downId) return;
+      const releaseDrift = Math.max(Math.abs(e.clientX - downX), Math.abs(e.clientY - downY));
+      downId = null;
+      if (releaseDrift > TAP_MOVE_TOLERANCE_PX) {
+        // That was a scroll/swipe through the logo, not a tap — doesn't count.
+        lastTap = null;
+        return;
+      }
+
+      const now = performance.now();
+      const isSecondTap =
+        lastTap !== null &&
+        now - lastTap.t <= DOUBLE_TAP_MS &&
+        Math.max(Math.abs(e.clientX - lastTap.x), Math.abs(e.clientY - lastTap.y)) <= DOUBLE_TAP_DRIFT_PX;
+
+      if (isSecondTap) {
+        lastTap = null;
+        // Suppress the ghost "click" this same release is about to
+        // synthesize on the backdrop we're opening right now.
+        openingPointerId.current = e.pointerId;
+        suppressNextBackdropClick.current = true;
         setCanType(hasEggFlag(EGG_FLAGS.konami));
         setOpen(true);
         navigator.vibrate?.(20);
-      }, LONG_PRESS_MS);
-    };
-
-    const onPointerMove = (e: PointerEvent) => {
-      if (!timer) return;
-      if (
-        Math.abs(e.clientX - startX) > MOVE_TOLERANCE_PX ||
-        Math.abs(e.clientY - startY) > MOVE_TOLERANCE_PX
-      ) {
-        cancel();
+        return;
       }
+
+      lastTap = { x: e.clientX, y: e.clientY, t: now };
     };
 
-    // Fires for every pointerup on the page, not just the logo's — the only
-    // one that matters here is the release of the exact touch that opened
-    // the pad, identified by pointerId regardless of how long it was held.
-    const onPointerUp = (e: PointerEvent) => {
-      cancel();
-      if (openingPointerId.current !== null && e.pointerId === openingPointerId.current) {
-        suppressNextBackdropClick.current = true;
-        openingPointerId.current = null;
-      }
+    const onPointerCancel = (e: PointerEvent) => {
+      if (e.pointerId === downId) downId = null;
     };
 
-    const onPointerCancel = () => {
-      cancel();
-      openingPointerId.current = null;
+    // A tap that turns into a scroll shouldn't count towards a double-tap.
+    const onScroll = () => {
+      downId = null;
+      lastTap = null;
     };
 
-    // Without this the browser's own "save image" sheet steals the long press.
+    // Without this the browser's own "save image" sheet steals the second tap.
     const onContextMenu = (e: MouseEvent) => {
       const target = e.target as Element | null;
       if (target?.closest?.('[data-easter-egg="logo"]')) e.preventDefault();
@@ -139,19 +150,16 @@ export default function EasterEggMobile() {
     // Not passive: onPointerDown calls preventDefault() when the logo is the
     // target, which a passive listener would silently ignore.
     document.addEventListener("pointerdown", onPointerDown, { passive: false });
-    document.addEventListener("pointermove", onPointerMove, { passive: true });
     document.addEventListener("pointerup", onPointerUp, { passive: true });
     document.addEventListener("pointercancel", onPointerCancel, { passive: true });
-    document.addEventListener("scroll", cancel, { passive: true });
+    document.addEventListener("scroll", onScroll, { passive: true });
     document.addEventListener("contextmenu", onContextMenu);
 
     return () => {
-      cancel();
       document.removeEventListener("pointerdown", onPointerDown);
-      document.removeEventListener("pointermove", onPointerMove);
       document.removeEventListener("pointerup", onPointerUp);
       document.removeEventListener("pointercancel", onPointerCancel);
-      document.removeEventListener("scroll", cancel);
+      document.removeEventListener("scroll", onScroll);
       document.removeEventListener("contextmenu", onContextMenu);
     };
   }, [isTouch]);

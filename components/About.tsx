@@ -49,6 +49,7 @@ export default function About() {
               height={220}
               data-easter-egg="logo"
               data-atelier-owl="true"
+              draggable={false}
             />
           </div>
         </div>

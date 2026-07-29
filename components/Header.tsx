@@ -71,6 +71,7 @@ export default function Header() {
             height={32}
             className="logo-spin"
             data-easter-egg="logo"
+            draggable={false}
           />
           <span className="font-display text-sm tracking-widest uppercase">
             La Fabrik Numérique

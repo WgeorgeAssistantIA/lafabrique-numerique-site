@@ -33,6 +33,7 @@ function LegalContent({ docKey }: { docKey: DocKey }) {
               width={32}
               height={32}
               data-easter-egg="logo"
+              draggable={false}
             />
             <span className="font-display text-sm tracking-widest uppercase">
               La Fabrik Numérique
