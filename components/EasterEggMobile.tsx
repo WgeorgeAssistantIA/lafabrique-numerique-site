@@ -15,9 +15,6 @@ const LONG_PRESS_MS = 700;
 const MOVE_TOLERANCE_PX = 12;
 const CLOSE_AFTER_PROGRESS_MS = 450;
 const MAX_WORD_LEN = 6;
-// Longer than a tap-to-click delay, short enough that a real second tap on
-// the backdrop still closes the pad right away.
-const BACKDROP_GRACE_MS = 500;
 
 const COPY = {
   fr: {
@@ -57,8 +54,12 @@ export default function EasterEggMobile() {
   // The finger that opens the pad is still resting on the logo, right where
   // the pad's full-screen backdrop now sits — lifting it synthesizes a tap
   // that would otherwise land on that backdrop and close the pad the instant
-  // it opened. Ignore backdrop dismissal for a moment after opening.
-  const openedAt = useRef(0);
+  // it opened. A fixed timing window isn't reliable here (a real hold easily
+  // outlasts any grace period), so instead we identify the exact pointer
+  // that opened the pad and swallow only its own release, however long the
+  // hold lasted — any later, separate tap on the backdrop still closes it.
+  const openingPointerId = useRef<number | null>(null);
+  const suppressNextBackdropClick = useRef(false);
   // The text field is an affordance the desktop doesn't need, so it only shows
   // up once level 1 is cleared — before that it would hint at what's coming.
   const [canType, setCanType] = useState(false);
@@ -93,12 +94,12 @@ export default function EasterEggMobile() {
       e.preventDefault();
       startX = e.clientX;
       startY = e.clientY;
+      openingPointerId.current = e.pointerId;
       cancel();
       timer = window.setTimeout(() => {
         timer = null;
         setCanType(hasEggFlag(EGG_FLAGS.konami));
         setOpen(true);
-        openedAt.current = Date.now();
         navigator.vibrate?.(20);
       }, LONG_PRESS_MS);
     };
@@ -113,6 +114,22 @@ export default function EasterEggMobile() {
       }
     };
 
+    // Fires for every pointerup on the page, not just the logo's — the only
+    // one that matters here is the release of the exact touch that opened
+    // the pad, identified by pointerId regardless of how long it was held.
+    const onPointerUp = (e: PointerEvent) => {
+      cancel();
+      if (openingPointerId.current !== null && e.pointerId === openingPointerId.current) {
+        suppressNextBackdropClick.current = true;
+        openingPointerId.current = null;
+      }
+    };
+
+    const onPointerCancel = () => {
+      cancel();
+      openingPointerId.current = null;
+    };
+
     // Without this the browser's own "save image" sheet steals the long press.
     const onContextMenu = (e: MouseEvent) => {
       const target = e.target as Element | null;
@@ -123,8 +140,8 @@ export default function EasterEggMobile() {
     // target, which a passive listener would silently ignore.
     document.addEventListener("pointerdown", onPointerDown, { passive: false });
     document.addEventListener("pointermove", onPointerMove, { passive: true });
-    document.addEventListener("pointerup", cancel, { passive: true });
-    document.addEventListener("pointercancel", cancel, { passive: true });
+    document.addEventListener("pointerup", onPointerUp, { passive: true });
+    document.addEventListener("pointercancel", onPointerCancel, { passive: true });
     document.addEventListener("scroll", cancel, { passive: true });
     document.addEventListener("contextmenu", onContextMenu);
 
@@ -132,8 +149,8 @@ export default function EasterEggMobile() {
       cancel();
       document.removeEventListener("pointerdown", onPointerDown);
       document.removeEventListener("pointermove", onPointerMove);
-      document.removeEventListener("pointerup", cancel);
-      document.removeEventListener("pointercancel", cancel);
+      document.removeEventListener("pointerup", onPointerUp);
+      document.removeEventListener("pointercancel", onPointerCancel);
       document.removeEventListener("scroll", cancel);
       document.removeEventListener("contextmenu", onContextMenu);
     };
@@ -190,7 +207,10 @@ export default function EasterEggMobile() {
       aria-label={copy.label}
       className="fixed inset-0 z-[90] flex items-end justify-center bg-background-deep/85 backdrop-blur-sm"
       onClick={() => {
-        if (Date.now() - openedAt.current < BACKDROP_GRACE_MS) return;
+        if (suppressNextBackdropClick.current) {
+          suppressNextBackdropClick.current = false;
+          return;
+        }
         setOpen(false);
       }}
     >
