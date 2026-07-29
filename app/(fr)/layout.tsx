@@ -7,6 +7,7 @@ import EasterEggKonami from "@/components/EasterEggKonami";
 import EasterEggConsole from "@/components/EasterEggConsole";
 import EasterEggWord from "@/components/EasterEggWord";
 import EasterEggMobile from "@/components/EasterEggMobile";
+import EggDebugOverlay from "@/components/EggDebugOverlay";
 import "../globals.css";
 
 const bigShoulders = localFont({
@@ -68,6 +69,7 @@ export default function RootLayout({
         <EasterEggConsole />
         <EasterEggWord />
         <EasterEggMobile />
+        <EggDebugOverlay />
         <Analytics />
       </body>
     </html>
