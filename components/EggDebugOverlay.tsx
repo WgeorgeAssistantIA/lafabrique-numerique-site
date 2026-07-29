@@ -32,6 +32,7 @@ type LoggedEvent = {
   pointerType: string;
   target: string;
   matchedLogo: boolean;
+  extra?: string;
 };
 
 export default function EggDebugOverlay() {
@@ -56,27 +57,61 @@ export default function EggDebugOverlay() {
     if (!enabled) return;
 
     let count = 0;
-    const log = (kind: string) => (e: PointerEvent) => {
+    // Tracks, per active pointer, where it started and how far it has
+    // drifted — the log line for its eventual up/cancel carries the max
+    // drift and elapsed time, since neither was visible before and both
+    // decide whether EasterEggMobile's own move-tolerance cancels the
+    // long-press internally versus something external cancelling it.
+    const sessions = new Map<number, { x: number; y: number; t: number; maxDrift: number }>();
+
+    const push = (entry: Omit<LoggedEvent, "n">) => {
       count += 1;
-      const target = e.target as Element | null;
-      const entry: LoggedEvent = {
-        n: count,
-        kind,
-        pointerType: e.pointerType || "?",
-        target: target ? target.tagName + (target.className ? "." + String(target.className).slice(0, 20) : "") : "?",
-        matchedLogo: !!target?.closest?.('[data-easter-egg="logo"]'),
-      };
-      setEvents((prev) => [entry, ...prev].slice(0, 8));
+      setEvents((prev) => [{ n: count, ...entry }, ...prev].slice(0, 10));
     };
 
-    const onDown = log("down");
-    const onUp = log("up");
-    const onCancel = log("cancel");
+    const describeTarget = (target: Element | null) =>
+      target ? target.tagName + (target.className ? "." + String(target.className).slice(0, 20) : "") : "?";
+
+    const onDown = (e: PointerEvent) => {
+      sessions.set(e.pointerId, { x: e.clientX, y: e.clientY, t: performance.now(), maxDrift: 0 });
+      const target = e.target as Element | null;
+      push({
+        kind: "down",
+        pointerType: e.pointerType || "?",
+        target: describeTarget(target),
+        matchedLogo: !!target?.closest?.('[data-easter-egg="logo"]'),
+      });
+    };
+
+    const onMove = (e: PointerEvent) => {
+      const s = sessions.get(e.pointerId);
+      if (!s) return;
+      const drift = Math.max(Math.abs(e.clientX - s.x), Math.abs(e.clientY - s.y));
+      if (drift > s.maxDrift) s.maxDrift = drift;
+    };
+
+    const onEnd = (kind: string) => (e: PointerEvent) => {
+      const s = sessions.get(e.pointerId);
+      const target = e.target as Element | null;
+      push({
+        kind,
+        pointerType: e.pointerType || "?",
+        target: describeTarget(target),
+        matchedLogo: !!target?.closest?.('[data-easter-egg="logo"]'),
+        extra: s ? `drift=${Math.round(s.maxDrift)}px t=${Math.round(performance.now() - s.t)}ms` : undefined,
+      });
+      sessions.delete(e.pointerId);
+    };
+
+    const onUp = onEnd("up");
+    const onCancel = onEnd("cancel");
     document.addEventListener("pointerdown", onDown, { passive: true });
+    document.addEventListener("pointermove", onMove, { passive: true });
     document.addEventListener("pointerup", onUp, { passive: true });
     document.addEventListener("pointercancel", onCancel, { passive: true });
     return () => {
       document.removeEventListener("pointerdown", onDown);
+      document.removeEventListener("pointermove", onMove);
       document.removeEventListener("pointerup", onUp);
       document.removeEventListener("pointercancel", onCancel);
     };
@@ -115,6 +150,7 @@ export default function EggDebugOverlay() {
         {events.map((ev) => (
           <div key={ev.n}>
             #{ev.n} {ev.kind} type={ev.pointerType} target={ev.target} logo={String(ev.matchedLogo)}
+            {ev.extra ? ` ${ev.extra}` : ""}
           </div>
         ))}
       </div>
