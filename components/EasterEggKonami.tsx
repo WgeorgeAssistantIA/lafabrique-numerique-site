@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { EGG_FLAGS, setEggFlag } from "@/lib/easterEggProgress";
+import { useCoarsePointer } from "@/lib/useCoarsePointer";
 
 const SEQUENCE = [
   "arrowup",
@@ -20,14 +21,19 @@ const SEQUENCE = [
 const BURST_MS = 1700;
 const TOAST_MS = 5000;
 
+// Level 2 normally hides in the console, which phones don't have — on touch
+// devices the very same clue travels through this toast instead, so both
+// journeys take exactly as many steps.
 const COPY = {
   fr: {
     title: "Œil de lynx.",
     body: "Le rouage a bougé. Ce site cache d'autres secrets — regarde plus en profondeur.",
+    bodyTouch: "Le rouage a bougé. Le prochain indice ne se lit pas ici : /humans.txt",
   },
   en: {
     title: "Sharp eyes.",
     body: "The gear just moved. This site hides more than it shows — look deeper.",
+    bodyTouch: "The gear just moved. The next clue isn't read out loud here: /humans.txt",
   },
 };
 
@@ -43,6 +49,7 @@ export default function EasterEggKonami() {
   const progress = useRef(0);
   const hideTimer = useRef<number | null>(null);
   const [visible, setVisible] = useState(false);
+  const isTouch = useCoarsePointer();
 
   useEffect(() => {
     const trigger = () => {
@@ -89,7 +96,9 @@ export default function EasterEggKonami() {
       }`}
     >
       <p className="fig-label text-cyan mb-1">{COPY[lang].title}</p>
-      <p className="text-sm text-foreground/90">{COPY[lang].body}</p>
+      <p className="text-sm text-foreground/90">
+        {isTouch ? COPY[lang].bodyTouch : COPY[lang].body}
+      </p>
     </div>
   );
 }

@@ -218,6 +218,16 @@ body {
   cursor: pointer;
 }
 
+/* Touch devices open the retro pad by long-pressing a logo — stop the native
+   "save image" callout from hijacking the gesture */
+@media (pointer: coarse) {
+  [data-easter-egg="logo"] {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+}
+
 /* Scroll-reveal / entrance animations are disabled for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
   html {
