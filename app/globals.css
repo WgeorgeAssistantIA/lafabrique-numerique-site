@@ -218,10 +218,15 @@ body {
   cursor: pointer;
 }
 
-/* Touch devices open the retro pad by long-pressing a logo — stop the native
-   "save image" callout from hijacking the gesture */
-@media (pointer: coarse) {
+/* Touch devices open the retro pad by long-pressing a logo. Without
+   touch-action:none, Chrome/Android cancels the pointer session a few ms
+   into the hold (assuming it might be a scroll or an image-save gesture),
+   firing pointercancel long before our long-press timer — confirmed live on
+   a Redmi Pad Pro 2 via remote debugging. -webkit-touch-callout stops the
+   native "save image" sheet from stealing the gesture too. */
+@media (any-pointer: coarse) {
   [data-easter-egg="logo"] {
+    touch-action: none;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     user-select: none;
