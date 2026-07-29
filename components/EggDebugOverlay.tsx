@@ -88,7 +88,7 @@ export default function EggDebugOverlay() {
     <div
       style={{
         position: "fixed",
-        top: 8,
+        bottom: 8,
         left: 8,
         zIndex: 999,
         maxWidth: "92vw",
