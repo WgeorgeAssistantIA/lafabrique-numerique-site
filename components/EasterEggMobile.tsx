@@ -72,7 +72,10 @@ export default function EasterEggMobile() {
     };
 
     const onPointerDown = (e: PointerEvent) => {
-      if (e.pointerType === "mouse") return;
+      // No pointerType filter here: some browsers' "desktop site" mode (iPad
+      // Safari, Android Chrome) synthesizes touch as pointerType "mouse", and
+      // the outer `if (!isTouch) return` above already keeps this whole
+      // effect from ever attaching on a real, non-touch desktop.
       const target = e.target as Element | null;
       if (!target?.closest?.('[data-easter-egg="logo"]')) return;
       startX = e.clientX;

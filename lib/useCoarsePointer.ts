@@ -4,19 +4,28 @@
 //
 // Subscribed rather than read once, so a tablet that gains or loses its
 // keyboard switches journeys without a reload.
+//
+// `pointer` alone isn't enough: iPadOS's "Request Desktop Website" (on by
+// default on many iPads) and Android Chrome's "Desktop site" both make the
+// *primary* pointer report as fine even though the visitor is still tapping
+// with a finger — `any-pointer: coarse` survives that switch since the
+// touchscreen itself hasn't gone anywhere. `maxTouchPoints` is the last-resort
+// fallback for browsers too old to support the media feature at all.
 
 import { useSyncExternalStore } from "react";
 
-const QUERY = "(pointer: coarse)";
+const QUERIES = ["(pointer: coarse)", "(any-pointer: coarse)"];
 
 function subscribe(onChange: () => void) {
-  const query = window.matchMedia(QUERY);
-  query.addEventListener("change", onChange);
-  return () => query.removeEventListener("change", onChange);
+  const queries = QUERIES.map((q) => window.matchMedia(q));
+  queries.forEach((q) => q.addEventListener("change", onChange));
+  return () => queries.forEach((q) => q.removeEventListener("change", onChange));
 }
 
 function getSnapshot() {
-  return window.matchMedia(QUERY).matches;
+  return (
+    QUERIES.some((q) => window.matchMedia(q).matches) || navigator.maxTouchPoints > 0
+  );
 }
 
 // The server can't know the pointer type. Assume fine, so the prerendered
