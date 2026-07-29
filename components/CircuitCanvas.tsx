@@ -331,11 +331,14 @@ export default function CircuitCanvas({ lang = "fr" }: { lang?: "fr" | "en" }) {
       // the DOM on every draw so layout shifts can't move the letter.
       // Vertical center ~64% down the Hero — the placement William
       // validated on screenshots (2026-07-22).
+      // That button is `hidden sm:inline` below the sm breakpoint, so on
+      // narrow screens its rect is all zeros — falls back the same as when
+      // the anchor is missing entirely, keeping the letter on-canvas.
       const canvasRect = canvas.getBoundingClientRect();
       const anchorEl = document.querySelector<HTMLElement>("[data-egg-anchor]");
-      if (anchorEl) {
-        const a = anchorEl.getBoundingClientRect();
-        ctaCenterX = (a.left + a.right) / 2 - canvasRect.left;
+      const anchorRect = anchorEl?.getBoundingClientRect();
+      if (anchorRect && anchorRect.width > 0) {
+        ctaCenterX = (anchorRect.left + anchorRect.right) / 2 - canvasRect.left;
       } else {
         ctaCenterX = width * 0.85;
       }
