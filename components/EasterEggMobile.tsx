@@ -86,6 +86,11 @@ export default function EasterEggMobile() {
       // effect from ever attaching on a real, non-touch desktop.
       const target = e.target as Element | null;
       if (!target?.closest?.('[data-easter-egg="logo"]')) return;
+      // Suppress the ghost "click" the browser synthesizes when this touch
+      // ends — without this, lifting the finger off the logo (right where
+      // the newly-opened pad's full-screen backdrop now sits) immediately
+      // taps that backdrop and closes the pad before it's even seen.
+      e.preventDefault();
       startX = e.clientX;
       startY = e.clientY;
       cancel();
@@ -114,7 +119,9 @@ export default function EasterEggMobile() {
       if (target?.closest?.('[data-easter-egg="logo"]')) e.preventDefault();
     };
 
-    document.addEventListener("pointerdown", onPointerDown, { passive: true });
+    // Not passive: onPointerDown calls preventDefault() when the logo is the
+    // target, which a passive listener would silently ignore.
+    document.addEventListener("pointerdown", onPointerDown, { passive: false });
     document.addEventListener("pointermove", onPointerMove, { passive: true });
     document.addEventListener("pointerup", cancel, { passive: true });
     document.addEventListener("pointercancel", cancel, { passive: true });
