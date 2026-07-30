@@ -32,6 +32,9 @@ export const metadata: Metadata = {
   description: DESCRIPTION,
   verification: {
     google: "Mlw16OWL3An9EMgg9flyBrnyn7MWws0_ns9F4yzA0hw",
+    other: {
+      "msvalidate.01": "30AA85A37A0A951F897562FF150D3525",
+    },
   },
   openGraph: {
     title: TITLE,
