@@ -48,6 +48,21 @@ export default function Portfolio() {
                   </span>
                 ))}
               </div>
+              {item.stores && item.stores.length > 0 ? (
+                <div className="flex flex-wrap gap-2 mt-3">
+                  {item.stores.map((store) => (
+                    <a
+                      key={store.label}
+                      href={store.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="fig-label border border-cyan/50 text-cyan px-2 py-1 text-[0.65rem] hover:bg-cyan/10 transition-colors"
+                    >
+                      {store.label}
+                    </a>
+                  ))}
+                </div>
+              ) : null}
               {item.link ? (
                 <a
                   href={item.link}
