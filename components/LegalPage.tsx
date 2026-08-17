@@ -7,7 +7,7 @@ import { legalContent, type LegalDoc } from "@/lib/legal";
 import LangToggle from "./LangToggle";
 import Footer from "./Footer";
 
-type DocKey = "mentions" | "privacy";
+type DocKey = "mentions" | "privacy" | "cgv";
 
 export default function LegalPage({ docKey }: { docKey: DocKey }) {
   return (

@@ -19,6 +19,7 @@ export type LegalContent = {
   backHome: string;
   mentions: LegalDoc;
   privacy: LegalDoc;
+  cgv: LegalDoc;
 };
 
 const fr: LegalContent = {
@@ -141,6 +142,75 @@ const fr: LegalContent = {
       },
     ],
   },
+  cgv: {
+    title: "Conditions Générales de Vente",
+    updated: `Dernière mise à jour : ${LAST_UPDATED}`,
+    sections: [
+      {
+        h: "1. Objet",
+        p: [
+          `Les présentes conditions générales de vente (« CGV ») régissent les prestations de conception et développement de sites web, applications et logiciels sur mesure proposées par La Fabrik Numérique, entreprise individuelle exploitée par ${EDITOR_NAME} (SIRET ${EDITOR_SIRET}), ci-après « le Prestataire ». Toute commande implique l'acceptation pleine et entière des présentes CGV par le client.`,
+        ],
+      },
+      {
+        h: "2. Devis et commande",
+        p: [
+          "Chaque projet fait l'objet d'un devis écrit et gratuit, établi après échange sur les besoins du client. Le devis précise le périmètre de la prestation, le prix, le délai indicatif de livraison et les modalités de paiement (acompte et solde).",
+          "La commande est considérée comme ferme à réception du devis signé (ou de son acceptation écrite) et, le cas échéant, du versement de l'acompte prévu.",
+        ],
+      },
+      {
+        h: "3. Prix et paiement",
+        p: [
+          "Les tarifs affichés sur le site (à partir de) sont indicatifs ; le prix définitif est celui indiqué au devis, en euros. Sauf mention contraire au devis, un acompte est demandé à la commande, le solde étant dû à la livraison.",
+          "Tout retard de paiement peut entraîner la suspension des travaux en cours jusqu'à régularisation.",
+        ],
+      },
+      {
+        h: "4. Délais et livraison",
+        p: [
+          "Les délais indiqués au devis sont estimatifs et courent à compter de la réception de l'ensemble des éléments nécessaires au projet (contenus, accès, validations du client). Un retard du client dans la fourniture de ces éléments peut décaler d'autant la livraison.",
+        ],
+      },
+      {
+        h: "5. Révisions et modifications",
+        p: [
+          "Le nombre d'allers-retours de révision inclus est précisé au devis. Toute évolution du périmètre initial (fonctionnalités non prévues, changement de direction artistique après validation) fait l'objet d'un devis complémentaire.",
+        ],
+      },
+      {
+        h: "6. Propriété intellectuelle",
+        p: [
+          "Le code source et les livrables développés sur mesure sont cédés au client à réception du paiement intégral de la prestation, sauf mention contraire au devis. Le Prestataire conserve le droit de faire état du projet réalisé dans son portfolio, sauf demande contraire du client.",
+          "Les briques logicielles, gabarits ou outils internes réutilisés d'un projet à l'autre restent la propriété du Prestataire.",
+        ],
+      },
+      {
+        h: "7. Garantie et maintenance",
+        p: [
+          "Le Prestataire corrige sans frais tout dysfonctionnement avéré et imputable à son développement, signalé dans les 30 jours suivant la livraison. Au-delà, ou pour toute évolution demandée, une maintenance ou un accompagnement peut être proposé sur devis (voir l'offre « Accompagnement »).",
+        ],
+      },
+      {
+        h: "8. Responsabilité",
+        p: [
+          "La responsabilité du Prestataire, si elle devait être engagée, est limitée au montant effectivement payé par le client pour la prestation concernée. Le Prestataire ne saurait être tenu responsable d'une indisponibilité imputable à un hébergeur ou prestataire tiers choisi par le client.",
+        ],
+      },
+      {
+        h: "9. Résiliation",
+        p: [
+          "En cas d'annulation du projet par le client après le début des travaux, l'acompte versé reste acquis au Prestataire au titre du travail déjà engagé, sauf accord contraire.",
+        ],
+      },
+      {
+        h: "10. Droit applicable",
+        p: [
+          "Les présentes CGV sont soumises au droit français. En cas de litige, une solution amiable sera recherchée en priorité ; à défaut, les tribunaux français compétents seront seuls saisis.",
+        ],
+      },
+    ],
+  },
 };
 
 const en: LegalContent = {
@@ -259,6 +329,75 @@ const en: LegalContent = {
         h: "Policy changes",
         p: [
           "This policy may be updated at any time. The last update date appears at the top of the page.",
+        ],
+      },
+    ],
+  },
+  cgv: {
+    title: "Terms of Sale",
+    updated: `Last updated: ${LAST_UPDATED_EN}`,
+    sections: [
+      {
+        h: "1. Purpose",
+        p: [
+          `These terms of sale (“Terms”) govern the design and development services for custom websites, applications and software offered by La Fabrik Numérique, a sole proprietorship operated by ${EDITOR_NAME} (SIRET ${EDITOR_SIRET}), referred to below as “the Provider”. Any order implies full acceptance of these Terms by the client.`,
+        ],
+      },
+      {
+        h: "2. Quote and order",
+        p: [
+          "Each project is the subject of a free written quote, drawn up after discussing the client's needs. The quote specifies the scope of the service, the price, an indicative delivery timeline, and the payment terms (deposit and balance).",
+          "The order is considered firm upon receipt of the signed quote (or its written acceptance) and, where applicable, payment of the agreed deposit.",
+        ],
+      },
+      {
+        h: "3. Price and payment",
+        p: [
+          "The rates shown on the site (\"starting from\") are indicative; the final price is the one stated in the quote, in euros. Unless stated otherwise in the quote, a deposit is requested on order, with the balance due on delivery.",
+          "Any late payment may result in ongoing work being suspended until the account is settled.",
+        ],
+      },
+      {
+        h: "4. Timeline and delivery",
+        p: [
+          "Timelines stated in the quote are estimates and run from receipt of all elements needed for the project (content, access, client approvals). A delay by the client in providing these elements may push back delivery accordingly.",
+        ],
+      },
+      {
+        h: "5. Revisions and changes",
+        p: [
+          "The number of included revision rounds is specified in the quote. Any change to the initial scope (unplanned features, art-direction changes after approval) is subject to an additional quote.",
+        ],
+      },
+      {
+        h: "6. Intellectual property",
+        p: [
+          "Source code and custom-built deliverables are transferred to the client upon full payment for the service, unless stated otherwise in the quote. The Provider retains the right to feature the completed project in its portfolio, unless the client requests otherwise.",
+          "Software components, templates or internal tools reused across projects remain the Provider's property.",
+        ],
+      },
+      {
+        h: "7. Warranty and maintenance",
+        p: [
+          "The Provider fixes, free of charge, any proven malfunction attributable to its development work, reported within 30 days of delivery. Beyond that, or for any requested change, maintenance or ongoing support can be offered on a quote basis (see the \"Support\" offer).",
+        ],
+      },
+      {
+        h: "8. Liability",
+        p: [
+          "The Provider's liability, if engaged, is limited to the amount actually paid by the client for the relevant service. The Provider cannot be held liable for downtime attributable to a hosting provider or third-party service chosen by the client.",
+        ],
+      },
+      {
+        h: "9. Termination",
+        p: [
+          "If the client cancels the project after work has begun, the deposit paid remains with the Provider for work already performed, unless otherwise agreed.",
+        ],
+      },
+      {
+        h: "10. Governing law",
+        p: [
+          "These Terms are governed by French law. In the event of a dispute, an amicable solution will be sought first; failing that, the competent French courts shall have exclusive jurisdiction.",
         ],
       },
     ],

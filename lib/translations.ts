@@ -174,7 +174,7 @@ const fr = {
     consentLink: "politique de confidentialité",
     consentB: ".",
   },
-  footer: { ref: "REF. LFN-2026", legal: "Mentions légales", privacy: "Confidentialité" },
+  footer: { ref: "REF. LFN-2026", legal: "Mentions légales", privacy: "Confidentialité", cgv: "CGV" },
 };
 
 export type Translation = typeof fr;
@@ -353,7 +353,7 @@ const en: Translation = {
     consentLink: "privacy policy",
     consentB: ".",
   },
-  footer: { ref: "REF. LFN-2026", legal: "Legal notice", privacy: "Privacy" },
+  footer: { ref: "REF. LFN-2026", legal: "Legal notice", privacy: "Privacy", cgv: "Terms" },
 };
 
 export const translations: Record<Lang, Translation> = { fr, en };

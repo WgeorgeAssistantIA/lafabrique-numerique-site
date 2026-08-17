@@ -17,6 +17,9 @@ export default function Footer() {
           <Link href="/confidentialite" className="hover:text-cyan transition-colors">
             {t.footer.privacy}
           </Link>
+          <Link href="/cgv" className="hover:text-cyan transition-colors">
+            {t.footer.cgv}
+          </Link>
         </nav>
         <span>{t.footer.ref}</span>
       </div>
