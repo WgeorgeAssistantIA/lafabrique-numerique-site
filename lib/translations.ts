@@ -119,19 +119,6 @@ const fr = {
       },
       {
         ref: "REF.02",
-        title: "PlombIA",
-        type: "Assistant IA · PWA",
-        desc: "Assistant conversationnel pour artisans : capture de demandes 24/7, génération de devis, prise de rendez-vous multi-agendas, voix IA et tableau de bord CRM. Pensé pour ne plus jamais rater un client.",
-        result:
-          "Capture les demandes 24/7 et génère devis + RDV sans intervention humaine.",
-        tags: ["Next.js", "Claude API", "Supabase", "Resend"],
-        link: "",
-        linkLabel: "",
-        stores: [],
-        image: "",
-      },
-      {
-        ref: "REF.03",
         title: "InOneShot",
         type: "Logiciel desktop · App Windows",
         desc: "Outil de publipostage PDF : à partir d'un modèle PDF et d'un fichier Excel, on place les champs (colonnes, dates, signatures, QR codes) par glisser-déposer, puis l'appli génère tous les documents remplis d'un seul coup.",
@@ -154,7 +141,7 @@ const fr = {
         image: "/img/portfolio-inoneshot.webp",
       },
       {
-        ref: "REF.04",
+        ref: "REF.03",
         title: "VectorPop",
         type: "Logiciel desktop · App Windows",
         desc: "Convertisseur d'images en vecteur : à partir d'un PNG ou JPEG, l'appli génère un SVG propre et redimensionnable à l'infini, sans abonnement ni upload sur un serveur externe.",
@@ -177,7 +164,7 @@ const fr = {
         image: "",
       },
       {
-        ref: "REF.05",
+        ref: "REF.04",
         title: "La Fabrik Numérique",
         type: "Site vitrine bilingue",
         desc: "Ce site — direction artistique « Circuit Topographie », bilingue FR/EN avec détection automatique de la langue du visiteur et basculement instantané.",
@@ -190,7 +177,7 @@ const fr = {
         image: "",
       },
       {
-        ref: "REF.06",
+        ref: "REF.05",
         title: "Nyctale",
         type: "Logiciel desktop · App Windows",
         desc: "Diagnostic PC gratuit et illimité : Nyctale analyse un ordinateur et explique en langage clair pourquoi il chauffe ou ralentit, avant de suggérer un remplacement inutile.",
@@ -203,7 +190,7 @@ const fr = {
         image: "",
       },
       {
-        ref: "REF.07",
+        ref: "REF.06",
         title: "VotreAssistantIA",
         type: "Assistant IA · SaaS artisans",
         desc: "Assistant IA pour artisans, ex-PlombIA : capture des demandes clients, prise de rendez-vous et devis automatisés. Pivot national avec une grille tarifaire à trois paliers.",
@@ -215,7 +202,7 @@ const fr = {
         image: "",
       },
       {
-        ref: "REF.08",
+        ref: "REF.07",
         title: "VidScope",
         type: "Agent IA · Rapport vidéo",
         desc: "Agent IA qui résume les vidéos YouTube tech en un rapport PDF structuré, pour suivre la veille sans regarder chaque vidéo en entier.",
@@ -227,7 +214,7 @@ const fr = {
         image: "",
       },
       {
-        ref: "REF.09",
+        ref: "REF.08",
         title: "VectoFix",
         type: "Module · Correction de vectorisation",
         desc: "Correction de vectorisation SVG par zone, pour retoucher précisément un résultat VectorPop imparfait sans tout relancer. Vit sur une page dédiée du site VectorPop.",
@@ -464,19 +451,6 @@ const en: Translation = {
       },
       {
         ref: "REF.02",
-        title: "PlombIA",
-        type: "AI assistant · PWA",
-        desc: "Conversational assistant for tradespeople: 24/7 request capture, quote generation, multi-calendar booking, AI voice and a CRM dashboard. Built so you never miss a customer again.",
-        result:
-          "Captures requests 24/7 and generates quotes + bookings with zero manual work.",
-        tags: ["Next.js", "Claude API", "Supabase", "Resend"],
-        link: "",
-        linkLabel: "",
-        stores: [],
-        image: "",
-      },
-      {
-        ref: "REF.03",
         title: "InOneShot",
         type: "Desktop software · Windows app",
         desc: "PDF mail-merge tool: from a PDF template and an Excel file, you drag-and-drop fields (columns, dates, signatures, QR codes) onto the page, then the app generates every filled document in one go.",
@@ -499,7 +473,7 @@ const en: Translation = {
         image: "/img/portfolio-inoneshot.webp",
       },
       {
-        ref: "REF.04",
+        ref: "REF.03",
         title: "VectorPop",
         type: "Desktop software · Windows app",
         desc: "Image-to-vector converter: from a PNG or JPEG, the app generates a clean, infinitely resizable SVG — no subscription, no upload to an external server.",
@@ -522,7 +496,7 @@ const en: Translation = {
         image: "",
       },
       {
-        ref: "REF.05",
+        ref: "REF.04",
         title: "La Fabrik Numérique",
         type: "Bilingual showcase site",
         desc: 'This very site — "Circuit Topographie" art direction, bilingual FR/EN with automatic visitor-language detection and instant switching.',
@@ -535,7 +509,7 @@ const en: Translation = {
         image: "",
       },
       {
-        ref: "REF.06",
+        ref: "REF.05",
         title: "Nyctale",
         type: "Desktop software · Windows app",
         desc: "Free, unlimited PC diagnostic: Nyctale analyzes a computer and explains in plain language why it overheats or slows down, before suggesting an unnecessary replacement.",
@@ -548,7 +522,7 @@ const en: Translation = {
         image: "",
       },
       {
-        ref: "REF.07",
+        ref: "REF.06",
         title: "VotreAssistantIA",
         type: "AI assistant · SaaS for tradespeople",
         desc: "AI assistant for tradespeople, formerly PlombIA: captures client requests, handles appointment booking and automated quotes. Nationwide pivot with a three-tier pricing grid.",
@@ -560,7 +534,7 @@ const en: Translation = {
         image: "",
       },
       {
-        ref: "REF.08",
+        ref: "REF.07",
         title: "VidScope",
         type: "AI agent · Video report",
         desc: "AI agent that summarizes tech YouTube videos into a structured PDF report, so you can keep up with your watch list without watching every video in full.",
@@ -572,7 +546,7 @@ const en: Translation = {
         image: "",
       },
       {
-        ref: "REF.09",
+        ref: "REF.08",
         title: "VectoFix",
         type: "Module · Vectorization touch-up",
         desc: "Zone-based SVG vectorization correction, for fixing an imperfect VectorPop result precisely without redoing the whole trace. Lives on a dedicated page within the VectorPop site.",
