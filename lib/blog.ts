@@ -186,6 +186,111 @@ const fr: BlogContent = {
       ],
       links: [],
     },
+    {
+      id: "custom-tool-vs-saas-cost",
+      slug: "outil-sur-mesure-ou-saas-cout-reel-sur-3-ans",
+      title: "Outil sur mesure ou abonnement SaaS : ce que ça coûte vraiment sur 3 ans",
+      date: "2026-09-07",
+      dateLabel: "7 septembre 2026",
+      excerpt:
+        "Un abonnement SaaS paraît toujours moins cher au premier regard qu'un outil développé sur mesure. Sur trois ans, avec la hausse des tarifs et les limites de plan, le calcul s'inverse souvent.",
+      tags: ["Studio", "Automatisation"],
+      sections: [
+        {
+          h: "Le piège du prix affiché",
+          p: [
+            "29 € par mois, c'est le genre de ligne qui rassure sur une page de pricing. Sauf que ce chiffre est presque toujours le tarif d'entrée, pour un usage limité — un nombre de sièges, un volume de documents, un nombre d'automatisations. Dès que l'activité grossit, c'est le palier supérieur qui s'applique, généralement deux à trois fois plus cher.",
+            "Sur trois ans, un abonnement à 29 €/mois qui grimpe à 79 €/mois au bout d'un an représente déjà plus de 2 500 € — sans compter les modules additionnels facturés à part, quasiment systématiques passé un certain usage.",
+          ],
+        },
+        {
+          h: "Ce qu'un SaaS générique ne fait jamais gratuitement",
+          p: [
+            "Un logiciel générique doit satisfaire des milliers de clients aux besoins différents. Résultat : les fonctionnalités vraiment spécifiques à votre activité — un champ métier particulier, un format d'export imposé par un client, une règle de calcul propre à votre secteur — sont soit absentes, soit reléguées à un plan « Entreprise » vendu sur devis.",
+            "Le workaround habituel est de multiplier les outils annexes (un tableur pour combler le manque, un connecteur tiers payant pour faire le lien) — chacun avec son propre abonnement, sa propre courbe d'apprentissage, et un point de rupture supplémentaire si l'un des services change ses conditions.",
+          ],
+        },
+        {
+          h: "Le coût réel d'un outil sur mesure",
+          p: [
+            "Un outil développé sur mesure a un coût initial plus visible — c'est un projet, pas une case à cocher. Mais une fois livré, il n'y a plus de facture récurrente qui grimpe avec l'usage, plus de limite de plan à surveiller, et les fonctionnalités correspondent exactement au métier réel, sans compromis sur le vocabulaire ou le flux de travail.",
+            "C'est exactement la logique derrière VoxCut et InOneShot : deux outils nés d'un besoin concret de l'atelier, où l'abonnement mensuel d'un logiciel généraliste ne justifiait pas la contrainte qu'il imposait en retour.",
+          ],
+        },
+        {
+          h: "Quand le SaaS reste le bon choix",
+          p: [
+            "Ce n'est pas un plaidoyer contre tout abonnement. Pour un besoin standard, largement couvert par un outil existant, sans exigence métier particulière, un SaaS reste plus rapide à mettre en place et moins risqué qu'un développement dédié. La bascule vers le sur-mesure devient pertinente à partir du moment où l'entreprise paie pour des fonctionnalités qu'elle n'utilise pas, contourne les limites d'un plan avec des solutions de fortune, ou dépend d'un outil qui ne parle pas vraiment le langage de son métier.",
+          ],
+        },
+        {
+          h: "Comment trancher pour son activité",
+          p: [
+            "Trois questions suffisent en général à orienter la décision : la tâche est-elle vraiment répétitive et chronophage (sinon, l'investissement ne se rentabilise jamais) ? Existe-t-il un outil du marché qui la couvre à 90 % sans bricolage (si oui, le sur-mesure n'apporte rien) ? Et surtout, combien coûte réellement l'abonnement actuel projeté sur trois ans, palier après palier, plutôt que sur le seul prix affiché en page d'accueil.",
+          ],
+        },
+      ],
+      links: [
+        {
+          label: "Découvrir VoxCut → voxcutpro.com",
+          url: "https://voxcutpro.com",
+        },
+        {
+          label: "Découvrir InOneShot → inoneshot.fr",
+          url: "https://inoneshot.fr",
+        },
+      ],
+    },
+    {
+      id: "showcase-site-vs-web-app",
+      slug: "site-vitrine-ou-application-web-comment-choisir",
+      title: "Site vitrine ou application web : comment choisir pour son activité",
+      date: "2026-09-07",
+      dateLabel: "7 septembre 2026",
+      excerpt:
+        "« On a besoin d'un site » est rarement la vraie demande. Avant de parler design ou technologie, il faut d'abord clarifier si le besoin est de présenter une activité, ou de faire fonctionner quelque chose.",
+      tags: ["Studio", "Tutoriel"],
+      sections: [
+        {
+          h: "Deux objets qui se ressemblent, mais ne servent pas à la même chose",
+          p: [
+            "Un site vitrine présente une activité : qui vous êtes, ce que vous proposez, comment vous contacter. Il informe et convainc, mais ne fait rien à la place du visiteur. Une application web, elle, exécute une tâche : réserver un créneau, calculer un devis, gérer un compte client, transformer un fichier. La confusion entre les deux mène souvent à un cahier des charges flou, où un site vitrine se voit greffer des fonctionnalités qui auraient dû être pensées comme une application dès le départ.",
+          ],
+        },
+        {
+          h: "Les signaux qui indiquent qu'un site vitrine suffit",
+          p: [
+            "Si le besoin principal est d'être trouvé sur Google, de présenter une offre, de rassurer un prospect avec des références et un formulaire de contact, un site vitrine bien construit fait le travail. Il est plus rapide à livrer, moins coûteux à maintenir, et plus simple à faire évoluer dans le temps — un ajout de page ou un changement de texte ne remet rien en cause.",
+            "C'est aussi le bon choix quand l'activité repose sur un contact humain en aval (un appel, un rendez-vous, un devis personnalisé) plutôt que sur une transaction entièrement automatisée en ligne.",
+          ],
+        },
+        {
+          h: "Les signaux qui indiquent qu'il faut une application",
+          p: [
+            "Dès qu'un visiteur doit pouvoir agir sans intervention humaine — créer un compte, suivre une commande, générer un document, accéder à des données personnelles — un site vitrine classique ne suffit plus. Il faut alors une couche applicative : base de données, authentification, logique métier, et souvent une interface pensée pour un usage répété plutôt que pour une première visite.",
+            "Le signal le plus fiable reste celui-ci : si la même tâche revient plusieurs fois par semaine côté client ou côté visiteur, et qu'elle est aujourd'hui gérée à la main (un tableau Excel, des e-mails, un fichier partagé), c'est le signe qu'une application ferait gagner un temps réel — pas seulement une meilleure vitrine.",
+          ],
+        },
+        {
+          h: "Le cas fréquent des deux à la fois",
+          p: [
+            "Beaucoup de projets ont en réalité besoin des deux : un site vitrine public pour informer et convertir, connecté à une application privée pour gérer l'activité derrière. Nyctale, par exemple, associe un site public bilingue et un logiciel de diagnostic qui, lui, exécute une tâche technique complète sur la machine de l'utilisateur. Traiter les deux comme un seul et même bloc technique complique inutilement le projet ; les séparer clairement, avec une passerelle simple entre les deux, garde chaque partie facile à maintenir.",
+          ],
+        },
+        {
+          h: "La bonne question à se poser avant de commencer",
+          p: [
+            "Avant de parler de technologie ou de design, une seule question tranche l'essentiel : est-ce que le visiteur vient pour être convaincu, ou pour accomplir quelque chose ? La réponse détermine si le projet est un site vitrine, une application, ou les deux — et évite de payer pour la complexité d'une application quand un site suffisait, ou de brider une vraie application derrière les limites d'un site vitrine.",
+          ],
+        },
+      ],
+      links: [
+        {
+          label: "Découvrir Nyctale → nyctale.fr",
+          url: "https://nyctale.fr",
+        },
+      ],
+    },
   ],
 };
 
@@ -386,6 +491,111 @@ const en: BlogContent = {
         },
       ],
       links: [],
+    },
+    {
+      id: "custom-tool-vs-saas-cost",
+      slug: "custom-tool-vs-saas-real-cost-over-3-years",
+      title: "Custom Tool or SaaS Subscription: What It Really Costs Over 3 Years",
+      date: "2026-09-07",
+      dateLabel: "September 7, 2026",
+      excerpt:
+        "A SaaS subscription always looks cheaper at first glance than a custom-built tool. Over three years, with pricing tiers and plan limits factored in, the math often flips.",
+      tags: ["Studio", "Automation"],
+      sections: [
+        {
+          h: "The trap of the sticker price",
+          p: [
+            "$29 a month is the kind of line that feels reassuring on a pricing page. Except that number is almost always the entry tier, for a limited use case — a number of seats, a document volume, a number of automations. As soon as the business grows, the next tier kicks in, usually two to three times more expensive.",
+            "Over three years, a $29/month subscription that climbs to $79/month after year one already adds up to more than $2,500 — before counting the add-on modules billed separately, which are nearly universal past a certain usage level.",
+          ],
+        },
+        {
+          h: "What a generic SaaS never does for free",
+          p: [
+            "Generic software has to satisfy thousands of customers with different needs. As a result, the features that are actually specific to your business — a particular field, an export format a client requires, a calculation rule specific to your industry — are either missing or pushed into an 'Enterprise' plan sold by quote.",
+            "The usual workaround is to stack extra tools on top (a spreadsheet to patch the gap, a paid third-party connector to bridge the two) — each with its own subscription, its own learning curve, and one more point of failure if any of those services changes its terms.",
+          ],
+        },
+        {
+          h: "The real cost of a custom tool",
+          p: [
+            "A custom-built tool has a more visible upfront cost — it's a project, not a checkbox. But once delivered, there's no recurring bill that climbs with usage, no plan limit to keep an eye on, and the features match the actual workflow exactly, with no compromise on vocabulary or process.",
+            "That's exactly the logic behind VoxCut and InOneShot: two tools born from a real need inside the studio, where a generic app's monthly fee didn't justify the constraint it imposed in return.",
+          ],
+        },
+        {
+          h: "When SaaS is still the right call",
+          p: [
+            "This isn't an argument against subscriptions in general. For a standard need, well covered by an existing tool, with no particular business-specific requirement, a SaaS remains faster to set up and less risky than a dedicated build. The tipping point toward custom software comes once a business is paying for features it doesn't use, working around a plan's limits with makeshift fixes, or depending on a tool that doesn't really speak its industry's language.",
+          ],
+        },
+        {
+          h: "How to decide for your own business",
+          p: [
+            "Three questions usually settle it: is the task genuinely repetitive and time-consuming (if not, the investment never pays off)? Does an existing tool already cover 90% of it without workarounds (if so, custom software adds little)? And, above all, what does the current subscription really cost projected over three years, tier by tier — not just the number shown on the homepage.",
+          ],
+        },
+      ],
+      links: [
+        {
+          label: "Discover VoxCut → voxcutpro.com",
+          url: "https://voxcutpro.com",
+        },
+        {
+          label: "Discover InOneShot → inoneshot.fr",
+          url: "https://inoneshot.fr",
+        },
+      ],
+    },
+    {
+      id: "showcase-site-vs-web-app",
+      slug: "showcase-website-or-web-app-how-to-choose",
+      title: "Showcase Website or Web App: How to Choose for Your Business",
+      date: "2026-09-07",
+      dateLabel: "September 7, 2026",
+      excerpt:
+        "\"We need a website\" is rarely the actual need. Before talking design or technology, it helps to first clarify whether the goal is to present a business, or to make something work.",
+      tags: ["Studio", "Tutorial"],
+      sections: [
+        {
+          h: "Two things that look alike but don't do the same job",
+          p: [
+            "A showcase website presents a business: who you are, what you offer, how to reach you. It informs and persuades, but doesn't do anything on the visitor's behalf. A web app, on the other hand, executes a task: booking a slot, calculating a quote, managing a customer account, converting a file. Confusing the two often leads to a vague brief, where a showcase site ends up bolted with features that should have been designed as an app from the start.",
+          ],
+        },
+        {
+          h: "Signs that a showcase website is enough",
+          p: [
+            "If the main need is to be found on Google, present an offer, and reassure a prospect with references and a contact form, a well-built showcase site does the job. It's faster to ship, cheaper to maintain, and simpler to evolve over time — adding a page or changing some text doesn't put anything else at risk.",
+            "It's also the right call when the business relies on human contact downstream (a call, a meeting, a custom quote) rather than a fully automated online transaction.",
+          ],
+        },
+        {
+          h: "Signs that you actually need an app",
+          p: [
+            "As soon as a visitor needs to act without human involvement — creating an account, tracking an order, generating a document, accessing personal data — a classic showcase site stops being enough. At that point you need an application layer: a database, authentication, business logic, and often an interface designed for repeated use rather than a first visit.",
+            "The most reliable signal is this: if the same task comes up several times a week, on the client side or the visitor side, and is currently handled by hand (a spreadsheet, emails, a shared file), that's a sign an app would save real time — not just make for a nicer storefront.",
+          ],
+        },
+        {
+          h: "The common case of needing both",
+          p: [
+            "Many projects actually need both: a public showcase site to inform and convert, connected to a private app that runs the business behind it. Nyctale, for instance, pairs a bilingual public website with a diagnostic tool that runs a full technical task on the user's machine. Treating both as a single technical block needlessly complicates the project; keeping them clearly separate, with a simple bridge between the two, keeps each part easy to maintain.",
+          ],
+        },
+        {
+          h: "The right question to ask before starting",
+          p: [
+            "Before talking technology or design, one question settles most of it: does the visitor come to be convinced, or to get something done? The answer determines whether the project is a showcase site, an app, or both — and avoids paying for the complexity of an app when a site would do, or squeezing a real app behind the limits of a showcase site.",
+          ],
+        },
+      ],
+      links: [
+        {
+          label: "Discover Nyctale → nyctale.fr",
+          url: "https://nyctale.fr",
+        },
+      ],
     },
   ],
 };
