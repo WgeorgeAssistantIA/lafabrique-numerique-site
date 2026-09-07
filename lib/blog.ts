@@ -83,20 +83,28 @@ const fr: BlogContent = {
         },
       ],
       links: [
-        { label: "Découvrir VoxCut → voxcutpro.com", url: "https://voxcutpro.com" },
-        { label: "Découvrir InOneShot → inoneshot.fr", url: "https://inoneshot.fr" },
+        {
+          label: "Découvrir VoxCut → voxcutpro.com",
+          url: "https://voxcutpro.com",
+        },
+        {
+          label: "Découvrir InOneShot → inoneshot.fr",
+          url: "https://inoneshot.fr",
+        },
       ],
     },
     {
       id: "pdf-mail-merge-excel",
       slug: "publipostage-pdf-depuis-excel",
-      title: "Comment générer des centaines de PDF personnalisés depuis un Excel (sans copier-coller)",
+      title:
+        "Comment générer des centaines de PDF personnalisés depuis un Excel (sans copier-coller)",
       date: "2026-06-28",
       dateLabel: "28 juin 2026",
       excerpt:
         "Attestations, factures, courriers, diplômes : voici comment produire un PDF par ligne de votre tableur, automatiquement, sans recommencer cent fois.",
       tags: ["InOneShot", "Automatisation", "Tutoriel"],
-      canonicalUrl: "https://www.inoneshot.fr/blog/publipostage-pdf-depuis-excel",
+      canonicalUrl:
+        "https://www.inoneshot.fr/blog/publipostage-pdf-depuis-excel",
       sections: [
         {
           h: "Le principe du publipostage PDF",
@@ -119,9 +127,64 @@ const fr: BlogContent = {
         },
       ],
       links: [
-        { label: "Lire l'article original sur inoneshot.fr →", url: "https://www.inoneshot.fr/blog/publipostage-pdf-depuis-excel" },
-        { label: "Découvrir InOneShot → inoneshot.fr", url: "https://inoneshot.fr" },
+        {
+          label: "Lire l'article original sur inoneshot.fr →",
+          url: "https://www.inoneshot.fr/blog/publipostage-pdf-depuis-excel",
+        },
+        {
+          label: "Découvrir InOneShot → inoneshot.fr",
+          url: "https://inoneshot.fr",
+        },
       ],
+    },
+    {
+      id: "ai-search-geo-visibility",
+      slug: "faire-apparaitre-son-app-dans-les-resultats-des-ia",
+      title:
+        "Comment faire apparaître son application dans les résultats des IA",
+      date: "2026-09-07",
+      dateLabel: "7 septembre 2026",
+      excerpt:
+        "ChatGPT, Perplexity, Google AI Overviews : de plus en plus de recherches se terminent sur une réponse générée par une IA plutôt que sur une liste de liens. Voici ce qui influence réellement la visibilité d'une app dans ces réponses — et ce qui relève du mythe.",
+      tags: ["SEO", "GEO", "Studio"],
+      sections: [
+        {
+          h: "Le GEO n'est pas une révolution, c'est une extension du SEO",
+          p: [
+            "Depuis 2025, une part croissante des recherches ne se termine plus sur une page de résultats bleus, mais sur une réponse générée directement par une IA. Google AI Overviews touche déjà près de la moitié des requêtes, ChatGPT compte 900 millions d'utilisateurs hebdomadaires, et Perplexity traite plus de 500 millions de requêtes par mois. Pour un développeur qui vend une application, être bien classé sur Google ne garantit plus d'être cité quand un utilisateur demande à une IA « quel est le meilleur logiciel pour X ? ».",
+            "Il faut d'abord corriger une idée reçue : le GEO (Generative Engine Optimization) ne remplace pas le SEO, il en est le prolongement. Google l'affirme explicitement : l'optimisation pour la recherche générative reste du SEO. 92 % des citations dans Google AI Overviews proviennent de pages déjà dans le top 10 des résultats classiques — mais 47 % viennent de pages classées au-delà de la position 5. Bien se classer reste la base ; structurer le contenu pour qu'un passage précis soit extractible et citable devient le complément indispensable.",
+          ],
+        },
+        {
+          h: "llms.txt : utile ailleurs, ignoré par Google",
+          p: [
+            "Le fichier /llms.txt a fait beaucoup de bruit en 2025. La réalité est plus nuancée : Google a confirmé explicitement que Google Search — y compris ses fonctionnalités génératives — ignore totalement ce fichier. Ce n'est ni une pénalité, ni un bonus, ça ne change rien pour Google.",
+            "Ce fichier peut rester pertinent pour d'autres crawlers IA qui n'indexent pas comme Google. La recommandation raisonnable : créer un /llms.txt simple à la racine du site si cela prend cinq minutes, sans jamais le considérer comme un levier de visibilité prioritaire.",
+          ],
+        },
+        {
+          h: "Structurer le contenu pour être cité par passage",
+          p: [
+            "C'est le levier le plus rentable. Les IA ne citent pas des pages entières, elles extraient des passages autonomes de 134 à 167 mots en moyenne. Concrètement : ouvrir chaque section par une réponse directe dans les 40 à 60 premiers mots, utiliser des titres formulés comme des questions, créer des blocs de texte qui ont un sens extraits seuls, et ajouter des chiffres précis plutôt que des affirmations vagues.",
+            "44 % des citations IA proviennent des 30 % premiers du contenu d'une page — ne jamais enterrer l'information utile après plusieurs paragraphes d'introduction. Détail technique à ne pas négliger : les crawlers IA n'exécutent pas JavaScript, le rendu côté serveur est un prérequis pour être lu.",
+          ],
+        },
+        {
+          h: "Schema markup et présence de marque",
+          p: [
+            "Le balisage structuré (schema.org) reste un signal de compréhension utile, sans être un levier de citation à lui seul. Mais le signal qui pèse le plus lourd n'est pas technique : une étude Ahrefs sur 75 000 marques a montré que les mentions de marque corrèlent trois fois plus fortement avec la visibilité IA que les backlinks classiques.",
+            "Les IA génératives citent massivement Wikipedia, Reddit, YouTube et LinkedIn. Une mention organique dans un thread pertinent, une présence sur des annuaires et comparateurs logiciels, ou une chaîne YouTube modeste pèsent souvent plus que dix backlinks SEO classiques. La fraîcheur du contenu compte aussi : un contenu de moins de trois mois a environ trois fois plus de chances d'être cité qu'un contenu laissé sans mise à jour depuis six mois.",
+          ],
+        },
+        {
+          h: "Mesurer sa visibilité IA",
+          p: [
+            "Il n'existe pas encore d'équivalent universel de Search Console pour la visibilité dans les réponses IA. Trois approches pragmatiques : tester manuellement les requêtes qu'un client poserait à ChatGPT, Perplexity et Google AI Mode ; utiliser un outil de suivi des mentions de marque sur plusieurs moteurs IA ; et surveiller dans Google Analytics le trafic référent provenant de chatgpt.com, perplexity.ai ou copilot.microsoft.com — le signal le plus fiable qu'une stratégie GEO porte ses fruits.",
+            "Seuls 11 % des domaines sont cités à la fois par ChatGPT et par Google AI Overviews pour une même requête : la mesure doit rester par plateforme, pas agrégée. L'investissement le plus rentable pour démarrer reste le plus simple : réécrire les premières lignes de chaque page pour qu'elles répondent directement à la question de l'utilisateur, en moins de soixante mots.",
+          ],
+        },
+      ],
+      links: [],
     },
   ],
 };
@@ -178,20 +241,28 @@ const en: BlogContent = {
         },
       ],
       links: [
-        { label: "Discover VoxCut → voxcutpro.com", url: "https://voxcutpro.com" },
-        { label: "Discover InOneShot → inoneshot.fr", url: "https://inoneshot.fr" },
+        {
+          label: "Discover VoxCut → voxcutpro.com",
+          url: "https://voxcutpro.com",
+        },
+        {
+          label: "Discover InOneShot → inoneshot.fr",
+          url: "https://inoneshot.fr",
+        },
       ],
     },
     {
       id: "remove-podcast-silences",
       slug: "how-to-remove-silences-from-a-podcast",
-      title: "How to Automatically Remove Silences From a Podcast (Without Manual Editing)",
+      title:
+        "How to Automatically Remove Silences From a Podcast (Without Manual Editing)",
       date: "2026-06-17",
       dateLabel: "June 17, 2026",
       excerpt:
         "Silences and dead air can eat 10–20% of an episode. Here's how to detect and cut them automatically, and edit your podcast in a fraction of the time.",
       tags: ["VoxCut", "Audio", "Tutorial"],
-      canonicalUrl: "https://voxcutpro.com/blog/how-to-remove-silences-from-a-podcast",
+      canonicalUrl:
+        "https://voxcutpro.com/blog/how-to-remove-silences-from-a-podcast",
       sections: [
         {
           h: "Why silences matter more than you think",
@@ -216,8 +287,14 @@ const en: BlogContent = {
         },
       ],
       links: [
-        { label: "Read the original article on voxcutpro.com →", url: "https://voxcutpro.com/blog/how-to-remove-silences-from-a-podcast" },
-        { label: "Discover VoxCut → voxcutpro.com", url: "https://voxcutpro.com" },
+        {
+          label: "Read the original article on voxcutpro.com →",
+          url: "https://voxcutpro.com/blog/how-to-remove-silences-from-a-podcast",
+        },
+        {
+          label: "Discover VoxCut → voxcutpro.com",
+          url: "https://voxcutpro.com",
+        },
       ],
     },
     {
@@ -252,9 +329,63 @@ const en: BlogContent = {
         },
       ],
       links: [
-        { label: "Read the original article on inoneshot.fr →", url: "https://www.inoneshot.fr/blog/generate-pdfs-from-excel" },
-        { label: "Discover InOneShot → inoneshot.fr", url: "https://inoneshot.fr" },
+        {
+          label: "Read the original article on inoneshot.fr →",
+          url: "https://www.inoneshot.fr/blog/generate-pdfs-from-excel",
+        },
+        {
+          label: "Discover InOneShot → inoneshot.fr",
+          url: "https://inoneshot.fr",
+        },
       ],
+    },
+    {
+      id: "ai-search-geo-visibility",
+      slug: "how-to-get-your-app-featured-in-ai-search-results",
+      title: "How to Get Your App Featured in AI Search Results",
+      date: "2026-09-07",
+      dateLabel: "September 7, 2026",
+      excerpt:
+        "ChatGPT, Perplexity, Google AI Overviews: more and more searches now end on an AI-generated answer instead of a list of links. Here's what actually drives an app's visibility in those answers — and what's just myth.",
+      tags: ["SEO", "GEO", "Studio"],
+      sections: [
+        {
+          h: "GEO isn't a revolution, it's an extension of SEO",
+          p: [
+            "Since 2025, a growing share of searches no longer end on a page of blue links, but on an answer generated directly by an AI. Google AI Overviews already touches nearly half of all queries, ChatGPT has 900 million weekly users, and Perplexity handles over 500 million queries a month. For a developer selling an app, ranking well on Google no longer guarantees being cited when someone asks an AI 'what's the best software for X?'.",
+            "One misconception needs correcting first: GEO (Generative Engine Optimization) doesn't replace SEO, it extends it. Google states this explicitly: optimizing for generative search is still SEO. 92% of citations in Google AI Overviews come from pages already in the top 10 of classic results — but 47% come from pages ranked below position 5. Ranking well remains the foundation; structuring content so a specific passage is extractable and citable is now the essential complement.",
+          ],
+        },
+        {
+          h: "llms.txt: useful elsewhere, ignored by Google",
+          p: [
+            "The /llms.txt file made a lot of noise in 2025. The reality is more nuanced: Google has explicitly confirmed that Google Search — including its generative features — completely ignores this file. It's neither a penalty nor a bonus; it changes nothing for Google.",
+            "The file can still be relevant for other AI crawlers that don't index the way Google does. The reasonable approach: create a simple /llms.txt at the site root if it takes five minutes, but never treat it as a priority visibility lever.",
+          ],
+        },
+        {
+          h: "Structuring content to be cited by passage",
+          p: [
+            "This is the most cost-effective lever. AIs don't cite entire pages, they extract self-contained passages averaging 134 to 167 words. In practice: open every section with a direct answer within the first 40 to 60 words, use question-phrased headings, write blocks that make sense when extracted alone, and include specific numbers instead of vague claims.",
+            "44% of AI citations come from the first 30% of a page's content — never bury the useful answer after several paragraphs of introduction. One technical detail not to overlook: AI crawlers don't execute JavaScript, so server-side rendering is a prerequisite to being read at all.",
+          ],
+        },
+        {
+          h: "Schema markup and brand presence",
+          p: [
+            "Structured data (schema.org) remains a useful comprehension signal, though not a citation lever on its own. But the signal that matters most isn't technical: an Ahrefs study of 75,000 brands found that brand mentions correlate three times more strongly with AI visibility than classic backlinks.",
+            "Generative AIs heavily cite Wikipedia, Reddit, YouTube, and LinkedIn. An organic mention in a relevant thread, a listing on software directories and comparison sites, or even a modest YouTube channel often outweighs ten classic SEO backlinks. Content freshness matters too: content under three months old is roughly three times more likely to be cited than content left untouched for six months or more.",
+          ],
+        },
+        {
+          h: "Measuring your AI visibility",
+          p: [
+            "There's no universal equivalent of Search Console yet for AI-answer visibility. Three practical approaches: manually test the queries a customer would ask ChatGPT, Perplexity, and Google AI Mode; use a brand-mention tracking tool across several AI engines; and watch Google Analytics for referral traffic from chatgpt.com, perplexity.ai, or copilot.microsoft.com — the most reliable signal that a GEO strategy is paying off.",
+            "Only 11% of domains are cited by both ChatGPT and Google AI Overviews for the same query, so measurement needs to stay per-platform rather than aggregated. The highest-return starting move remains the simplest one: rewrite the opening lines of every page so they answer the user's question directly, in under sixty words.",
+          ],
+        },
+      ],
+      links: [],
     },
   ],
 };
