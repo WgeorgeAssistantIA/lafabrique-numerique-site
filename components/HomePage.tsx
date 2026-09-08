@@ -28,6 +28,13 @@ export default function HomePage({ lang }: { lang: Lang }) {
     areaServed: "France",
     priceRange: "€€",
     knowsLanguage: ["fr", "en"],
+    sameAs: [
+      "https://voxcutpro.com",
+      "https://www.inoneshot.fr",
+      "https://www.vectorpop.fr",
+      "https://nyctale.fr",
+      "https://www.vidscope.fr",
+    ],
   };
 
   return (

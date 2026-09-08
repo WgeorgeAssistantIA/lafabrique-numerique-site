@@ -6,7 +6,15 @@ import { blogContent, getSlugPair, type BlogPost } from "@/lib/blog";
 import Header from "./Header";
 import Footer from "./Footer";
 
-export default function BlogPostPage({ lang, post }: { lang: Lang; post: BlogPost }) {
+const SITE_URL = "https://www.lafabriknumerique.fr";
+
+export default function BlogPostPage({
+  lang,
+  post,
+}: {
+  lang: Lang;
+  post: BlogPost;
+}) {
   const pair = getSlugPair(post.id);
   const routes = {
     fr: pair.fr ? `/blog/${pair.fr}` : "/blog",
@@ -25,20 +33,52 @@ function BlogArticle({ post }: { post: BlogPost }) {
   const b = blogContent[lang];
   const base = lang === "en" ? "/en/blog" : "/blog";
 
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    description: post.excerpt,
+    datePublished: post.date,
+    dateModified: post.date,
+    author: {
+      "@type": "Organization",
+      name: "La Fabrik Numérique",
+      url: SITE_URL,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "La Fabrik Numérique",
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/img/logo.png`,
+      },
+    },
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
       <Header />
       <main className="flex-1">
         <article className="pt-32 pb-24 circuit-bg">
           <div className="mx-auto max-w-3xl px-6">
-            <Link href={base} className="fig-label text-cyan hover:text-amber transition-colors">
+            <Link
+              href={base}
+              className="fig-label text-cyan hover:text-amber transition-colors"
+            >
               {b.backBlog}
             </Link>
             <p className="fig-label mt-8 mb-3">{post.dateLabel}</p>
             <h1 className="font-display uppercase text-4xl">{post.title}</h1>
             <div className="flex flex-wrap gap-2 mt-5">
               {post.tags.map((tag) => (
-                <span key={tag} className="fig-label border border-line px-2 py-1 text-[0.65rem]">
+                <span
+                  key={tag}
+                  className="fig-label border border-line px-2 py-1 text-[0.65rem]"
+                >
                   {tag}
                 </span>
               ))}
@@ -47,7 +87,9 @@ function BlogArticle({ post }: { post: BlogPost }) {
             <div className="mt-10 space-y-8">
               {post.sections.map((s) => (
                 <section key={s.h}>
-                  <h2 className="font-display uppercase text-xl text-cyan">{s.h}</h2>
+                  <h2 className="font-display uppercase text-xl text-cyan">
+                    {s.h}
+                  </h2>
                   <div className="mt-3 space-y-3">
                     {s.p.map((para, i) => (
                       <p key={i} className="text-muted leading-relaxed">
