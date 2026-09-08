@@ -1,0 +1,22 @@
+# La Fabrik Numérique
+
+> La Fabrik Numérique is a software studio that builds custom websites and applications, and also ships its own SaaS products born from real, recurring needs: VoxCut (silence removal for audio/video), InOneShot (PDF mail merge), VectorPop (PNG/JPEG to SVG conversion), Nyctale (PC diagnostics), and VidScope (YouTube trend analysis).
+
+## Main pages
+- [Home](https://www.lafabriknumerique.fr/): Studio overview, services, portfolio.
+- [Blog — Journal de l'atelier](https://www.lafabriknumerique.fr/blog): Notes on the software the studio builds, technical choices, and behind-the-scenes decisions.
+
+## Products built by the studio
+- VoxCut → https://voxcutpro.com — silence removal for audio/video editing.
+- InOneShot → https://www.inoneshot.fr — PDF mail merge from Excel.
+- VectorPop → https://www.vectorpop.fr — PNG/JPEG to SVG conversion.
+- Nyctale → https://nyctale.fr — free PC diagnostics.
+- VidScope → https://www.vidscope.fr — YouTube trend and performance analysis.
+
+## Key facts
+- Custom software development studio (websites and applications) based in France.
+- Also builds and maintains its own portfolio of SaaS and desktop products.
+- Bilingual site (French/English).
+
+## Contact
+- Website: https://www.lafabriknumerique.fr
