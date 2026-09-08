@@ -287,7 +287,7 @@ const fr = {
   about: {
     figLabel: "FIG. 06 — L'ATELIER",
     title: "Circuits & idées",
-    p1: "La Fabrik Numérique traite chaque projet comme un circuit à concevoir : des lignes claires, des nœuds de décision pensés avec rigueur, et rien qui ne soit là par hasard.",
+    p1: "La Fabrik Numérique est un studio basé à Roanne qui développe des sites web et logiciels sur mesure pour PME et indépendants. Chaque projet est traité comme un circuit à concevoir : des lignes claires, des nœuds de décision pensés avec rigueur, et rien qui ne soit là par hasard.",
     p2: "Indépendant, je travaille en lien direct avec vous, du cahier des charges à la mise en ligne, avec un objectif simple : des outils numériques solides, qui vous servent dans la durée.",
     why: [
       {
@@ -620,7 +620,7 @@ const en: Translation = {
   about: {
     figLabel: "FIG. 06 — THE STUDIO",
     title: "Circuits & ideas",
-    p1: "La Fabrik Numérique treats every project like a circuit to design: clear lines, decision nodes thought through with rigor, nothing left to chance.",
+    p1: "La Fabrik Numérique is a studio based in Roanne, France, building custom websites and software for small businesses and independents. Every project is treated like a circuit to design: clear lines, decision nodes thought through with rigor, nothing left to chance.",
     p2: "Independent, I work directly with you, from the brief to launch, with one goal: solid digital tools that serve you over time.",
     why: [
       {
