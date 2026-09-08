@@ -245,6 +245,7 @@ const fr = {
           "Responsive",
           "Mise en ligne incluse",
         ],
+        note: "Nom de domaine et hébergement à votre charge (environ 15 à 50 € / an).",
       },
       {
         name: "Application web",
@@ -577,6 +578,7 @@ const en: Translation = {
           "Responsive",
           "Launch included",
         ],
+        note: "Domain name and hosting are your responsibility (roughly €15–50 / year).",
       },
       {
         name: "Web application",

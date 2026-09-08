@@ -29,9 +29,13 @@ export default function Pricing() {
                 <h3 className="font-display uppercase text-lg">{plan.name}</h3>
                 <p className="mt-2 mb-6">
                   {"originalPrice" in plan && plan.originalPrice && (
-                    <span className="block text-muted text-sm line-through">{plan.originalPrice}</span>
+                    <span className="block text-muted text-sm line-through">
+                      {plan.originalPrice}
+                    </span>
                   )}
-                  <span className="text-cyan font-display text-2xl">{plan.price}</span>
+                  <span className="text-cyan font-display text-2xl">
+                    {plan.price}
+                  </span>
                 </p>
                 <ul className="space-y-2 flex-1 text-sm text-muted">
                   {plan.features.map((f) => (
@@ -40,6 +44,9 @@ export default function Pricing() {
                     </li>
                   ))}
                 </ul>
+                {"note" in plan && plan.note && (
+                  <p className="mt-4 text-xs text-muted italic">{plan.note}</p>
+                )}
                 <a
                   href="#contact"
                   className="fig-label mt-6 border border-line text-center py-3 hover:border-cyan hover:text-cyan transition-colors"
