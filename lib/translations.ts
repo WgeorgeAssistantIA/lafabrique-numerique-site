@@ -115,6 +115,16 @@ const fr = {
           },
           { label: "Snapcraft", url: "https://snapcraft.io/voxcut" },
         ],
+        press: [
+          {
+            label: "TrishTech",
+            url: "https://www.trishtech.com/2026/09/voxcut-the-local-app-that-cuts-silence-from-audio-fast/",
+          },
+          {
+            label: "Softpedia",
+            url: "https://www.softpedia.com/get/Multimedia/Audio-Editors-Recorders/VoxCut.shtml",
+          },
+        ],
         image: "/img/portfolio-voxcut.webp",
       },
       {
@@ -447,6 +457,16 @@ const en: Translation = {
             url: "https://play.google.com/store/apps/details?id=fr.voxcut.voxcut_android",
           },
           { label: "Snapcraft", url: "https://snapcraft.io/voxcut" },
+        ],
+        press: [
+          {
+            label: "TrishTech",
+            url: "https://www.trishtech.com/2026/09/voxcut-the-local-app-that-cuts-silence-from-audio-fast/",
+          },
+          {
+            label: "Softpedia",
+            url: "https://www.softpedia.com/get/Multimedia/Audio-Editors-Recorders/VoxCut.shtml",
+          },
         ],
         image: "/img/portfolio-voxcut.webp",
       },
