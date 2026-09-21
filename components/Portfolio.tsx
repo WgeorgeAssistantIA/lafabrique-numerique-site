@@ -12,7 +12,8 @@ export default function Portfolio() {
     <section id="realisations" className="py-24 border-b border-line">
       <div className="mx-auto max-w-6xl px-6">
         <p className="fig-label mb-3">{p.figLabel}</p>
-        <h2 className="font-display uppercase text-4xl mb-12">{p.title}</h2>
+        <h2 className="font-display uppercase text-4xl mb-3">{p.title}</h2>
+        <p className="text-muted text-lg mb-12 max-w-2xl">{p.intro}</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {p.items.map((item, i) => (
             <Reveal key={item.ref} delay={i * 100} className="h-full">

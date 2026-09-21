@@ -20,6 +20,7 @@ const fr = {
     titleHighlight: "circuits",
     titleB: "numériques.",
     desc: "La Fabrik Numérique conçoit et développe sites web, applications et logiciels sur mesure — pensés comme des systèmes précis, robustes et faits pour durer.",
+    tagline: "De l'idée au produit publié, un seul interlocuteur.",
     seeWork: "Voir les réalisations",
     rating:
       "VoxCut, InOneShot & VectorPop — publiés sur le Microsoft Store, Google Play et Snapcraft",
@@ -93,6 +94,8 @@ const fr = {
   portfolio: {
     figLabel: "FIG. 04 — RÉALISATIONS",
     title: "Projets en circuit",
+    intro:
+      "Des logiciels réellement conçus, développés et publiés — pas seulement des maquettes.",
     items: [
       {
         ref: "REF.01",
@@ -302,16 +305,21 @@ const fr = {
     why: [
       {
         ref: "01",
+        title: "Studio de développement indépendant",
+        desc: "Je conçois mes propres logiciels — VoxCut, InOneShot, VectorPop et d'autres, publiés sur le Microsoft Store, Google Play et Snapcraft — et j'accompagne aussi les entreprises dans la création de leurs outils numériques sur mesure.",
+      },
+      {
+        ref: "02",
         title: "Un seul interlocuteur",
         desc: "Du cahier des charges à la mise en ligne, vous parlez à celui qui code.",
       },
       {
-        ref: "02",
+        ref: "03",
         title: "Du sur-mesure, pas du template",
         desc: "Chaque projet est conçu de zéro pour vos process, pas adapté d'un thème.",
       },
       {
-        ref: "03",
+        ref: "04",
         title: "Fait pour durer",
         desc: "Code typé, maintenable, documenté. Pas de dette cachée.",
       },
@@ -363,6 +371,7 @@ const en: Translation = {
     titleHighlight: "circuits",
     titleB: "digitally.",
     desc: "La Fabrik Numérique designs and builds custom websites, applications and software — engineered like precise, robust systems made to last.",
+    tagline: "From idea to published product, one point of contact.",
     seeWork: "See the work",
     rating:
       "VoxCut, InOneShot & VectorPop — published on the Microsoft Store, Google Play and Snapcraft",
@@ -436,6 +445,8 @@ const en: Translation = {
   portfolio: {
     figLabel: "FIG. 04 — WORK",
     title: "Projects in the loop",
+    intro:
+      "Software actually designed, built and shipped — not just mockups.",
     items: [
       {
         ref: "REF.01",
@@ -645,16 +656,21 @@ const en: Translation = {
     why: [
       {
         ref: "01",
+        title: "Independent development studio",
+        desc: "I build my own software — VoxCut, InOneShot, VectorPop and others, published on the Microsoft Store, Google Play and Snapcraft — and I also help businesses build their own custom digital tools.",
+      },
+      {
+        ref: "02",
         title: "One person",
         desc: "From brief to launch, you talk to the one who actually builds it.",
       },
       {
-        ref: "02",
+        ref: "03",
         title: "Custom, never templated",
         desc: "Every project is built from scratch for your workflow, not adapted from a theme.",
       },
       {
-        ref: "03",
+        ref: "04",
         title: "Built to last",
         desc: "Typed, maintainable, documented code. No hidden debt.",
       },

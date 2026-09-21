@@ -28,12 +28,26 @@ export default function Hero() {
           className="hero-in font-display uppercase text-5xl sm:text-7xl leading-[0.95] max-w-3xl"
           style={{ animationDelay: "90ms" }}
         >
-          {h.titleA} <span className="text-cyan glow-pulse">{h.titleHighlight}</span> {h.titleB}
+          {h.titleA}{" "}
+          <span className="text-cyan glow-pulse">{h.titleHighlight}</span>{" "}
+          {h.titleB}
         </h1>
-        <p className="hero-in mt-8 max-w-xl text-muted text-lg leading-relaxed" style={{ animationDelay: "180ms" }}>
+        <p
+          className="hero-in mt-8 max-w-xl text-muted text-lg leading-relaxed"
+          style={{ animationDelay: "180ms" }}
+        >
           {h.desc}
         </p>
-        <div className="hero-in mt-10 flex flex-wrap items-center gap-4" style={{ animationDelay: "270ms" }}>
+        <p
+          className="hero-in mt-3 max-w-xl text-cyan fig-label"
+          style={{ animationDelay: "225ms" }}
+        >
+          {h.tagline}
+        </p>
+        <div
+          className="hero-in mt-10 flex flex-wrap items-center gap-4"
+          style={{ animationDelay: "270ms" }}
+        >
           <a
             href="#contact"
             className="btn-shine fig-label bg-cyan text-background-deep px-6 py-3 hover:bg-amber transition-colors"
@@ -47,7 +61,10 @@ export default function Hero() {
             {h.seeWork}
           </a>
         </div>
-        <div className="hero-in mt-16 flex items-center gap-3 fig-label" style={{ animationDelay: "360ms" }}>
+        <div
+          className="hero-in mt-16 flex items-center gap-3 fig-label"
+          style={{ animationDelay: "360ms" }}
+        >
           <span className="node-dot" />
           {h.rating}
         </div>
