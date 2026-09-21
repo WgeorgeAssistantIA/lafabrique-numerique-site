@@ -244,8 +244,7 @@ const fr = {
     figLabel: "FIG. 05 — TARIFS",
     title: "Investissement",
     launchBadge: "Offre de lancement",
-    launchNote:
-      "Tarifs de lancement valables pour mes 10 premiers projets, en échange d'un retour d'expérience.",
+    launchNote: "Tarifs de lancement, pour une durée limitée.",
     scopeNote:
       "Chaque projet étant différent, un premier échange permet de confirmer le périmètre et le budget.",
     plans: [
@@ -601,8 +600,7 @@ const en: Translation = {
     figLabel: "FIG. 05 — PRICING",
     title: "Investment",
     launchBadge: "Launch offer",
-    launchNote:
-      "Launch pricing for my first 10 projects, in exchange for a testimonial.",
+    launchNote: "Launch pricing, for a limited time.",
     scopeNote:
       "Every project is different — an initial conversation confirms the scope and budget.",
     plans: [
