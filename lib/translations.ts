@@ -246,12 +246,15 @@ const fr = {
     launchBadge: "Offre de lancement",
     launchNote:
       "Tarifs de lancement valables pour mes 10 premiers projets, en échange d'un retour d'expérience.",
+    scopeNote:
+      "Chaque projet étant différent, un premier échange permet de confirmer le périmètre et le budget.",
     plans: [
       {
         name: "Site vitrine",
         price: "à partir de 590 €",
         originalPrice: "à partir de 990 €",
         highlight: false,
+        scope: "Pour une présence professionnelle jusqu'à 5 pages.",
         features: [
           "Site vitrine jusqu'à 5 pages",
           "Design sur mesure",
@@ -265,6 +268,7 @@ const fr = {
         price: "à partir de 1 690 €",
         originalPrice: "à partir de 2 500 €",
         highlight: true,
+        scope: "Pour un outil métier avec logique applicative et base de données.",
         features: [
           "Cahier des charges",
           "Développement sur mesure",
@@ -277,6 +281,7 @@ const fr = {
         price: "à partir de 2 690 €",
         originalPrice: "à partir de 3 500 €",
         highlight: false,
+        scope: "Pour un logiciel Windows avec fonctionnalités et intégrations spécifiques.",
         features: [
           "Étude des besoins",
           "Architecture dédiée",
@@ -288,6 +293,7 @@ const fr = {
         name: "Accompagnement",
         price: "350 € / jour",
         highlight: false,
+        scope: "Pour du développement ponctuel ou un suivi régulier après livraison.",
         features: [
           "Développement à la demande",
           "Maintenance évolutive",
@@ -300,7 +306,7 @@ const fr = {
   about: {
     figLabel: "FIG. 06 — L'ATELIER",
     title: "Circuits & idées",
-    p1: "La Fabrik Numérique est un studio basé à Roanne qui développe des sites web et logiciels sur mesure pour PME et indépendants. Chaque projet est traité comme un circuit à concevoir : des lignes claires, des nœuds de décision pensés avec rigueur, et rien qui ne soit là par hasard.",
+    p1: "La Fabrik Numérique est un studio de développement indépendant basé à Roanne, dans la Loire, qui conçoit des sites web, applications et logiciels sur mesure pour PME, indépendants et porteurs de projets. Chaque projet est traité comme un circuit à concevoir : des lignes claires, des nœuds de décision pensés avec rigueur, et rien qui ne soit là par hasard.",
     p2: "Indépendant, je travaille en lien direct avec vous, du cahier des charges à la mise en ligne, avec un objectif simple : des outils numériques solides, qui vous servent dans la durée.",
     why: [
       {
@@ -597,12 +603,15 @@ const en: Translation = {
     launchBadge: "Launch offer",
     launchNote:
       "Launch pricing for my first 10 projects, in exchange for a testimonial.",
+    scopeNote:
+      "Every project is different — an initial conversation confirms the scope and budget.",
     plans: [
       {
         name: "Showcase site",
         price: "from €590",
         originalPrice: "from €990",
         highlight: false,
+        scope: "For a professional presence with up to 5 pages.",
         features: [
           "Showcase site up to 5 pages",
           "Custom design",
@@ -616,6 +625,7 @@ const en: Translation = {
         price: "from €1,690",
         originalPrice: "from €2,500",
         highlight: true,
+        scope: "For a business tool with application logic and a database.",
         features: [
           "Requirements scoping",
           "Custom development",
@@ -628,6 +638,7 @@ const en: Translation = {
         price: "from €2,690",
         originalPrice: "from €3,500",
         highlight: false,
+        scope: "For Windows software with specific features and integrations.",
         features: [
           "Needs assessment",
           "Dedicated architecture",
@@ -639,6 +650,7 @@ const en: Translation = {
         name: "Ongoing support",
         price: "€350 / day",
         highlight: false,
+        scope: "For one-off development or regular support after launch.",
         features: [
           "On-demand development",
           "Evolutive maintenance",

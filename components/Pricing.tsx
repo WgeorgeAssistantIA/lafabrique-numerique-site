@@ -13,10 +13,13 @@ export default function Pricing() {
         <p className="fig-label mb-3">{p.figLabel}</p>
         <h2 className="font-display uppercase text-4xl mb-3">{p.title}</h2>
         {p.launchNote && (
-          <p className="text-amber text-sm mb-9">
+          <p className="text-amber text-sm mb-3">
             <span className="fig-label text-amber mr-2">{p.launchBadge}</span>
             {p.launchNote}
           </p>
+        )}
+        {p.scopeNote && (
+          <p className="text-muted text-sm mb-9 max-w-2xl">{p.scopeNote}</p>
         )}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {p.plans.map((plan, i) => (
@@ -27,7 +30,7 @@ export default function Pricing() {
                 }`}
               >
                 <h3 className="font-display uppercase text-lg">{plan.name}</h3>
-                <p className="mt-2 mb-6">
+                <p className="mt-2 mb-2">
                   {"originalPrice" in plan && plan.originalPrice && (
                     <span className="block text-muted text-sm line-through">
                       {plan.originalPrice}
@@ -37,6 +40,11 @@ export default function Pricing() {
                     {plan.price}
                   </span>
                 </p>
+                {"scope" in plan && plan.scope && (
+                  <p className="text-muted text-sm leading-relaxed mb-4">
+                    {plan.scope}
+                  </p>
+                )}
                 <ul className="space-y-2 flex-1 text-sm text-muted">
                   {plan.features.map((f) => (
                     <li key={f} className="flex items-start gap-2">
