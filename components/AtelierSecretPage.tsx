@@ -42,14 +42,28 @@ const PRODUCTS = [
 
 // Wink frames per language track (left eye for HIBOU, right eye for OWL).
 const WINK = {
-  fr: ["/img/logo.png", "/img/logo-wink-left-mid.png", "/img/logo-wink-left-closed.png", "/img/logo-wink-left-mid.png"],
-  en: ["/img/logo.png", "/img/logo-wink-right-mid.png", "/img/logo-wink-right-closed.png", "/img/logo-wink-right-mid.png"],
+  fr: [
+    "/img/logo.png",
+    "/img/logo-wink-left-mid.png",
+    "/img/logo-wink-left-closed.png",
+    "/img/logo-wink-left-mid.png",
+  ],
+  en: [
+    "/img/logo.png",
+    "/img/logo-wink-right-mid.png",
+    "/img/logo-wink-right-closed.png",
+    "/img/logo-wink-right-mid.png",
+  ],
 };
 
-type TierStatus = { code: string; percent: number; remaining: number | null; max: number | null };
+type TierStatus = {
+  code: string;
+  percent: number;
+  remaining: number | null;
+  max: number | null;
+};
 type CodesResponse =
-  | { fallback: true }
-  | { fallback: false; fr: TierStatus[]; en: TierStatus[] };
+  { fallback: true } | { fallback: false; fr: TierStatus[]; en: TierStatus[] };
 
 // Static fallback when the Lemon Squeezy API is not configured/reachable.
 const FALLBACK_TIERS: Record<"fr" | "en", TierStatus[]> = {
@@ -62,6 +76,34 @@ const FALLBACK_TIERS: Record<"fr" | "en", TierStatus[]> = {
     { code: "OWL50", percent: 50, remaining: null, max: null },
   ],
 };
+
+function ordinal(n: number, lang: "fr" | "en"): string {
+  if (lang === "fr") return n === 1 ? "1er" : `${n}e`;
+  if (n % 10 === 1 && n % 100 !== 11) return `${n}st`;
+  if (n % 10 === 2 && n % 100 !== 12) return `${n}nd`;
+  if (n % 10 === 3 && n % 100 !== 13) return `${n}rd`;
+  return `${n}th`;
+}
+
+function victoryShareText(rank: number, track: "fr" | "en", lang: "fr" | "en"): string {
+  const trackName = track === "fr" ? "HIBOU" : "OWL";
+  if (lang === "fr") {
+    return `🦉 J'ai trouvé le secret caché de La Fabrik Numérique.
+
+Je suis officiellement le ${ordinal(rank, "fr")} trouveur sur la piste ${trackName}.
+
+Mais je ne donnerai pas la solution. 😏
+
+À ton tour : lafabriknumerique.fr`;
+  }
+  return `🦉 I found the hidden secret of La Fabrik Numérique.
+
+I'm officially the ${ordinal(rank, "en")} finder on the ${trackName} track.
+
+But I won't be giving away the solution. 😏
+
+Your turn: lafabriknumerique.fr`;
+}
 
 const SHARE_TEXT = {
   fr: `🦉 Un secret se cache sur lafabriknumerique.fr, avec de vraies récompenses pour les plus rapides.
@@ -99,7 +141,9 @@ function BlinkingOwl({ track, size }: { track: "fr" | "en"; size: number }) {
       WINK[track].forEach((_, i) => {
         timers.push(window.setTimeout(() => setFrame(i), i * 200));
       });
-      timers.push(window.setTimeout(() => setFrame(0), WINK[track].length * 200));
+      timers.push(
+        window.setTimeout(() => setFrame(0), WINK[track].length * 200),
+      );
     }, 9000);
     return () => {
       window.clearInterval(interval);
@@ -120,14 +164,26 @@ function BlinkingOwl({ track, size }: { track: "fr" | "en"; size: number }) {
 
 function AtelierSecretContent() {
   const { lang } = useLanguage();
-  const [unlocked, setUnlocked] = useState<{ hibou: boolean; owl: boolean } | null>(null);
+  const [unlocked, setUnlocked] = useState<{
+    hibou: boolean;
+    owl: boolean;
+  } | null>(null);
   const [openTrack, setOpenTrack] = useState<"fr" | "en" | null>(null);
   const [codes, setCodes] = useState<CodesResponse | null>(null);
   const [finders, setFinders] = useState<FindersResponse>(STATIC_FINDERS);
   const [copied, setCopied] = useState(false);
   const [shared, setShared] = useState(false);
-  const [form, setForm] = useState({ firstName: "", lastName: "", email: "", consentPublic: false });
-  const [formStatus, setFormStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [form, setForm] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    consentPublic: false,
+  });
+  const [formStatus, setFormStatus] = useState<
+    "idle" | "sending" | "sent" | "error"
+  >("idle");
+  const [finderRank, setFinderRank] = useState<number | null>(null);
+  const [victoryShared, setVictoryShared] = useState(false);
   const fetched = useRef(false);
 
   useEffect(() => {
@@ -181,6 +237,22 @@ function AtelierSecretContent() {
     window.setTimeout(() => setShared(false), 2500);
   };
 
+  const shareVictory = async (track: "fr" | "en") => {
+    if (finderRank === null) return;
+    const text = victoryShareText(finderRank, track, lang);
+    if (navigator.share) {
+      try {
+        await navigator.share({ text });
+        return;
+      } catch {
+        // User cancelled or the API failed: fall back to clipboard below.
+      }
+    }
+    navigator.clipboard?.writeText(text).catch(() => {});
+    setVictoryShared(true);
+    window.setTimeout(() => setVictoryShared(false), 2500);
+  };
+
   const submitFinderForm = async (track: "fr" | "en") => {
     if (!form.firstName || !form.lastName || !form.email) return;
     setFormStatus("sending");
@@ -191,10 +263,15 @@ function AtelierSecretContent() {
         body: JSON.stringify({ ...form, track }),
       });
       if (!res.ok) throw new Error("request_failed");
+      const data: { ok: true; rank: number | null } = await res.json();
       setFormStatus("sent");
+      setFinderRank(data.rank ?? null);
       if (form.consentPublic) {
         const displayName = `${form.firstName} ${form.lastName.charAt(0).toUpperCase()}.`;
-        setFinders((prev) => ({ ...prev, [track]: [...prev[track], displayName] }));
+        setFinders((prev) => ({
+          ...prev,
+          [track]: [...prev[track], displayName],
+        }));
       }
     } catch {
       setFormStatus("error");
@@ -217,7 +294,9 @@ function AtelierSecretContent() {
               />
               <p className="fig-label mb-4">ATELIER SECRET</p>
               <h1 className="font-display uppercase text-3xl sm:text-4xl mb-4">
-                {lang === "fr" ? "Le circuit dort encore." : "The circuit is still asleep."}
+                {lang === "fr"
+                  ? "Le circuit dort encore."
+                  : "The circuit is still asleep."}
               </h1>
               <p className="text-muted leading-relaxed">
                 {lang === "fr"
@@ -229,7 +308,9 @@ function AtelierSecretContent() {
             <>
               <p className="fig-label mb-4">ATELIER SECRET</p>
               <h1 className="font-display uppercase text-3xl sm:text-4xl mb-10">
-                {lang === "fr" ? "Bienvenue dans l'atelier." : "Welcome to the workshop."}
+                {lang === "fr"
+                  ? "Bienvenue dans l'atelier."
+                  : "Welcome to the workshop."}
               </h1>
 
               {(() => {
@@ -263,7 +344,9 @@ function AtelierSecretContent() {
 
               <section className="mb-16 max-w-md mx-auto">
                 <p className="fig-label mb-6">
-                  {lang === "fr" ? "LE TABLEAU DES TROUVEURS" : "THE FINDERS' BOARD"}
+                  {lang === "fr"
+                    ? "LE TABLEAU DES TROUVEURS"
+                    : "THE FINDERS' BOARD"}
                 </p>
                 {finders[lang].length === 0 ? (
                   <p className="text-muted text-sm">
@@ -276,17 +359,7 @@ function AtelierSecretContent() {
                     {finders[lang].map((name, i) => (
                       <li key={name} className="flex items-baseline gap-4">
                         <span className="fig-label text-amber shrink-0 w-10">
-                          {lang === "fr"
-                            ? i === 0
-                              ? "1er"
-                              : `${i + 1}e`
-                            : i === 0
-                              ? "1st"
-                              : i === 1
-                                ? "2nd"
-                                : i === 2
-                                  ? "3rd"
-                                  : `${i + 1}th`}
+                          {ordinal(i + 1, lang)}
                         </span>
                         <span className="text-foreground/90">{name}</span>
                       </li>
@@ -297,7 +370,9 @@ function AtelierSecretContent() {
 
               <section className="mb-16">
                 <p className="fig-label mb-6">
-                  {lang === "fr" ? "CE QUI SE FABRIQUE ICI" : "WHAT GETS BUILT HERE"}
+                  {lang === "fr"
+                    ? "CE QUI SE FABRIQUE ICI"
+                    : "WHAT GETS BUILT HERE"}
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-left">
                   {PRODUCTS.map((p) => (
@@ -318,8 +393,12 @@ function AtelierSecretContent() {
                         />
                       </div>
                       <div className="p-4">
-                        <h2 className="font-display uppercase text-lg mb-1">{p.name}</h2>
-                        <p className="text-muted text-sm leading-relaxed">{p.pitch[lang]}</p>
+                        <h2 className="font-display uppercase text-lg mb-1">
+                          {p.name}
+                        </h2>
+                        <p className="text-muted text-sm leading-relaxed">
+                          {p.pitch[lang]}
+                        </p>
                       </div>
                     </a>
                   ))}
@@ -421,7 +500,11 @@ function AtelierSecretContent() {
                     onClick={() => copyCode(tier.code)}
                     className="fig-label border border-amber text-amber px-4 py-2 mt-4 mb-6 hover:bg-amber hover:text-background-deep transition-colors"
                   >
-                    {copied ? (lang === "fr" ? "Copié !" : "Copied!") : tier.code}
+                    {copied
+                      ? lang === "fr"
+                        ? "Copié !"
+                        : "Copied!"
+                      : tier.code}
                   </button>
                   <p className="text-sm text-foreground/90 leading-relaxed mb-4 text-left">
                     {lang === "fr"
@@ -429,9 +512,32 @@ function AtelierSecretContent() {
                       : "The workshop just opened and needs support to take off. Leave us your details so we can stay in touch — and let us know if you'd like to appear on the finders' board."}
                   </p>
                   {formStatus === "sent" ? (
-                    <p className="text-sm text-cyan">
-                      {lang === "fr" ? "Merci ! C'est enregistré." : "Thanks! You're all set."}
-                    </p>
+                    <div className="text-left">
+                      <p className="text-sm text-cyan mb-3">
+                        {finderRank !== null
+                          ? lang === "fr"
+                            ? `Merci ! Tu es officiellement le ${ordinal(finderRank, "fr")} trouveur sur la piste ${openTrack === "fr" ? "HIBOU" : "OWL"}.`
+                            : `Thanks! You're officially the ${ordinal(finderRank, "en")} finder on the ${openTrack === "fr" ? "HIBOU" : "OWL"} track.`
+                          : lang === "fr"
+                            ? "Merci ! C'est enregistré."
+                            : "Thanks! You're all set."}
+                      </p>
+                      {finderRank !== null && (
+                        <button
+                          type="button"
+                          onClick={() => shareVictory(openTrack)}
+                          className="fig-label border border-amber text-amber px-4 py-2 hover:bg-amber hover:text-background-deep transition-colors"
+                        >
+                          {victoryShared
+                            ? lang === "fr"
+                              ? "Copié ! Colle-le où tu veux."
+                              : "Copied! Paste it anywhere."
+                            : lang === "fr"
+                              ? "Partager ma victoire"
+                              : "Share my victory"}
+                        </button>
+                      )}
+                    </div>
                   ) : (
                     <form
                       className="flex flex-col gap-2 text-left mb-2"
@@ -445,7 +551,9 @@ function AtelierSecretContent() {
                         required
                         placeholder={lang === "fr" ? "Prénom" : "First name"}
                         value={form.firstName}
-                        onChange={(e) => setForm((f) => ({ ...f, firstName: e.target.value }))}
+                        onChange={(e) =>
+                          setForm((f) => ({ ...f, firstName: e.target.value }))
+                        }
                         className="bg-transparent border border-line px-3 py-2 text-sm"
                       />
                       <input
@@ -453,7 +561,9 @@ function AtelierSecretContent() {
                         required
                         placeholder={lang === "fr" ? "Nom" : "Last name"}
                         value={form.lastName}
-                        onChange={(e) => setForm((f) => ({ ...f, lastName: e.target.value }))}
+                        onChange={(e) =>
+                          setForm((f) => ({ ...f, lastName: e.target.value }))
+                        }
                         className="bg-transparent border border-line px-3 py-2 text-sm"
                       />
                       <input
@@ -461,14 +571,21 @@ function AtelierSecretContent() {
                         required
                         placeholder="Email"
                         value={form.email}
-                        onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
+                        onChange={(e) =>
+                          setForm((f) => ({ ...f, email: e.target.value }))
+                        }
                         className="bg-transparent border border-line px-3 py-2 text-sm"
                       />
                       <label className="flex items-start gap-2 text-xs text-muted">
                         <input
                           type="checkbox"
                           checked={form.consentPublic}
-                          onChange={(e) => setForm((f) => ({ ...f, consentPublic: e.target.checked }))}
+                          onChange={(e) =>
+                            setForm((f) => ({
+                              ...f,
+                              consentPublic: e.target.checked,
+                            }))
+                          }
                           className="mt-0.5"
                         />
                         {lang === "fr"
@@ -490,7 +607,9 @@ function AtelierSecretContent() {
                       </button>
                       {formStatus === "error" && (
                         <p className="text-xs text-amber">
-                          {lang === "fr" ? "Erreur, réessaie." : "Something went wrong, try again."}
+                          {lang === "fr"
+                            ? "Erreur, réessaie."
+                            : "Something went wrong, try again."}
                         </p>
                       )}
                     </form>

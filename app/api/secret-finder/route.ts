@@ -10,7 +10,8 @@ import { getRedis } from "@/lib/redis";
 
 const CONTACT_TO = process.env.CONTACT_TO ?? "lafabriknumerique@outlook.com";
 const CONTACT_FROM =
-  process.env.CONTACT_FROM ?? "La Fabrik Numérique <contact@lafabriknumerique.fr>";
+  process.env.CONTACT_FROM ??
+  "La Fabrik Numérique <contact@lafabriknumerique.fr>";
 
 const MAX_LEN = { name: 100, email: 320 };
 
@@ -30,8 +31,10 @@ export async function POST(request: Request) {
     return Response.json({ error: "invalid_body" }, { status: 400 });
   }
 
-  const firstName = typeof body.firstName === "string" ? body.firstName.trim() : "";
-  const lastName = typeof body.lastName === "string" ? body.lastName.trim() : "";
+  const firstName =
+    typeof body.firstName === "string" ? body.firstName.trim() : "";
+  const lastName =
+    typeof body.lastName === "string" ? body.lastName.trim() : "";
   const email = typeof body.email === "string" ? body.email.trim() : "";
   const track = body.track === "fr" || body.track === "en" ? body.track : null;
   const consentPublic = body.consentPublic === true;
@@ -56,12 +59,25 @@ export async function POST(request: Request) {
 
   const now = Date.now();
   const redis = getRedis();
+  let rank: number | null = null;
   if (redis) {
+    // Compteur atomique par piste : donne le rang definitif du trouveur
+    // (1 = premier), sans risque de collision si deux personnes valident
+    // en meme temps (contrairement a un LLEN lu apres coup).
+    rank = await redis.incr(`secretFinders:rank:${track}`);
     // Registre complet (prive, jamais expose via l'API publique) : sert de
     // base de contacts + tracabilite RGPD (date, consentement donne ou non).
     await redis.rpush(
       "secretFinders:submissions",
-      JSON.stringify({ firstName, lastName, email, track, consentPublic, ts: now })
+      JSON.stringify({
+        firstName,
+        lastName,
+        email,
+        track,
+        consentPublic,
+        rank,
+        ts: now,
+      }),
     );
     if (consentPublic) {
       // Entree publique : uniquement le prenom + initiale du nom, jamais l'email.
@@ -92,5 +108,5 @@ export async function POST(request: Request) {
     }
   }
 
-  return Response.json({ ok: true });
+  return Response.json({ ok: true, rank });
 }
