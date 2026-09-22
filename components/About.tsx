@@ -21,7 +21,10 @@ export default function About() {
               <>
                 {" "}
                 Basé à{" "}
-                <Link href="/site-internet-roanne" className="text-cyan hover:text-amber transition-colors">
+                <Link
+                  href="/site-internet-roanne"
+                  className="text-cyan hover:text-amber transition-colors"
+                >
                   Roanne
                 </Link>
                 .
@@ -33,15 +36,22 @@ export default function About() {
               <div key={w.ref} className="flex gap-4">
                 <span className="fig-label text-amber shrink-0">{w.ref}</span>
                 <div>
-                  <h3 className="font-display uppercase text-lg leading-tight">{w.title}</h3>
-                  <p className="text-muted text-sm leading-relaxed mt-1">{w.desc}</p>
+                  <h3 className="font-display uppercase text-lg leading-tight">
+                    {w.title}
+                  </h3>
+                  <p className="text-muted text-sm leading-relaxed mt-1">
+                    {w.desc}
+                  </p>
                 </div>
               </div>
             ))}
           </div>
         </div>
         <div className="relative border border-line p-8 flex items-center justify-center bg-panel">
-          <div className="relative w-[220px] h-[220px]" data-atelier-owl-wrapper="true">
+          <div
+            className="relative w-[220px] h-[220px]"
+            data-atelier-owl-wrapper="true"
+          >
             <Image
               src="/img/logo.png"
               alt="La Fabrik Numérique"

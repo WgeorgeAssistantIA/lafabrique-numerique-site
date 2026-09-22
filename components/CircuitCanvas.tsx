@@ -4,8 +4,22 @@ import { useEffect, useRef } from "react";
 import { EGG_FLAGS, hasEggFlag } from "@/lib/easterEggProgress";
 
 type Node = { x: number; y: number; pad: boolean; glow: number };
-type Edge = { a: number; b: number; mx: number; my: number; len: number; l1: number };
-type Signal = { edge: number; fromA: boolean; dist: number; speed: number; color: string; hops: number };
+type Edge = {
+  a: number;
+  b: number;
+  mx: number;
+  my: number;
+  len: number;
+  l1: number;
+};
+type Signal = {
+  edge: number;
+  fromA: boolean;
+  dist: number;
+  speed: number;
+  color: string;
+  hops: number;
+};
 
 const CYAN = "#5fd8e8"; // halo bleu électrique — parcours HIBOU (fr), même bleu que "CIRCUITS" dans le Hero
 const AMBER = "#e8a14f";
@@ -19,37 +33,103 @@ const HALO_EN = "#b026ff"; // halo violet électrique — parcours OWL (en)
 type StrokePoint = { x: number; y: number };
 const LETTER_STROKES: Record<string, StrokePoint[][]> = {
   H: [
-    [{ x: 0, y: 0 }, { x: 0, y: 100 }],
-    [{ x: 60, y: 0 }, { x: 60, y: 100 }],
-    [{ x: 0, y: 50 }, { x: 60, y: 50 }],
+    [
+      { x: 0, y: 0 },
+      { x: 0, y: 100 },
+    ],
+    [
+      { x: 60, y: 0 },
+      { x: 60, y: 100 },
+    ],
+    [
+      { x: 0, y: 50 },
+      { x: 60, y: 50 },
+    ],
   ],
   I: [
-    [{ x: 10, y: 0 }, { x: 50, y: 0 }],
-    [{ x: 30, y: 0 }, { x: 30, y: 100 }],
-    [{ x: 10, y: 100 }, { x: 50, y: 100 }],
+    [
+      { x: 10, y: 0 },
+      { x: 50, y: 0 },
+    ],
+    [
+      { x: 30, y: 0 },
+      { x: 30, y: 100 },
+    ],
+    [
+      { x: 10, y: 100 },
+      { x: 50, y: 100 },
+    ],
   ],
   B: [
-    [{ x: 0, y: 0 }, { x: 0, y: 100 }],
-    [{ x: 0, y: 0 }, { x: 38, y: 0 }, { x: 50, y: 12 }, { x: 50, y: 38 }, { x: 38, y: 50 }, { x: 0, y: 50 }],
-    [{ x: 0, y: 50 }, { x: 42, y: 50 }, { x: 55, y: 63 }, { x: 55, y: 88 }, { x: 42, y: 100 }, { x: 0, y: 100 }],
+    [
+      { x: 0, y: 0 },
+      { x: 0, y: 100 },
+    ],
+    [
+      { x: 0, y: 0 },
+      { x: 38, y: 0 },
+      { x: 50, y: 12 },
+      { x: 50, y: 38 },
+      { x: 38, y: 50 },
+      { x: 0, y: 50 },
+    ],
+    [
+      { x: 0, y: 50 },
+      { x: 42, y: 50 },
+      { x: 55, y: 63 },
+      { x: 55, y: 88 },
+      { x: 42, y: 100 },
+      { x: 0, y: 100 },
+    ],
   ],
   O: [
     [
-      { x: 30, y: 0 }, { x: 48, y: 6 }, { x: 58, y: 22 }, { x: 60, y: 50 },
-      { x: 58, y: 78 }, { x: 48, y: 94 }, { x: 30, y: 100 }, { x: 12, y: 94 },
-      { x: 2, y: 78 }, { x: 0, y: 50 }, { x: 2, y: 22 }, { x: 12, y: 6 }, { x: 30, y: 0 },
+      { x: 30, y: 0 },
+      { x: 48, y: 6 },
+      { x: 58, y: 22 },
+      { x: 60, y: 50 },
+      { x: 58, y: 78 },
+      { x: 48, y: 94 },
+      { x: 30, y: 100 },
+      { x: 12, y: 94 },
+      { x: 2, y: 78 },
+      { x: 0, y: 50 },
+      { x: 2, y: 22 },
+      { x: 12, y: 6 },
+      { x: 30, y: 0 },
     ],
   ],
   U: [
     [
-      { x: 0, y: 0 }, { x: 0, y: 65 }, { x: 4, y: 86 }, { x: 16, y: 98 },
-      { x: 30, y: 100 }, { x: 44, y: 98 }, { x: 56, y: 86 }, { x: 60, y: 65 }, { x: 60, y: 0 },
+      { x: 0, y: 0 },
+      { x: 0, y: 65 },
+      { x: 4, y: 86 },
+      { x: 16, y: 98 },
+      { x: 30, y: 100 },
+      { x: 44, y: 98 },
+      { x: 56, y: 86 },
+      { x: 60, y: 65 },
+      { x: 60, y: 0 },
     ],
   ],
-  W: [[{ x: 0, y: 0 }, { x: 15, y: 100 }, { x: 30, y: 40 }, { x: 45, y: 100 }, { x: 60, y: 0 }]],
+  W: [
+    [
+      { x: 0, y: 0 },
+      { x: 15, y: 100 },
+      { x: 30, y: 40 },
+      { x: 45, y: 100 },
+      { x: 60, y: 0 },
+    ],
+  ],
   L: [
-    [{ x: 0, y: 0 }, { x: 0, y: 100 }],
-    [{ x: 0, y: 100 }, { x: 50, y: 100 }],
+    [
+      { x: 0, y: 0 },
+      { x: 0, y: 100 },
+    ],
+    [
+      { x: 0, y: 100 },
+      { x: 50, y: 100 },
+    ],
   ],
 };
 // Reveal order deliberately scrambled (not spelling order) so the hourly
@@ -86,7 +166,9 @@ export default function CircuitCanvas({ lang = "fr" }: { lang?: "fr" | "en" }) {
     const letterCanvas = letterCanvasRef.current;
     const lctx = letterCanvas ? letterCanvas.getContext("2d") : null;
 
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reduce = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     let width = 0;
@@ -142,7 +224,10 @@ export default function CircuitCanvas({ lang = "fr" }: { lang?: "fr" | "en" }) {
       edges = [];
       adjE = [];
       signals = [];
-      const spacing = Math.max(72, Math.min(116, Math.round(Math.sqrt((width * height) / 130))));
+      const spacing = Math.max(
+        72,
+        Math.min(116, Math.round(Math.sqrt((width * height) / 130))),
+      );
       const cols = Math.ceil(width / spacing) + 1;
       const rows = Math.ceil(height / spacing) + 1;
       const grid: number[][] = [];
@@ -151,7 +236,12 @@ export default function CircuitCanvas({ lang = "fr" }: { lang?: "fr" | "en" }) {
         for (let c = 0; c < cols; c++) {
           const jx = (Math.random() - 0.5) * spacing * 0.45;
           const jy = (Math.random() - 0.5) * spacing * 0.45;
-          nodes.push({ x: c * spacing + jx, y: r * spacing + jy, pad: Math.random() < 0.2, glow: 0 });
+          nodes.push({
+            x: c * spacing + jx,
+            y: r * spacing + jy,
+            pad: Math.random() < 0.2,
+            glow: 0,
+          });
           grid[r][c] = nodes.length - 1;
           adjE.push([]);
         }
@@ -174,10 +264,13 @@ export default function CircuitCanvas({ lang = "fr" }: { lang?: "fr" | "en" }) {
           const a = grid[r][c];
           if (c + 1 < cols && Math.random() < 0.62) add(a, grid[r][c + 1]);
           if (r + 1 < rows && Math.random() < 0.62) add(a, grid[r + 1][c]);
-          if (c + 1 < cols && r + 1 < rows && Math.random() < 0.14) add(a, grid[r + 1][c + 1]);
+          if (c + 1 < cols && r + 1 < rows && Math.random() < 0.14)
+            add(a, grid[r + 1][c + 1]);
         }
       }
-      const count = reduce ? 0 : Math.min(22, Math.max(8, Math.round((width * height) / 42000)));
+      const count = reduce
+        ? 0
+        : Math.min(22, Math.max(8, Math.round((width * height) / 42000)));
       for (let i = 0; i < count; i++) spawn();
     };
 
@@ -238,7 +331,9 @@ export default function CircuitCanvas({ lang = "fr" }: { lang?: "fr" | "en" }) {
       }
 
       for (const n of nodes) {
-        const dm = mouse.inside ? Math.hypot(n.x - mouse.x, n.y - mouse.y) : 9999;
+        const dm = mouse.inside
+          ? Math.hypot(n.x - mouse.x, n.y - mouse.y)
+          : 9999;
         const near = Math.max(0, 1 - dm / 140);
         const target = (n.pad ? 0.22 : 0) + near;
         n.glow += (target - n.glow) * 0.12;
@@ -304,7 +399,8 @@ export default function CircuitCanvas({ lang = "fr" }: { lang?: "fr" | "en" }) {
 
       // The letter reveal only runs for players who solved levels 1 and 2 —
       // for everyone else the circuit stays purely ambient.
-      if (!hasEggFlag(EGG_FLAGS.konami) || !hasEggFlag(EGG_FLAGS.rouage)) return;
+      if (!hasEggFlag(EGG_FLAGS.konami) || !hasEggFlag(EGG_FLAGS.rouage))
+        return;
       const order = REVEAL_ORDER[activeLang];
       const hourIdx = Math.floor(now / HOUR_MS) % order.length;
       const letter = order[hourIdx];
@@ -348,7 +444,10 @@ export default function CircuitCanvas({ lang = "fr" }: { lang?: "fr" | "en" }) {
       const originY = height * 0.64 - letterH / 2;
       const scaleX = letterW / 60;
       const scaleY = letterH / 100;
-      const toCanvas = (p: StrokePoint) => ({ x: originX + p.x * scaleX, y: originY + p.y * scaleY });
+      const toCanvas = (p: StrokePoint) => ({
+        x: originX + p.x * scaleX,
+        y: originY + p.y * scaleY,
+      });
       const color = activeLang === "fr" ? CYAN : HALO_EN;
 
       const strokeLengths = strokes.map((pts) => {
@@ -433,7 +532,8 @@ export default function CircuitCanvas({ lang = "fr" }: { lang?: "fr" | "en" }) {
       const dt = Math.min(0.05, (now - last) / 1000);
       last = now;
       const rect = canvas.getBoundingClientRect();
-      const visible = rect.bottom > 0 && rect.top < window.innerHeight && !document.hidden;
+      const visible =
+        rect.bottom > 0 && rect.top < window.innerHeight && !document.hidden;
       if (visible) {
         step(dt);
         draw();
@@ -469,7 +569,10 @@ export default function CircuitCanvas({ lang = "fr" }: { lang?: "fr" | "en" }) {
       raf = requestAnimationFrame(rafLoop);
       const fallback = window.setTimeout(() => {
         if (!started) {
-          const iv = window.setInterval(() => loop(performance.now()), 1000 / 30);
+          const iv = window.setInterval(
+            () => loop(performance.now()),
+            1000 / 30,
+          );
           cleanup.push(() => window.clearInterval(iv));
         }
       }, 250);
@@ -480,7 +583,8 @@ export default function CircuitCanvas({ lang = "fr" }: { lang?: "fr" | "en" }) {
       const rect = canvas.getBoundingClientRect();
       mouse.x = e.clientX - rect.left;
       mouse.y = e.clientY - rect.top;
-      mouse.inside = mouse.x >= 0 && mouse.y >= 0 && mouse.x <= width && mouse.y <= height;
+      mouse.inside =
+        mouse.x >= 0 && mouse.y >= 0 && mouse.x <= width && mouse.y <= height;
     };
     const onLeave = () => {
       mouse.inside = false;
@@ -522,7 +626,11 @@ export default function CircuitCanvas({ lang = "fr" }: { lang?: "fr" | "en" }) {
 
   return (
     <>
-      <canvas ref={canvasRef} aria-hidden="true" className="absolute inset-0 h-full w-full" />
+      <canvas
+        ref={canvasRef}
+        aria-hidden="true"
+        className="absolute inset-0 h-full w-full"
+      />
       {/* Letter layer: above the hero's darkening gradients (z-[2] > z-[1]),
           below the text content (z-10). Requires the wrapper in Hero.tsx to
           NOT create its own stacking context. */}

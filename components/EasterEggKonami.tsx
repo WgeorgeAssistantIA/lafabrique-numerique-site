@@ -28,12 +28,14 @@ const COPY = {
   fr: {
     title: "Œil de lynx.",
     body: "Le rouage a bougé. Ce site cache d'autres secrets — regarde plus en profondeur.",
-    bodyTouch: "Le rouage a bougé. Le prochain indice ne se lit pas ici : /humans.txt",
+    bodyTouch:
+      "Le rouage a bougé. Le prochain indice ne se lit pas ici : /humans.txt",
   },
   en: {
     title: "Sharp eyes.",
     body: "The gear just moved. This site hides more than it shows — look deeper.",
-    bodyTouch: "The gear just moved. The next clue isn't read out loud here: /humans.txt",
+    bodyTouch:
+      "The gear just moved. The next clue isn't read out loud here: /humans.txt",
   },
 };
 
@@ -54,12 +56,14 @@ export default function EasterEggKonami() {
   useEffect(() => {
     const trigger = () => {
       setEggFlag(EGG_FLAGS.konami);
-      document.querySelectorAll<HTMLElement>('[data-easter-egg="logo"]').forEach((el) => {
-        el.classList.remove("logo-burst");
-        void el.offsetWidth; // restart the animation if re-triggered mid-burst
-        el.classList.add("logo-burst");
-        window.setTimeout(() => el.classList.remove("logo-burst"), BURST_MS);
-      });
+      document
+        .querySelectorAll<HTMLElement>('[data-easter-egg="logo"]')
+        .forEach((el) => {
+          el.classList.remove("logo-burst");
+          void el.offsetWidth; // restart the animation if re-triggered mid-burst
+          el.classList.add("logo-burst");
+          window.setTimeout(() => el.classList.remove("logo-burst"), BURST_MS);
+        });
       setVisible(true);
       if (hideTimer.current) window.clearTimeout(hideTimer.current);
       hideTimer.current = window.setTimeout(() => setVisible(false), TOAST_MS);
@@ -92,7 +96,9 @@ export default function EasterEggKonami() {
       role="status"
       aria-live="polite"
       className={`fixed bottom-6 left-6 z-50 max-w-xs border border-cyan bg-background-deep/95 backdrop-blur px-4 py-3 shadow-[0_16px_32px_-18px_rgba(95,216,232,0.45)] transition-all duration-500 ${
-        visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3 pointer-events-none"
+        visible
+          ? "opacity-100 translate-y-0"
+          : "opacity-0 translate-y-3 pointer-events-none"
       }`}
     >
       <p className="fig-label text-cyan mb-1">{COPY[lang].title}</p>

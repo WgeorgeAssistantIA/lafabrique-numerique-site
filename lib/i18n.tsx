@@ -1,7 +1,13 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  type ReactNode,
+} from "react";
 import { translations, type Lang, type Translation } from "./translations";
 
 export { translations, type Lang, type Translation };
@@ -37,11 +43,16 @@ export function LanguageProvider({
     const saved = localStorage.getItem("lfn-lang") as Lang | null;
     const browserLang = navigator.language?.toLowerCase() ?? "";
     const preferred: Lang =
-      saved === "fr" || saved === "en" ? saved : browserLang.startsWith("fr") ? "fr" : "en";
+      saved === "fr" || saved === "en"
+        ? saved
+        : browserLang.startsWith("fr")
+          ? "fr"
+          : "en";
     if (routed) {
       // Only auto-redirect away from the default route, never off /en,
       // so a shared /en link is always respected.
-      if (initialLang === "fr" && preferred === "en") router.replace(targets.en);
+      if (initialLang === "fr" && preferred === "en")
+        router.replace(targets.en);
     } else {
       // Post-hydration restore of the saved preference (SSR always renders fr)
       // eslint-disable-next-line react-hooks/set-state-in-effect

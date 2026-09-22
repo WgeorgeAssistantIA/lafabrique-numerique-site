@@ -37,15 +37,23 @@ export default function Contact() {
           <h2 className="font-display uppercase text-4xl mb-6">{c.title}</h2>
           <p className="text-muted leading-relaxed mb-8 max-w-md">{c.desc}</p>
           <div className="space-y-2 fig-label">
-            <a href={`mailto:${c.emailAddress}`} className="block text-cyan hover:text-amber transition-colors">
+            <a
+              href={`mailto:${c.emailAddress}`}
+              className="block text-cyan hover:text-amber transition-colors"
+            >
               {c.emailAddress}
             </a>
             <p className="text-muted">{c.responseTime}</p>
           </div>
         </div>
-        <form onSubmit={onSubmit} className="space-y-4 border border-line p-8 bg-background-deep">
+        <form
+          onSubmit={onSubmit}
+          className="space-y-4 border border-line p-8 bg-background-deep"
+        >
           <div>
-            <label className="fig-label block mb-2" htmlFor="name">{c.name}</label>
+            <label className="fig-label block mb-2" htmlFor="name">
+              {c.name}
+            </label>
             <input
               id="name"
               name="name"
@@ -56,7 +64,9 @@ export default function Contact() {
             />
           </div>
           <div>
-            <label className="fig-label block mb-2" htmlFor="email">{c.email}</label>
+            <label className="fig-label block mb-2" htmlFor="email">
+              {c.email}
+            </label>
             <input
               id="email"
               name="email"
@@ -67,7 +77,9 @@ export default function Contact() {
             />
           </div>
           <div>
-            <label className="fig-label block mb-2" htmlFor="message">{c.message}</label>
+            <label className="fig-label block mb-2" htmlFor="message">
+              {c.message}
+            </label>
             <textarea
               id="message"
               name="message"
@@ -80,9 +92,18 @@ export default function Contact() {
           {/* Honeypot: hidden from humans, bots fill it and get silently dropped */}
           <div className="hidden" aria-hidden="true">
             <label htmlFor="company">Company</label>
-            <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />
+            <input
+              id="company"
+              name="company"
+              type="text"
+              tabIndex={-1}
+              autoComplete="off"
+            />
           </div>
-          <label className="fig-label flex items-start gap-3 cursor-pointer" htmlFor="consent">
+          <label
+            className="fig-label flex items-start gap-3 cursor-pointer"
+            htmlFor="consent"
+          >
             <input
               id="consent"
               name="consent"
@@ -111,12 +132,17 @@ export default function Contact() {
             {status === "sending" ? c.sending : t.cta.quote}
           </button>
           {status === "success" && (
-            <p className="fig-label text-cyan" role="status">{c.success}</p>
+            <p className="fig-label text-cyan" role="status">
+              {c.success}
+            </p>
           )}
           {status === "error" && (
             <p className="fig-label text-amber" role="alert">
               {c.error}{" "}
-              <a href={`mailto:${c.emailAddress}`} className="underline hover:text-cyan transition-colors">
+              <a
+                href={`mailto:${c.emailAddress}`}
+                className="underline hover:text-cyan transition-colors"
+              >
                 {c.emailAddress}
               </a>
             </p>

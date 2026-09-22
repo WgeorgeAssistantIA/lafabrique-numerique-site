@@ -11,10 +11,16 @@ export default function Footer() {
       <div className="mx-auto max-w-6xl px-6 flex flex-col sm:flex-row items-center justify-between gap-4 fig-label">
         <span>© {new Date().getFullYear()} La Fabrik Numérique</span>
         <nav className="flex items-center gap-6">
-          <Link href="/mentions-legales" className="hover:text-cyan transition-colors">
+          <Link
+            href="/mentions-legales"
+            className="hover:text-cyan transition-colors"
+          >
             {t.footer.legal}
           </Link>
-          <Link href="/confidentialite" className="hover:text-cyan transition-colors">
+          <Link
+            href="/confidentialite"
+            className="hover:text-cyan transition-colors"
+          >
             {t.footer.privacy}
           </Link>
           <Link href="/cgv" className="hover:text-cyan transition-colors">

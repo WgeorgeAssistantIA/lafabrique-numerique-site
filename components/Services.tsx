@@ -17,8 +17,12 @@ export default function Services() {
             <Reveal key={item.ref} delay={i * 90}>
               <div className="card-lift relative bg-background p-6 h-full hover:bg-panel hover:z-10">
                 <span className="fig-label text-amber">{item.ref}</span>
-                <h3 className="font-display uppercase text-lg mt-3 mb-2">{item.title}</h3>
-                <p className="text-muted text-sm leading-relaxed">{item.desc}</p>
+                <h3 className="font-display uppercase text-lg mt-3 mb-2">
+                  {item.title}
+                </h3>
+                <p className="text-muted text-sm leading-relaxed">
+                  {item.desc}
+                </p>
               </div>
             </Reveal>
           ))}

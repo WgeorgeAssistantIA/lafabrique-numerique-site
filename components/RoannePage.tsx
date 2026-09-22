@@ -65,14 +65,19 @@ export default function RoannePage() {
       <main className="flex-1">
         <section className="py-24 circuit-bg">
           <div className="mx-auto max-w-3xl px-6">
-            <Link href="/" className="fig-label text-cyan hover:text-amber transition-colors">
+            <Link
+              href="/"
+              className="fig-label text-cyan hover:text-amber transition-colors"
+            >
               {r.backHome}
             </Link>
             <p className="fig-label mt-8 mb-3">{r.figLabel}</p>
             <h1 className="font-display uppercase text-4xl sm:text-5xl leading-[1.05]">
               {r.title}
             </h1>
-            <p className="mt-6 text-muted leading-relaxed max-w-xl">{r.intro}</p>
+            <p className="mt-6 text-muted leading-relaxed max-w-xl">
+              {r.intro}
+            </p>
             <div className="mt-10 flex flex-wrap items-center gap-4">
               <Link
                 href="/#contact"
@@ -86,7 +91,9 @@ export default function RoannePage() {
 
         <section className="py-20 border-t border-line">
           <div className="mx-auto max-w-3xl px-6">
-            <h2 className="font-display uppercase text-2xl mb-8">{r.whyTitle}</h2>
+            <h2 className="font-display uppercase text-2xl mb-8">
+              {r.whyTitle}
+            </h2>
             <div className="space-y-6">
               {r.why.map((item, i) => (
                 <div key={item.title} className="flex gap-4">
@@ -94,8 +101,12 @@ export default function RoannePage() {
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <div>
-                    <h3 className="font-display uppercase text-lg leading-tight">{item.title}</h3>
-                    <p className="text-muted text-sm leading-relaxed mt-1">{item.desc}</p>
+                    <h3 className="font-display uppercase text-lg leading-tight">
+                      {item.title}
+                    </h3>
+                    <p className="text-muted text-sm leading-relaxed mt-1">
+                      {item.desc}
+                    </p>
                   </div>
                 </div>
               ))}
@@ -105,12 +116,18 @@ export default function RoannePage() {
 
         <section className="py-20 border-t border-line circuit-bg">
           <div className="mx-auto max-w-3xl px-6">
-            <h2 className="font-display uppercase text-2xl mb-8">{r.servicesTitle}</h2>
+            <h2 className="font-display uppercase text-2xl mb-8">
+              {r.servicesTitle}
+            </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {r.services.map((item) => (
                 <div key={item.title} className="border border-line p-6">
-                  <h3 className="font-display uppercase text-lg">{item.title}</h3>
-                  <p className="text-muted text-sm leading-relaxed mt-3">{item.desc}</p>
+                  <h3 className="font-display uppercase text-lg">
+                    {item.title}
+                  </h3>
+                  <p className="text-muted text-sm leading-relaxed mt-3">
+                    {item.desc}
+                  </p>
                 </div>
               ))}
             </div>
@@ -119,11 +136,16 @@ export default function RoannePage() {
 
         <section className="py-20 border-t border-line">
           <div className="mx-auto max-w-3xl px-6">
-            <h2 className="font-display uppercase text-2xl mb-6">{r.areasTitle}</h2>
+            <h2 className="font-display uppercase text-2xl mb-6">
+              {r.areasTitle}
+            </h2>
             <p className="text-muted leading-relaxed max-w-xl">{r.areasDesc}</p>
             <div className="flex flex-wrap gap-2 mt-6">
               {ROANNE_AREAS.map((area) => (
-                <span key={area} className="fig-label border border-line px-3 py-1.5">
+                <span
+                  key={area}
+                  className="fig-label border border-line px-3 py-1.5"
+                >
                   {area}
                 </span>
               ))}
@@ -133,11 +155,15 @@ export default function RoannePage() {
 
         <section className="py-20 border-t border-line circuit-bg">
           <div className="mx-auto max-w-3xl px-6">
-            <h2 className="font-display uppercase text-2xl mb-8">{r.faqTitle}</h2>
+            <h2 className="font-display uppercase text-2xl mb-8">
+              {r.faqTitle}
+            </h2>
             <div className="space-y-8">
               {r.faq.map((item) => (
                 <div key={item.q}>
-                  <h3 className="font-display uppercase text-lg text-cyan">{item.q}</h3>
+                  <h3 className="font-display uppercase text-lg text-cyan">
+                    {item.q}
+                  </h3>
                   <p className="text-muted leading-relaxed mt-2">{item.a}</p>
                 </div>
               ))}
@@ -148,7 +174,9 @@ export default function RoannePage() {
         <section className="py-24 border-t border-line">
           <div className="mx-auto max-w-3xl px-6 text-center">
             <h2 className="font-display uppercase text-3xl">{r.ctaTitle}</h2>
-            <p className="mt-4 text-muted leading-relaxed max-w-md mx-auto">{r.ctaDesc}</p>
+            <p className="mt-4 text-muted leading-relaxed max-w-md mx-auto">
+              {r.ctaDesc}
+            </p>
             <Link
               href="/#contact"
               className="fig-label inline-block mt-8 bg-cyan text-background-deep px-6 py-3 hover:bg-amber transition-colors"
@@ -163,10 +191,16 @@ export default function RoannePage() {
         <div className="mx-auto max-w-6xl px-6 flex flex-col sm:flex-row items-center justify-between gap-4 fig-label">
           <span>© {new Date().getFullYear()} La Fabrik Numérique</span>
           <nav className="flex items-center gap-6">
-            <Link href="/mentions-legales" className="hover:text-cyan transition-colors">
+            <Link
+              href="/mentions-legales"
+              className="hover:text-cyan transition-colors"
+            >
               Mentions légales
             </Link>
-            <Link href="/confidentialite" className="hover:text-cyan transition-colors">
+            <Link
+              href="/confidentialite"
+              className="hover:text-cyan transition-colors"
+            >
               Confidentialité
             </Link>
           </nav>

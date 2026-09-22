@@ -45,7 +45,10 @@ function LegalContent({ docKey }: { docKey: DocKey }) {
 
       <main className="flex-1">
         <article className="mx-auto max-w-3xl px-6 py-16">
-          <Link href="/" className="fig-label text-cyan hover:text-amber transition-colors">
+          <Link
+            href="/"
+            className="fig-label text-cyan hover:text-amber transition-colors"
+          >
             {c.backHome}
           </Link>
           <h1 className="font-display uppercase text-4xl mt-6">{doc.title}</h1>
@@ -54,7 +57,9 @@ function LegalContent({ docKey }: { docKey: DocKey }) {
           <div className="mt-10 space-y-8">
             {doc.sections.map((s) => (
               <section key={s.h}>
-                <h2 className="font-display uppercase text-xl text-cyan">{s.h}</h2>
+                <h2 className="font-display uppercase text-xl text-cyan">
+                  {s.h}
+                </h2>
                 <div className="mt-3 space-y-3">
                   {s.p.map((para, i) => (
                     <p key={i} className="text-muted leading-relaxed">

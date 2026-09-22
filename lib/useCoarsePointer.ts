@@ -19,12 +19,14 @@ const QUERIES = ["(pointer: coarse)", "(any-pointer: coarse)"];
 function subscribe(onChange: () => void) {
   const queries = QUERIES.map((q) => window.matchMedia(q));
   queries.forEach((q) => q.addEventListener("change", onChange));
-  return () => queries.forEach((q) => q.removeEventListener("change", onChange));
+  return () =>
+    queries.forEach((q) => q.removeEventListener("change", onChange));
 }
 
 function getSnapshot() {
   return (
-    QUERIES.some((q) => window.matchMedia(q).matches) || navigator.maxTouchPoints > 0
+    QUERIES.some((q) => window.matchMedia(q).matches) ||
+    navigator.maxTouchPoints > 0
   );
 }
 

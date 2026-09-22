@@ -268,7 +268,7 @@ const en: LegalContent = {
         h: "Data collected",
         p: [
           "Through the contact form: your name, email address and the content of your message. This information is provided voluntarily by you.",
-          "Through the \"Secret workshop\" page form (prize game): your first name, last name and email address, along with your choice to allow or not the display of your first name and last-name initial on the public finders' board. This information is provided voluntarily by you and is never published without your explicit consent (dedicated checkbox).",
+          'Through the "Secret workshop" page form (prize game): your first name, last name and email address, along with your choice to allow or not the display of your first name and last-name initial on the public finders\' board. This information is provided voluntarily by you and is never published without your explicit consent (dedicated checkbox).',
           "For technical purposes, the host may record connection data (IP address, server logs) necessary for the operation and security of the site.",
         ],
       },
@@ -283,7 +283,7 @@ const en: LegalContent = {
         h: "Purpose and legal basis",
         p: [
           "Contact form data is used solely to respond to your request and, where applicable, to prepare a commercial proposal.",
-          "\"Secret workshop\" form data is used to grant you your reward (discount code), to communicate with you about it, and, only if you explicitly authorize it, to display your first name and last-name initial on the public finders' board.",
+          '"Secret workshop" form data is used to grant you your reward (discount code), to communicate with you about it, and, only if you explicitly authorize it, to display your first name and last-name initial on the public finders\' board.',
           "The legal basis is your consent and the performance of pre-contractual measures taken at your request (Article 6 GDPR).",
         ],
       },
@@ -303,7 +303,7 @@ const en: LegalContent = {
         h: "Retention period",
         p: [
           "Contact form data is kept for as long as necessary to handle your request, then archived for a maximum of 3 years from the last contact, before deletion.",
-          "\"Secret workshop\" form data is kept for the duration of the prize game, then for a maximum of 3 years, except for the first name and last-name initial displayed publicly with your consent, which remain visible until you request their removal.",
+          '"Secret workshop" form data is kept for the duration of the prize game, then for a maximum of 3 years, except for the first name and last-name initial displayed publicly with your consent, which remain visible until you request their removal.',
         ],
       },
       {
@@ -353,7 +353,7 @@ const en: LegalContent = {
       {
         h: "3. Price and payment",
         p: [
-          "The rates shown on the site (\"starting from\") are indicative; the final price is the one stated in the quote, in euros. Unless stated otherwise in the quote, a deposit is requested on order, with the balance due on delivery.",
+          'The rates shown on the site ("starting from") are indicative; the final price is the one stated in the quote, in euros. Unless stated otherwise in the quote, a deposit is requested on order, with the balance due on delivery.',
           "Any late payment may result in ongoing work being suspended until the account is settled.",
         ],
       },
@@ -379,7 +379,7 @@ const en: LegalContent = {
       {
         h: "7. Warranty and maintenance",
         p: [
-          "The Provider fixes, free of charge, any proven malfunction attributable to its development work, reported within 30 days of delivery. Beyond that, or for any requested change, maintenance or ongoing support can be offered on a quote basis (see the \"Support\" offer).",
+          'The Provider fixes, free of charge, any proven malfunction attributable to its development work, reported within 30 days of delivery. Beyond that, or for any requested change, maintenance or ongoing support can be offered on a quote basis (see the "Support" offer).',
         ],
       },
       {

@@ -14,7 +14,7 @@ export default function EasterEggConsole() {
     const logClue = () => {
       console.log(
         "%c🦉 LA FABRIK NUMÉRIQUE",
-        "color:#5fd8e8;font-size:16px;font-weight:bold;font-family:monospace;"
+        "color:#5fd8e8;font-size:16px;font-weight:bold;font-family:monospace;",
       );
       const lines = hasEggFlag(EGG_FLAGS.konami)
         ? lang === "en"
@@ -36,7 +36,10 @@ export default function EasterEggConsole() {
               "Commence par le vieux code des joueurs.",
             ];
       lines.forEach((line) =>
-        console.log(`%c${line}`, "color:#e8a14f;font-family:monospace;font-size:12px;")
+        console.log(
+          `%c${line}`,
+          "color:#e8a14f;font-family:monospace;font-size:12px;",
+        ),
       );
       if (hasEggFlag(EGG_FLAGS.konami)) loggedFull = true;
     };

@@ -86,6 +86,7 @@ export const roanneContent = {
     },
   ],
   ctaTitle: "Discutons de votre projet",
-  ctaDesc: "Décrivez votre projet, je reviens vers vous avec une proposition chiffrée et un premier diagnostic.",
+  ctaDesc:
+    "Décrivez votre projet, je reviens vers vous avec une proposition chiffrée et un premier diagnostic.",
   ctaButton: "Demander un devis",
 };

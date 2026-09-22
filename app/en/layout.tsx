@@ -38,7 +38,14 @@ export const metadata: Metadata = {
     description: DESCRIPTION,
     url: `${SITE_URL}/en`,
     siteName: "La Fabrik Numérique",
-    images: [{ url: "/img/og.png", width: 1640, height: 624, alt: "La Fabrik Numérique" }],
+    images: [
+      {
+        url: "/img/og.png",
+        width: 1640,
+        height: 624,
+        alt: "La Fabrik Numérique",
+      },
+    ],
     locale: "en_US",
     type: "website",
   },

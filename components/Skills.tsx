@@ -16,7 +16,10 @@ export default function Skills() {
             <h3 className="fig-label text-cyan mb-4">{s.dev}</h3>
             <ul className="space-y-3">
               {s.devItems.map((item) => (
-                <li key={item} className="flex items-center gap-3 text-foreground">
+                <li
+                  key={item}
+                  className="flex items-center gap-3 text-foreground"
+                >
                   <span className="node-dot" />
                   {item}
                 </li>
@@ -27,8 +30,17 @@ export default function Skills() {
             <h3 className="fig-label text-amber mb-4">{s.design}</h3>
             <ul className="space-y-3">
               {s.designItems.map((item) => (
-                <li key={item} className="flex items-center gap-3 text-foreground">
-                  <span className="node-dot" style={{ background: "var(--amber)", boxShadow: "0 0 8px var(--amber)" }} />
+                <li
+                  key={item}
+                  className="flex items-center gap-3 text-foreground"
+                >
+                  <span
+                    className="node-dot"
+                    style={{
+                      background: "var(--amber)",
+                      boxShadow: "0 0 8px var(--amber)",
+                    }}
+                  />
                   {item}
                 </li>
               ))}

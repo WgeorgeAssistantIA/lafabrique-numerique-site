@@ -15,8 +15,20 @@ const MAX_WORD_LEN = 6;
 
 // One wink cycle, played in sync with each hoot: neutral -> mid -> closed -> mid -> neutral.
 const WINK_CYCLE = {
-  fr: ["/img/logo.png", "/img/logo-wink-left-mid.png", "/img/logo-wink-left-closed.png", "/img/logo-wink-left-mid.png", "/img/logo.png"],
-  en: ["/img/logo.png", "/img/logo-wink-right-mid.png", "/img/logo-wink-right-closed.png", "/img/logo-wink-right-mid.png", "/img/logo.png"],
+  fr: [
+    "/img/logo.png",
+    "/img/logo-wink-left-mid.png",
+    "/img/logo-wink-left-closed.png",
+    "/img/logo-wink-left-mid.png",
+    "/img/logo.png",
+  ],
+  en: [
+    "/img/logo.png",
+    "/img/logo-wink-right-mid.png",
+    "/img/logo-wink-right-closed.png",
+    "/img/logo-wink-right-mid.png",
+    "/img/logo.png",
+  ],
 };
 const WINK_STEP_MS = 500;
 
@@ -28,8 +40,16 @@ const EYE_HOTSPOT = {
 };
 
 const REVEAL_FRAMES = {
-  fr: ["/img/logo.png", "/img/logo-wink-left-mid.png", "/img/logo-wink-left-closed.png"],
-  en: ["/img/logo.png", "/img/logo-wink-right-mid.png", "/img/logo-wink-right-closed.png"],
+  fr: [
+    "/img/logo.png",
+    "/img/logo-wink-left-mid.png",
+    "/img/logo-wink-left-closed.png",
+  ],
+  en: [
+    "/img/logo.png",
+    "/img/logo-wink-right-mid.png",
+    "/img/logo-wink-right-closed.png",
+  ],
 };
 
 const COPY = {
@@ -73,7 +93,10 @@ const TOASTS = {
   },
 };
 
-export const SECRET_STORAGE_KEY = { fr: "lfn:secret:hibou", en: "lfn:secret:owl" } as const;
+export const SECRET_STORAGE_KEY = {
+  fr: "lfn:secret:hibou",
+  en: "lfn:secret:owl",
+} as const;
 
 // next/image renders a `srcset`, which browsers prefer over `src` — clear it
 // first or a manual `.src =` swap is silently ignored.
@@ -99,7 +122,9 @@ export default function EasterEggWord() {
   const buffer = useRef("");
   const [revealed, setRevealed] = useState(false);
   const [frame, setFrame] = useState(0);
-  const [toast, setToast] = useState<{ title: string; body: string } | null>(null);
+  const [toast, setToast] = useState<{ title: string; body: string } | null>(
+    null,
+  );
   const toastTimer = useRef<number | null>(null);
 
   // Word detection: types a target word anywhere on the site (not while
@@ -119,7 +144,9 @@ export default function EasterEggWord() {
         buffer.current = "";
         return;
       }
-      buffer.current = (buffer.current + e.key.toLowerCase()).slice(-MAX_WORD_LEN);
+      buffer.current = (buffer.current + e.key.toLowerCase()).slice(
+        -MAX_WORD_LEN,
+      );
 
       if (buffer.current.endsWith(PASSWORDS[lang])) {
         buffer.current = "";
@@ -154,7 +181,8 @@ export default function EasterEggWord() {
       winkTimers = [];
       clickTargets.forEach((el) => {
         el.classList.remove("logo-awaiting");
-        if (resetSrc && el instanceof HTMLImageElement) setImgSrc(el, "/img/logo.png");
+        if (resetSrc && el instanceof HTMLImageElement)
+          setImgSrc(el, "/img/logo.png");
       });
       clickTargets = [];
       hotspots.forEach((el) => {
@@ -202,12 +230,14 @@ export default function EasterEggWord() {
     const startWaking = () => {
       playSecretFoundSound();
 
-      clickTargets = Array.from(document.querySelectorAll<HTMLElement>("[data-atelier-owl]"));
+      clickTargets = Array.from(
+        document.querySelectorAll<HTMLElement>("[data-atelier-owl]"),
+      );
       clickTargets.forEach((el) => el.classList.add("logo-awaiting"));
 
       const zone = EYE_HOTSPOT[langRef.current];
       hotspots = Array.from(
-        document.querySelectorAll<HTMLElement>("[data-atelier-owl-wrapper]")
+        document.querySelectorAll<HTMLElement>("[data-atelier-owl-wrapper]"),
       ).map((wrapper) => {
         const hotspot = document.createElement("div");
         hotspot.setAttribute("aria-hidden", "true");
@@ -243,7 +273,9 @@ export default function EasterEggWord() {
         role="status"
         aria-live="polite"
         className={`fixed bottom-6 left-6 z-50 max-w-xs border border-cyan bg-background-deep/95 backdrop-blur px-4 py-3 shadow-[0_16px_32px_-18px_rgba(95,216,232,0.45)] transition-all duration-500 ${
-          toast ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3 pointer-events-none"
+          toast
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 translate-y-3 pointer-events-none"
         }`}
       >
         <p className="fig-label text-cyan mb-1">{toast?.title}</p>

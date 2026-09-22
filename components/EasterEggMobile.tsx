@@ -102,7 +102,10 @@ export default function EasterEggMobile() {
 
     const onPointerUp = (e: PointerEvent) => {
       if (downId === null || e.pointerId !== downId) return;
-      const releaseDrift = Math.max(Math.abs(e.clientX - downX), Math.abs(e.clientY - downY));
+      const releaseDrift = Math.max(
+        Math.abs(e.clientX - downX),
+        Math.abs(e.clientY - downY),
+      );
       downId = null;
       if (releaseDrift > TAP_MOVE_TOLERANCE_PX) {
         // That was a scroll/swipe through the logo, not a tap — doesn't count.
@@ -114,7 +117,10 @@ export default function EasterEggMobile() {
       const isSecondTap =
         lastTap !== null &&
         now - lastTap.t <= DOUBLE_TAP_MS &&
-        Math.max(Math.abs(e.clientX - lastTap.x), Math.abs(e.clientY - lastTap.y)) <= DOUBLE_TAP_DRIFT_PX;
+        Math.max(
+          Math.abs(e.clientX - lastTap.x),
+          Math.abs(e.clientY - lastTap.y),
+        ) <= DOUBLE_TAP_DRIFT_PX;
 
       if (isSecondTap) {
         lastTap = null;
@@ -151,7 +157,9 @@ export default function EasterEggMobile() {
     // target, which a passive listener would silently ignore.
     document.addEventListener("pointerdown", onPointerDown, { passive: false });
     document.addEventListener("pointerup", onPointerUp, { passive: true });
-    document.addEventListener("pointercancel", onPointerCancel, { passive: true });
+    document.addEventListener("pointercancel", onPointerCancel, {
+      passive: true,
+    });
     document.addEventListener("scroll", onScroll, { passive: true });
     document.addEventListener("contextmenu", onContextMenu);
 
@@ -231,29 +239,59 @@ export default function EasterEggMobile() {
         <div className="flex items-center justify-between gap-6">
           <div className="grid grid-cols-3 gap-1">
             <span />
-            <button type="button" aria-label={copy.padUp} className={padButton} onClick={() => tap("ArrowUp")}>
+            <button
+              type="button"
+              aria-label={copy.padUp}
+              className={padButton}
+              onClick={() => tap("ArrowUp")}
+            >
               ▲
             </button>
             <span />
-            <button type="button" aria-label={copy.padLeft} className={padButton} onClick={() => tap("ArrowLeft")}>
+            <button
+              type="button"
+              aria-label={copy.padLeft}
+              className={padButton}
+              onClick={() => tap("ArrowLeft")}
+            >
               ◀
             </button>
             <span />
-            <button type="button" aria-label={copy.padRight} className={padButton} onClick={() => tap("ArrowRight")}>
+            <button
+              type="button"
+              aria-label={copy.padRight}
+              className={padButton}
+              onClick={() => tap("ArrowRight")}
+            >
               ▶
             </button>
             <span />
-            <button type="button" aria-label={copy.padDown} className={padButton} onClick={() => tap("ArrowDown")}>
+            <button
+              type="button"
+              aria-label={copy.padDown}
+              className={padButton}
+              onClick={() => tap("ArrowDown")}
+            >
               ▼
             </button>
             <span />
           </div>
 
           <div className="flex items-center gap-3">
-            <button type="button" aria-label="B" className={roundButton} onClick={() => tap("b")}>
+            <button
+              type="button"
+              aria-label="B"
+              className={roundButton}
+              onClick={() => tap("b")}
+            >
               B
             </button>
-            <button type="button" aria-label="A" className={roundButton} onClick={() => tap("a")}>
+            <button
+              type="button"
+              aria-label="A"
+              className={roundButton}
+              onClick={() => tap("a")}
+            >
               A
             </button>
           </div>
@@ -281,7 +319,10 @@ export default function EasterEggMobile() {
               maxLength={MAX_WORD_LEN}
               className="flex-1 min-w-0 border border-line bg-panel px-3 py-3 text-foreground placeholder:text-muted focus:border-cyan focus:outline-none"
             />
-            <button type="submit" className="fig-label bg-cyan text-background-deep px-5 py-3">
+            <button
+              type="submit"
+              className="fig-label bg-cyan text-background-deep px-5 py-3"
+            >
               {copy.submit}
             </button>
           </form>

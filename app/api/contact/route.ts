@@ -2,7 +2,8 @@ import { Resend } from "resend";
 
 const CONTACT_TO = process.env.CONTACT_TO ?? "lafabriknumerique@outlook.com";
 const CONTACT_FROM =
-  process.env.CONTACT_FROM ?? "La Fabrik Numérique <contact@lafabriknumerique.fr>";
+  process.env.CONTACT_FROM ??
+  "La Fabrik Numérique <contact@lafabriknumerique.fr>";
 
 const MAX_LEN = { name: 200, email: 320, message: 5000 };
 

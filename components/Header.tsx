@@ -7,7 +7,14 @@ import { usePathname } from "next/navigation";
 import { useLanguage } from "@/lib/i18n";
 import LangToggle from "./LangToggle";
 
-const SECTION_IDS = ["services", "competences", "realisations", "tarifs", "about", "contact"];
+const SECTION_IDS = [
+  "services",
+  "competences",
+  "realisations",
+  "tarifs",
+  "about",
+  "contact",
+];
 
 export default function Header() {
   const { t, lang } = useLanguage();
@@ -19,12 +26,21 @@ export default function Header() {
   // Section anchors only work when already on the homepage — everywhere else
   // (blog, etc.) they need to link back to it first.
   const isHome = pathname === "/" || pathname === "/en";
-  const withHome = (anchor: string) => (isHome ? anchor : `${homePath}${anchor}`);
+  const withHome = (anchor: string) =>
+    isHome ? anchor : `${homePath}${anchor}`;
 
   const navItems = [
     { href: withHome("#services"), label: t.nav.services, id: "services" },
-    { href: withHome("#competences"), label: t.nav.competences, id: "competences" },
-    { href: withHome("#realisations"), label: t.nav.realisations, id: "realisations" },
+    {
+      href: withHome("#competences"),
+      label: t.nav.competences,
+      id: "competences",
+    },
+    {
+      href: withHome("#realisations"),
+      label: t.nav.realisations,
+      id: "realisations",
+    },
     { href: withHome("#tarifs"), label: t.nav.tarifs, id: "tarifs" },
     { href: withHome("#about"), label: t.nav.about, id: "about" },
     { href: lang === "en" ? "/en/blog" : "/blog", label: t.nav.blog, id: null },
@@ -40,9 +56,9 @@ export default function Header() {
 
   useEffect(() => {
     if (!isHome) return;
-    const sections = SECTION_IDS.map((id) => document.getElementById(id)).filter(
-      (el): el is HTMLElement => el !== null
-    );
+    const sections = SECTION_IDS.map((id) =>
+      document.getElementById(id),
+    ).filter((el): el is HTMLElement => el !== null);
     if (!sections.length) return;
     const observer = new IntersectionObserver(
       (entries) => {
@@ -50,7 +66,7 @@ export default function Header() {
           if (entry.isIntersecting) setActiveId(entry.target.id);
         }
       },
-      { rootMargin: "-45% 0px -50% 0px", threshold: 0 }
+      { rootMargin: "-45% 0px -50% 0px", threshold: 0 },
     );
     sections.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
@@ -63,7 +79,11 @@ export default function Header() {
       }`}
     >
       <div className="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between gap-4">
-        <Link href={isHome ? "#top" : homePath} className="flex items-center gap-3" onClick={() => setOpen(false)}>
+        <Link
+          href={isHome ? "#top" : homePath}
+          className="flex items-center gap-3"
+          onClick={() => setOpen(false)}
+        >
           <Image
             src="/img/logo.png"
             alt="La Fabrik Numérique"
@@ -121,9 +141,15 @@ export default function Header() {
             aria-expanded={open}
             className="md:hidden flex flex-col gap-1.5 p-2"
           >
-            <span className={`block h-px w-6 bg-foreground transition-transform ${open ? "translate-y-[7px] rotate-45" : ""}`} />
-            <span className={`block h-px w-6 bg-foreground transition-opacity ${open ? "opacity-0" : ""}`} />
-            <span className={`block h-px w-6 bg-foreground transition-transform ${open ? "-translate-y-[7px] -rotate-45" : ""}`} />
+            <span
+              className={`block h-px w-6 bg-foreground transition-transform ${open ? "translate-y-[7px] rotate-45" : ""}`}
+            />
+            <span
+              className={`block h-px w-6 bg-foreground transition-opacity ${open ? "opacity-0" : ""}`}
+            />
+            <span
+              className={`block h-px w-6 bg-foreground transition-transform ${open ? "-translate-y-[7px] -rotate-45" : ""}`}
+            />
           </button>
         </div>
       </div>
@@ -150,7 +176,7 @@ export default function Header() {
                 >
                   {item.label}
                 </Link>
-              )
+              ),
             )}
             {isHome ? (
               <a

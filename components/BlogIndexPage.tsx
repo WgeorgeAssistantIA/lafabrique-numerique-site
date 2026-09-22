@@ -8,7 +8,10 @@ import Footer from "./Footer";
 
 export default function BlogIndexPage({ lang }: { lang: Lang }) {
   return (
-    <LanguageProvider initialLang={lang} routes={{ fr: "/blog", en: "/en/blog" }}>
+    <LanguageProvider
+      initialLang={lang}
+      routes={{ fr: "/blog", en: "/en/blog" }}
+    >
       <BlogIndex />
     </LanguageProvider>
   );
@@ -25,11 +28,16 @@ function BlogIndex() {
       <main className="flex-1">
         <section className="pt-32 pb-24 circuit-bg">
           <div className="mx-auto max-w-3xl px-6">
-            <Link href={lang === "en" ? "/en" : "/"} className="fig-label text-cyan hover:text-amber transition-colors">
+            <Link
+              href={lang === "en" ? "/en" : "/"}
+              className="fig-label text-cyan hover:text-amber transition-colors"
+            >
               {b.backHome}
             </Link>
             <p className="fig-label mt-8 mb-3">{b.figLabel}</p>
-            <h1 className="font-display uppercase text-4xl mb-4">{b.indexTitle}</h1>
+            <h1 className="font-display uppercase text-4xl mb-4">
+              {b.indexTitle}
+            </h1>
             <p className="text-muted leading-relaxed max-w-xl">{b.indexDesc}</p>
 
             <div className="mt-12 space-y-6">
@@ -39,11 +47,18 @@ function BlogIndex() {
                   className="border border-line p-6 hover:border-cyan transition-colors"
                 >
                   <p className="fig-label text-muted">{post.dateLabel}</p>
-                  <h2 className="font-display uppercase text-2xl mt-2">{post.title}</h2>
-                  <p className="text-muted text-sm leading-relaxed mt-3">{post.excerpt}</p>
+                  <h2 className="font-display uppercase text-2xl mt-2">
+                    {post.title}
+                  </h2>
+                  <p className="text-muted text-sm leading-relaxed mt-3">
+                    {post.excerpt}
+                  </p>
                   <div className="flex flex-wrap gap-2 mt-4">
                     {post.tags.map((tag) => (
-                      <span key={tag} className="fig-label border border-line px-2 py-1 text-[0.65rem]">
+                      <span
+                        key={tag}
+                        className="fig-label border border-line px-2 py-1 text-[0.65rem]"
+                      >
                         {tag}
                       </span>
                     ))}

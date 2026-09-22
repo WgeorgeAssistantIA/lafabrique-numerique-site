@@ -15,7 +15,9 @@ export default function LangToggle() {
           type="button"
           onClick={() => setLang(l)}
           className={`rounded-full px-3 py-1 transition-colors ${
-            lang === l ? "bg-cyan text-background-deep" : "text-muted hover:text-foreground"
+            lang === l
+              ? "bg-cyan text-background-deep"
+              : "text-muted hover:text-foreground"
           }`}
         >
           {l.toUpperCase()}
