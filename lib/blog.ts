@@ -87,7 +87,7 @@ const fr: BlogContent = {
         {
           h: "Pour aller plus loin",
           p: [
-            "Construire ses propres outils conduit vite à des questions de méthode. Nous avons détaillé comment [automatiser les tâches répétitives d'une PME avec l'IA](/blog/automatiser-taches-repetitives-pme-avec-l-ia), et ce que l'expérience de VoxCut nous a appris sur [pourquoi un SaaS peut avoir des utilisateurs mais aucune vente](/blog/pourquoi-un-saas-a-des-utilisateurs-mais-aucune-vente).",
+            "Construire ses propres outils conduit vite à des questions de méthode. Nous avons détaillé comment [automatiser les tâches répétitives d'une PME avec l'IA](/blog/automatiser-taches-repetitives-pme-avec-l-ia), et ce que l'expérience de VoxCut nous a appris sur [pourquoi un SaaS peut avoir des utilisateurs mais aucune vente](/blog/pourquoi-un-saas-a-des-utilisateurs-mais-aucune-vente). Un exemple concret : [supprimer automatiquement les silences d'un podcast](/blog/supprimer-automatiquement-les-silences-d-un-podcast).",
           ],
         },
       ],
@@ -157,6 +157,66 @@ const fr: BlogContent = {
         {
           label: "Découvrir InOneShot → inoneshot.fr",
           url: "https://inoneshot.fr",
+        },
+        {
+          label: "Automatiser les tâches répétitives d'une PME avec l'IA",
+          url: "/blog/automatiser-taches-repetitives-pme-avec-l-ia",
+        },
+      ],
+    },
+    {
+      id: "remove-podcast-silences",
+      slug: "supprimer-automatiquement-les-silences-d-un-podcast",
+      title:
+        "Comment supprimer automatiquement les silences d'un podcast (sans montage manuel)",
+      date: "2026-06-17",
+      dateLabel: "17 juin 2026",
+      excerpt:
+        "Les silences et temps morts peuvent représenter 10 à 20 % d'un épisode. Voici comment les détecter et les couper automatiquement, et monter votre podcast en une fraction du temps habituel.",
+      tags: ["VoxCut", "Audio", "Tutoriel"],
+      canonicalUrl:
+        "https://voxcutpro.com/blog/fr/how-to-remove-silences-from-a-podcast",
+      sections: [
+        {
+          h: "Pourquoi les silences comptent plus qu'on ne le croit",
+          p: [
+            "Quelques secondes de temps mort semblent anodines pendant l'enregistrement. Mais sur un épisode de 45 minutes, ces pauses s'additionnent — souvent jusqu'à 10 à 20 % de la durée totale : des épisodes plus longs qui paraissent plus lents, un fichier plus lourd à héberger, et une écoute moins professionnelle.",
+            "Supprimer les silences rend un contenu plus dynamique et nettement plus soigné, sans changer un seul mot.",
+          ],
+        },
+        {
+          h: "La méthode lente et la méthode rapide",
+          p: [
+            "La méthode traditionnelle consiste à ouvrir l'enregistrement dans un éditeur, parcourir la forme d'onde, repérer chaque blanc et le supprimer à la main — quelques centaines de fois par épisode. C'est la première raison pour laquelle le montage d'un podcast prend souvent 2 à 3 fois plus de temps que l'enregistrement lui-même.",
+            "Les outils actuels analysent au contraire l'audio, détectent chaque passage silencieux à partir d'un seuil de volume, et les coupent tous en une seule passe. Ce qui prenait une heure prend désormais quelques minutes.",
+          ],
+        },
+        {
+          h: "Comment VoxCut s'y prend",
+          p: [
+            "VoxCut est une application Windows conçue exactement pour cela. Déposez un enregistrement : elle affiche une forme d'onde avant/après — en bleu la voix, en gris le silence — pour voir précisément ce qui sera retiré avant de valider. Un clic, et le temps mort disparaît.",
+            "Quelques conseils pratiques : gardez une courte pause naturelle (150 à 300 ms) entre les phrases pour que la parole reste humaine, réglez le seuil selon votre enregistrement, et conservez toujours le fichier d'origine en travaillant sur une copie.",
+          ],
+        },
+        {
+          h: "Pour aller plus loin",
+          p: [
+            "Ce type d'outil est né d'un besoin concret : nous racontons pourquoi dans [Pourquoi on construit ses propres outils](/blog/pourquoi-construire-ses-propres-outils). Pour savoir quelles autres tâches répétitives d'une petite structure méritent le même traitement, lisez notre guide pour [automatiser les tâches répétitives d'une PME avec l'IA](/blog/automatiser-taches-repetitives-pme-avec-l-ia).",
+          ],
+        },
+      ],
+      links: [
+        {
+          label: "Lire l'article original sur voxcutpro.com →",
+          url: "https://voxcutpro.com/blog/fr/how-to-remove-silences-from-a-podcast",
+        },
+        {
+          label: "Découvrir VoxCut → voxcutpro.com",
+          url: "https://voxcutpro.com",
+        },
+        {
+          label: "Pourquoi on construit ses propres outils : VoxCut & InOneShot",
+          url: "/blog/pourquoi-construire-ses-propres-outils",
         },
         {
           label: "Automatiser les tâches répétitives d'une PME avec l'IA",
@@ -510,7 +570,7 @@ const en: BlogContent = {
         {
           h: "Going further",
           p: [
-            "Building your own tools quickly raises questions of method. We detailed how to [automate a small business's repetitive tasks with AI](/en/blog/automate-repetitive-sme-tasks-with-ai), and what VoxCut taught us about [why a SaaS can have users but no sales](/en/blog/why-a-saas-has-users-but-no-sales).",
+            "Building your own tools quickly raises questions of method. We detailed how to [automate a small business's repetitive tasks with AI](/en/blog/automate-repetitive-sme-tasks-with-ai), and what VoxCut taught us about [why a SaaS can have users but no sales](/en/blog/why-a-saas-has-users-but-no-sales). A concrete example: [automatically removing silences from a podcast](/en/blog/how-to-remove-silences-from-a-podcast).",
           ],
         },
       ],
@@ -567,6 +627,12 @@ const en: BlogContent = {
             "A few practical tips: leave a small natural pause (150–300 ms) between sentences so speech still sounds human, tune the threshold to your recording, and always keep the original file and trim a copy.",
           ],
         },
+        {
+          h: "Going further",
+          p: [
+            "This tool grew out of a real need: we explain why in [Why we build our own tools](/en/blog/why-we-build-our-own-tools). To see which other repetitive tasks in a small business deserve the same treatment, read our guide to [automating a small business's repetitive tasks with AI](/en/blog/automate-repetitive-sme-tasks-with-ai).",
+          ],
+        },
       ],
       links: [
         {
@@ -576,6 +642,14 @@ const en: BlogContent = {
         {
           label: "Discover VoxCut → voxcutpro.com",
           url: "https://voxcutpro.com",
+        },
+        {
+          label: "Why we build our own tools: VoxCut & InOneShot",
+          url: "/en/blog/why-we-build-our-own-tools",
+        },
+        {
+          label: "How can a small business automate repetitive tasks with AI?",
+          url: "/en/blog/automate-repetitive-sme-tasks-with-ai",
         },
       ],
     },

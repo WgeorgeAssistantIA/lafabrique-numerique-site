@@ -283,7 +283,7 @@ export const newPostsEn: BlogPost[] = [
           "Good candidates share three traits: they repeat often, they follow fairly stable rules, and a mistake is cheap or easy to recover from. Producing fifty certificates from a table, renaming and filing documents, extracting amounts from invoices, preparing reminders: these are tasks you can hand to a tool without the business suffering.",
           "Conversely, avoid starting with what is rare, highly variable or high-stakes: negotiation, credit decisions, sensitive communication. Automation costs more than it brings there, and a mistake is visible.",
           "To spot your candidates, note on a sheet for one week every repetitive task and the time it takes. Then rank them by monthly hours. The top three lines of that table are almost always where the gain is clearest.",
-            "An order of magnitude helps you decide. A twenty-minute task repeated every working day adds up to more than seventy hours a year, nearly two weeks of work. Many managers discover, by adding up this way, that small tasks they judged harmless weigh far more than the project they kept putting off.",
+            "An order of magnitude helps you decide. A twenty-minute task repeated every working day adds up to more than seventy hours a year, nearly two weeks of work. Many managers discover, by adding up this way, that small tasks they judged harmless weigh far more than the project they kept putting off. A telling example: [editing a podcast, where automatic silence removal](/en/blog/how-to-remove-silences-from-a-podcast) saves several hours per episode.",
         ],
       },
       {
