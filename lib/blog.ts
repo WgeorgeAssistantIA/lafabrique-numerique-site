@@ -84,6 +84,12 @@ const fr: BlogContent = {
             "Si vous avez une tâche répétitive dans votre activité qui mériterait le même traitement — un outil sur mesure plutôt qu'un logiciel généraliste mal ajusté — c'est exactement le genre de projet que l'atelier aime prendre.",
           ],
         },
+        {
+          h: "Pour aller plus loin",
+          p: [
+            "Construire ses propres outils conduit vite à des questions de méthode. Nous avons détaillé comment [automatiser les tâches répétitives d'une PME avec l'IA](/blog/automatiser-taches-repetitives-pme-avec-l-ia), et ce que l'expérience de VoxCut nous a appris sur [pourquoi un SaaS peut avoir des utilisateurs mais aucune vente](/blog/pourquoi-un-saas-a-des-utilisateurs-mais-aucune-vente).",
+          ],
+        },
       ],
       links: [
         {
@@ -93,6 +99,14 @@ const fr: BlogContent = {
         {
           label: "Découvrir InOneShot → inoneshot.fr",
           url: "https://inoneshot.fr",
+        },
+        {
+          label: "Automatiser les tâches répétitives d'une PME avec l'IA",
+          url: "/blog/automatiser-taches-repetitives-pme-avec-l-ia",
+        },
+        {
+          label: "Pourquoi un SaaS peut avoir des utilisateurs mais aucune vente",
+          url: "/blog/pourquoi-un-saas-a-des-utilisateurs-mais-aucune-vente",
         },
       ],
     },
@@ -128,6 +142,12 @@ const fr: BlogContent = {
             "Une fois le modèle prêt, refaire le même lot le mois suivant ne prend plus que quelques secondes.",
           ],
         },
+        {
+          h: "Pour aller plus loin",
+          p: [
+            "Le publipostage est un bon exemple d'automatisation qui n'a pas besoin d'IA. Pour savoir quand une automatisation simple suffit et quand l'IA devient utile, lisez notre guide pour [automatiser les tâches répétitives d'une PME avec l'IA](/blog/automatiser-taches-repetitives-pme-avec-l-ia).",
+          ],
+        },
       ],
       links: [
         {
@@ -137,6 +157,10 @@ const fr: BlogContent = {
         {
           label: "Découvrir InOneShot → inoneshot.fr",
           url: "https://inoneshot.fr",
+        },
+        {
+          label: "Automatiser les tâches répétitives d'une PME avec l'IA",
+          url: "/blog/automatiser-taches-repetitives-pme-avec-l-ia",
         },
       ],
     },
@@ -186,8 +210,23 @@ const fr: BlogContent = {
             "Seuls 11 % des domaines sont cités à la fois par ChatGPT et par Google AI Overviews pour une même requête : la mesure doit rester par plateforme, pas agrégée. L'investissement le plus rentable pour démarrer reste le plus simple : réécrire les premières lignes de chaque page pour qu'elles répondent directement à la question de l'utilisateur, en moins de soixante mots.",
           ],
         },
+        {
+          h: "Pour aller plus loin",
+          p: [
+            "Pour situer cette démarche par rapport au référencement classique, voyez notre comparaison [SEO vs GEO](/blog/seo-vs-geo-visibilite-internet-2026). Et si votre application a de la visibilité mais peu d'achats, lisez [pourquoi un SaaS peut avoir des utilisateurs mais aucune vente](/blog/pourquoi-un-saas-a-des-utilisateurs-mais-aucune-vente).",
+          ],
+        },
       ],
-      links: [],
+      links: [
+        {
+          label: "SEO vs GEO : comment évolue la visibilité sur Internet en 2026 ?",
+          url: "/blog/seo-vs-geo-visibilite-internet-2026",
+        },
+        {
+          label: "Pourquoi un SaaS peut avoir des utilisateurs mais aucune vente",
+          url: "/blog/pourquoi-un-saas-a-des-utilisateurs-mais-aucune-vente",
+        },
+      ],
     },
     {
       id: "custom-tool-vs-saas-cost",
@@ -232,6 +271,12 @@ const fr: BlogContent = {
             "Trois questions suffisent en général à orienter la décision : la tâche est-elle vraiment répétitive et chronophage (sinon, l'investissement ne se rentabilise jamais) ? Existe-t-il un outil du marché qui la couvre à 90 % sans bricolage (si oui, le sur-mesure n'apporte rien) ? Et surtout, combien coûte réellement l'abonnement actuel projeté sur trois ans, palier après palier, plutôt que sur le seul prix affiché en page d'accueil.",
           ],
         },
+        {
+          h: "Pour aller plus loin",
+          p: [
+            "Le coût n'est qu'un côté de l'équation. Côté éditeur, voyez [comment fixer le prix d'un logiciel SaaS](/blog/comment-fixer-le-prix-d-un-logiciel-saas) ; pour passer à l'action, notre guide pour [automatiser les tâches répétitives d'une PME avec l'IA](/blog/automatiser-taches-repetitives-pme-avec-l-ia) montre par où commencer.",
+          ],
+        },
       ],
       links: [
         {
@@ -241,6 +286,14 @@ const fr: BlogContent = {
         {
           label: "Découvrir InOneShot → inoneshot.fr",
           url: "https://inoneshot.fr",
+        },
+        {
+          label: "Comment fixer le prix d'un logiciel SaaS",
+          url: "/blog/comment-fixer-le-prix-d-un-logiciel-saas",
+        },
+        {
+          label: "Automatiser les tâches répétitives d'une PME avec l'IA",
+          url: "/blog/automatiser-taches-repetitives-pme-avec-l-ia",
         },
       ],
     },
@@ -286,11 +339,25 @@ const fr: BlogContent = {
             "Avant de parler de technologie ou de design, une seule question tranche l'essentiel : est-ce que le visiteur vient pour être convaincu, ou pour accomplir quelque chose ? La réponse détermine si le projet est un site vitrine, une application, ou les deux — et évite de payer pour la complexité d'une application quand un site suffisait, ou de brider une vraie application derrière les limites d'un site vitrine.",
           ],
         },
+        {
+          h: "Pour aller plus loin",
+          p: [
+            "Quel que soit votre choix, votre site devra être trouvé. Notre article [SEO vs GEO](/blog/seo-vs-geo-visibilite-internet-2026) explique comment la visibilité évolue avec les moteurs de réponse IA, et le guide sur [l'automatisation des tâches d'une PME](/blog/automatiser-taches-repetitives-pme-avec-l-ia) montre ce qu'une application web peut faire gagner en temps.",
+          ],
+        },
       ],
       links: [
         {
           label: "Découvrir Nyctale → nyctale.fr",
           url: "https://nyctale.fr",
+        },
+        {
+          label: "SEO vs GEO : comment évolue la visibilité sur Internet en 2026 ?",
+          url: "/blog/seo-vs-geo-visibilite-internet-2026",
+        },
+        {
+          label: "Automatiser les tâches répétitives d'une PME avec l'IA",
+          url: "/blog/automatiser-taches-repetitives-pme-avec-l-ia",
         },
       ],
     },
@@ -372,8 +439,19 @@ const fr: BlogContent = {
             "Pour une PME, l'essentiel n'est pas de courir après chaque nouveauté annoncée sur le GEO, mais de construire méthodiquement ce qui compte réellement : être identifiable, compréhensible, crédible et suffisamment documentée sur le web. C'est un travail de fond, qui rejoint directement les compétences déjà mobilisées en SEO, en contenu et en stratégie digitale — et c'est précisément le terrain sur lequel La Fabrik Numérique accompagne les entreprises qui veulent rester visibles, que la recherche se termine sur dix liens bleus ou sur une seule réponse générée par une IA.",
           ],
         },
+        {
+          h: "Pour aller plus loin",
+          p: [
+            "Pour comprendre en quoi le GEO diffère du référencement traditionnel et par où commencer, lisez notre comparaison [SEO vs GEO](/blog/seo-vs-geo-visibilite-internet-2026). Si vous éditez un logiciel, voyez aussi comment [faire apparaître son application dans les résultats des IA](/blog/faire-apparaitre-son-app-dans-les-resultats-des-ia).",
+          ],
+        },
       ],
-      links: [],
+      links: [
+        {
+          label: "SEO vs GEO : comment évolue la visibilité sur Internet en 2026 ?",
+          url: "/blog/seo-vs-geo-visibilite-internet-2026",
+        },
+      ],
     },
   ],
 };
@@ -429,6 +507,12 @@ const en: BlogContent = {
             "If you have a repetitive task in your business that deserves the same treatment — a tool built for exactly your workflow instead of a generic app bent out of shape to fit it — that's exactly the kind of project the studio likes to take on.",
           ],
         },
+        {
+          h: "Going further",
+          p: [
+            "Building your own tools quickly raises questions of method. We detailed how to [automate a small business's repetitive tasks with AI](/en/blog/automate-repetitive-sme-tasks-with-ai), and what VoxCut taught us about [why a SaaS can have users but no sales](/en/blog/why-a-saas-has-users-but-no-sales).",
+          ],
+        },
       ],
       links: [
         {
@@ -438,6 +522,14 @@ const en: BlogContent = {
         {
           label: "Discover InOneShot → inoneshot.fr",
           url: "https://inoneshot.fr",
+        },
+        {
+          label: "How can a small business automate repetitive tasks with AI?",
+          url: "/en/blog/automate-repetitive-sme-tasks-with-ai",
+        },
+        {
+          label: "Why can a SaaS have users but no sales?",
+          url: "/en/blog/why-a-saas-has-users-but-no-sales",
         },
       ],
     },
@@ -517,6 +609,12 @@ const en: BlogContent = {
             "Once the template is set up, running the same batch next month takes seconds.",
           ],
         },
+        {
+          h: "Going further",
+          p: [
+            "Mail merge is a good example of automation that needs no AI. To know when simple automation is enough and when AI becomes useful, read our guide to [automating a small business's repetitive tasks with AI](/en/blog/automate-repetitive-sme-tasks-with-ai).",
+          ],
+        },
       ],
       links: [
         {
@@ -526,6 +624,10 @@ const en: BlogContent = {
         {
           label: "Discover InOneShot → inoneshot.fr",
           url: "https://inoneshot.fr",
+        },
+        {
+          label: "How can a small business automate repetitive tasks with AI?",
+          url: "/en/blog/automate-repetitive-sme-tasks-with-ai",
         },
       ],
     },
@@ -574,8 +676,23 @@ const en: BlogContent = {
             "Only 11% of domains are cited by both ChatGPT and Google AI Overviews for the same query, so measurement needs to stay per-platform rather than aggregated. The highest-return starting move remains the simplest one: rewrite the opening lines of every page so they answer the user's question directly, in under sixty words.",
           ],
         },
+        {
+          h: "Going further",
+          p: [
+            "To place this approach against classic search, see our [SEO vs GEO](/en/blog/seo-vs-geo-online-visibility-2026) comparison. And if your app has visibility but few purchases, read [why a SaaS can have users but no sales](/en/blog/why-a-saas-has-users-but-no-sales).",
+          ],
+        },
       ],
-      links: [],
+      links: [
+        {
+          label: "SEO vs GEO: how is online visibility changing in 2026?",
+          url: "/en/blog/seo-vs-geo-online-visibility-2026",
+        },
+        {
+          label: "Why can a SaaS have users but no sales?",
+          url: "/en/blog/why-a-saas-has-users-but-no-sales",
+        },
+      ],
     },
     {
       id: "custom-tool-vs-saas-cost",
@@ -620,6 +737,12 @@ const en: BlogContent = {
             "Three questions usually settle it: is the task genuinely repetitive and time-consuming (if not, the investment never pays off)? Does an existing tool already cover 90% of it without workarounds (if so, custom software adds little)? And, above all, what does the current subscription really cost projected over three years, tier by tier — not just the number shown on the homepage.",
           ],
         },
+        {
+          h: "Going further",
+          p: [
+            "Cost is only one side of the equation. From the publisher's side, see [how to price a SaaS product](/en/blog/how-to-price-a-saas-product); to take action, our guide to [automating a small business's repetitive tasks with AI](/en/blog/automate-repetitive-sme-tasks-with-ai) shows where to start.",
+          ],
+        },
       ],
       links: [
         {
@@ -629,6 +752,14 @@ const en: BlogContent = {
         {
           label: "Discover InOneShot → inoneshot.fr",
           url: "https://inoneshot.fr",
+        },
+        {
+          label: "How do you price a SaaS product?",
+          url: "/en/blog/how-to-price-a-saas-product",
+        },
+        {
+          label: "How can a small business automate repetitive tasks with AI?",
+          url: "/en/blog/automate-repetitive-sme-tasks-with-ai",
         },
       ],
     },
@@ -674,11 +805,25 @@ const en: BlogContent = {
             "Before talking technology or design, one question settles most of it: does the visitor come to be convinced, or to get something done? The answer determines whether the project is a showcase site, an app, or both — and avoids paying for the complexity of an app when a site would do, or squeezing a real app behind the limits of a showcase site.",
           ],
         },
+        {
+          h: "Going further",
+          p: [
+            "Whichever you choose, your site will need to be found. Our [SEO vs GEO](/en/blog/seo-vs-geo-online-visibility-2026) article explains how visibility evolves with AI answer engines, and the guide on [automating a small business's tasks](/en/blog/automate-repetitive-sme-tasks-with-ai) shows how much time a web app can save.",
+          ],
+        },
       ],
       links: [
         {
           label: "Discover Nyctale → nyctale.fr",
           url: "https://nyctale.fr",
+        },
+        {
+          label: "SEO vs GEO: how is online visibility changing in 2026?",
+          url: "/en/blog/seo-vs-geo-online-visibility-2026",
+        },
+        {
+          label: "How can a small business automate repetitive tasks with AI?",
+          url: "/en/blog/automate-repetitive-sme-tasks-with-ai",
         },
       ],
     },
@@ -762,8 +907,19 @@ const en: BlogContent = {
             "The businesses that get this right treat visibility in AI search engines as one more expression of the same discipline that has always mattered online: being genuinely useful to the person asking the question, and structuring that usefulness so it can be found — by a person, a search engine, or an AI reading on their behalf.",
           ],
         },
+        {
+          h: "Going further",
+          p: [
+            "To understand how GEO differs from traditional search optimization and where to start, read our [SEO vs GEO](/en/blog/seo-vs-geo-online-visibility-2026) comparison. If you publish software, also see how to [get your app featured in AI search results](/en/blog/how-to-get-your-app-featured-in-ai-search-results).",
+          ],
+        },
       ],
-      links: [],
+      links: [
+        {
+          label: "SEO vs GEO: how is online visibility changing in 2026?",
+          url: "/en/blog/seo-vs-geo-online-visibility-2026",
+        },
+      ],
     },
   ],
 };
