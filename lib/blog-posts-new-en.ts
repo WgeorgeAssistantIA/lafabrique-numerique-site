@@ -211,7 +211,7 @@ export const newPostsEn: BlogPost[] = [
       {
         h: "Freemium, free trial or demo: which mechanism?",
         p: [
-          "Free exists to let people see the value before being asked to pay, but it must be calibrated. If the free version covers the whole need, nobody will upgrade; if it is too limited, nobody sees the point. On VectorPop, vectorization, presets and preview stay unlimited, and only export is counted, at three a day: the user sees the result, and pays when they want to take it away regularly or in high quality.",
+          "Free exists to let people see the value before being asked to pay, but it must be calibrated. If the free version covers the whole need, nobody will upgrade; if it is too limited, nobody sees the point. On VectorPop, vectorization, presets and preview stay unlimited, and only export is counted, with five exports included to test real files: the user sees the result, and pays when they want to take it away regularly or in high quality.",
           "A time-limited trial suits products whose value appears over time, such as a management tool. Freemium suits occasional-use products where everyone should be able to test without commitment. A demo, finally, mostly suits software sold to businesses, which want to see before buying.",
           "Whatever the mechanism, when you offer to charge matters more than the design of the offer. Field experience converges: proposing purchase right after the user got a concrete result converts better than showing it on opening. Show the value first, ask afterwards.",
         ],
@@ -238,7 +238,7 @@ export const newPostsEn: BlogPost[] = [
         p: [
             "The first was letting a price move several times in the same day. During the VoxCut Android decision, the figure swung between €14.99 and €19.99 before settling, after a debate that nearly led to an inconsistency between the annual and lifetime offers. The price finally chosen, €14.99 one-time, was the right one. But deciding fast, with no time to step back, is a risk: write down the options, sleep on it, decide the next day.",
             "The second is the inconsistency between pages, mentioned above. It seems anecdotal, but it blurs trust at the most sensitive moment. After a price change, always walk through every page where it appears: home, price grid, banner, checkout page, app-store listing.",
-            "The third was opening the free tier too widely. On VoxCut, a free version with unlimited exports had been considered, before we questioned it the same day: it opened the floodgates and left no reason to go paid. Free should show the value, not deliver it entirely. That is what led us to VectorPop's daily export quota.",
+            "The third was opening the free tier too widely. On VoxCut, a free version with unlimited exports had been considered, before we questioned it the same day: it opened the floodgates and left no reason to go paid. Free should show the value, not deliver it entirely. That is what led us to VectorPop's free export quota.",
         ],
       },
       {
