@@ -5,8 +5,27 @@ import { LanguageProvider, useLanguage, type Lang } from "@/lib/i18n";
 import { blogContent, getSlugPair, type BlogPost } from "@/lib/blog";
 import Header from "./Header";
 import Footer from "./Footer";
+import type { ReactNode } from "react";
 
 const SITE_URL = "https://www.lafabriknumerique.fr";
+
+// Liens internes : [ancre](/chemin) dans les paragraphes -> <Link> (meme onglet).
+function renderInline(text: string): ReactNode[] {
+  return text.split(/(\[[^\]]+\]\([^)]+\))/g).map((part, i) => {
+    const m = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+    if (!m) return part;
+    const cls = "text-cyan underline underline-offset-2 hover:text-amber";
+    return m[2].startsWith("/") ? (
+      <Link key={i} href={m[2]} className={cls}>
+        {m[1]}
+      </Link>
+    ) : (
+      <a key={i} href={m[2]} target="_blank" rel="noopener noreferrer" className={cls}>
+        {m[1]}
+      </a>
+    );
+  });
+}
 
 export default function BlogPostPage({
   lang,
@@ -93,7 +112,7 @@ function BlogArticle({ post }: { post: BlogPost }) {
                   <div className="mt-3 space-y-3">
                     {s.p.map((para, i) => (
                       <p key={i} className="text-muted leading-relaxed">
-                        {para}
+                        {renderInline(para)}
                       </p>
                     ))}
                   </div>
@@ -106,15 +125,25 @@ function BlogArticle({ post }: { post: BlogPost }) {
                 <p className="fig-label mb-4">{b.seeAlso}</p>
                 <div className="space-y-2">
                   {post.links.map((link) => (
-                    <a
-                      key={link.url}
-                      href={link.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="fig-label block text-cyan hover:text-amber transition-colors"
-                    >
-                      {link.label}
-                    </a>
+                    link.url.startsWith("/") ? (
+                      <Link
+                        key={link.url}
+                        href={link.url}
+                        className="fig-label block text-cyan hover:text-amber transition-colors"
+                      >
+                        {link.label} →
+                      </Link>
+                    ) : (
+                      <a
+                        key={link.url}
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="fig-label block text-cyan hover:text-amber transition-colors"
+                      >
+                        {link.label}
+                      </a>
+                    )
                   ))}
                 </div>
               </div>

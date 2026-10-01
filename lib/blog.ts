@@ -1,4 +1,6 @@
 import type { Lang } from "@/lib/i18n";
+import { newPostsFr } from "@/lib/blog-posts-new-fr";
+import { newPostsEn } from "@/lib/blog-posts-new-en";
 
 export type BlogSection = { h: string; p: string[] };
 export type BlogLink = { label: string; url: string };
@@ -41,6 +43,7 @@ const fr: BlogContent = {
   seeAlso: "Voir aussi",
   readMore: "Lire l'article →",
   posts: [
+    ...newPostsFr,
     {
       id: "why-own-tools",
       slug: "pourquoi-construire-ses-propres-outils",
@@ -385,6 +388,7 @@ const en: BlogContent = {
   seeAlso: "See also",
   readMore: "Read the article →",
   posts: [
+    ...newPostsEn,
     {
       id: "why-own-tools",
       slug: "why-we-build-our-own-tools",
