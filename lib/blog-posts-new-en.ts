@@ -165,6 +165,14 @@ export const newPostsEn: BlogPost[] = [
     ],
     links: [
       {
+        label: "Building a SaaS in 2026: from idea to first users",
+        url: "/en/blog/building-a-saas-in-2026-from-idea-to-first-users",
+      },
+      {
+        label: "Why users download an app without buying it",
+        url: "/en/blog/why-users-download-an-app-without-buying-it",
+      },
+      {
         label: "How to price a SaaS product",
         url: "/en/blog/how-to-price-a-saas-product",
       },
@@ -250,6 +258,10 @@ export const newPostsEn: BlogPost[] = [
       },
     ],
     links: [
+      {
+        label: "Freemium, free trial or subscription: how to monetise software",
+        url: "/en/blog/freemium-free-trial-or-subscription-how-to-monetise-software",
+      },
       {
         label: "Why a SaaS can have users but no sales",
         url: "/en/blog/why-a-saas-has-users-but-no-sales",
@@ -342,6 +354,279 @@ export const newPostsEn: BlogPost[] = [
       {
         label: "Discover InOneShot → inoneshot.fr",
         url: "https://inoneshot.fr",
+      },
+    ],
+  },
+  {
+    id: "build-saas-2026-first-users",
+    slug: "building-a-saas-in-2026-from-idea-to-first-users",
+    title: "Building a SaaS in 2026: From Idea to First Users",
+    date: "2026-10-08",
+    dateLabel: "October 8, 2026",
+    excerpt:
+      "A real account of what happens between launch and the first users, with figures from our own products, nothing dressed up.",
+    tags: ["SaaS", "Launch", "Lessons learned"],
+    sections: [
+      {
+        h: "Introduction",
+        p: [
+          "Between the idea for a SaaS and its first users, the technical part is the shortest. Time goes mostly into making the product visible, understanding who really uses it and measuring what happens. Here is what we observed with our own products, with figures, nothing dressed up.",
+          "This is the first episode of a series on building a SaaS in 2026. No miracle recipe: an account of what happens after going live. The figures cited date from late September 2026; we will update them as the series goes on. For a neighbouring angle, read [why a SaaS can have users but no sales](/en/blog/why-a-saas-has-users-but-no-sales).",
+        ],
+      },
+      {
+        h: "From idea to product: the part you control",
+        p: [
+          "Building is the part that depends on you: you can move alone, you see the result, you fix things. It is also the most comforting, which is why we often spend too much time on it. A working product is only the starting point: it does not prove anyone needs it.",
+          "A useful rule: define early a precise action that proves a user got value. For VoxCut, it is the first export of a cleaned file. For VidScope, it is a tools report read to the end. Without that definition, you do not know what to measure.",
+        ],
+      },
+      {
+        h: "After launch: the silence",
+        p: [
+          "Launch is often followed by silence. For VidScope, between 13 and 23 September, about 83 unique visitors came to the site in ten days, and only 3 analyses had been run in total, for no orders. Yet more than fifteen directories had been submitted, articles published and emails sent. The problem was not the volume of actions but the choice of channels and how well the product fits an occasional use.",
+          "This silence is not a failure in itself: it is information. It says to measure before adding actions.",
+        ],
+      },
+      {
+        h: "First users do not look like what you imagine",
+        p: [
+          "On 29 September, VoxCut passed 1,000 cumulative downloads across all channels: 579 from GitHub, 282 from Google Play, 104 from Softpedia, 36 from the Microsoft Store and 5 from the Snap Store. On Android, 118 active installs and a rating of 4 out of 5 from 9 reviews.",
+          "What we take from it: downloads come from unexpected channels, and a download is not an active user. Look at where people actually arrive, not where you expected to find them.",
+        ],
+      },
+      {
+        h: "What should you measure from day one?",
+        p: [
+          "• Where visitors come from (channel, country)",
+          "• How many reach the first action of value",
+          "• How many return the next day, then the following week",
+          "• At which point they leave the journey",
+          "Set up these measures before launch, not after: a hole in the data cannot be filled in. For us, VidScope tracking only started on 13 September, which makes any comparison with the earlier period impossible.",
+        ],
+      },
+      {
+        h: "How do you keep your course without scattering?",
+        p: [
+          "• Pick a precise audience rather than \"everyone\": a technical creator does not have the same needs as an occasional viewer",
+          "• Focus on one or two channels and measure before opening a third",
+          "• Talk to your first users: one detailed reply is worth more than a hundred anonymous visits",
+          "• Decide in advance what will make you change direction",
+          "On pricing, our thinking is detailed in [how to price a SaaS product](/en/blog/how-to-price-a-saas-product).",
+        ],
+      },
+      {
+        h: "Conclusion: the first year is a year of learning",
+        p: [
+          "A SaaS does not start at go-live: it starts when you understand who uses it and why. Our products, VoxCut at [voxcutpro.com](https://voxcutpro.com) and VidScope at [vidscope.fr](https://www.vidscope.fr), are at that stage. In the next episode, we will talk about monetisation: freemium, trial or subscription.",
+        ],
+      },
+      {
+        h: "Frequently asked questions",
+        p: [
+          "How long does it take to get your first users? It depends on the channel and the product. First visitors can come within days, but active users, and even more so customers, often take much longer.",
+          "Which figures should you track at launch? The source of visitors, the share that reaches the first action of value, return at day 1 and day 7, and the step where people leave.",
+          "Should you launch on Product Hunt? It is one channel among others. It brings one-off traffic, not necessarily active users. Measure what it really brings.",
+          "Is a download a user? No. A download is not an active user: look at active installs and next-day return.",
+          "Should you measure before or after launch? Before. Data missing at launch cannot be rebuilt.",
+        ],
+      },
+    ],
+    links: [
+      {
+        label: "Why a SaaS has users but no sales",
+        url: "/en/blog/why-a-saas-has-users-but-no-sales",
+      },
+      {
+        label: "How to price a SaaS product",
+        url: "/en/blog/how-to-price-a-saas-product",
+      },
+      {
+        label: "Discover VidScope → vidscope.fr",
+        url: "https://www.vidscope.fr",
+      },
+    ],
+  },
+  {
+    id: "freemium-trial-subscription",
+    slug: "freemium-free-trial-or-subscription-how-to-monetise-software",
+    title: "Freemium, Free Trial or Subscription: How to Monetise Software",
+    date: "2026-10-08",
+    dateLabel: "October 8, 2026",
+    excerpt:
+      "Three models, their strengths, their pitfalls, and what we chose for our own software. An honest comparison, no magic formula.",
+    tags: ["SaaS", "Monetisation", "Pricing"],
+    sections: [
+      {
+        h: "Introduction",
+        p: [
+          "There is no universal model. Freemium maximises users but dilutes conversion, a free trial filters towards serious users, a subscription funds a product that evolves, and a one-time purchase suits tools used a few times a year. The right choice depends on frequency of use and the product's repeated value.",
+          "This is the second episode of our series on building a SaaS. After the [first episode](/en/blog/building-a-saas-in-2026-from-idea-to-first-users), here is the question that follows every launch: how to earn money from software. We chose different models for different products, and we explain why.",
+        ],
+      },
+      {
+        h: "Freemium: many users, few payers",
+        p: [
+          "Freemium offers a limited free version and sells a full one. It lowers the entry barrier and feeds word of mouth. Its trap: the free version must be useful enough to attract and limited enough to make people want to pay. Too generous, nobody pays; too restricted, nobody tries.",
+          "Studies on paywalls contradict each other depending on how conversion is measured (from download or from the payment screen). Keep caution in mind: no general rule replaces a test on your own product.",
+        ],
+      },
+      {
+        h: "Free trial: a filter, not a gift",
+        p: [
+          "A trial gives access to everything for a limited time. It suits products whose value shows with use. Its trap: the user may forget to try, or lose the thread before it ends. It also needs a clear path to value before the deadline.",
+        ],
+      },
+      {
+        h: "Subscription: for value that renews",
+        p: [
+          "A subscription makes sense when the product delivers a continuous service: hosting, updated data, regular use. It funds the product's evolution. But it meets resistance: people dislike paying monthly for a tool they use twice a year.",
+        ],
+      },
+      {
+        h: "One-time purchase: for occasional tools",
+        p: [
+          "For software you open now and then, a single payment is often better accepted. The downside for the vendor: one-off revenue, no recurrence, which means you must keep finding new customers.",
+        ],
+      },
+      {
+        h: "What we chose, product by product",
+        p: [
+          "• VectorPop: free with 5 SVG exports to try on real files, then a Pro version at €39 as a one-time payment. A vectorizer is used a few times a year: a subscription would be poorly received.",
+          "• VoxCut: a free version with a duration limit per file, then a Pro version as a one-time purchase. Users process files of widely varying lengths.",
+          "• VidScope: a free plan of 2 analyses, a €9 pass for 5 videos, a Pro subscription at €19 a month for 15 analyses and a lifetime licence at €149, with a launch offer at €79. The cost of an analysis (AI models) justifies quotas.",
+          "These choices are not final. We measure them, as explained in [how to price a SaaS product](/en/blog/how-to-price-a-saas-product).",
+        ],
+      },
+      {
+        h: "How do you choose for your product?",
+        p: [
+          "• How often does the user need it? Rarely: one-time purchase. Regularly: subscription.",
+          "• Does the product have a variable cost per use (compute, API)? Then plan quotas.",
+          "• Is the value visible in a few minutes? Then freemium or a trial works.",
+          "• Can you measure conversion? Without it you are choosing blind.",
+        ],
+      },
+      {
+        h: "Conclusion: pick a model, measure, then adjust",
+        p: [
+          "The monetisation model is a hypothesis. Choose the one that matches real use, measure conversion, and adjust with data. To understand why users do not pay, read [why a SaaS can have users but no sales](/en/blog/why-a-saas-has-users-but-no-sales). You can see our models at work on [vectorpop.fr](https://www.vectorpop.fr), [voxcutpro.com](https://voxcutpro.com) and [vidscope.fr](https://www.vidscope.fr).",
+        ],
+      },
+      {
+        h: "Frequently asked questions",
+        p: [
+          "What is the best monetisation model for software? There is none best in general: it depends on frequency of use, cost per use and the product's repeated value.",
+          "Freemium or free trial? Freemium attracts more people, a trial filters serious users. Test both on your product if possible.",
+          "Is a one-time purchase still viable? Yes for occasional tools, as long as you keep acquiring new customers, since revenue is not recurring.",
+          "When is a subscription justified? When the product delivers a continuous service or has a recurring cost, such as hosting or compute on every use.",
+          "How do you know the model works? By measuring conversion between free use, the payment screen and purchase.",
+        ],
+      },
+    ],
+    links: [
+      {
+        label: "Building a SaaS in 2026: from idea to first users",
+        url: "/en/blog/building-a-saas-in-2026-from-idea-to-first-users",
+      },
+      {
+        label: "How to price a SaaS product",
+        url: "/en/blog/how-to-price-a-saas-product",
+      },
+      {
+        label: "Discover VectorPop → vectorpop.fr",
+        url: "https://www.vectorpop.fr",
+      },
+    ],
+  },
+  {
+    id: "downloads-without-purchase",
+    slug: "why-users-download-an-app-without-buying-it",
+    title: "Why Users Download an App Without Buying It",
+    date: "2026-10-08",
+    dateLabel: "October 8, 2026",
+    excerpt:
+      "344 installs, 151 processed files, 240 paywall views, 26 clicks, no purchase: analysis of a real funnel and the hypotheses it allows.",
+    tags: ["SaaS", "Conversion", "Data"],
+    sections: [
+      {
+        h: "Introduction",
+        p: [
+          "People download many apps and buy almost none, for reasons a numbered funnel helps locate: the audience, the moment payment is offered, what the free version allows and the price. Here is the real funnel of our Android app, nothing dressed up.",
+          "This is the third episode of our series on building a SaaS. The figures come from our PostHog tracking over 28 days, taken in early October 2026, for VoxCut on Android. \"People\" means installs: one user can count several times. For context, read [why a SaaS can have users but no sales](/en/blog/why-a-saas-has-users-but-no-sales).",
+        ],
+      },
+      {
+        h: "What does the real funnel look like?",
+        p: [
+          "Over 28 days: 344 installs. 151 people processed a file. 240 saw the payment screen. 26 clicked to buy. No real purchase was recorded. The only purchase event in the data was a licence test we ran ourselves.",
+          "Another figure: of 146 people who finished a processing, only 12 came back on a second day.",
+        ],
+      },
+      {
+        h: "Which hypotheses do these figures allow?",
+        p: [
+          "A funnel does not say why, it says where. Three leads stand out.",
+          "• An audience not ready to pay that price. Paywall views come mostly from countries with lower purchasing power: 53 from India, 40 from the United States, then Egypt, Brazil and Bangladesh. The starting price may be too high there.",
+          "• A block at the wrong moment. A five-minute duration limit blocked 71 people, only two of whom clicked to buy. A hard block with no alternative discourages more than it converts.",
+          "• An occasional need. Few people return the next day: a tool you use once does not call for a purchase.",
+        ],
+      },
+      {
+        h: "Why does the moment of the block matter?",
+        p: [
+          "On the PC version of the same app, someone who exceeds the limit is offered a partial export of the first minutes; on Android, the block was hard. A partial export lets people see the value before being asked to pay. When you block without showing a result, the user has seen nothing that justifies paying. It is the lesson that recurs in every paywall study: timing matters as much as price.",
+        ],
+      },
+      {
+        h: "What are we testing to understand?",
+        p: [
+          "Rather than changing everything, we test one change at a time, to know which one worked.",
+          "• A per-country price: in India, the lifetime price was lowered from 1,650 to 249 rupees on 5 October, keeping other countries as controls, with a review planned about four weeks later",
+          "• A partial export in place of the hard block, planned for a coming version",
+          "• Recording the real file duration at the moment of the block, which was missing for understanding",
+          "We will publish the results, good or bad, in a later episode.",
+        ],
+      },
+      {
+        h: "How do you read your own figures without fooling yourself?",
+        p: [
+          "• Distinguish installs from real people",
+          "• Look at conversion by country, not only overall",
+          "• Beware of small numbers: 26 clicks allow no fine conclusion",
+          "• Change a single variable at a time",
+          "To choose a business model knowingly, read [freemium, free trial or subscription](/en/blog/freemium-free-trial-or-subscription-how-to-monetise-software).",
+        ],
+      },
+      {
+        h: "Conclusion: a download is a question, not an answer",
+        p: [
+          "A download shows curiosity, not purchase intent. The funnel says where people are lost; it is up to us to test why. You can follow VoxCut's progress at [voxcutpro.com](https://voxcutpro.com).",
+        ],
+      },
+      {
+        h: "Frequently asked questions",
+        p: [
+          "Why do people download without buying? Curiosity, an occasional need, a price unsuited to the country, a block at the wrong moment: a numbered funnel helps see which of these dominates.",
+          "What is a normal conversion rate? It varies enormously with the product and how you measure. Compare yourself with your own history rather than averages.",
+          "Should you lower the price? Maybe, but test it without changing anything else, and by country if your audience is international.",
+          "Is a hard block a bad idea? Often yes: showing a result first, such as a partial export, gives a reason to pay.",
+          "How much data do you need to conclude? Far more than a few dozen clicks. With small numbers, talk about hypotheses, not conclusions.",
+        ],
+      },
+    ],
+    links: [
+      {
+        label: "Why a SaaS has users but no sales",
+        url: "/en/blog/why-a-saas-has-users-but-no-sales",
+      },
+      {
+        label: "Freemium, free trial or subscription",
+        url: "/en/blog/freemium-free-trial-or-subscription-how-to-monetise-software",
+      },
+      {
+        label: "Discover VoxCut → voxcutpro.com",
+        url: "https://voxcutpro.com",
       },
     ],
   },

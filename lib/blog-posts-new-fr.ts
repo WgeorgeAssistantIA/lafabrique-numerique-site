@@ -165,6 +165,14 @@ export const newPostsFr: BlogPost[] = [
     ],
     links: [
       {
+        label: "Créer un SaaS en 2026 : de l'idée aux premiers utilisateurs",
+        url: "/blog/creer-un-saas-en-2026-de-l-idee-aux-premiers-utilisateurs",
+      },
+      {
+        label: "Pourquoi les utilisateurs téléchargent une application sans l'acheter",
+        url: "/blog/pourquoi-les-utilisateurs-telechargent-une-application-sans-l-acheter",
+      },
+      {
         label: "Comment fixer le prix d'un logiciel SaaS",
         url: "/blog/comment-fixer-le-prix-d-un-logiciel-saas",
       },
@@ -250,6 +258,10 @@ export const newPostsFr: BlogPost[] = [
       },
     ],
     links: [
+      {
+        label: "Freemium, essai gratuit ou abonnement : comment monétiser un logiciel",
+        url: "/blog/freemium-essai-gratuit-ou-abonnement-comment-monetiser-un-logiciel",
+      },
       {
         label: "Pourquoi un SaaS peut avoir des utilisateurs mais aucune vente",
         url: "/blog/pourquoi-un-saas-a-des-utilisateurs-mais-aucune-vente",
@@ -342,6 +354,282 @@ export const newPostsFr: BlogPost[] = [
       {
         label: "Découvrir InOneShot → inoneshot.fr",
         url: "https://inoneshot.fr",
+      },
+    ],
+  },
+  {
+    id: "build-saas-2026-first-users",
+    slug: "creer-un-saas-en-2026-de-l-idee-aux-premiers-utilisateurs",
+    title: "Créer un SaaS en 2026 : de l'idée aux premiers utilisateurs",
+    date: "2026-10-08",
+    dateLabel: "8 octobre 2026",
+    excerpt:
+      "Retour d'expérience réel : ce qui se passe entre le lancement et les premiers utilisateurs, avec les chiffres de nos propres produits, sans enjoliver.",
+    tags: ["SaaS", "Lancement", "Retour d'expérience"],
+    sections: [
+      {
+        h: "Introduction",
+        p: [
+          "Entre l'idée d'un SaaS et ses premiers utilisateurs, la partie technique est la plus courte. Le temps passe surtout à rendre le produit visible, à comprendre qui l'utilise vraiment et à mesurer ce qui se passe. Voici ce que nous avons observé avec nos propres produits, chiffres à l'appui, sans enjoliver.",
+          "C'est le premier épisode d'une série sur la construction d'un SaaS en 2026. Pas de recette miracle : un récit de ce qui se passe après la mise en ligne. Les chiffres cités datent de fin septembre 2026 ; nous les mettrons à jour au fil de la série. Pour un angle voisin, lisez [pourquoi un SaaS peut avoir des utilisateurs mais aucune vente](/blog/pourquoi-un-saas-a-des-utilisateurs-mais-aucune-vente).",
+        ],
+      },
+      {
+        h: "De l'idée au produit : la partie que l'on maîtrise",
+        p: [
+          "Construire est la partie qui dépend de vous : on peut avancer seul, on voit le résultat, on corrige. C'est aussi la plus rassurante, ce qui explique pourquoi on y passe souvent trop de temps. Un produit fonctionnel n'est que le point de départ : il ne prouve pas qu'on en a besoin.",
+          "Une règle utile : définir tôt une action précise qui prouve qu'un utilisateur a obtenu de la valeur. Pour VoxCut, c'est le premier export d'un fichier nettoyé. Pour VidScope, c'est un rapport d'outils lu jusqu'au bout. Sans cette définition, on ne sait pas quoi mesurer.",
+        ],
+      },
+      {
+        h: "Après le lancement : le silence",
+        p: [
+          "Le lancement est souvent suivi d'un silence. Pour VidScope, entre le 13 et le 23 septembre, environ 83 visiteurs uniques sont venus sur le site en dix jours, et 3 analyses seulement avaient été faites au total, pour aucune commande. Pourtant, plus de quinze annuaires avaient été soumis, des articles publiés et des mails envoyés. Le problème n'était pas le volume d'actions mais le choix des canaux et l'adéquation du produit à un usage ponctuel.",
+          "Ce silence n'est pas un échec en soi : c'est l'information. Il dit qu'il faut mesurer avant d'ajouter des actions.",
+        ],
+      },
+      {
+        h: "Les premiers utilisateurs ne ressemblent pas à ce qu'on imagine",
+        p: [
+          "Le 29 septembre, VoxCut a franchi 1 000 téléchargements cumulés tous canaux : 579 depuis GitHub, 282 depuis Google Play, 104 depuis Softpedia, 36 depuis le Microsoft Store et 5 depuis le Snap Store. Sur Android, 118 installations actives et une note de 4 sur 5 sur 9 avis.",
+          "Ce qu'on retient : les téléchargements viennent de canaux inattendus, et un téléchargement n'est pas un utilisateur actif. Il faut regarder où les gens arrivent réellement, pas où on pensait les trouver.",
+        ],
+      },
+      {
+        h: "Que mesurer dès le premier jour ?",
+        p: [
+          "• D'où viennent les visiteurs (canal, pays)",
+          "• Combien arrivent jusqu'à la première action de valeur",
+          "• Combien reviennent le lendemain, puis la semaine suivante",
+          "• À quel moment ils quittent le parcours",
+          "Installez ces mesures avant le lancement, pas après : un trou dans les données ne se rattrape pas. Pour nous, le suivi de VidScope n'a démarré que le 13 septembre, ce qui rend impossible toute comparaison avec la période précédente.",
+        ],
+      },
+      {
+        h: "Comment garder le cap sans s'éparpiller ?",
+        p: [
+          "• Choisissez un public précis plutôt que « tout le monde » : un créateur technique n'a pas les mêmes besoins qu'un spectateur occasionnel",
+          "• Concentrez-vous sur un ou deux canaux et mesurez avant d'en ouvrir un troisième",
+          "• Parlez à vos premiers utilisateurs : un seul retour détaillé vaut plus que cent visites anonymes",
+          "• Fixez à l'avance ce qui vous fera changer de direction",
+          "Sur le prix, notre réflexion est détaillée dans [comment fixer le prix d'un logiciel SaaS](/blog/comment-fixer-le-prix-d-un-logiciel-saas).",
+        ],
+      },
+      {
+        h: "Conclusion : la première année est une année d'apprentissage",
+        p: [
+          "Un SaaS ne démarre pas à la mise en ligne : il démarre quand on comprend qui l'utilise et pourquoi. Nos produits, VoxCut sur [voxcutpro.com](https://voxcutpro.com) et VidScope sur [vidscope.fr](https://www.vidscope.fr), en sont à cette étape. Dans le prochain épisode, nous parlerons de monétisation : freemium, essai ou abonnement.",
+        ],
+      },
+      {
+        h: "Questions fréquentes",
+        p: [
+          "Combien de temps faut-il pour avoir ses premiers utilisateurs ? Cela dépend du canal et du produit. Les premiers visiteurs peuvent venir en quelques jours, mais des utilisateurs actifs, et plus encore des clients, demandent souvent bien plus de temps.",
+          "Quels chiffres suivre au lancement ? La source des visiteurs, la part qui atteint la première action de valeur, le retour à J+1 et J+7, et l'étape où les gens quittent.",
+          "Faut-il lancer sur Product Hunt ? C'est un canal parmi d'autres. Il apporte du trafic ponctuel, pas forcément des utilisateurs actifs. Mesurez ce qu'il rapporte vraiment.",
+          "Un téléchargement est-il un utilisateur ? Non. Un téléchargement n'est pas un utilisateur actif : regardez les installations actives et le retour au lendemain.",
+          "Faut-il mesurer avant ou après le lancement ? Avant. Les données manquantes au lancement ne se reconstituent pas.",
+          "---",
+        ],
+      },
+    ],
+    links: [
+      {
+        label: "Pourquoi un SaaS peut avoir des utilisateurs mais aucune vente",
+        url: "/blog/pourquoi-un-saas-a-des-utilisateurs-mais-aucune-vente",
+      },
+      {
+        label: "Comment fixer le prix d'un logiciel SaaS",
+        url: "/blog/comment-fixer-le-prix-d-un-logiciel-saas",
+      },
+      {
+        label: "Découvrir VidScope → vidscope.fr",
+        url: "https://www.vidscope.fr",
+      },
+    ],
+  },
+  {
+    id: "freemium-trial-subscription",
+    slug: "freemium-essai-gratuit-ou-abonnement-comment-monetiser-un-logiciel",
+    title: "Freemium, essai gratuit ou abonnement : comment monétiser un logiciel ?",
+    date: "2026-10-08",
+    dateLabel: "8 octobre 2026",
+    excerpt:
+      "Trois modèles, leurs forces, leurs pièges, et ce que nous avons choisi pour nos propres logiciels. Un comparatif honnête, sans formule miracle.",
+    tags: ["SaaS", "Monétisation", "Pricing"],
+    sections: [
+      {
+        h: "Introduction",
+        p: [
+          "Il n'existe pas de modèle universel. Le freemium maximise les utilisateurs mais dilue la conversion, l'essai gratuit filtre vers des utilisateurs sérieux, l'abonnement fait vivre un produit qui évolue, et l'achat unique convient aux outils qu'on utilise quelques fois par an. Le bon choix dépend de la fréquence d'usage et de la valeur répétée du produit.",
+          "C'est le deuxième épisode de notre série sur la construction d'un SaaS. Après le [premier épisode](/blog/creer-un-saas-en-2026-de-l-idee-aux-premiers-utilisateurs), place à la question qui suit toute mise en ligne : comment gagner de l'argent avec un logiciel. Nous avons choisi des modèles différents selon nos produits, et nous expliquons pourquoi.",
+        ],
+      },
+      {
+        h: "Le freemium : beaucoup d'utilisateurs, peu de payants",
+        p: [
+          "Le freemium offre une version gratuite limitée et vend une version complète. Il abaisse la barrière d'entrée et nourrit le bouche-à-oreille. Son piège : la version gratuite doit être assez utile pour attirer, et assez limitée pour donner envie de payer. Trop généreuse, personne ne paie ; trop restreinte, personne n'essaie.",
+          "Les études sur les paywalls se contredisent selon la façon de mesurer (conversion depuis le téléchargement ou depuis l'écran de paiement). Retenez la prudence : aucune règle générale ne remplace un test sur votre produit.",
+        ],
+      },
+      {
+        h: "L'essai gratuit : un filtre, pas un cadeau",
+        p: [
+          "Un essai donne accès à tout pendant une durée limitée. Il convient aux produits dont la valeur apparaît avec l'usage. Son piège : l'utilisateur peut oublier d'essayer, ou perdre le fil avant la fin. Il demande aussi un parcours clair pour atteindre la valeur avant l'échéance.",
+        ],
+      },
+      {
+        h: "L'abonnement : pour une valeur qui se renouvelle",
+        p: [
+          "Un abonnement a du sens quand le produit rend un service continu : hébergement, données mises à jour, usage régulier. Il finance l'évolution du produit. Mais il se heurte à une résistance : les gens n'aiment pas payer chaque mois un outil qu'ils utilisent deux fois par an.",
+        ],
+      },
+      {
+        h: "L'achat unique : pour les outils occasionnels",
+        p: [
+          "Pour un logiciel qu'on ouvre de temps en temps, un paiement unique est souvent mieux accepté. L'inconvénient pour l'éditeur : un revenu ponctuel, sans récurrence, qui demande de continuer à trouver de nouveaux clients.",
+        ],
+      },
+      {
+        h: "Ce que nous avons choisi, produit par produit",
+        p: [
+          "• VectorPop : gratuit avec 5 exports SVG pour essayer sur de vrais fichiers, puis une version Pro à 39 € en paiement unique. Un vectoriseur se sert quelques fois par an : un abonnement serait mal perçu.",
+          "• VoxCut : une version gratuite avec une limite de durée par fichier, puis une version Pro en achat unique. Le public traite des fichiers de durées très variables.",
+          "• VidScope : une formule gratuite de 2 analyses, un pass de 9 € pour 5 vidéos, un abonnement Pro à 19 € par mois pour 15 analyses et une licence à vie à 149 €, avec une offre de lancement à 79 €. Le coût d'une analyse (modèles d'IA) justifie des quotas.",
+          "Ces choix ne sont pas définitifs. Nous les mesurons, comme expliqué dans [comment fixer le prix d'un logiciel SaaS](/blog/comment-fixer-le-prix-d-un-logiciel-saas).",
+        ],
+      },
+      {
+        h: "Comment choisir pour votre produit ?",
+        p: [
+          "• À quelle fréquence l'utilisateur en a-t-il besoin ? Rare : achat unique. Régulier : abonnement.",
+          "• Le produit a-t-il un coût variable à chaque usage (calcul, API) ? Alors prévoyez des quotas.",
+          "• La valeur se voit-elle en quelques minutes ? Alors le freemium ou l'essai fonctionnent.",
+          "• Pouvez-vous mesurer la conversion ? Sans cela, vous choisissez à l'aveugle.",
+        ],
+      },
+      {
+        h: "Conclusion : choisissez un modèle, mesurez, puis ajustez",
+        p: [
+          "Le modèle de monétisation est une hypothèse. Choisissez celui qui correspond à l'usage réel, mesurez la conversion, et ajustez avec des données. Pour comprendre pourquoi des utilisateurs ne paient pas, lisez [pourquoi un SaaS peut avoir des utilisateurs mais aucune vente](/blog/pourquoi-un-saas-a-des-utilisateurs-mais-aucune-vente). Vous pouvez voir nos modèles à l'œuvre sur [vectorpop.fr](https://www.vectorpop.fr), [voxcutpro.com](https://voxcutpro.com) et [vidscope.fr](https://www.vidscope.fr).",
+        ],
+      },
+      {
+        h: "Questions fréquentes",
+        p: [
+          "Quel est le meilleur modèle de monétisation pour un logiciel ? Il n'y en a pas de meilleur en général : cela dépend de la fréquence d'usage, du coût par usage et de la valeur répétée du produit.",
+          "Freemium ou essai gratuit ? Le freemium attire plus de monde, l'essai filtre les utilisateurs sérieux. Testez les deux sur votre produit si possible.",
+          "L'achat unique est-il encore viable ? Oui pour des outils occasionnels, à condition de continuer à acquérir de nouveaux clients, puisque le revenu n'est pas récurrent.",
+          "Quand un abonnement est-il justifié ? Quand le produit rend un service continu ou a un coût récurrent, comme l'hébergement ou des calculs à chaque usage.",
+          "Comment savoir si le modèle fonctionne ? En mesurant la conversion entre l'usage gratuit, l'écran de paiement et l'achat.",
+          "---",
+        ],
+      },
+    ],
+    links: [
+      {
+        label: "Créer un SaaS en 2026 : de l'idée aux premiers utilisateurs",
+        url: "/blog/creer-un-saas-en-2026-de-l-idee-aux-premiers-utilisateurs",
+      },
+      {
+        label: "Comment fixer le prix d'un logiciel SaaS",
+        url: "/blog/comment-fixer-le-prix-d-un-logiciel-saas",
+      },
+      {
+        label: "Découvrir VectorPop → vectorpop.fr",
+        url: "https://www.vectorpop.fr",
+      },
+    ],
+  },
+  {
+    id: "downloads-without-purchase",
+    slug: "pourquoi-les-utilisateurs-telechargent-une-application-sans-l-acheter",
+    title: "Pourquoi les utilisateurs téléchargent une application sans l'acheter ?",
+    date: "2026-10-08",
+    dateLabel: "8 octobre 2026",
+    excerpt:
+      "344 installations, 151 traitements, 240 vues du paywall, 26 clics, aucun achat : l'analyse d'un entonnoir réel et les hypothèses qu'il permet.",
+    tags: ["SaaS", "Conversion", "Données"],
+    sections: [
+      {
+        h: "Introduction",
+        p: [
+          "Les gens téléchargent beaucoup d'applications et n'en achètent presque aucune, pour des raisons qu'un entonnoir chiffré permet de localiser : le public, le moment où le paiement est proposé, ce que la version gratuite laisse faire et le prix. Voici l'entonnoir réel de notre application Android, sans enjolivement.",
+          "C'est le troisième épisode de notre série sur la construction d'un SaaS. Les chiffres viennent de notre suivi PostHog sur 28 jours, relevés début octobre 2026, pour VoxCut sur Android. « Personnes » veut dire installations : un même utilisateur peut compter plusieurs fois. Pour le contexte, lisez [pourquoi un SaaS peut avoir des utilisateurs mais aucune vente](/blog/pourquoi-un-saas-a-des-utilisateurs-mais-aucune-vente).",
+        ],
+      },
+      {
+        h: "À quoi ressemble l'entonnoir réel ?",
+        p: [
+          "Sur 28 jours : 344 installations. 151 personnes ont traité un fichier. 240 ont vu l'écran de paiement. 26 ont cliqué sur acheter. Aucun achat réel n'a été enregistré. Le seul événement d'achat vu dans les données était un test de licence fait par nous.",
+          "Autre chiffre : sur 146 personnes qui ont terminé un traitement, 12 seulement sont revenues un deuxième jour.",
+        ],
+      },
+      {
+        h: "Quelles hypothèses ces chiffres permettent-ils ?",
+        p: [
+          "Un entonnoir ne dit pas pourquoi, il dit où. Trois pistes ressortent.",
+          "• Un public qui n'est pas prêt à payer ce prix. Les vues du paywall viennent surtout de pays à faible pouvoir d'achat : 53 pour l'Inde, 40 pour les États-Unis, puis l'Égypte, le Brésil et le Bangladesh. Le prix de départ y est peut-être trop élevé.",
+          "• Un blocage au mauvais moment. Une limite de durée de cinq minutes a bloqué 71 personnes, dont deux seulement ont cliqué pour acheter. Un blocage sec sans alternative décourage plus qu'il ne convertit.",
+          "• Un besoin occasionnel. Peu de gens reviennent le lendemain : un outil qu'on utilise une fois n'appelle pas un achat.",
+        ],
+      },
+      {
+        h: "Pourquoi le moment du blocage compte-t-il ?",
+        p: [
+          "Sur la version PC de la même application, une personne qui dépasse la limite se voit proposer un export partiel des premières minutes ; sur Android, le blocage était sec. Un export partiel laisse voir la valeur avant de demander de payer. Quand on bloque sans montrer de résultat, l'utilisateur n'a rien vu qui justifie de payer. C'est la leçon qui revient dans toutes les études sur les paywalls : le moment compte autant que le prix.",
+        ],
+      },
+      {
+        h: "Que testons-nous pour comprendre ?",
+        p: [
+          "Plutôt que de tout changer, nous testons un changement à la fois, pour savoir lequel a joué.",
+          "• Un prix par pays : en Inde, le prix à vie a été ramené de 1 650 à 249 roupies le 5 octobre, en gardant d'autres pays comme témoins, avec un bilan prévu environ quatre semaines plus tard",
+          "• Un export partiel à la place du blocage sec, prévu dans une prochaine version",
+          "• L'enregistrement de la durée réelle des fichiers au moment du blocage, qui manquait pour comprendre",
+          "Nous publierons les résultats, bons ou mauvais, dans un prochain épisode.",
+        ],
+      },
+      {
+        h: "Comment lire vos propres chiffres sans vous tromper ?",
+        p: [
+          "• Distinguez installations et personnes réelles",
+          "• Regardez la conversion par pays, pas seulement globale",
+          "• Méfiez-vous des petits nombres : 26 clics n'autorisent aucune conclusion fine",
+          "• Changez une seule variable à la fois",
+          "Pour choisir un modèle économique en connaissance de cause, lisez [freemium, essai gratuit ou abonnement](/blog/freemium-essai-gratuit-ou-abonnement-comment-monetiser-un-logiciel).",
+        ],
+      },
+      {
+        h: "Conclusion : un téléchargement est une question, pas une réponse",
+        p: [
+          "Un téléchargement montre de la curiosité, pas une intention d'achat. L'entonnoir dit où l'on perd les gens ; à nous de tester pourquoi. Vous pouvez suivre l'évolution de VoxCut sur [voxcutpro.com](https://voxcutpro.com).",
+        ],
+      },
+      {
+        h: "Questions fréquentes",
+        p: [
+          "Pourquoi les gens téléchargent-ils sans acheter ? Curiosité, besoin occasionnel, prix inadapté au pays, blocage au mauvais moment : un entonnoir chiffré aide à voir laquelle de ces causes domine.",
+          "Quel est un taux de conversion normal ? Il varie énormément selon le produit et la manière de mesurer. Comparez-vous à votre propre historique plutôt qu'à des moyennes.",
+          "Faut-il baisser le prix ? Peut-être, mais testez-le sans changer autre chose, et par pays si votre public est international.",
+          "Un blocage sec est-il une mauvaise idée ? Souvent oui : montrer d'abord un résultat, comme un export partiel, donne une raison de payer.",
+          "Combien de données faut-il pour conclure ? Beaucoup plus que quelques dizaines de clics. Avec de petits nombres, parlez d'hypothèses, pas de conclusions.",
+          "---",
+        ],
+      },
+    ],
+    links: [
+      {
+        label: "Pourquoi un SaaS peut avoir des utilisateurs mais aucune vente",
+        url: "/blog/pourquoi-un-saas-a-des-utilisateurs-mais-aucune-vente",
+      },
+      {
+        label: "Freemium, essai gratuit ou abonnement",
+        url: "/blog/freemium-essai-gratuit-ou-abonnement-comment-monetiser-un-logiciel",
+      },
+      {
+        label: "Découvrir VoxCut → voxcutpro.com",
+        url: "https://voxcutpro.com",
       },
     ],
   },
