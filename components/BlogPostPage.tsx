@@ -56,9 +56,14 @@ function BlogArticle({ post }: { post: BlogPost }) {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: post.title,
-    description: post.excerpt,
+    description: post.metaDescription ?? post.excerpt,
+    image: [`${SITE_URL}/img/og.png`],
     datePublished: post.date,
     dateModified: post.date,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": post.canonicalUrl ?? `${SITE_URL}${base}/${post.slug}`,
+    },
     author: {
       "@type": "Organization",
       name: "La Fabrik Numérique",

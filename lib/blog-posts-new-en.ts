@@ -7,6 +7,9 @@ export const newPostsEn: BlogPost[] = [
     id: "seo-vs-geo-2026",
     slug: "seo-vs-geo-online-visibility-2026",
     title: "SEO vs GEO: How Is Online Visibility Changing in 2026?",
+    metaTitle: "SEO vs GEO: Online Visibility Trends in 2026",
+    metaDescription:
+      "SEO is joined by GEO: getting cited in AI answers instead of just ranking on Google. What changes in 2026 and where small businesses should start.",
     date: "2026-10-01",
     dateLabel: "October 1, 2026",
     excerpt:
@@ -93,6 +96,9 @@ export const newPostsEn: BlogPost[] = [
     id: "saas-users-no-sales",
     slug: "why-a-saas-has-users-but-no-sales",
     title: "Why Can a SaaS Have Users but No Sales?",
+    metaTitle: "Why a SaaS Can Have Active Users but Zero Sales",
+    metaDescription:
+      "Downloads and traffic but zero sales: a transparent post-mortem of our own apps, with real conversion funnel numbers and diagnostic steps.",
     date: "2026-10-01",
     dateLabel: "October 1, 2026",
     excerpt:
@@ -186,6 +192,9 @@ export const newPostsEn: BlogPost[] = [
     id: "saas-pricing",
     slug: "how-to-price-a-saas-product",
     title: "How Do You Price a SaaS Product?",
+    metaTitle: "How to Price a SaaS Product: Models, Tiers & Pitfalls",
+    metaDescription:
+      "Subscription, one-time purchase or freemium: how to choose the right pricing model for indie software, with real examples from our products.",
     date: "2026-10-01",
     dateLabel: "October 1, 2026",
     excerpt:
@@ -276,6 +285,9 @@ export const newPostsEn: BlogPost[] = [
     id: "automate-sme-tasks-ai",
     slug: "automate-repetitive-sme-tasks-with-ai",
     title: "How Can a Small Business Automate Repetitive Tasks with AI?",
+    metaTitle: "Automate Repetitive Business Tasks with AI: A Guide",
+    metaDescription:
+      "Which tasks to automate first, when AI beats simple scripts, and how to minimize risk: a practical automation roadmap for small businesses.",
     date: "2026-10-01",
     dateLabel: "October 1, 2026",
     excerpt:
@@ -361,6 +373,9 @@ export const newPostsEn: BlogPost[] = [
     id: "build-saas-2026-first-users",
     slug: "building-a-saas-in-2026-from-idea-to-first-users",
     title: "Building a SaaS in 2026: From Idea to First Users",
+    metaTitle: "Building a SaaS in 2026: From Idea to First Users",
+    metaDescription:
+      "A transparent field report on what happens between product launch and your first active users, with real figures from our own software apps.",
     date: "2026-10-08",
     dateLabel: "October 8, 2026",
     excerpt:
@@ -451,6 +466,9 @@ export const newPostsEn: BlogPost[] = [
     id: "freemium-trial-subscription",
     slug: "freemium-free-trial-or-subscription-how-to-monetise-software",
     title: "Freemium, Free Trial or Subscription: How to Monetise Software",
+    metaTitle: "Freemium, Free Trial or Subscription: Software Models",
+    metaDescription:
+      "Freemium, free trial, or subscription: an honest comparison of software monetisation models, trade-offs, and what we chose for our apps.",
     date: "2026-10-08",
     dateLabel: "October 8, 2026",
     excerpt:
@@ -543,6 +561,9 @@ export const newPostsEn: BlogPost[] = [
     id: "downloads-without-purchase",
     slug: "why-users-download-an-app-without-buying-it",
     title: "Why Users Download an App Without Buying It",
+    metaTitle: "Why Users Download an App Without Buying It | La Fabrik",
+    metaDescription:
+      "344 installs, 240 paywall views, 0 purchases: dissecting a real software conversion funnel to understand why free users don't convert.",
     date: "2026-10-08",
     dateLabel: "October 8, 2026",
     excerpt:

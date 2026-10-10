@@ -3,7 +3,7 @@ export type Lang = "fr" | "en";
 const fr = {
   metaTitle: "La Fabrik Numérique — Atelier de création web & logiciel",
   metaDesc:
-    "La Fabrik Numérique conçoit des sites web, applications et logiciels sur mesure. Circuits & idées.",
+    "Atelier de développement web et logiciel sur mesure basé à Roanne. Création de sites vitrines, applications web et SaaS performants. Devis sous 24h.",
   nav: {
     services: "Services",
     competences: "Compétences",
@@ -367,7 +367,7 @@ export type Translation = typeof fr;
 const en: Translation = {
   metaTitle: "La Fabrik Numérique — Web & software creation studio",
   metaDesc:
-    "La Fabrik Numérique designs custom websites, applications and software. Circuits & ideas.",
+    "Bespoke web and software engineering studio. We build high-performance showcase websites, web applications, and custom SaaS tools. Get a quote in 24h.",
   nav: {
     services: "Services",
     competences: "Skills",

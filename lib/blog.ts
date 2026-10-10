@@ -10,6 +10,8 @@ export type BlogPost = {
   id: string;
   slug: string;
   title: string;
+  metaTitle?: string;
+  metaDescription?: string;
   date: string; // ISO, e.g. "2026-07-15"
   dateLabel: string;
   excerpt: string;
@@ -37,7 +39,7 @@ const fr: BlogContent = {
   figLabel: "FIG. 08 — JOURNAL DE L'ATELIER",
   indexTitle: "Journal de l'atelier",
   indexDesc:
-    "Notes de bord sur les logiciels qu'on construit, les choix techniques et les coulisses des projets.",
+    "Retrouvez les coulisses, tutoriels techniques et retours d'expérience sur le développement de nos logiciels, SaaS et applications web sur mesure.",
   backHome: "← Retour à l'accueil",
   backBlog: "← Retour au journal",
   seeAlso: "Voir aussi",
@@ -48,7 +50,10 @@ const fr: BlogContent = {
       id: "why-own-tools",
       slug: "pourquoi-construire-ses-propres-outils",
       title: "Pourquoi on construit ses propres outils : VoxCut & InOneShot",
-      date: "2026-07-15",
+      metaTitle: "Construire ses propres outils : VoxCut & InOneShot",
+    metaDescription:
+      "Quand l'outil cherché n'existe pas, on le conçoit soi-même. Retour sur la genèse de VoxCut et InOneShot, disponibles sur le Microsoft Store.",
+    date: "2026-07-15",
       dateLabel: "15 juillet 2026",
       excerpt:
         "Quand l'outil qu'on cherche n'existe pas, ou existe mal, on le construit soi-même. VoxCut et InOneShot sont nés de ce réflexe — et ils tournent aujourd'hui sur le Microsoft Store.",
@@ -115,7 +120,10 @@ const fr: BlogContent = {
       slug: "publipostage-pdf-depuis-excel",
       title:
         "Comment générer des centaines de PDF personnalisés depuis un Excel (sans copier-coller)",
-      date: "2026-06-28",
+      metaTitle: "Générer des centaines de PDF depuis Excel sans copier-coller",
+    metaDescription:
+      "Attestations, factures, diplômes : comment générer automatiquement un PDF par ligne Excel sans copier-coller. Guide et méthode en 1 clic.",
+    date: "2026-06-28",
       dateLabel: "28 juin 2026",
       excerpt:
         "Attestations, factures, courriers, diplômes : voici comment produire un PDF par ligne de votre tableur, automatiquement, sans recommencer cent fois.",
@@ -169,7 +177,10 @@ const fr: BlogContent = {
       slug: "supprimer-automatiquement-les-silences-d-un-podcast",
       title:
         "Comment supprimer automatiquement les silences d'un podcast (sans montage manuel)",
-      date: "2026-06-17",
+      metaTitle: "Supprimer automatiquement les silences d'un podcast",
+    metaDescription:
+      "Les silences absorbent 10 à 20 % d'un podcast. Découvrez comment les détecter et les couper automatiquement pour monter vos épisodes plus vite.",
+    date: "2026-06-17",
       dateLabel: "17 juin 2026",
       excerpt:
         "Les silences et temps morts peuvent représenter 10 à 20 % d'un épisode. Voici comment les détecter et les couper automatiquement, et monter votre podcast en une fraction du temps habituel.",
@@ -229,7 +240,10 @@ const fr: BlogContent = {
       slug: "faire-apparaitre-son-app-dans-les-resultats-des-ia",
       title:
         "Comment faire apparaître son application dans les résultats des IA",
-      date: "2026-09-07",
+      metaTitle: "Faire apparaître son application dans les résultats IA",
+    metaDescription:
+      "ChatGPT, Perplexity, AI Overviews : découvrez ce qui influence réellement la visibilité d'une application dans les réponses des moteurs IA.",
+    date: "2026-09-07",
       dateLabel: "7 septembre 2026",
       excerpt:
         "ChatGPT, Perplexity, Google AI Overviews : de plus en plus de recherches se terminent sur une réponse générée par une IA plutôt que sur une liste de liens. Voici ce qui influence réellement la visibilité d'une app dans ces réponses — et ce qui relève du mythe.",
@@ -292,7 +306,10 @@ const fr: BlogContent = {
       id: "custom-tool-vs-saas-cost",
       slug: "outil-sur-mesure-ou-saas-cout-reel-sur-3-ans",
       title: "Outil sur mesure ou abonnement SaaS : ce que ça coûte vraiment sur 3 ans",
-      date: "2026-09-07",
+      metaTitle: "Outil sur mesure ou SaaS : le coût réel sur 3 ans",
+    metaDescription:
+      "Un abonnement SaaS est-il vraiment plus rentable qu'un outil sur mesure ? Analyse chiffrée du coût réel sur 3 ans et comparatif concret.",
+    date: "2026-09-07",
       dateLabel: "7 septembre 2026",
       excerpt:
         "Un abonnement SaaS paraît toujours moins cher au premier regard qu'un outil développé sur mesure. Sur trois ans, avec la hausse des tarifs et les limites de plan, le calcul s'inverse souvent.",
@@ -361,7 +378,10 @@ const fr: BlogContent = {
       id: "showcase-site-vs-web-app",
       slug: "site-vitrine-ou-application-web-comment-choisir",
       title: "Site vitrine ou application web : comment choisir pour son activité",
-      date: "2026-09-07",
+      metaTitle: "Site vitrine ou application web : comment bien choisir ?",
+    metaDescription:
+      "Présenter une activité ou automatiser un processus ? Découvrez comment choisir entre site vitrine et application web pour votre entreprise.",
+    date: "2026-09-07",
       dateLabel: "7 septembre 2026",
       excerpt:
         "« On a besoin d'un site » est rarement la vraie demande. Avant de parler design ou technologie, il faut d'abord clarifier si le besoin est de présenter une activité, ou de faire fonctionner quelque chose.",
@@ -426,7 +446,10 @@ const fr: BlogContent = {
       slug: "rendre-son-entreprise-visible-dans-les-moteurs-de-recherche-ia",
       title:
         "Comment rendre son entreprise visible dans les moteurs de recherche IA ?",
-      date: "2026-09-21",
+      metaTitle: "Rendre son entreprise visible dans les moteurs IA",
+    metaDescription:
+      "Comment être cité par ChatGPT, Perplexity ou Gemini ? Méthode concrète pour bâtir la visibilité de votre PME dans les moteurs de recherche IA.",
+    date: "2026-09-21",
       dateLabel: "21 septembre 2026",
       excerpt:
         "Un client qui demande à ChatGPT « quelle agence pour créer mon site » ou « quel logiciel pour gérer mes factures » ne voit jamais les dix liens bleus de Google. Voici comment fonctionne réellement la visibilité dans les moteurs de recherche IA, et comment une entreprise ou une PME peut la construire, étape par étape.",
@@ -520,7 +543,7 @@ const en: BlogContent = {
   figLabel: "FIG. 08 — STUDIO LOG",
   indexTitle: "Studio log",
   indexDesc:
-    "Notes on the software we build, the technical choices behind it, and what happens behind the scenes.",
+    "Behind-the-scenes engineering logs, tech tutorials, and real-world feedback from building custom web applications and indie software products.",
   backHome: "← Back to home",
   backBlog: "← Back to the log",
   seeAlso: "See also",
@@ -531,7 +554,10 @@ const en: BlogContent = {
       id: "why-own-tools",
       slug: "why-we-build-our-own-tools",
       title: "Why we build our own tools: VoxCut & InOneShot",
-      date: "2026-07-15",
+      metaTitle: "Why We Build Our Own Tools: VoxCut & InOneShot | Fabrik",
+    metaDescription:
+      "When the right tool doesn't exist, we build it. A look at how VoxCut and InOneShot were created and shipped to the Microsoft Store.",
+    date: "2026-07-15",
       dateLabel: "July 15, 2026",
       excerpt:
         "When the tool we need doesn't exist, or exists but poorly, we build it ourselves. VoxCut and InOneShot both started that way — and both now run on the Microsoft Store.",
@@ -598,7 +624,10 @@ const en: BlogContent = {
       slug: "how-to-remove-silences-from-a-podcast",
       title:
         "How to Automatically Remove Silences From a Podcast (Without Manual Editing)",
-      date: "2026-06-17",
+      metaTitle: "Automatically Remove Silences From a Podcast Faster",
+    metaDescription:
+      "Silences can eat 10–20% of an episode. Learn how to detect and trim dead air automatically to edit your podcast in a fraction of the time.",
+    date: "2026-06-17",
       dateLabel: "June 17, 2026",
       excerpt:
         "Silences and dead air can eat 10–20% of an episode. Here's how to detect and cut them automatically, and edit your podcast in a fraction of the time.",
@@ -657,7 +686,10 @@ const en: BlogContent = {
       id: "pdf-mail-merge-excel",
       slug: "generate-pdfs-from-excel",
       title: "How to Generate Hundreds of Personalized PDFs from an Excel File",
-      date: "2026-07-12",
+      metaTitle: "Generate Hundreds of Personalized PDFs from Excel Files",
+    metaDescription:
+      "Invoices, certificates, letters: how to generate personalized PDFs from every Excel row automatically, without manual copy-pasting.",
+    date: "2026-07-12",
       dateLabel: "July 12, 2026",
       excerpt:
         "Certificates, invoices, letters, diplomas: here's how to turn every row of your spreadsheet into its own PDF — automatically, without copy-pasting a single value.",
@@ -709,7 +741,10 @@ const en: BlogContent = {
       id: "ai-search-geo-visibility",
       slug: "how-to-get-your-app-featured-in-ai-search-results",
       title: "How to Get Your App Featured in AI Search Results",
-      date: "2026-09-07",
+      metaTitle: "Get Your App Featured in AI Search Results | La Fabrik",
+    metaDescription:
+      "ChatGPT, Perplexity, AI Overviews: learn what actually drives an app's visibility in generative search answers and what is just myth.",
+    date: "2026-09-07",
       dateLabel: "September 7, 2026",
       excerpt:
         "ChatGPT, Perplexity, Google AI Overviews: more and more searches now end on an AI-generated answer instead of a list of links. Here's what actually drives an app's visibility in those answers — and what's just myth.",
@@ -772,7 +807,10 @@ const en: BlogContent = {
       id: "custom-tool-vs-saas-cost",
       slug: "custom-tool-vs-saas-real-cost-over-3-years",
       title: "Custom Tool or SaaS Subscription: What It Really Costs Over 3 Years",
-      date: "2026-09-07",
+      metaTitle: "Custom Software vs SaaS: The True 3-Year Cost",
+    metaDescription:
+      "Is a SaaS subscription truly cheaper than custom software? Here is a realistic 3-year cost breakdown comparing both approaches.",
+    date: "2026-09-07",
       dateLabel: "September 7, 2026",
       excerpt:
         "A SaaS subscription always looks cheaper at first glance than a custom-built tool. Over three years, with pricing tiers and plan limits factored in, the math often flips.",
@@ -841,7 +879,10 @@ const en: BlogContent = {
       id: "showcase-site-vs-web-app",
       slug: "showcase-website-or-web-app-how-to-choose",
       title: "Showcase Website or Web App: How to Choose for Your Business",
-      date: "2026-09-07",
+      metaTitle: "Showcase Website vs Web App: Which One Do You Need?",
+    metaDescription:
+      "Showcase site or custom web app? Learn how to identify your true business needs, compare budgets, and pick the right solution.",
+    date: "2026-09-07",
       dateLabel: "September 7, 2026",
       excerpt:
         "\"We need a website\" is rarely the actual need. Before talking design or technology, it helps to first clarify whether the goal is to present a business, or to make something work.",
@@ -905,7 +946,10 @@ const en: BlogContent = {
       id: "business-visible-ai-search",
       slug: "how-to-make-your-business-visible-in-ai-search-engines",
       title: "How to Make Your Business Visible in AI Search Engines",
-      date: "2026-09-21",
+      metaTitle: "Make Your Business Visible in AI Search Engines | Fabrik",
+    metaDescription:
+      "Learn how visibility works in AI engines like ChatGPT, Gemini and Perplexity, and how small businesses can get cited step by step.",
+    date: "2026-09-21",
       dateLabel: "September 21, 2026",
       excerpt:
         "A customer who asks ChatGPT 'which agency should build my website' or 'what software handles my invoicing' never sees Google's ten blue links. Here's how visibility in AI search engines actually works, and how a business or SMB can build it step by step.",

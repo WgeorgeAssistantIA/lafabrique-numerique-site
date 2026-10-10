@@ -12,6 +12,12 @@ export default function Footer() {
         <span>© {new Date().getFullYear()} La Fabrik Numérique</span>
         <nav className="flex items-center gap-6">
           <Link
+            href="/site-internet-roanne"
+            className="hover:text-cyan transition-colors"
+          >
+            Roanne
+          </Link>
+          <Link
             href="/mentions-legales"
             className="hover:text-cyan transition-colors"
           >

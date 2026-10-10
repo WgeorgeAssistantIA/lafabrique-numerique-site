@@ -7,6 +7,9 @@ export const newPostsFr: BlogPost[] = [
     id: "seo-vs-geo-2026",
     slug: "seo-vs-geo-visibilite-internet-2026",
     title: "SEO vs GEO : comment évolue la visibilité sur Internet en 2026 ?",
+    metaTitle: "SEO vs GEO : l'évolution de la visibilité web en 2026",
+    metaDescription:
+      "Le SEO est rejoint par le GEO : être cité par les IA plutôt que classé. Découvrez ce qui change en 2026 et comment adapter votre visibilité PME.",
     date: "2026-10-01",
     dateLabel: "1er octobre 2026",
     excerpt:
@@ -93,6 +96,9 @@ export const newPostsFr: BlogPost[] = [
     id: "saas-users-no-sales",
     slug: "pourquoi-un-saas-a-des-utilisateurs-mais-aucune-vente",
     title: "Pourquoi un SaaS peut avoir des utilisateurs mais aucune vente ?",
+    metaTitle: "Pourquoi un SaaS a des utilisateurs mais aucune vente ?",
+    metaDescription:
+      "Des téléchargements et du trafic mais zéro vente : retour d'expérience avec chiffres réels sur nos logiciels et méthode de diagnostic du funnel.",
     date: "2026-10-01",
     dateLabel: "1er octobre 2026",
     excerpt:
@@ -186,6 +192,9 @@ export const newPostsFr: BlogPost[] = [
     id: "saas-pricing",
     slug: "comment-fixer-le-prix-d-un-logiciel-saas",
     title: "Comment fixer le prix d'un logiciel SaaS ?",
+    metaTitle: "Comment fixer le prix d'un logiciel SaaS ? | La Fabrik",
+    metaDescription:
+      "Abonnement, achat unique ou freemium : méthode et grille concrète pour fixer le juste prix de votre logiciel SaaS sans faire fuir les clients.",
     date: "2026-10-01",
     dateLabel: "1er octobre 2026",
     excerpt:
@@ -276,6 +285,9 @@ export const newPostsFr: BlogPost[] = [
     id: "automate-sme-tasks-ai",
     slug: "automatiser-taches-repetitives-pme-avec-l-ia",
     title: "Comment automatiser les tâches répétitives d'une PME avec l'IA ?",
+    metaTitle: "Automatiser les tâches d'une PME avec l'IA",
+    metaDescription:
+      "Quelles tâches automatiser, quand utiliser l'IA plutôt qu'un script et comment limiter les risques ? Méthode concrète pour dirigeants de PME.",
     date: "2026-10-01",
     dateLabel: "1er octobre 2026",
     excerpt:
@@ -361,6 +373,9 @@ export const newPostsFr: BlogPost[] = [
     id: "build-saas-2026-first-users",
     slug: "creer-un-saas-en-2026-de-l-idee-aux-premiers-utilisateurs",
     title: "Créer un SaaS en 2026 : de l'idée aux premiers utilisateurs",
+    metaTitle: "Créer un SaaS en 2026 : de l'idée aux premiers clients",
+    metaDescription:
+      "Retour d'expérience concret : ce qui se passe entre le lancement d'un SaaS et ses premiers utilisateurs, avec les chiffres réels de nos produits.",
     date: "2026-10-08",
     dateLabel: "8 octobre 2026",
     excerpt:
@@ -452,6 +467,9 @@ export const newPostsFr: BlogPost[] = [
     id: "freemium-trial-subscription",
     slug: "freemium-essai-gratuit-ou-abonnement-comment-monetiser-un-logiciel",
     title: "Freemium, essai gratuit ou abonnement : comment monétiser un logiciel ?",
+    metaTitle: "Freemium, essai ou abonnement : monétiser son logiciel",
+    metaDescription:
+      "Freemium, essai gratuit ou abonnement : comparatif sans détour des trois modèles de monétisation logicielle et retours d'expérience vécus.",
     date: "2026-10-08",
     dateLabel: "8 octobre 2026",
     excerpt:
@@ -545,6 +563,9 @@ export const newPostsFr: BlogPost[] = [
     id: "downloads-without-purchase",
     slug: "pourquoi-les-utilisateurs-telechargent-une-application-sans-l-acheter",
     title: "Pourquoi les utilisateurs téléchargent une application sans l'acheter ?",
+    metaTitle: "Pourquoi télécharger une application sans l'acheter ?",
+    metaDescription:
+      "344 installations, 240 vues du paywall, 0 achat : analyse chiffrée d'un entonnoir réel pour comprendre pourquoi les utilisateurs n'achètent pas.",
     date: "2026-10-08",
     dateLabel: "8 octobre 2026",
     excerpt:

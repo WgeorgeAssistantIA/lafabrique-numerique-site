@@ -24,7 +24,7 @@ const dmMono = localFont({
 const SITE_URL = "https://www.lafabriknumerique.fr";
 const TITLE = "La Fabrik Numérique — Atelier de création web & logiciel";
 const DESCRIPTION =
-  "La Fabrik Numérique conçoit des sites web, applications et logiciels sur mesure. Circuits & idées.";
+  "Atelier de développement web et logiciel sur mesure basé à Roanne. Création de sites vitrines, applications web et SaaS performants. Devis sous 24h.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     siteName: "La Fabrik Numérique",
     images: [
       {
-        url: "/img/og.png",
+        url: `${SITE_URL}/img/og.png`,
         width: 1640,
         height: 624,
         alt: "La Fabrik Numérique",

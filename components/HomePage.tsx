@@ -27,6 +27,12 @@ export default function HomePage({ lang }: { lang: Lang }) {
     founder: { "@type": "Person", name: EDITOR_NAME },
     areaServed: "France",
     priceRange: "€€",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Roanne",
+      postalCode: "42300",
+      addressCountry: "FR",
+    },
     knowsLanguage: ["fr", "en"],
     sameAs: [
       "https://voxcutpro.com",

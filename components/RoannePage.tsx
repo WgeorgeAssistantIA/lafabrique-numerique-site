@@ -18,8 +18,15 @@ export default function RoannePage() {
     name: "La Fabrik Numérique",
     url: `${SITE_URL}/site-internet-roanne`,
     logo: `${SITE_URL}/img/logo.png`,
+    image: `${SITE_URL}/img/og.png`,
     description: r.metaDesc,
     email: EDITOR_EMAIL,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Roanne",
+      postalCode: "42300",
+      addressCountry: "FR",
+    },
     areaServed: ROANNE_AREAS.map((name) => ({ "@type": "City", name })),
     priceRange: "€€",
   };
