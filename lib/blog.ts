@@ -741,15 +741,21 @@ const en: BlogContent = {
       id: "ai-search-geo-visibility",
       slug: "how-to-get-your-app-featured-in-ai-search-results",
       title: "How to Get Your App Featured in AI Search Results",
-      metaTitle: "Get Your App Featured in AI Search Results | La Fabrik",
+      metaTitle: "How to Make Your App Appear in AI Search Results | Fabrik",
     metaDescription:
-      "ChatGPT, Perplexity, AI Overviews: learn what actually drives an app's visibility in generative search answers and what is just myth.",
+      "How can an app appear in generative search results? What really drives visibility in ChatGPT, Perplexity and AI Overviews, and what is just myth.",
     date: "2026-09-07",
       dateLabel: "September 7, 2026",
       excerpt:
         "ChatGPT, Perplexity, Google AI Overviews: more and more searches now end on an AI-generated answer instead of a list of links. Here's what actually drives an app's visibility in those answers — and what's just myth.",
       tags: ["SEO", "GEO", "Studio"],
       sections: [
+        {
+          h: "How can an app appear in generative search results?",
+          p: [
+            "An app appears in generative search results when its pages already rank well on Google, answer one precise question in a passage an AI can extract, are readable without JavaScript, and are backed by independent mentions such as directories, forums and videos. The sections below cover each of these levers and what to ignore.",
+          ],
+        },
         {
           h: "Does GEO replace SEO?",
           p: [
