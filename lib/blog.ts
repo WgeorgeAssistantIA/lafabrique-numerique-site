@@ -945,10 +945,10 @@ const en: BlogContent = {
     {
       id: "business-visible-ai-search",
       slug: "how-to-make-your-business-visible-in-ai-search-engines",
-      title: "How to Make Your Business Visible in AI Search Engines",
-      metaTitle: "Make Your Business Visible in AI Search Engines | Fabrik",
+      title: "How to Make Your Business Show Up in AI Search Engines",
+      metaTitle: "How to Make Your Business Show Up in AI Search | Fabrik",
     metaDescription:
-      "Learn how visibility works in AI engines like ChatGPT, Gemini and Perplexity, and how small businesses can get cited step by step.",
+      "How can your business show up in AI search engines like ChatGPT, Gemini and Perplexity? A step-by-step guide to getting cited, for small businesses.",
     date: "2026-09-21",
       dateLabel: "September 21, 2026",
       excerpt:
@@ -958,12 +958,13 @@ const en: BlogContent = {
         {
           h: "Introduction",
           p: [
+            "The short answer: to show up in AI search engines, a business needs to be crawlable in plain HTML, publish pages that each answer one precise question, be mentioned by trusted third-party sources, keep its name and details consistent everywhere, and then test its visibility regularly in ChatGPT, Gemini and Perplexity. The rest of this guide explains each step.",
             "A growing share of searches no longer end on a page of Google results, but on an answer written directly by an artificial intelligence. ChatGPT, Gemini, Perplexity, and Google AI Overviews rephrase the user's question, select a handful of sources, and deliver a synthesized answer — without the user ever needing to click a link. For a business, this changes the very nature of online competition: ranking well on Google is no longer enough; a business now also needs to be understood, judged credible, and cited by response engines that don't work like a classic search engine.",
             "This shift has a name: GEO, or Generative Engine Optimization. It isn't a discipline that replaces traditional SEO, but an extension that builds on the same foundations — authority, structure, quality content — while adding requirements specific to how an AI reads, summarizes, and cites a page. This article breaks down why visibility in AI search engines is becoming a real concern for any business, how these engines select their sources, and above all how an SMB can build, measure, and improve its presence in these answers, beyond a handful of surface-level tricks.",
           ],
         },
         {
-          h: "Why is visibility in AI engines becoming a new concern for businesses?",
+          h: "Why does your business need to show up in AI search engines?",
           p: [
             "Usage volume alone justifies paying attention. ChatGPT counts several hundred million weekly active users, Perplexity handles hundreds of millions of queries a month, and Google AI Overviews now appears on a growing share of classic searches, including commercial ones. A business owner, a B2B buyer, or an individual asking 'what software automates my invoicing' or 'which web agency near me' today gets a synthesized answer, with at best three or four cited sources — not ten links to compare on their own.",
             "This shrinking of visible sources changes the mechanics of competition. On Google, a business ranked poorly on page three is still technically reachable by anyone willing to dig. In a generative answer, not being among the cited sources amounts to near-total invisibility for that specific query: the user never sees the full list of candidates, only the AI's selection.",
@@ -985,18 +986,21 @@ const en: BlogContent = {
           ],
         },
         {
-          h: "How do you optimize a site for GEO and SEO?",
+          h: "How can a business improve its visibility in generative search (GEO and SEO)?",
           p: [
+            "To improve visibility in generative search, fix the technical basics first, then structure each page as a direct answer, then reinforce your entity signals: the consistent name, description and profiles that let an AI recognize who you are.",
             "Optimizing a site for GEO always starts with the foundations of classic SEO: a fast site, served over HTTPS, free of indexing errors, with a clear architecture and content accessible without client-side JavaScript. None of what follows works if these technical basics aren't in place — SEO for AI engines isn't an alternative to organic search, it's a direct extension of it.",
             "On top of that base, three specific levers make the difference for GEO. First, structured data (schema.org): Organization, Article, FAQ, or Product markup depending on the page, which helps AI engines unambiguously understand who is speaking, about what, and with what authority. It isn't a citation lever on its own, but it reduces the risk of an AI misreading the content.",
             "Second, the structure of the content itself: H2 headings phrased as real questions rather than marketing labels, direct answers within the first fifty words of each section, and paragraphs that make sense even pulled out of context. This is the most cost-effective and fastest change to make on an existing site, since it doesn't require a technical overhaul — just a targeted rewrite of the most strategic pages.",
             "Third, content freshness: content updated regularly, with a visible date, statistically has a better chance of being picked up than content left untouched for years. For a business, that justifies reviewing its most strategic service pages and blog posts at least once a year, rather than publishing once and forgetting about them.",
+            "Strengthening your entity signals is the fourth lever. An AI has to be sure that the company named on your site, in your LinkedIn profile, in a directory listing and in a press mention is one and the same entity. In practice: use the exact same business name, description and contact details everywhere, declare them with Organization markup and link your official profiles with sameAs, and keep the About page clear about who you are and what you do.",
             "One last technical point is worth checking before anything else: the robots.txt file and the site's access rules. Some AI crawlers (GPTBot, PerplexityBot, Google-Extended, among others) can end up blocked by mistake during an overly broad security configuration, which excludes the site from their index without anyone noticing. A quick audit of these access rules — repeated every time hosting or the CMS changes — avoids spending effort on content these engines will never be able to read in the first place.",
           ],
         },
         {
-          h: "What content strategies improve visibility in AI engines?",
+          h: "How can you get your business featured in the articles and reviews AI search engines use as sources?",
           p: [
+            "AI engines mostly cite pages that answer a precise question, and they trust a business more when independent sources mention it: industry directories, forums, third-party articles, YouTube and customer reviews. So the strategy has two parts: publish content built as direct answers on your own site, and earn consistent mentions and reviews elsewhere.",
             "The most effective content strategy for visibility in ChatGPT and other response engines is to treat every page as the answer to a specific question, rather than a general showcase. A 'Our Services' page listing ten offerings with no detail is rarely cited; ten pages, each answering one precise business question ('how much does X cost', 'how does Y work', 'when do you need Z'), are cited far more often.",
             "The most frequently cited content shares a common trait: it's written by an entity that demonstrates real expertise on the topic, with concrete examples, verifiable numbers, and practical cases rather than general claims. This is essentially what the E-E-A-T framework (experience, expertise, authoritativeness, trustworthiness) already formalizes for classic SEO, and which AI engines apply almost identically when selecting sources.",
             "Brand mentions outside the site also play a central role in this strategy. A study covering tens of thousands of brands found that organic mentions — citations on forums, industry directories, third-party articles, YouTube videos — correlate more strongly with AI visibility than classic backlinks. For an SMB, that justifies investing time in relevant professional directories, industry comparison sites, and an active LinkedIn presence, alongside the work done on its own site.",
@@ -1006,7 +1010,7 @@ const en: BlogContent = {
           ],
         },
         {
-          h: "How do you measure your visibility in ChatGPT, Gemini, and other AI engines?",
+          h: "How can a business monitor its presence and mentions in AI search results (ChatGPT, Gemini, Perplexity)?",
           p: [
             "Unlike classic SEO, there's no universal equivalent of Google Search Console yet for precisely measuring visibility in generative answers. That doesn't mean measurement is impossible: three complementary approaches give a reliable picture, even without a dedicated tool.",
             "The first is to manually test the questions a customer would actually ask ChatGPT, Gemini, or Perplexity, and note whether the business appears among the cited sources, under what phrasing, and with what level of detail. This manual method, repeated regularly against a fixed list of questions, tracks change over time, even approximately.",
