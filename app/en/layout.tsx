@@ -84,6 +84,11 @@ export default function EnRootLayout({
         <EasterEggWord />
         <EasterEggMobile />
         <Analytics />
+        <script
+          src="https://analytics.ahrefs.com/analytics.js"
+          data-key="zZnPAocIpChlgDJIKieujA"
+          async
+        />
       </body>
     </html>
   );
