@@ -47,17 +47,22 @@ body {
   background-position: -1px -1px;
 }
 
-.fig-label {
-  font-family: var(--font-mono-brand), monospace;
-  font-size: 0.7rem;
-  letter-spacing: 0.15em;
-  color: var(--muted);
-  text-transform: uppercase;
-}
+/* Kept in the components layer so Tailwind color utilities (text-cyan,
+   text-background-deep…) can override the default muted color — unlayered,
+   it beat every utility and turned the cyan CTA text grey (~2:1 contrast). */
+@layer components {
+  .fig-label {
+    font-family: var(--font-mono-brand), monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
 
-/* Main navigation: same style as fig-label but slightly larger for readability */
-.nav-label {
-  font-size: 0.78rem;
+  /* Main navigation: same style as fig-label but slightly larger for readability */
+  .nav-label {
+    font-size: 0.78rem;
+  }
 }
 
 .node-dot {
