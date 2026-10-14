@@ -31,6 +31,22 @@ export default function About() {
               </>
             )}
           </p>
+          {/* A face behind the studio: a service business is bought on trust */}
+          <div className="mb-8 flex items-center gap-4">
+            <Image
+              src="/img/william.webp"
+              alt="William George"
+              width={64}
+              height={64}
+              className="h-16 w-16 rounded-full border border-line object-cover"
+            />
+            <div>
+              <p className="font-display uppercase text-lg leading-tight">William George</p>
+              <p className="fig-label mt-1">
+                {lang === "fr" ? "Fondateur · développeur indépendant" : "Founder · independent developer"}
+              </p>
+            </div>
+          </div>
           <div className="space-y-5 border-t border-line pt-6">
             {a.why.map((w) => (
               <div key={w.ref} className="flex gap-4">

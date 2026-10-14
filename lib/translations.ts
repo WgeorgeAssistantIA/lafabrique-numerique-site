@@ -174,7 +174,7 @@ const fr = {
           },
           { label: "Snapcraft", url: "https://snapcraft.io/vectorpop" },
         ],
-        image: "",
+        image: "/img/portfolio-vectorpop.webp",
       },
       {
         ref: "REF.04",
@@ -187,7 +187,7 @@ const fr = {
         link: "",
         linkLabel: "",
         stores: [],
-        image: "",
+        image: "/img/portfolio-lafabrik.webp",
       },
       {
         ref: "REF.05",
@@ -200,7 +200,7 @@ const fr = {
         link: "https://nyctale.fr",
         linkLabel: "nyctale.fr",
         stores: [],
-        image: "",
+        image: "/img/portfolio-nyctale.webp",
       },
       {
         ref: "REF.06",
@@ -212,7 +212,7 @@ const fr = {
         link: "https://votreassistantia.fr",
         linkLabel: "votreassistantia.fr",
         stores: [],
-        image: "",
+        image: "/img/portfolio-vaia.webp",
       },
       {
         ref: "REF.07",
@@ -224,7 +224,7 @@ const fr = {
         link: "https://www.vidscope.fr",
         linkLabel: "vidscope.fr",
         stores: [],
-        image: "",
+        image: "/img/portfolio-vidscope.webp",
       },
       {
         ref: "REF.08",
@@ -236,7 +236,7 @@ const fr = {
         link: "https://vectorpop.fr/vectofix",
         linkLabel: "vectorpop.fr/vectofix",
         stores: [],
-        image: "",
+        image: "/img/portfolio-vectofix.webp",
       },
     ],
   },
@@ -538,7 +538,7 @@ const en: Translation = {
           },
           { label: "Snapcraft", url: "https://snapcraft.io/vectorpop" },
         ],
-        image: "",
+        image: "/img/portfolio-vectorpop.webp",
       },
       {
         ref: "REF.04",
@@ -551,7 +551,7 @@ const en: Translation = {
         link: "",
         linkLabel: "",
         stores: [],
-        image: "",
+        image: "/img/portfolio-lafabrik.webp",
       },
       {
         ref: "REF.05",
@@ -564,7 +564,7 @@ const en: Translation = {
         link: "https://nyctale.fr",
         linkLabel: "nyctale.fr",
         stores: [],
-        image: "",
+        image: "/img/portfolio-nyctale.webp",
       },
       {
         ref: "REF.06",
@@ -576,7 +576,7 @@ const en: Translation = {
         link: "https://votreassistantia.fr",
         linkLabel: "votreassistantia.fr",
         stores: [],
-        image: "",
+        image: "/img/portfolio-vaia.webp",
       },
       {
         ref: "REF.07",
@@ -588,7 +588,7 @@ const en: Translation = {
         link: "https://www.vidscope.fr",
         linkLabel: "vidscope.fr",
         stores: [],
-        image: "",
+        image: "/img/portfolio-vidscope.webp",
       },
       {
         ref: "REF.08",
@@ -600,7 +600,7 @@ const en: Translation = {
         link: "https://vectorpop.fr/vectofix",
         linkLabel: "vectorpop.fr/vectofix",
         stores: [],
-        image: "",
+        image: "/img/portfolio-vectofix.webp",
       },
     ],
   },

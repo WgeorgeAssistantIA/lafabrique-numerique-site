@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { IBM_Plex_Sans } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import ScrollProgress from "@/components/ScrollProgress";
 import BackToTop from "@/components/BackToTop";
@@ -19,6 +20,14 @@ const dmMono = localFont({
   src: "../fonts/DMMono-Regular.ttf",
   variable: "--font-mono-brand",
   weight: "400",
+});
+
+// Body copy: long paragraphs in DM Mono were tiring to read; mono stays for labels (.fig-label)
+const plexSans = IBM_Plex_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-sans-brand",
+  display: "swap",
 });
 
 const SITE_URL = "https://www.lafabriknumerique.fr";
@@ -73,7 +82,7 @@ export default function EnRootLayout({
   return (
     <html
       lang="en"
-      className={`${bigShoulders.variable} ${dmMono.variable} h-full antialiased`}
+      className={`${bigShoulders.variable} ${dmMono.variable} ${plexSans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <ScrollProgress />

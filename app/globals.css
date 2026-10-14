@@ -32,7 +32,13 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-mono-brand), monospace;
+  font-family: var(--font-sans-brand), system-ui, sans-serif;
+}
+
+/* Small body paragraphs: 15px minimum (labels keep .fig-label's own size) */
+p.text-sm:not(.fig-label) {
+  font-size: 0.9375rem;
+  line-height: 1.65;
 }
 
 .font-display {
