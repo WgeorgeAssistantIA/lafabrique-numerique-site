@@ -4,7 +4,7 @@ export const EDITOR_NAME = "William GEORGE";
 export const EDITOR_SIREN = "518 251 897";
 export const EDITOR_SIRET = "518 251 897 00048";
 
-export const EDITOR_EMAIL = "lafabriknumerique@outlook.com";
+export const EDITOR_EMAIL = "contact@lafabriknumerique.fr";
 export const LAST_UPDATED = "23 juillet 2026";
 export const LAST_UPDATED_EN = "July 23, 2026";
 
