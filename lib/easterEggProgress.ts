@@ -1,7 +1,7 @@
 // Shared progression state for the easter-egg hunt. Each level sets a flag
 // once solved; the next level checks the previous flag before activating.
-// Client-side only (localStorage) — a determined dev can bypass it, which is
-// an accepted limit (almost a meta easter egg).
+// Client-side only (sessionStorage par session de navigation ; seul le badge final reste permanent) —
+// a determined dev can bypass it, which is an accepted limit (almost a meta easter egg).
 
 export const EGG_FLAGS = {
   konami: "lfn:egg:1", // level 1 — Konami code

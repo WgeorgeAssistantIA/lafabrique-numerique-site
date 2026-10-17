@@ -226,9 +226,9 @@ export default function About() {
             </div>
           ) : (
             /* OPTION B (Default): Studio Commitments Panel in the upper-right */
-            <div className="relative rounded-2xl border border-white/10 bg-panel/75 backdrop-blur-md p-6 sm:p-7 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08),0_16px_40px_-18px_rgba(0,0,0,0.75)] flex flex-col justify-between h-full">
+            <div className="relative rounded-2xl border border-white/10 bg-panel/75 backdrop-blur-md p-5 sm:p-6 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08),0_16px_40px_-18px_rgba(0,0,0,0.75)] flex flex-col justify-between h-full">
               <div>
-                <div className="flex items-center justify-between pb-3.5 mb-4 border-b border-white/[0.08]">
+                <div className="flex items-center justify-between pb-3 mb-3.5 border-b border-white/[0.08]">
                   <span className="fig-label text-[0.65rem] text-cyan">
                     {isFr
                       ? "ENGAGEMENTS DE L'ATELIER"
@@ -237,46 +237,74 @@ export default function About() {
                   <span className="node-dot" />
                 </div>
 
-                <ul className="space-y-3.5">
-                  <li className="flex items-start gap-3">
-                    <span className="text-cyan font-bold text-sm mt-0.5">✓</span>
+                <ul className="space-y-2.5 sm:space-y-3">
+                  <li className="flex items-start gap-2.5 sm:gap-3">
+                    <span className="text-cyan font-bold text-xs sm:text-sm mt-0.5 shrink-0">✓</span>
                     <div>
-                      <p className="text-sm font-semibold text-foreground">
+                      <p className="text-xs sm:text-sm font-semibold text-foreground leading-tight">
+                        {isFr ? "Un seul interlocuteur" : "One point of contact"}
+                      </p>
+                      <p className="text-[0.72rem] sm:text-xs text-muted mt-0.5 leading-snug">
+                        {isFr
+                          ? "De la première idée à la mise en ligne, vous parlez toujours à la même personne."
+                          : "From first idea to launch, you always talk to the same person."}
+                      </p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2.5 sm:gap-3">
+                    <span className="text-cyan font-bold text-xs sm:text-sm mt-0.5 shrink-0">✓</span>
+                    <div>
+                      <p className="text-xs sm:text-sm font-semibold text-foreground leading-tight">
                         {isFr
                           ? "Devis détaillé & budget fixe"
                           : "Detailed quote & fixed budget"}
                       </p>
-                      <p className="text-xs text-muted mt-0.5">
+                      <p className="text-[0.72rem] sm:text-xs text-muted mt-0.5 leading-snug">
                         {isFr
                           ? "Périmètre et chiffrage validés à l'avance, sans mauvaise surprise ni dépassement."
                           : "Scope and pricing agreed upfront, with zero hidden fees or overruns."}
                       </p>
                     </div>
                   </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-cyan font-bold text-sm mt-0.5">✓</span>
+                  <li className="flex items-start gap-2.5 sm:gap-3">
+                    <span className="text-cyan font-bold text-xs sm:text-sm mt-0.5 shrink-0">✓</span>
                     <div>
-                      <p className="text-sm font-semibold text-foreground">
+                      <p className="text-xs sm:text-sm font-semibold text-foreground leading-tight">
                         {isFr
                           ? "Zéro location ni abonnement captif"
                           : "Zero lock-in or mandatory subscription"}
                       </p>
-                      <p className="text-xs text-muted mt-0.5">
+                      <p className="text-[0.72rem] sm:text-xs text-muted mt-0.5 leading-snug">
                         {isFr
                           ? "Vous êtes propriétaire à 100 % du code, du domaine et des contenus dès la livraison."
                           : "You own 100% of the code, domain name, and content from day one."}
                       </p>
                     </div>
                   </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-cyan font-bold text-sm mt-0.5">✓</span>
+                  <li className="flex items-start gap-2.5 sm:gap-3">
+                    <span className="text-cyan font-bold text-xs sm:text-sm mt-0.5 shrink-0">✓</span>
                     <div>
-                      <p className="text-sm font-semibold text-foreground">
+                      <p className="text-xs sm:text-sm font-semibold text-foreground leading-tight">
+                        {isFr
+                          ? "Titulaire de vos domaine et hébergement"
+                          : "You own your domain and hosting"}
+                      </p>
+                      <p className="text-[0.72rem] sm:text-xs text-muted mt-0.5 leading-snug">
+                        {isFr
+                          ? "Vous restez titulaire de votre nom de domaine et de votre hébergement. Les frais annuels restent à votre charge."
+                          : "You stay the registered owner of your domain name and hosting. Yearly fees are at your own cost."}
+                      </p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2.5 sm:gap-3">
+                    <span className="text-cyan font-bold text-xs sm:text-sm mt-0.5 shrink-0">✓</span>
+                    <div>
+                      <p className="text-xs sm:text-sm font-semibold text-foreground leading-tight">
                         {isFr
                           ? "Livraison clé en main prête à l'emploi"
                           : "Turnkey delivery ready for launch"}
                       </p>
-                      <p className="text-xs text-muted mt-0.5">
+                      <p className="text-[0.72rem] sm:text-xs text-muted mt-0.5 leading-snug">
                         {isFr
                           ? "Mise en ligne complète, sécurisation HTTPS et configuration technique assurées par l'atelier."
                           : "Full deployment, HTTPS security, and technical setup handled by the studio."}
@@ -286,13 +314,15 @@ export default function About() {
                 </ul>
               </div>
 
-              <div className="pt-4 mt-4 border-t border-white/[0.08] flex items-center justify-between">
-                <span className="fig-label text-[0.62rem] text-muted">
-                  {isFr ? "INTERVENTION FRANCE ENTIÈRE" : "AVAILABLE REMOTE & ON-SITE"}
+              <div className="pt-3 mt-3.5 border-t border-white/[0.08] flex items-center justify-between gap-2">
+                <span className="fig-label text-[0.58rem] sm:text-[0.62rem] text-muted">
+                  {isFr
+                    ? "PARTOUT EN FRANCE, À DISTANCE · ROANNE SUR PLACE"
+                    : "REMOTE ACROSS FRANCE · ON-SITE AROUND ROANNE"}
                 </span>
                 <a
                   href="#contact"
-                  className="text-xs font-semibold uppercase tracking-wider text-cyan hover:text-amber transition-colors"
+                  className="text-xs font-semibold uppercase tracking-wider text-cyan hover:text-amber transition-colors shrink-0"
                 >
                   {isFr ? "Demander un devis →" : "Request a quote →"}
                 </a>

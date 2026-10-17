@@ -34,7 +34,7 @@ export default function Skills() {
         { num: "01", title: "Scoping & Wireframes", desc: "Requirements, architecture and visual direction." },
         { num: "02", title: "Custom Engineering", desc: "Clean, fast code with zero bloated templates." },
         { num: "03", title: "Performance & SEO", desc: "Lighthouse 95+ tuning, mobile & search indexing." },
-        { num: "04", title: "Launch & Support", desc: "Turnkey deployment, training and ongoing care." },
+        { num: "04", title: "Launch & Support", desc: "Turnkey deployment, documentation and ongoing care." },
       ];
 
   return (

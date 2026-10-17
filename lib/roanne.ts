@@ -19,7 +19,7 @@ export const roanneContent = {
   title: "Création de site internet à Roanne",
   metaTitle: "Création de site internet à Roanne — La Fabrik Numérique",
   metaDesc:
-    "Studio web basé à Roanne : création de sites vitrines, applications et logiciels sur mesure pour artisans, commerces et PME du Roannais. Devis sous 24h.",
+    "Studio web basé à Roanne : création de sites vitrines, applications et logiciels sur mesure pour artisans, commerces et PME du Roannais. Devis détaillé et gratuit.",
   intro:
     "La Fabrik Numérique est un atelier de développement web indépendant basé à Roanne, dans la Loire. Sites vitrines, applications métier et logiciels sur mesure pour les commerçants, artisans et entreprises du Roannais.",
   whyTitle: "Pourquoi un développeur basé dans le Roannais ?",
@@ -38,7 +38,7 @@ export const roanneContent = {
     },
     {
       title: "Réactif, sans détour",
-      desc: "Réponse sous 24 h ouvrées et un premier diagnostic chiffré avant même de s'engager.",
+      desc: "Un échange direct avec celui qui conçoit votre projet, et un premier diagnostic chiffré avant de vous engager.",
     },
   ],
   servicesTitle: "Ce que je peux construire pour votre entreprise",
