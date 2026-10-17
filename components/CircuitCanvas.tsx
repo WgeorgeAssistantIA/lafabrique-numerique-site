@@ -132,16 +132,17 @@ const LETTER_STROKES: Record<string, StrokePoint[][]> = {
     ],
   ],
 };
-// Secret letter reveal order: spells H-I-B-O-U in French, O-W-L in English.
-// When the circuit awakens, letters cycle in sequence (held 30s each, with a 3s pause).
+// Secret letter reveal order: scrambled anagram (B-I-H-U-O in French, L-W-O in English).
+// When the circuit awakens, letters cycle in sequence:
+// each letter is held for 30s, followed by a 30s breathing pause on the circuit (~1 min per letter).
 const REVEAL_ORDER: Record<"fr" | "en", string[]> = {
-  fr: ["H", "I", "B", "O", "U"],
-  en: ["O", "W", "L"],
+  fr: ["B", "I", "H", "U", "O"],
+  en: ["L", "W", "O"],
 };
 const FORM_MS = 2400;
 const HOLD_MS = 30_000;
 const FADE_MS = 1800;
-const PAUSE_MS = 3000;
+const PAUSE_MS = 30_000;
 const LETTER_CYCLE_MS = FORM_MS + HOLD_MS + FADE_MS + PAUSE_MS;
 
 export default function CircuitCanvas({
