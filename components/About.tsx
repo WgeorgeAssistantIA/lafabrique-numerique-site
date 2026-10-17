@@ -21,8 +21,8 @@ export default function About() {
         <CircuitCanvas lang={lang} variant="atelier" />
       </div>
 
-      {/* Discreet transparency gradients across the section, matching the Hero */}
-      <div className="absolute inset-0 z-[1] pointer-events-none bg-gradient-to-r from-background-deep/92 via-background-deep/80 to-transparent" />
+      {/* Uniform discreet veil across the entire section (left, right, and all around the panel) */}
+      <div className="absolute inset-0 z-[1] pointer-events-none bg-background-deep/84" />
       <div className="absolute inset-x-0 top-0 z-[1] h-24 pointer-events-none bg-gradient-to-b from-background to-transparent" />
       <div className="absolute inset-x-0 bottom-0 z-[1] h-24 pointer-events-none bg-gradient-to-t from-background to-transparent" />
       <div

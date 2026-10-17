@@ -305,20 +305,23 @@ export default function CircuitCanvas({
       }
     };
 
-    const draw = () => {
-      ctx.clearRect(0, 0, width, height);
-
-      ctx.lineWidth = 1;
-      ctx.strokeStyle = "rgba(95,216,232,0.11)";
-      ctx.beginPath();
+    const drawCircuitScene = (
+      targetCtx: CanvasRenderingContext2D,
+      vivid: boolean,
+    ) => {
+      targetCtx.lineWidth = vivid ? 1.2 : 1;
+      targetCtx.strokeStyle = vivid
+        ? "rgba(95,216,232,0.28)"
+        : "rgba(95,216,232,0.11)";
+      targetCtx.beginPath();
       for (const e of edges) {
         const a = nodes[e.a];
         const b = nodes[e.b];
-        ctx.moveTo(a.x, a.y);
-        ctx.lineTo(e.mx, e.my);
-        ctx.lineTo(b.x, b.y);
+        targetCtx.moveTo(a.x, a.y);
+        targetCtx.lineTo(e.mx, e.my);
+        targetCtx.lineTo(b.x, b.y);
       }
-      ctx.stroke();
+      targetCtx.stroke();
 
       if (mouse.inside) {
         for (const e of edges) {
@@ -327,43 +330,44 @@ export default function CircuitCanvas({
             const near = 1 - dm / 160;
             const a = nodes[e.a];
             const b = nodes[e.b];
-            ctx.strokeStyle = `rgba(95,216,232,${(near * 0.38).toFixed(3)})`;
-            ctx.beginPath();
-            ctx.moveTo(a.x, a.y);
-            ctx.lineTo(e.mx, e.my);
-            ctx.lineTo(b.x, b.y);
-            ctx.stroke();
+            targetCtx.strokeStyle = `rgba(95,216,232,${(
+              near * (vivid ? 0.58 : 0.38)
+            ).toFixed(3)})`;
+            targetCtx.beginPath();
+            targetCtx.moveTo(a.x, a.y);
+            targetCtx.lineTo(e.mx, e.my);
+            targetCtx.lineTo(b.x, b.y);
+            targetCtx.stroke();
           }
         }
       }
 
       for (const n of nodes) {
-        const dm = mouse.inside
-          ? Math.hypot(n.x - mouse.x, n.y - mouse.y)
-          : 9999;
-        const near = Math.max(0, 1 - dm / 140);
-        const target = (n.pad ? 0.28 : 0) + near;
-        n.glow += (target - n.glow) * 0.12;
         const g = Math.max(0, Math.min(1, n.glow));
         if (n.pad) {
-          ctx.fillStyle = `rgba(95,216,232,${(0.28 + g * 0.7).toFixed(3)})`;
-          ctx.fillRect(n.x - 2, n.y - 2, 4, 4);
+          targetCtx.fillStyle = `rgba(95,216,232,${(
+            (vivid ? 0.52 : 0.28) + g * (vivid ? 0.48 : 0.7)
+          ).toFixed(3)})`;
+          const s = vivid ? 4.5 : 4;
+          targetCtx.fillRect(n.x - s / 2, n.y - s / 2, s, s);
         } else {
-          ctx.fillStyle = `rgba(120,150,170,${(0.22 + g * 0.6).toFixed(3)})`;
-          ctx.beginPath();
-          ctx.arc(n.x, n.y, 1.4, 0, 6.283);
-          ctx.fill();
+          targetCtx.fillStyle = `rgba(120,150,170,${(
+            (vivid ? 0.42 : 0.22) + g * 0.6
+          ).toFixed(3)})`;
+          targetCtx.beginPath();
+          targetCtx.arc(n.x, n.y, vivid ? 1.7 : 1.4, 0, 6.283);
+          targetCtx.fill();
         }
-        if (g > 0.06) {
-          ctx.save();
-          ctx.globalAlpha = g * 0.55;
-          ctx.shadowColor = CYAN;
-          ctx.shadowBlur = 8;
-          ctx.fillStyle = CYAN;
-          ctx.beginPath();
-          ctx.arc(n.x, n.y, 2, 0, 6.283);
-          ctx.fill();
-          ctx.restore();
+        if (g > 0.06 || vivid) {
+          targetCtx.save();
+          targetCtx.globalAlpha = vivid ? Math.max(0.28, g * 0.75) : g * 0.55;
+          targetCtx.shadowColor = CYAN;
+          targetCtx.shadowBlur = vivid ? 10 : 8;
+          targetCtx.fillStyle = CYAN;
+          targetCtx.beginPath();
+          targetCtx.arc(n.x, n.y, vivid ? 2.2 : 2, 0, 6.283);
+          targetCtx.fill();
+          targetCtx.restore();
         }
       }
 
@@ -374,29 +378,65 @@ export default function CircuitCanvas({
           if (back < 0) continue;
           const dAlong = s.fromA ? back : e.len - back;
           const tp = edgePoint(e, Math.max(0, Math.min(e.len, dAlong)));
-          ctx.globalAlpha = 0.06 * k;
-          ctx.fillStyle = s.color;
-          ctx.beginPath();
-          ctx.arc(tp.x, tp.y, 1.6, 0, 6.283);
-          ctx.fill();
+          targetCtx.globalAlpha = (vivid ? 0.09 : 0.06) * k;
+          targetCtx.fillStyle = s.color;
+          targetCtx.beginPath();
+          targetCtx.arc(tp.x, tp.y, vivid ? 1.9 : 1.6, 0, 6.283);
+          targetCtx.fill();
         }
-        ctx.globalAlpha = 1;
+        targetCtx.globalAlpha = 1;
         const head = s.fromA ? s.dist : e.len - s.dist;
         const p = edgePoint(e, Math.max(0, Math.min(e.len, head)));
-        ctx.save();
-        ctx.shadowColor = s.color;
-        ctx.shadowBlur = 10;
-        ctx.fillStyle = s.color;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, 2.1, 0, 6.283);
-        ctx.fill();
-        ctx.restore();
+        targetCtx.save();
+        targetCtx.shadowColor = s.color;
+        targetCtx.shadowBlur = vivid ? 13 : 10;
+        targetCtx.fillStyle = s.color;
+        targetCtx.beginPath();
+        targetCtx.arc(p.x, p.y, vivid ? 2.5 : 2.1, 0, 6.283);
+        targetCtx.fill();
+        targetCtx.restore();
       }
-      ctx.globalAlpha = 1;
+      targetCtx.globalAlpha = 1;
+    };
+
+    const draw = () => {
+      ctx.clearRect(0, 0, width, height);
+
+      for (const n of nodes) {
+        const dm = mouse.inside
+          ? Math.hypot(n.x - mouse.x, n.y - mouse.y)
+          : 9999;
+        const near = Math.max(0, 1 - dm / 140);
+        const target = (n.pad ? 0.28 : 0) + near;
+        n.glow += (target - n.glow) * 0.12;
+      }
+
+      drawCircuitScene(ctx, false);
 
       if (lctx) {
         lctx.clearRect(0, 0, width, height);
-        if (!reduce) drawLetter(lctx);
+        if (isAtelier) {
+          const zoneEl = document.querySelector<HTMLElement>(
+            "[data-atelier-letter-zone]",
+          );
+          const zoneRect = zoneEl?.getBoundingClientRect();
+          if (zoneRect && zoneRect.width > 0 && zoneRect.height > 0) {
+            const canvasRect = canvas.getBoundingClientRect();
+            const zx = zoneRect.left - canvasRect.left;
+            const zy = zoneRect.top - canvasRect.top;
+            lctx.save();
+            lctx.beginPath();
+            lctx.rect(zx, zy, zoneRect.width, zoneRect.height);
+            lctx.clip();
+            drawCircuitScene(lctx, true);
+            if (!reduce) drawLetter(lctx);
+            lctx.restore();
+          } else if (!reduce) {
+            drawLetter(lctx);
+          }
+        } else if (!reduce) {
+          drawLetter(lctx);
+        }
       }
     };
 
