@@ -10,6 +10,7 @@ const HERO_SHOWCASE = [
     tagFr: "Audio & Vidéo · Logiciel",
     tagEn: "Audio & Video · Software",
     image: "/img/portfolio-voxcut.webp",
+    imageEn: "/img/portfolio-voxcut.webp",
     domain: "voxcutpro.com",
     accent: "cyan" as const,
   },
@@ -18,6 +19,7 @@ const HERO_SHOWCASE = [
     tagFr: "Site & SaaS · Artisans",
     tagEn: "Web & SaaS · Trades",
     image: "/img/portfolio-vaia.webp",
+    imageEn: "/img/portfolio-vaia-en.webp",
     domain: "votreassistantia.fr",
     accent: "amber" as const,
   },
@@ -26,6 +28,7 @@ const HERO_SHOWCASE = [
     tagFr: "PDF · Automatisation",
     tagEn: "PDF · Automation",
     image: "/img/portfolio-inoneshot.webp",
+    imageEn: "/img/portfolio-inoneshot-en.webp",
     domain: "inoneshot.fr",
     accent: "cyan" as const,
   },
@@ -34,6 +37,7 @@ const HERO_SHOWCASE = [
     tagFr: "Image · Vectorisation",
     tagEn: "Image · Vectorization",
     image: "/img/portfolio-vectorpop.webp",
+    imageEn: "/img/portfolio-vectorpop-en.webp",
     domain: "vectorpop.fr",
     accent: "amber" as const,
   },
@@ -223,7 +227,7 @@ export default function Hero() {
                   >
                     <div className="relative aspect-[16/10] overflow-hidden bg-background-deep border-b border-white/[0.06]">
                       <Image
-                        src={prod.image}
+                        src={isFr ? prod.image : prod.imageEn}
                         alt={prod.name}
                         fill
                         sizes="(min-width: 1024px) 25vw, 45vw"
