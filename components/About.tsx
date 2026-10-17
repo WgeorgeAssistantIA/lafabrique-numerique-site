@@ -22,7 +22,7 @@ export default function About() {
       </div>
 
       {/* Discreet transparency gradients across the section, matching the Hero */}
-      <div className="absolute inset-0 z-[1] pointer-events-none bg-gradient-to-r from-background-deep via-background-deep/85 to-background-deep/25" />
+      <div className="absolute inset-0 z-[1] pointer-events-none bg-gradient-to-r from-background-deep/92 via-background-deep/80 to-transparent" />
       <div className="absolute inset-x-0 top-0 z-[1] h-24 pointer-events-none bg-gradient-to-b from-background to-transparent" />
       <div className="absolute inset-x-0 bottom-0 z-[1] h-24 pointer-events-none bg-gradient-to-t from-background to-transparent" />
       <div
@@ -80,12 +80,35 @@ export default function About() {
           </div>
         </div>
 
-        {/* Row 1 Right: Open circuit & secret letter zone directly above the Owl */}
-        <div
-          data-atelier-letter-zone="true"
-          aria-hidden="true"
-          className="hidden lg:block lg:col-span-5 min-h-[280px] pointer-events-none"
-        />
+        {/* Row 1 Right: Dedicated translucent Circuit panel directly above the Owl,
+            with the secret letter centered inside its viewport */}
+        <div className="lg:col-span-5 flex flex-col pointer-events-none">
+          <div className="relative rounded-2xl border border-white/10 bg-background-deep/35 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08),0_16px_40px_-18px_rgba(0,0,0,0.75)] overflow-hidden flex flex-col h-full min-h-[280px] sm:min-h-[320px]">
+            <div className="px-5 py-3.5 border-b border-white/[0.08] bg-panel/65 backdrop-blur-md flex items-center justify-between relative z-10">
+              <span className="inline-flex items-center gap-2 fig-label text-[0.62rem] text-cyan">
+                <span className="node-dot" />
+                {isFr ? "CIRCUIT · MATRICE ACTIVE" : "CIRCUIT · ACTIVE MATRIX"}
+              </span>
+              <span className="fig-label text-[0.6rem] text-muted">
+                {isFr ? "SIGNAL INTERACTIF" : "INTERACTIVE SIGNAL"}
+              </span>
+            </div>
+
+            <div
+              data-atelier-letter-zone="true"
+              className="relative flex-1 min-h-[220px]"
+            />
+
+            <div className="px-5 py-2.5 border-t border-white/[0.06] bg-panel/50 backdrop-blur-md flex items-center justify-between relative z-10">
+              <span className="fig-label text-[0.58rem] text-muted">
+                {isFr
+                  ? "Survolez ou cliquez les nœuds pour propager un signal"
+                  : "Hover or click nodes to propagate a signal"}
+              </span>
+              <span className="fig-label text-[0.58rem] text-amber">SYS · 01</span>
+            </div>
+          </div>
+        </div>
 
         {/* Row 2 Left: The 4 value bricks */}
         <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4 pointer-events-auto">

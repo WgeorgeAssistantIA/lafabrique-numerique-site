@@ -448,7 +448,7 @@ export default function CircuitCanvas({
             (zoneRect.left + zoneRect.right) / 2 - canvasRect.left;
           const zoneCenterY =
             (zoneRect.top + zoneRect.bottom) / 2 - canvasRect.top;
-          letterH = Math.max(200, Math.min(320, zoneRect.height * 0.82));
+          letterH = Math.max(150, Math.min(240, zoneRect.height * 0.74));
           letterW = letterH * 0.62;
           originX = zoneCenterX - letterW / 2;
           originY = zoneCenterY - letterH / 2;
