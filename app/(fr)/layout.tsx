@@ -33,7 +33,7 @@ const plexSans = IBM_Plex_Sans({
 const SITE_URL = "https://www.lafabriknumerique.fr";
 const TITLE = "La Fabrik Numérique — Atelier de création web & logiciel";
 const DESCRIPTION =
-  "Atelier de développement web et logiciel sur mesure basé à Roanne. Création de sites vitrines, applications web et SaaS performants. Devis sous 24h.";
+  "Atelier de développement web et logiciel sur mesure basé à Roanne. Création de sites vitrines, applications web et SaaS performants. Devis gratuit & détaillé.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

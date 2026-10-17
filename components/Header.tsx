@@ -80,10 +80,10 @@ export default function Header() {
           : ""
       }`}
     >
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 h-16 flex items-center justify-between gap-4 lg:gap-8">
         <Link
           href={isHome ? "#top" : homePath}
-          className="flex items-center gap-2.5 sm:gap-3 group shrink-0"
+          className="flex items-center gap-2.5 sm:gap-3 group shrink-0 lg:mr-2"
           onClick={() => setOpen(false)}
         >
           <div className="relative flex items-center justify-center rounded-full p-0.5 bg-gradient-to-br from-cyan/20 to-amber/10 ring-1 ring-white/10 group-hover:ring-cyan/40 transition-all shrink-0">
@@ -101,7 +101,7 @@ export default function Header() {
             La Fabrik Numérique
           </span>
         </Link>
-        <nav className="hidden lg:flex items-center gap-5 xl:gap-7 fig-label nav-label">
+        <nav className="hidden lg:flex items-center gap-5 xl:gap-6 fig-label nav-label">
           {navItems.map((item) => {
             const isActive = item.id !== null && activeId === item.id;
             const linkClass = `relative py-1 transition-colors ${

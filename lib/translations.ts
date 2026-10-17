@@ -3,7 +3,7 @@ export type Lang = "fr" | "en";
 const fr = {
   metaTitle: "La Fabrik Numérique — Atelier de création web & logiciel",
   metaDesc:
-    "Atelier de développement web et logiciel sur mesure basé à Roanne. Création de sites vitrines, applications web et SaaS performants. Devis sous 24h.",
+    "Atelier de développement web et logiciel sur mesure basé à Roanne. Création de sites vitrines, applications web et SaaS performants. Devis gratuit & détaillé.",
   nav: {
     services: "Services",
     competences: "Compétences",
@@ -236,7 +236,7 @@ const fr = {
     launchBadge: "",
     launchNote: "",
     scopeNote:
-      "Chaque projet fait l'objet d'un devis détaillé et gratuit sous 24 h après un premier échange sur votre besoin.",
+      "Chaque projet fait l'objet d'un devis détaillé et gratuit après un premier échange sur votre besoin.",
     plans: [
       {
         name: "Site One-Page / Essentiel",
@@ -294,7 +294,7 @@ const fr = {
           "Logiciel sur mesure (sans abonnement mensuel imposé)",
           "Automatisation de documents (PDF, Excel, emails, API)",
           "Fonctionnement 100 % local ou connecté à vos outils",
-          "Formation, documentation & prise en main",
+          "Installation clé en main & documentation claire",
         ],
         note: "Pour un projet sur mesure spécifique, un chiffrage précis est établi après un premier échange.",
       },
@@ -313,8 +313,8 @@ const fr = {
       },
       {
         ref: "02",
-        title: "Un seul interlocuteur de A à Z",
-        desc: "Du premier échange à la mise en ligne, vous parlez directement à celui qui conçoit et construit votre outil.",
+        title: "100 % propriétaire de votre outil",
+        desc: "Code source, nom de domaine, hébergement et contenus : tout est à votre nom dès le premier jour, sans location déguisée ni abonnement captif.",
       },
       {
         ref: "03",
@@ -336,9 +336,9 @@ const fr = {
     email: "Email",
     message: "Votre projet",
     emailAddress: "contact@lafabriknumerique.fr",
-    responseTime: "Réponse sous 24 h ouvrées.",
+    responseTime: "Réponse rapide après étude de votre projet.",
     sending: "Envoi en cours…",
-    success: "Message bien reçu — je reviens vers vous sous 24 h ouvrées.",
+    success: "Message bien reçu — je reviens vers vous rapidement.",
     error: "L'envoi a échoué. Écrivez-moi directement :",
     consentA: "J'accepte la",
     consentLink: "politique de confidentialité",
@@ -357,7 +357,7 @@ export type Translation = typeof fr;
 const en: Translation = {
   metaTitle: "La Fabrik Numérique — Web & software creation studio",
   metaDesc:
-    "Bespoke web and software engineering studio. We build high-performance showcase websites, web applications, and custom SaaS tools. Get a quote in 24h.",
+    "Bespoke web and software engineering studio. We build high-performance showcase websites, web applications, and custom SaaS tools. Free, detailed quote.",
   nav: {
     services: "Services",
     competences: "Skills",
@@ -590,7 +590,7 @@ const en: Translation = {
     launchBadge: "",
     launchNote: "",
     scopeNote:
-      "Every project receives a free, detailed quote within 24 hours after an initial conversation about your goals.",
+      "Every project receives a free, detailed quote after an initial conversation about your goals.",
     plans: [
       {
         name: "One-Page / Essentials",
@@ -634,7 +634,7 @@ const en: Translation = {
           "Functional scoping & custom architecture",
           "Secure client portal & database management",
           "Tailored business workflow, payments or AI",
-          "Secure cloud deployment & onboarding",
+          "Secure cloud deployment & production launch",
         ],
       },
       {
@@ -648,7 +648,7 @@ const en: Translation = {
           "Custom software (no mandatory monthly fee)",
           "Document & workflow automation (PDF, Excel, APIs)",
           "100% local execution or connected to your stack",
-          "Training, documentation & handover",
+          "Technical documentation & turnkey delivery",
         ],
         note: "For larger custom needs, a tailored estimate is provided after an initial call.",
       },
@@ -667,8 +667,8 @@ const en: Translation = {
       },
       {
         ref: "02",
-        title: "One person from A to Z",
-        desc: "From initial brief to launch, you talk directly to the person building your tool.",
+        title: "100% ownership of your product",
+        desc: "Source code, domain name, hosting, and content: everything is in your name from day one, with no lock-in or hidden subscription.",
       },
       {
         ref: "03",
@@ -690,9 +690,9 @@ const en: Translation = {
     email: "Email",
     message: "Your project",
     emailAddress: "contact@lafabriknumerique.fr",
-    responseTime: "Reply within 1 business day.",
+    responseTime: "Direct reply from the studio.",
     sending: "Sending…",
-    success: "Message received — I'll get back to you within 1 business day.",
+    success: "Message received — I'll get back to you very soon.",
     error: "Sending failed. Email me directly:",
     consentA: "I accept the",
     consentLink: "privacy policy",

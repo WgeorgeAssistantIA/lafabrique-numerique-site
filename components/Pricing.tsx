@@ -123,24 +123,24 @@ export default function Pricing() {
         </div>
 
         {/* Reassurance Strip */}
-        <div className="mt-12 rounded-2xl border border-white/[0.08] glass-panel px-6 py-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs sm:text-sm text-muted">
-            <span className="inline-flex items-center gap-2 text-foreground/90 font-medium">
-              <span className="h-2 w-2 rounded-full bg-cyan" />
-              {isFr ? "Devis gratuit & détaillé sous 24h" : "Free detailed quote within 24h"}
+        <div className="mt-12 rounded-2xl border border-white/[0.08] glass-panel px-6 py-4 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs sm:text-sm text-muted">
+            <span className="inline-flex items-center gap-2 text-foreground/90 font-medium whitespace-nowrap">
+              <span className="h-2 w-2 rounded-full bg-cyan shrink-0" />
+              {isFr ? "Devis gratuit & chiffrage fixe sans surprise" : "Free detailed quote & fixed upfront pricing"}
             </span>
-            <span>•</span>
-            <span>
-              {isFr ? "Vous êtes 100 % propriétaire de votre site et de votre code" : "You own 100% of your website and source code"}
+            <span className="hidden sm:inline text-white/20">•</span>
+            <span className="whitespace-nowrap">
+              {isFr ? "100 % propriétaire de votre site et de votre code" : "100% ownership of your site and source code"}
             </span>
-            <span>•</span>
-            <span>
+            <span className="hidden sm:inline text-white/20">•</span>
+            <span className="whitespace-nowrap">
               {isFr ? "Paiement échelonné possible" : "Flexible milestone payments"}
             </span>
           </div>
           <a
             href="#contact"
-            className="text-xs font-semibold uppercase tracking-wider text-cyan hover:text-amber transition-colors shrink-0"
+            className="text-xs font-semibold uppercase tracking-wider text-cyan hover:text-amber transition-colors shrink-0 whitespace-nowrap"
           >
             {isFr ? "Une question ? Écrivez-moi →" : "Have a question? Get in touch →"}
           </a>

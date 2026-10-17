@@ -13,7 +13,7 @@ export const EGG_EVENT = "lfn-egg-progress";
 
 export function hasEggFlag(key: string): boolean {
   try {
-    return localStorage.getItem(key) === "1";
+    return sessionStorage.getItem(key) === "1";
   } catch {
     return false;
   }
@@ -21,7 +21,7 @@ export function hasEggFlag(key: string): boolean {
 
 export function setEggFlag(key: string) {
   try {
-    localStorage.setItem(key, "1");
+    sessionStorage.setItem(key, "1");
   } catch {
     // private browsing / storage disabled — the hunt just won't persist
   }

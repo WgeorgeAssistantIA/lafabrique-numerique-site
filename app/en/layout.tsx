@@ -33,7 +33,7 @@ const plexSans = IBM_Plex_Sans({
 const SITE_URL = "https://www.lafabriknumerique.fr";
 const TITLE = "La Fabrik Numérique — Web & Software Studio";
 const DESCRIPTION =
-  "Bespoke web and software engineering studio. We build high-performance showcase websites, web applications, and custom SaaS tools. Get a quote in 24h.";
+  "Bespoke web and software engineering studio. We build high-performance showcase websites, web applications, and custom SaaS tools. Free, detailed quote.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

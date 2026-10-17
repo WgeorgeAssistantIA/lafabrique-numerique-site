@@ -262,7 +262,7 @@ export default function Hero() {
                   </span>
                 </div>
                 <span className="fig-label text-[0.62rem] text-amber">
-                  {isFr ? "DEVIS SOUS 24H" : "QUOTE IN 24H"}
+                  {isFr ? "SUR-MESURE · ZÉRO ABONNEMENT" : "BESPOKE · ZERO LOCK-IN"}
                 </span>
               </div>
             </div>

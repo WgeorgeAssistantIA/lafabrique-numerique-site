@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { EGG_FLAGS, hasEggFlag } from "@/lib/easterEggProgress";
+import { EGG_EVENT, EGG_FLAGS, hasEggFlag } from "@/lib/easterEggProgress";
 
 type Node = { x: number; y: number; pad: boolean; glow: number };
 type Edge = {
@@ -149,21 +149,29 @@ const FADE_MS = 700;
 export default function CircuitCanvas({
   lang = "fr",
   variant = "hero",
+  forceReveal = false,
 }: {
   lang?: "fr" | "en";
   variant?: "hero" | "atelier";
+  forceReveal?: boolean;
 }) {
   const isAtelier = variant === "atelier";
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  // The letter draws on its own canvas layered ABOVE the hero's darkening
-  // gradient overlays — on the main canvas it would be hidden behind the
-  // near-opaque left side of the gradient (that's exactly what happened when
-  // the letter moved from the right side to under the CTA).
   const letterCanvasRef = useRef<HTMLCanvasElement>(null);
   const langRef = useRef(lang);
+  const forceRevealRef = useRef(forceReveal);
+  const immediateStartRef = useRef<number | null>(null);
+
   useEffect(() => {
     langRef.current = lang;
   }, [lang]);
+
+  useEffect(() => {
+    forceRevealRef.current = forceReveal;
+    if (forceReveal) {
+      immediateStartRef.current = Date.now();
+    }
+  }, [forceReveal]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -429,29 +437,45 @@ export default function CircuitCanvas({
             lctx.rect(zx, zy, zoneRect.width, zoneRect.height);
             lctx.clip();
             drawCircuitScene(lctx, true);
-            if (!reduce) drawLetter(lctx);
+            if (!reduce) drawLetter(lctx, zoneRect, canvasRect);
             lctx.restore();
-          } else if (!reduce) {
-            drawLetter(lctx);
           }
-        } else if (!reduce) {
-          drawLetter(lctx);
         }
       }
     };
 
-    const drawLetter = (out: CanvasRenderingContext2D) => {
+    const drawLetter = (
+      out: CanvasRenderingContext2D,
+      zoneRect: DOMRect,
+      canvasRect: DOMRect,
+    ) => {
+      if (!isAtelier) return;
       const activeLang = langRef.current;
       const now = Date.now();
+      const forced = forceRevealRef.current;
 
-      // The letter reveal only runs for players who solved levels 1 and 2 —
-      // for everyone else the circuit stays purely ambient.
-      if (!hasEggFlag(EGG_FLAGS.konami) || !hasEggFlag(EGG_FLAGS.rouage))
+      // The letter reveal only runs for players who solved levels 1 and 2
+      // (or when previewing game mode) — for everyone else the circuit stays ambient.
+      if (
+        !forced &&
+        (!hasEggFlag(EGG_FLAGS.konami) || !hasEggFlag(EGG_FLAGS.rouage))
+      )
         return;
       const order = REVEAL_ORDER[activeLang];
-      const hourIdx = Math.floor(now / HOUR_MS) % order.length;
-      const letter = order[hourIdx];
-      const msIntoBlock = now % BLOCK_MS;
+      // Rotate to the next letter every 5-minute block (instead of every hour)
+      const blockIdx = Math.floor(now / BLOCK_MS) % order.length;
+      const letter = order[blockIdx];
+      const cycleDuration = FORM_MS + HOLD_MS + FADE_MS;
+      const elapsedSinceTrigger =
+        immediateStartRef.current !== null
+          ? now - immediateStartRef.current
+          : Infinity;
+      const msIntoBlock =
+        elapsedSinceTrigger < cycleDuration
+          ? elapsedSinceTrigger
+          : forced
+            ? elapsedSinceTrigger % (cycleDuration + 1500)
+            : now % BLOCK_MS;
       const strokes = LETTER_STROKES[letter];
       if (!strokes) return;
 
@@ -469,51 +493,14 @@ export default function CircuitCanvas({
       }
       if (alpha <= 0) return;
 
-      let letterH: number;
-      let letterW: number;
-      let originX: number;
-      let originY: number;
-
-      const canvasRect = canvas.getBoundingClientRect();
-
-      if (isAtelier) {
-        // Center the secret letter directly inside the open zone just above
-        // the Owl card in About.tsx ([data-atelier-letter-zone]).
-        const zoneEl = document.querySelector<HTMLElement>(
-          "[data-atelier-letter-zone]",
-        );
-        const zoneRect = zoneEl?.getBoundingClientRect();
-        if (zoneRect && zoneRect.width > 0 && zoneRect.height > 0) {
-          const zoneCenterX =
-            (zoneRect.left + zoneRect.right) / 2 - canvasRect.left;
-          const zoneCenterY =
-            (zoneRect.top + zoneRect.bottom) / 2 - canvasRect.top;
-          letterH = Math.max(150, Math.min(240, zoneRect.height * 0.74));
-          letterW = letterH * 0.62;
-          originX = zoneCenterX - letterW / 2;
-          originY = zoneCenterY - letterH / 2;
-        } else {
-          letterH = Math.max(200, Math.min(320, height * 0.36));
-          letterW = letterH * 0.62;
-          originX = width * 0.78 - letterW / 2;
-          originY = height * 0.28 - letterH / 2;
-        }
-      } else {
-        // Horizontally aligned under the header's "Demander un devis" /
-        // "Get a quote" button (top right, tagged data-egg-anchor), read from
-        // the DOM on every draw so layout shifts can't move the letter.
-        const anchorEl = document.querySelector<HTMLElement>("[data-egg-anchor]");
-        const anchorRect = anchorEl?.getBoundingClientRect();
-        if (anchorRect && anchorRect.width > 0) {
-          ctaCenterX = (anchorRect.left + anchorRect.right) / 2 - canvasRect.left;
-        } else {
-          ctaCenterX = width * 0.85;
-        }
-        letterH = Math.max(200, Math.min(420, height * 0.48));
-        letterW = letterH * 0.62;
-        originX = ctaCenterX - letterW / 2;
-        originY = height * 0.64 - letterH / 2;
-      }
+      const zoneCenterX =
+        (zoneRect.left + zoneRect.right) / 2 - canvasRect.left;
+      const zoneCenterY =
+        (zoneRect.top + zoneRect.bottom) / 2 - canvasRect.top;
+      const letterH = Math.max(150, Math.min(240, zoneRect.height * 0.74));
+      const letterW = letterH * 0.62;
+      const originX = zoneCenterX - letterW / 2;
+      const originY = zoneCenterY - letterH / 2;
 
       const scaleX = letterW / 60;
       const scaleY = letterH / 100;
@@ -680,10 +667,17 @@ export default function CircuitCanvas({
       if (best >= 0) for (let k = 0; k < 4; k++) spawn(best);
     };
 
+    const onEggProgress = () => {
+      if (hasEggFlag(EGG_FLAGS.konami) && hasEggFlag(EGG_FLAGS.rouage)) {
+        immediateStartRef.current = Date.now();
+      }
+    };
+
     const ro = new ResizeObserver(resize);
     ro.observe(canvas);
     window.addEventListener("pointermove", onMove, { passive: true });
     window.addEventListener("pointerdown", onClick);
+    window.addEventListener(EGG_EVENT, onEggProgress);
     canvas.addEventListener("pointerleave", onLeave);
 
     return () => {
@@ -691,6 +685,7 @@ export default function CircuitCanvas({
       ro.disconnect();
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("pointerdown", onClick);
+      window.removeEventListener(EGG_EVENT, onEggProgress);
       canvas.removeEventListener("pointerleave", onLeave);
       cleanup.forEach((fn) => fn());
     };
