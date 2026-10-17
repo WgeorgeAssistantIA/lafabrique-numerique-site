@@ -143,7 +143,7 @@ const REVEAL_ORDER: Record<"fr" | "en", string[]> = {
 const HOUR_MS = 3_600_000;
 const BLOCK_MS = 5 * 60_000;
 const FORM_MS = 2600;
-const HOLD_MS = 900;
+const HOLD_MS = 30_000;
 const FADE_MS = 700;
 
 export default function CircuitCanvas({
