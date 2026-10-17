@@ -132,19 +132,17 @@ const LETTER_STROKES: Record<string, StrokePoint[][]> = {
     ],
   ],
 };
-// Reveal order deliberately scrambled (not spelling order) so the hourly
-// letter never trivially spells the answer as it goes — same scramble for
-// everyone at a given hour, so the "which letter right now" social angle
-// still works, it just doesn't hand out the word for free.
+// Secret letter reveal order: spells H-I-B-O-U in French, O-W-L in English.
+// When the circuit awakens, letters cycle in sequence (held 30s each, with a 3s pause).
 const REVEAL_ORDER: Record<"fr" | "en", string[]> = {
-  fr: ["B", "I", "H", "U", "O"],
-  en: ["L", "W", "O"],
+  fr: ["H", "I", "B", "O", "U"],
+  en: ["O", "W", "L"],
 };
-const HOUR_MS = 3_600_000;
-const BLOCK_MS = 5 * 60_000;
-const FORM_MS = 2600;
+const FORM_MS = 2400;
 const HOLD_MS = 30_000;
-const FADE_MS = 700;
+const FADE_MS = 1800;
+const PAUSE_MS = 3000;
+const LETTER_CYCLE_MS = FORM_MS + HOLD_MS + FADE_MS + PAUSE_MS;
 
 export default function CircuitCanvas({
   lang = "fr",
@@ -462,33 +460,30 @@ export default function CircuitCanvas({
       )
         return;
       const order = REVEAL_ORDER[activeLang];
-      // Rotate to the next letter every 5-minute block (instead of every hour)
-      const blockIdx = Math.floor(now / BLOCK_MS) % order.length;
-      const letter = order[blockIdx];
-      const cycleDuration = FORM_MS + HOLD_MS + FADE_MS;
-      const elapsedSinceTrigger =
-        immediateStartRef.current !== null
-          ? now - immediateStartRef.current
-          : Infinity;
-      const msIntoBlock =
-        elapsedSinceTrigger < cycleDuration
-          ? elapsedSinceTrigger
-          : forced
-            ? elapsedSinceTrigger % (cycleDuration + 1500)
-            : now % BLOCK_MS;
+      if (immediateStartRef.current === null) {
+        immediateStartRef.current = now;
+      }
+      const elapsed = Math.max(0, now - immediateStartRef.current);
+      const letterIdx = Math.floor(elapsed / LETTER_CYCLE_MS) % order.length;
+      const letter = order[letterIdx];
+      const msIntoLetter = elapsed % LETTER_CYCLE_MS;
+
       const strokes = LETTER_STROKES[letter];
       if (!strokes) return;
 
       let alpha = 0;
       let travelT = 1; // 0..1, how much of the letter has been traced so far
-      if (msIntoBlock < FORM_MS) {
+      if (msIntoLetter < FORM_MS) {
         alpha = 1;
-        travelT = msIntoBlock / FORM_MS;
-      } else if (msIntoBlock < FORM_MS + HOLD_MS) {
+        travelT = msIntoLetter / FORM_MS;
+      } else if (msIntoLetter < FORM_MS + HOLD_MS) {
         alpha = 1;
-      } else if (msIntoBlock < FORM_MS + HOLD_MS + FADE_MS) {
-        alpha = 1 - (msIntoBlock - FORM_MS - HOLD_MS) / FADE_MS;
+        travelT = 1;
+      } else if (msIntoLetter < FORM_MS + HOLD_MS + FADE_MS) {
+        alpha = 1 - (msIntoLetter - FORM_MS - HOLD_MS) / FADE_MS;
+        travelT = 1;
       } else {
+        // 3s breathing pause between letters where only the ambient circuit pulses
         return;
       }
       if (alpha <= 0) return;
@@ -522,17 +517,17 @@ export default function CircuitCanvas({
       const totalLen = strokeLengths.reduce((a, b) => a + b, 0);
       const target = totalLen * travelT;
 
-      // Larger, thicker, more legible trace for the secret letter
-      const tipRadius = Math.max(3.5, letterW * 0.022);
+      // Doubled stroke width (5.2 px) and enlarged glowing tip for strong visibility
+      const tipRadius = Math.max(5.0, letterW * 0.035);
       out.save();
-      out.globalAlpha = alpha * 0.36;
+      out.globalAlpha = alpha * 0.65;
       out.strokeStyle = color;
       out.fillStyle = color;
-      out.lineWidth = 2.6;
+      out.lineWidth = 5.2;
       out.lineCap = "round";
       out.lineJoin = "round";
       out.shadowColor = color;
-      out.shadowBlur = 8;
+      out.shadowBlur = 12;
 
       let consumed = 0;
       for (let s = 0; s < strokes.length && consumed < target; s++) {
@@ -574,7 +569,7 @@ export default function CircuitCanvas({
           out.stroke();
           if (travelT < 1) {
             out.save();
-            out.shadowBlur = 8;
+            out.shadowBlur = 12;
             out.beginPath();
             out.arc(tipX, tipY, tipRadius, 0, 6.283);
             out.fill();
