@@ -495,7 +495,7 @@ const en: Translation = {
         link: "https://votreassistantia.fr",
         linkLabel: "votreassistantia.fr",
         stores: [],
-        image: "/img/portfolio-vaia.webp",
+        image: "/img/portfolio-vaia-en.webp",
       },
       {
         ref: "Workflow Automation",
@@ -518,7 +518,7 @@ const en: Translation = {
           },
           { label: "Snapcraft", url: "https://snapcraft.io/inoneshot" },
         ],
-        image: "/img/portfolio-inoneshot.webp",
+        image: "/img/portfolio-inoneshot-en.webp",
       },
       {
         ref: "Graphics Tool",
@@ -541,7 +541,7 @@ const en: Translation = {
           },
           { label: "Snapcraft", url: "https://snapcraft.io/vectorpop" },
         ],
-        image: "/img/portfolio-vectorpop.webp",
+        image: "/img/portfolio-vectorpop-en.webp",
       },
       {
         ref: "System Diagnostics",
@@ -554,7 +554,7 @@ const en: Translation = {
         link: "https://nyctale.fr",
         linkLabel: "nyctale.fr",
         stores: [],
-        image: "/img/portfolio-nyctale.webp",
+        image: "/img/portfolio-nyctale-en.webp",
       },
       {
         ref: "AI Web Application",
@@ -567,7 +567,7 @@ const en: Translation = {
         link: "https://www.vidscope.fr",
         linkLabel: "vidscope.fr",
         stores: [],
-        image: "/img/portfolio-vidscope.webp",
+        image: "/img/portfolio-vidscope-en.webp",
       },
       {
         ref: "SVG Quality Control",
