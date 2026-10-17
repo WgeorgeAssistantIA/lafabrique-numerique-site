@@ -64,7 +64,7 @@ export default function Hero() {
         aria-hidden="true"
         className="absolute top-1/4 right-0 z-[1] h-[400px] w-[480px] rounded-full bg-amber/[0.07] blur-[130px] pointer-events-none"
       />
-      <div className="absolute inset-0 z-[1] pointer-events-none bg-gradient-to-r from-background-deep via-background-deep/85 to-background-deep/45" />
+      <div className="absolute inset-0 z-[1] pointer-events-none bg-gradient-to-r from-background-deep/90 via-background-deep/70 to-background-deep/20" />
       <div className="absolute inset-x-0 bottom-0 z-[1] h-28 pointer-events-none bg-gradient-to-t from-background to-transparent" />
 
       <div className="mx-auto max-w-6xl px-6 relative z-10">

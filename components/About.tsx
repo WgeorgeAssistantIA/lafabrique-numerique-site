@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useLanguage } from "@/lib/i18n";
+import CircuitCanvas from "./CircuitCanvas";
 
 export default function About() {
   const { t, lang } = useLanguage();
@@ -10,35 +11,52 @@ export default function About() {
   const isFr = lang === "fr";
 
   return (
-    <section id="about" className="relative py-24 border-b border-white/[0.08] overflow-hidden">
+    <section
+      id="about"
+      className="relative py-24 border-b border-white/[0.08] overflow-hidden bg-background-deep"
+    >
+      {/* Full-section circuit background (no z-index on wrapper so the z-20
+          secret letter layer renders cleanly above the transparency gradients) */}
+      <div className="absolute inset-0">
+        <CircuitCanvas lang={lang} variant="atelier" />
+      </div>
+
+      {/* Discreet transparency gradients across the section, matching the Hero */}
+      <div className="absolute inset-0 z-[1] pointer-events-none bg-gradient-to-r from-background-deep via-background-deep/85 to-background-deep/25" />
+      <div className="absolute inset-x-0 top-0 z-[1] h-24 pointer-events-none bg-gradient-to-b from-background to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 z-[1] h-24 pointer-events-none bg-gradient-to-t from-background to-transparent" />
       <div
         aria-hidden="true"
-        className="absolute bottom-0 left-1/4 h-[360px] w-[520px] rounded-full bg-amber/[0.04] blur-[130px] pointer-events-none"
+        className="absolute bottom-0 left-1/4 z-[1] h-[360px] w-[520px] rounded-full bg-amber/[0.04] blur-[130px] pointer-events-none"
       />
-      <div className="mx-auto max-w-6xl px-6 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        <div className="lg:col-span-7">
-          <p className="fig-label text-cyan mb-3">{a.figLabel}</p>
-          <h2 className="font-display uppercase text-4xl sm:text-5xl mb-6">{a.title}</h2>
-          <p className="text-muted leading-relaxed mb-4 text-base sm:text-lg">{a.p1}</p>
-          <p className="text-muted leading-relaxed mb-8">
-            {a.p2}
-            {isFr && (
-              <>
-                {" "}
-                Basé à{" "}
-                <Link
-                  href="/site-internet-roanne"
-                  className="text-cyan underline decoration-cyan/40 underline-offset-4 hover:text-amber transition-colors"
-                >
-                  Roanne
-                </Link>
-                .
-              </>
-            )}
-          </p>
+
+      <div className="mx-auto max-w-6xl px-6 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-x-12 lg:gap-y-8 items-stretch pointer-events-none">
+        {/* Row 1 Left: Studio story & Founder card */}
+        <div className="lg:col-span-7 flex flex-col justify-between pointer-events-auto">
+          <div>
+            <p className="fig-label text-cyan mb-3">{a.figLabel}</p>
+            <h2 className="font-display uppercase text-4xl sm:text-5xl mb-6">{a.title}</h2>
+            <p className="text-muted leading-relaxed mb-4 text-base sm:text-lg">{a.p1}</p>
+            <p className="text-muted leading-relaxed mb-7">
+              {a.p2}
+              {isFr && (
+                <>
+                  {" "}
+                  Basé à{" "}
+                  <Link
+                    href="/site-internet-roanne"
+                    className="text-cyan underline decoration-cyan/40 underline-offset-4 hover:text-amber transition-colors"
+                  >
+                    Roanne
+                  </Link>
+                  .
+                </>
+              )}
+            </p>
+          </div>
 
           {/* A face behind the studio: a service business is bought on trust */}
-          <div className="mb-8 inline-flex items-center gap-5 rounded-2xl border border-cyan/25 glass-panel pr-7 p-4 shadow-[0_10px_30px_-15px_rgba(95,216,232,0.2)]">
+          <div className="inline-flex items-center gap-5 rounded-2xl border border-cyan/25 bg-panel/75 backdrop-blur-md pr-7 p-4 shadow-[0_10px_30px_-15px_rgba(95,216,232,0.2)] self-start">
             <Image
               src="/img/william.webp"
               alt="William George"
@@ -60,13 +78,23 @@ export default function About() {
               </p>
             </div>
           </div>
+        </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-            {a.why.map((w) => (
-              <div
-                key={w.ref}
-                className="rounded-xl border border-white/[0.08] glass-panel p-5 hover:border-cyan/40 transition-colors"
-              >
+        {/* Row 1 Right: Open circuit & secret letter zone directly above the Owl */}
+        <div
+          data-atelier-letter-zone="true"
+          aria-hidden="true"
+          className="hidden lg:block lg:col-span-5 min-h-[280px] pointer-events-none"
+        />
+
+        {/* Row 2 Left: The 4 value bricks */}
+        <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4 pointer-events-auto">
+          {a.why.map((w) => (
+            <div
+              key={w.ref}
+              className="rounded-xl border border-white/[0.08] bg-panel/65 backdrop-blur-md p-5 hover:border-cyan/40 transition-colors flex flex-col justify-between"
+            >
+              <div>
                 <div className="flex items-center justify-between mb-2">
                   <span className="fig-label text-amber">{w.ref}</span>
                   <span className="node-dot opacity-50" />
@@ -78,24 +106,24 @@ export default function About() {
                   {w.desc}
                 </p>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
 
-        {/* Right column: Studio Emblem & Easter Egg Level 3 Owl (exact 220x220 wrapper preserved) */}
-        <div className="lg:col-span-5">
-          <div className="relative rounded-2xl border border-white/10 glass-panel p-8 sm:p-12 flex flex-col items-center justify-center overflow-hidden">
+        {/* Row 2 Right: Studio Emblem & Easter Egg Level 3 Owl aligned at the height of the 4 bricks */}
+        <div className="lg:col-span-5 flex flex-col pointer-events-auto">
+          <div className="relative rounded-2xl border border-white/10 bg-panel/60 backdrop-blur-md p-6 sm:p-8 flex flex-col items-center justify-between overflow-hidden h-full shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08),0_10px_30px_-15px_rgba(0,0,0,0.6)]">
             {/* Decorative ambient glow & concentric tech rings (pointer-events-none so the owl eye click is never intercepted) */}
             <div
               aria-hidden="true"
               className="absolute inset-0 flex items-center justify-center pointer-events-none"
             >
-              <div className="h-64 w-64 rounded-full bg-cyan/10 blur-3xl" />
-              <div className="absolute h-72 w-72 rounded-full border border-cyan/15 border-dashed" />
-              <div className="absolute h-88 w-88 rounded-full border border-white/[0.05]" />
+              <div className="h-60 w-60 rounded-full bg-cyan/10 blur-3xl" />
+              <div className="absolute h-64 w-64 rounded-full border border-cyan/15 border-dashed" />
+              <div className="absolute h-80 w-80 rounded-full border border-white/[0.05]" />
             </div>
 
-            <div className="w-full flex items-center justify-between mb-6 relative z-10 pointer-events-none">
+            <div className="w-full flex items-center justify-between mb-2 relative z-10 pointer-events-none">
               <span className="fig-label text-[0.62rem] text-cyan">
                 {isFr ? "ATELIER · SYSTÈME" : "STUDIO · CORE"}
               </span>
@@ -105,7 +133,7 @@ export default function About() {
             </div>
 
             <div
-              className="relative z-10 w-[220px] h-[220px] my-4"
+              className="relative z-10 w-[220px] h-[220px] my-2"
               data-atelier-owl-wrapper="true"
             >
               <Image
@@ -119,7 +147,7 @@ export default function About() {
               />
             </div>
 
-            <div className="w-full pt-6 mt-4 border-t border-white/[0.07] flex items-center justify-between relative z-10 pointer-events-none">
+            <div className="w-full pt-4 mt-2 border-t border-white/[0.07] flex items-center justify-between relative z-10 pointer-events-none">
               <span className="fig-label text-[0.62rem] text-amber">
                 LA FABRIK NUMÉRIQUE
               </span>

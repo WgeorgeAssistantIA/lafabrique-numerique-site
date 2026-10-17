@@ -146,7 +146,14 @@ const FORM_MS = 2600;
 const HOLD_MS = 900;
 const FADE_MS = 700;
 
-export default function CircuitCanvas({ lang = "fr" }: { lang?: "fr" | "en" }) {
+export default function CircuitCanvas({
+  lang = "fr",
+  variant = "hero",
+}: {
+  lang?: "fr" | "en";
+  variant?: "hero" | "atelier";
+}) {
+  const isAtelier = variant === "atelier";
   const canvasRef = useRef<HTMLCanvasElement>(null);
   // The letter draws on its own canvas layered ABOVE the hero's darkening
   // gradient overlays — on the main canvas it would be hidden behind the
@@ -422,26 +429,52 @@ export default function CircuitCanvas({ lang = "fr" }: { lang?: "fr" | "en" }) {
       }
       if (alpha <= 0) return;
 
-      // Horizontally aligned under the header's "Demander un devis" /
-      // "Get a quote" button (top right, tagged data-egg-anchor), read from
-      // the DOM on every draw so layout shifts can't move the letter.
-      // Vertical center ~64% down the Hero — the placement William
-      // validated on screenshots (2026-07-22).
-      // That button is `hidden sm:inline` below the sm breakpoint, so on
-      // narrow screens its rect is all zeros — falls back the same as when
-      // the anchor is missing entirely, keeping the letter on-canvas.
+      let letterH: number;
+      let letterW: number;
+      let originX: number;
+      let originY: number;
+
       const canvasRect = canvas.getBoundingClientRect();
-      const anchorEl = document.querySelector<HTMLElement>("[data-egg-anchor]");
-      const anchorRect = anchorEl?.getBoundingClientRect();
-      if (anchorRect && anchorRect.width > 0) {
-        ctaCenterX = (anchorRect.left + anchorRect.right) / 2 - canvasRect.left;
+
+      if (isAtelier) {
+        // Center the secret letter directly inside the open zone just above
+        // the Owl card in About.tsx ([data-atelier-letter-zone]).
+        const zoneEl = document.querySelector<HTMLElement>(
+          "[data-atelier-letter-zone]",
+        );
+        const zoneRect = zoneEl?.getBoundingClientRect();
+        if (zoneRect && zoneRect.width > 0 && zoneRect.height > 0) {
+          const zoneCenterX =
+            (zoneRect.left + zoneRect.right) / 2 - canvasRect.left;
+          const zoneCenterY =
+            (zoneRect.top + zoneRect.bottom) / 2 - canvasRect.top;
+          letterH = Math.max(200, Math.min(320, zoneRect.height * 0.82));
+          letterW = letterH * 0.62;
+          originX = zoneCenterX - letterW / 2;
+          originY = zoneCenterY - letterH / 2;
+        } else {
+          letterH = Math.max(200, Math.min(320, height * 0.36));
+          letterW = letterH * 0.62;
+          originX = width * 0.78 - letterW / 2;
+          originY = height * 0.28 - letterH / 2;
+        }
       } else {
-        ctaCenterX = width * 0.85;
+        // Horizontally aligned under the header's "Demander un devis" /
+        // "Get a quote" button (top right, tagged data-egg-anchor), read from
+        // the DOM on every draw so layout shifts can't move the letter.
+        const anchorEl = document.querySelector<HTMLElement>("[data-egg-anchor]");
+        const anchorRect = anchorEl?.getBoundingClientRect();
+        if (anchorRect && anchorRect.width > 0) {
+          ctaCenterX = (anchorRect.left + anchorRect.right) / 2 - canvasRect.left;
+        } else {
+          ctaCenterX = width * 0.85;
+        }
+        letterH = Math.max(200, Math.min(420, height * 0.48));
+        letterW = letterH * 0.62;
+        originX = ctaCenterX - letterW / 2;
+        originY = height * 0.64 - letterH / 2;
       }
-      const letterH = Math.max(160, Math.min(380, height * 0.4));
-      const letterW = letterH * 0.6;
-      const originX = ctaCenterX - letterW / 2;
-      const originY = height * 0.64 - letterH / 2;
+
       const scaleX = letterW / 60;
       const scaleY = letterH / 100;
       const toCanvas = (p: StrokePoint) => ({
@@ -462,18 +495,17 @@ export default function CircuitCanvas({ lang = "fr" }: { lang?: "fr" | "en" }) {
       const totalLen = strokeLengths.reduce((a, b) => a + b, 0);
       const target = totalLen * travelT;
 
-      // The trail is as thin as the ambient circuit traces (1px); only the
-      // traveling tip dot keeps the previous stroke's size.
-      const tipRadius = Math.max(2, letterW * 0.012);
+      // Larger, thicker, more legible trace for the secret letter
+      const tipRadius = Math.max(3.5, letterW * 0.022);
       out.save();
-      out.globalAlpha = alpha * 0.15;
+      out.globalAlpha = alpha * 0.36;
       out.strokeStyle = color;
       out.fillStyle = color;
-      out.lineWidth = 1;
+      out.lineWidth = 2.6;
       out.lineCap = "round";
       out.lineJoin = "round";
       out.shadowColor = color;
-      out.shadowBlur = 4;
+      out.shadowBlur = 8;
 
       let consumed = 0;
       for (let s = 0; s < strokes.length && consumed < target; s++) {
