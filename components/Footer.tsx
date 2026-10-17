@@ -7,10 +7,10 @@ export default function Footer() {
   const { t } = useLanguage();
 
   return (
-    <footer className="border-t border-line py-8">
+    <footer className="border-t border-white/[0.08] bg-background-deep py-10">
       <div className="mx-auto max-w-6xl px-6 flex flex-col sm:flex-row items-center justify-between gap-4 fig-label">
         <span>© {new Date().getFullYear()} La Fabrik Numérique</span>
-        <nav className="flex items-center gap-6">
+        <nav className="flex flex-wrap items-center justify-center gap-6">
           <Link
             href="/site-internet-roanne"
             className="hover:text-cyan transition-colors"
@@ -33,7 +33,7 @@ export default function Footer() {
             {t.footer.cgv}
           </Link>
         </nav>
-        <span>{t.footer.ref}</span>
+        <span className="text-cyan/70">{t.footer.ref}</span>
       </div>
     </footer>
   );

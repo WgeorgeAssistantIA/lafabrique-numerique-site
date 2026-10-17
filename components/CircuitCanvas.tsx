@@ -302,7 +302,7 @@ export default function CircuitCanvas({ lang = "fr" }: { lang?: "fr" | "en" }) {
       ctx.clearRect(0, 0, width, height);
 
       ctx.lineWidth = 1;
-      ctx.strokeStyle = "rgba(95,216,232,0.07)";
+      ctx.strokeStyle = "rgba(95,216,232,0.11)";
       ctx.beginPath();
       for (const e of edges) {
         const a = nodes[e.a];
@@ -320,7 +320,7 @@ export default function CircuitCanvas({ lang = "fr" }: { lang?: "fr" | "en" }) {
             const near = 1 - dm / 160;
             const a = nodes[e.a];
             const b = nodes[e.b];
-            ctx.strokeStyle = `rgba(95,216,232,${(near * 0.32).toFixed(3)})`;
+            ctx.strokeStyle = `rgba(95,216,232,${(near * 0.38).toFixed(3)})`;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
             ctx.lineTo(e.mx, e.my);
@@ -335,16 +335,16 @@ export default function CircuitCanvas({ lang = "fr" }: { lang?: "fr" | "en" }) {
           ? Math.hypot(n.x - mouse.x, n.y - mouse.y)
           : 9999;
         const near = Math.max(0, 1 - dm / 140);
-        const target = (n.pad ? 0.22 : 0) + near;
+        const target = (n.pad ? 0.28 : 0) + near;
         n.glow += (target - n.glow) * 0.12;
         const g = Math.max(0, Math.min(1, n.glow));
         if (n.pad) {
-          ctx.fillStyle = `rgba(95,216,232,${(0.22 + g * 0.7).toFixed(3)})`;
+          ctx.fillStyle = `rgba(95,216,232,${(0.28 + g * 0.7).toFixed(3)})`;
           ctx.fillRect(n.x - 2, n.y - 2, 4, 4);
         } else {
-          ctx.fillStyle = `rgba(120,150,170,${(0.16 + g * 0.6).toFixed(3)})`;
+          ctx.fillStyle = `rgba(120,150,170,${(0.22 + g * 0.6).toFixed(3)})`;
           ctx.beginPath();
-          ctx.arc(n.x, n.y, 1.3, 0, 6.283);
+          ctx.arc(n.x, n.y, 1.4, 0, 6.283);
           ctx.fill();
         }
         if (g > 0.06) {
@@ -631,13 +631,12 @@ export default function CircuitCanvas({ lang = "fr" }: { lang?: "fr" | "en" }) {
         aria-hidden="true"
         className="absolute inset-0 h-full w-full"
       />
-      {/* Letter layer: above the hero's darkening gradients (z-[2] > z-[1]),
-          below the text content (z-10). Requires the wrapper in Hero.tsx to
-          NOT create its own stacking context. */}
+      {/* Letter layer: above the hero's darkening gradients and right-side showcase,
+          always non-interactive (pointer-events-none). */}
       <canvas
         ref={letterCanvasRef}
         aria-hidden="true"
-        className="absolute inset-0 h-full w-full z-[2] pointer-events-none"
+        className="absolute inset-0 h-full w-full z-20 pointer-events-none"
       />
     </>
   );

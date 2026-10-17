@@ -51,18 +51,20 @@ export default function RoannePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
-      <header className="border-b border-line">
+      <header className="border-b border-white/[0.08] bg-background-deep/85 backdrop-blur-xl">
         <div className="mx-auto max-w-3xl px-6 h-16 flex items-center gap-4">
-          <Link href="/" className="flex items-center gap-3">
-            <Image
-              src="/img/logo.png"
-              alt="La Fabrik Numérique"
-              width={32}
-              height={32}
-              data-easter-egg="logo"
-              draggable={false}
-            />
-            <span className="font-display text-sm tracking-widest uppercase">
+          <Link href="/" className="flex items-center gap-3 group">
+            <div className="relative flex items-center justify-center rounded-full p-0.5 bg-gradient-to-br from-cyan/20 to-amber/10 ring-1 ring-white/10">
+              <Image
+                src="/img/logo.png"
+                alt="La Fabrik Numérique"
+                width={32}
+                height={32}
+                data-easter-egg="logo"
+                draggable={false}
+              />
+            </div>
+            <span className="font-display text-base tracking-[0.14em] uppercase">
               La Fabrik Numérique
             </span>
           </Link>
@@ -71,65 +73,66 @@ export default function RoannePage() {
 
       <main className="flex-1">
         <section className="py-24 circuit-bg">
-          <div className="mx-auto max-w-3xl px-6">
+          <div className="mx-auto max-w-3xl px-6 relative z-10">
             <Link
               href="/"
               className="fig-label text-cyan hover:text-amber transition-colors"
             >
               {r.backHome}
             </Link>
-            <p className="fig-label mt-8 mb-3">{r.figLabel}</p>
+            <p className="fig-label text-cyan mt-8 mb-3">{r.figLabel}</p>
             <h1 className="font-display uppercase text-4xl sm:text-5xl leading-[1.05]">
               {r.title}
             </h1>
-            <p className="mt-6 text-muted leading-relaxed max-w-xl">
+            <p className="mt-6 text-muted leading-relaxed max-w-xl text-base sm:text-lg">
               {r.intro}
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-4">
-              <Link
-                href="/#contact"
-                className="fig-label bg-cyan text-background-deep px-6 py-3 hover:bg-amber transition-colors"
-              >
+              <Link href="/#contact" className="btn-shine btn-primary">
                 {r.ctaButton}
               </Link>
             </div>
           </div>
         </section>
 
-        <section className="py-20 border-t border-line">
+        <section className="py-20 border-t border-white/[0.08]">
           <div className="mx-auto max-w-3xl px-6">
-            <h2 className="font-display uppercase text-2xl mb-8">
+            <h2 className="font-display uppercase text-2xl sm:text-3xl mb-8">
               {r.whyTitle}
             </h2>
-            <div className="space-y-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               {r.why.map((item, i) => (
-                <div key={item.title} className="flex gap-4">
-                  <span className="fig-label text-amber shrink-0">
+                <div
+                  key={item.title}
+                  className="rounded-xl border border-white/[0.08] glass-panel p-5"
+                >
+                  <span className="fig-label text-amber">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <div>
-                    <h3 className="font-display uppercase text-lg leading-tight">
-                      {item.title}
-                    </h3>
-                    <p className="text-muted text-sm leading-relaxed mt-1">
-                      {item.desc}
-                    </p>
-                  </div>
+                  <h3 className="font-display uppercase text-lg leading-tight mt-2">
+                    {item.title}
+                  </h3>
+                  <p className="text-muted text-sm leading-relaxed mt-2">
+                    {item.desc}
+                  </p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="py-20 border-t border-line circuit-bg">
-          <div className="mx-auto max-w-3xl px-6">
-            <h2 className="font-display uppercase text-2xl mb-8">
+        <section className="py-20 border-t border-white/[0.08] circuit-bg">
+          <div className="mx-auto max-w-3xl px-6 relative z-10">
+            <h2 className="font-display uppercase text-2xl sm:text-3xl mb-8">
               {r.servicesTitle}
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {r.services.map((item) => (
-                <div key={item.title} className="border border-line p-6">
-                  <h3 className="font-display uppercase text-lg">
+                <div
+                  key={item.title}
+                  className="card-lift rounded-xl border border-white/[0.08] glass-panel p-6"
+                >
+                  <h3 className="font-display uppercase text-xl text-cyan">
                     {item.title}
                   </h3>
                   <p className="text-muted text-sm leading-relaxed mt-3">
@@ -141,9 +144,9 @@ export default function RoannePage() {
           </div>
         </section>
 
-        <section className="py-20 border-t border-line">
+        <section className="py-20 border-t border-white/[0.08]">
           <div className="mx-auto max-w-3xl px-6">
-            <h2 className="font-display uppercase text-2xl mb-6">
+            <h2 className="font-display uppercase text-2xl sm:text-3xl mb-6">
               {r.areasTitle}
             </h2>
             <p className="text-muted leading-relaxed max-w-xl">{r.areasDesc}</p>
@@ -151,7 +154,7 @@ export default function RoannePage() {
               {ROANNE_AREAS.map((area) => (
                 <span
                   key={area}
-                  className="fig-label border border-line px-3 py-1.5"
+                  className="fig-label rounded-lg border border-white/[0.08] bg-panel/70 px-3.5 py-1.5 text-foreground/90"
                 >
                   {area}
                 </span>
@@ -160,33 +163,40 @@ export default function RoannePage() {
           </div>
         </section>
 
-        <section className="py-20 border-t border-line circuit-bg">
-          <div className="mx-auto max-w-3xl px-6">
-            <h2 className="font-display uppercase text-2xl mb-8">
+        <section className="py-20 border-t border-white/[0.08] circuit-bg">
+          <div className="mx-auto max-w-3xl px-6 relative z-10">
+            <h2 className="font-display uppercase text-2xl sm:text-3xl mb-8">
               {r.faqTitle}
             </h2>
-            <div className="space-y-8">
+            <div className="space-y-4">
               {r.faq.map((item) => (
-                <div key={item.q}>
+                <div
+                  key={item.q}
+                  className="rounded-xl border border-white/[0.08] glass-panel p-6"
+                >
                   <h3 className="font-display uppercase text-lg text-cyan">
                     {item.q}
                   </h3>
-                  <p className="text-muted leading-relaxed mt-2">{item.a}</p>
+                  <p className="text-muted leading-relaxed mt-2 text-sm sm:text-base">
+                    {item.a}
+                  </p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="py-24 border-t border-line">
+        <section className="py-24 border-t border-white/[0.08]">
           <div className="mx-auto max-w-3xl px-6 text-center">
-            <h2 className="font-display uppercase text-3xl">{r.ctaTitle}</h2>
+            <h2 className="font-display uppercase text-3xl sm:text-4xl">
+              {r.ctaTitle}
+            </h2>
             <p className="mt-4 text-muted leading-relaxed max-w-md mx-auto">
               {r.ctaDesc}
             </p>
             <Link
               href="/#contact"
-              className="fig-label inline-block mt-8 bg-cyan text-background-deep px-6 py-3 hover:bg-amber transition-colors"
+              className="btn-shine btn-primary mt-8"
             >
               {r.ctaButton}
             </Link>

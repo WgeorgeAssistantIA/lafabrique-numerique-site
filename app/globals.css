@@ -3,12 +3,12 @@
 :root {
   --background: #060912;
   --background-deep: #04060c;
-  --panel: #0c1322;
-  --foreground: #eef2f8;
-  --muted: #7f8ba3;
+  --panel: #0c1424;
+  --foreground: #f1f5f9;
+  --muted: #94a3b8;
   --cyan: #5fd8e8;
   --amber: #e8a14f;
-  --line: #1c2a40;
+  --line: #1e2d45;
 }
 
 @theme inline {
@@ -46,11 +46,27 @@ p.text-sm:not(.fig-label) {
 }
 
 .circuit-bg {
+  position: relative;
+  background-color: var(--background);
   background-image:
-    linear-gradient(var(--line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--line) 1px, transparent 1px);
-  background-size: 48px 48px;
-  background-position: -1px -1px;
+    radial-gradient(ellipse 75% 45% at 50% 0%, rgba(95, 216, 232, 0.055), transparent 75%),
+    linear-gradient(rgba(30, 45, 69, 0.28) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30, 45, 69, 0.28) 1px, transparent 1px);
+  background-size: 100% 100%, 64px 64px, 64px 64px;
+  background-position: 0 0, -1px -1px, -1px -1px;
+}
+
+/* Modern glass surface with top specular highlight */
+.glass-panel {
+  background: linear-gradient(
+    180deg,
+    rgba(16, 26, 46, 0.75) 0%,
+    rgba(8, 13, 24, 0.88) 100%
+  );
+  backdrop-filter: blur(12px);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.08),
+    0 10px 30px -15px rgba(0, 0, 0, 0.6);
 }
 
 /* Kept in the components layer so Tailwind color utilities (text-cyan,
@@ -59,8 +75,8 @@ p.text-sm:not(.fig-label) {
 @layer components {
   .fig-label {
     font-family: var(--font-mono-brand), monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.15em;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
     color: var(--muted);
     text-transform: uppercase;
   }
@@ -68,6 +84,61 @@ p.text-sm:not(.fig-label) {
   /* Main navigation: same style as fig-label but slightly larger for readability */
   .nav-label {
     font-size: 0.78rem;
+  }
+
+  /* Modern primary & secondary CTA buttons: readable sans-serif, subtle rounding, luminous feel */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 0.5rem;
+    background: linear-gradient(135deg, var(--cyan) 0%, #38bdf8 100%);
+    color: var(--background-deep);
+    font-family: var(--font-sans-brand), system-ui, sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding: 0.75rem 1.5rem;
+    box-shadow:
+      0 0 24px -4px rgba(95, 216, 232, 0.45),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.35);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .btn-primary:hover {
+    background: linear-gradient(135deg, var(--amber) 0%, #f59e0b 100%);
+    box-shadow:
+      0 0 28px -4px rgba(232, 161, 79, 0.55),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(95, 216, 232, 0.3);
+    background: rgba(12, 20, 36, 0.6);
+    backdrop-filter: blur(8px);
+    color: var(--foreground);
+    font-family: var(--font-sans-brand), system-ui, sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    padding: 0.75rem 1.5rem;
+    box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.06);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--cyan);
+    color: var(--cyan);
+    background: rgba(95, 216, 232, 0.08);
+    box-shadow: 0 0 20px -6px rgba(95, 216, 232, 0.35);
+    transform: translateY(-1px);
   }
 }
 
@@ -107,10 +178,10 @@ p.text-sm:not(.fig-label) {
 @keyframes glow-pulse {
   0%,
   100% {
-    text-shadow: 0 0 12px rgba(95, 216, 232, 0.35);
+    text-shadow: 0 0 16px rgba(95, 216, 232, 0.35);
   }
   50% {
-    text-shadow: 0 0 26px rgba(95, 216, 232, 0.75);
+    text-shadow: 0 0 32px rgba(95, 216, 232, 0.75);
   }
 }
 
@@ -157,7 +228,9 @@ p.text-sm:not(.fig-label) {
 
 .card-lift:hover {
   transform: translateY(-4px);
-  box-shadow: 0 16px 32px -18px rgba(95, 216, 232, 0.45);
+  box-shadow:
+    0 20px 38px -18px rgba(95, 216, 232, 0.35),
+    inset 0 1px 0 0 rgba(95, 216, 232, 0.25);
 }
 
 /* Underline that grows from the left, used for the header's active-section indicator */

@@ -31,53 +31,65 @@ export default function Contact() {
 
   return (
     <section id="contact" className="py-24 circuit-bg">
-      <div className="mx-auto max-w-6xl px-6 grid grid-cols-1 lg:grid-cols-2 gap-12">
-        <div>
-          <p className="fig-label mb-3">{c.figLabel}</p>
-          <h2 className="font-display uppercase text-4xl mb-6">{c.title}</h2>
-          <p className="text-muted leading-relaxed mb-8 max-w-md">{c.desc}</p>
-          <div className="space-y-2 fig-label">
-            <a
-              href={`mailto:${c.emailAddress}`}
-              className="block text-cyan hover:text-amber transition-colors"
-            >
-              {c.emailAddress}
-            </a>
-            <p className="text-muted">{c.responseTime}</p>
+      <div className="mx-auto max-w-6xl px-6 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        <div className="lg:col-span-5">
+          <p className="fig-label text-cyan mb-3">{c.figLabel}</p>
+          <h2 className="font-display uppercase text-4xl sm:text-5xl mb-6">{c.title}</h2>
+          <p className="text-muted leading-relaxed mb-8 max-w-md text-base sm:text-lg">
+            {c.desc}
+          </p>
+
+          <div className="rounded-2xl border border-white/[0.08] glass-panel p-6 space-y-4">
+            <div>
+              <span className="fig-label text-[0.65rem] block mb-1">EMAIL DIRECT</span>
+              <a
+                href={`mailto:${c.emailAddress}`}
+                className="font-mono text-sm sm:text-base text-cyan hover:text-amber transition-colors"
+              >
+                {c.emailAddress}
+              </a>
+            </div>
+            <div className="pt-4 border-t border-white/[0.08] flex items-center gap-2.5">
+              <span className="node-dot" />
+              <p className="fig-label text-foreground/90">{c.responseTime}</p>
+            </div>
           </div>
         </div>
+
         <form
           onSubmit={onSubmit}
-          className="space-y-4 border border-line p-8 bg-background-deep"
+          className="lg:col-span-7 space-y-5 rounded-2xl border border-white/10 glass-panel p-6 sm:p-8"
         >
-          <div>
-            <label className="fig-label block mb-2" htmlFor="name">
-              {c.name}
-            </label>
-            <input
-              id="name"
-              name="name"
-              type="text"
-              required
-              maxLength={200}
-              className="w-full bg-panel border border-line px-4 py-3 text-foreground focus:outline-none focus:border-cyan"
-            />
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div>
+              <label className="fig-label block mb-2 text-foreground/80" htmlFor="name">
+                {c.name}
+              </label>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                required
+                maxLength={200}
+                className="w-full rounded-lg bg-background-deep/80 border border-white/10 px-4 py-3 text-foreground focus:outline-none focus:border-cyan focus:ring-2 focus:ring-cyan/20 transition-all"
+              />
+            </div>
+            <div>
+              <label className="fig-label block mb-2 text-foreground/80" htmlFor="email">
+                {c.email}
+              </label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                maxLength={320}
+                className="w-full rounded-lg bg-background-deep/80 border border-white/10 px-4 py-3 text-foreground focus:outline-none focus:border-cyan focus:ring-2 focus:ring-cyan/20 transition-all"
+              />
+            </div>
           </div>
           <div>
-            <label className="fig-label block mb-2" htmlFor="email">
-              {c.email}
-            </label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              required
-              maxLength={320}
-              className="w-full bg-panel border border-line px-4 py-3 text-foreground focus:outline-none focus:border-cyan"
-            />
-          </div>
-          <div>
-            <label className="fig-label block mb-2" htmlFor="message">
+            <label className="fig-label block mb-2 text-foreground/80" htmlFor="message">
               {c.message}
             </label>
             <textarea
@@ -86,7 +98,7 @@ export default function Contact() {
               rows={4}
               required
               maxLength={5000}
-              className="w-full bg-panel border border-line px-4 py-3 text-foreground focus:outline-none focus:border-cyan"
+              className="w-full rounded-lg bg-background-deep/80 border border-white/10 px-4 py-3 text-foreground focus:outline-none focus:border-cyan focus:ring-2 focus:ring-cyan/20 transition-all"
             />
           </div>
           {/* Honeypot: hidden from humans, bots fill it and get silently dropped */}
@@ -109,7 +121,7 @@ export default function Contact() {
               name="consent"
               type="checkbox"
               required
-              className="mt-0.5 accent-[var(--cyan)]"
+              className="mt-0.5 rounded accent-[var(--cyan)]"
             />
             <span>
               {c.consentA}{" "}
@@ -127,9 +139,9 @@ export default function Contact() {
           <button
             type="submit"
             disabled={status === "sending"}
-            className="btn-shine fig-label w-full bg-cyan text-background-deep px-6 py-3 hover:bg-amber transition-colors disabled:opacity-60"
+            className="btn-shine btn-primary w-full disabled:opacity-60"
           >
-            {status === "sending" ? c.sending : t.cta.quote}
+            <span>{status === "sending" ? c.sending : t.cta.quote}</span>
           </button>
           {status === "success" && (
             <p className="fig-label text-cyan" role="status">
