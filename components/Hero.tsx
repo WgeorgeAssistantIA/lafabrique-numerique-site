@@ -72,11 +72,11 @@ export default function Hero() {
           {/* Left column: Clear editorial promise, 2 entry doors & CTAs */}
           <div className="lg:col-span-6">
             <div
-              className="hero-in inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-panel/80 backdrop-blur-md px-3.5 py-1.5 mb-7 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)]"
+              className="hero-in inline-flex items-center gap-2 rounded-full border border-white/10 bg-panel/80 backdrop-blur-md px-3 sm:px-3.5 py-1.5 mb-6 sm:mb-7 max-w-full shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)]"
               style={{ animationDelay: "0ms" }}
             >
-              <span className="node-dot" />
-              <span className="fig-label text-cyan !tracking-[0.11em]">
+              <span className="node-dot shrink-0" />
+              <span className="fig-label text-[0.62rem] sm:text-[0.72rem] text-cyan !tracking-[0.08em] sm:!tracking-[0.11em] truncate">
                 {isFr
                   ? "STUDIO NUMÉRIQUE INDÉPENDANT · ROANNE"
                   : "INDEPENDENT DIGITAL STUDIO · FRANCE"}
@@ -84,7 +84,7 @@ export default function Hero() {
             </div>
 
             <h1
-              className="hero-in font-display uppercase text-5xl sm:text-6xl lg:text-[4.25rem] leading-[0.94] tracking-tight"
+              className="hero-in font-display uppercase text-4xl sm:text-6xl lg:text-[4.25rem] leading-[0.96] sm:leading-[0.94] tracking-tight"
               style={{ animationDelay: "90ms" }}
             >
               {h.titleA}{" "}
@@ -164,10 +164,10 @@ export default function Hero() {
             </div>
 
             <div
-              className="hero-in mt-8 flex flex-wrap items-center gap-4"
+              className="hero-in mt-7 flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 sm:gap-4"
               style={{ animationDelay: "300ms" }}
             >
-              <a href="#contact" className="btn-shine btn-primary">
+              <a href="#contact" className="btn-shine btn-primary w-full sm:w-auto">
                 <span>{isFr ? "Parler de mon projet" : "Discuss my project"}</span>
                 <svg
                   className="w-4 h-4"
@@ -183,7 +183,7 @@ export default function Hero() {
                   />
                 </svg>
               </a>
-              <a href="#realisations" className="btn-secondary">
+              <a href="#realisations" className="btn-secondary w-full sm:w-auto">
                 <span>{h.seeWork}</span>
               </a>
             </div>
@@ -194,27 +194,27 @@ export default function Hero() {
             className="hero-in lg:col-span-6"
             style={{ animationDelay: "220ms" }}
           >
-            <div className="rounded-2xl border border-white/10 bg-background-deep/75 backdrop-blur-md p-4 sm:p-5 shadow-[0_28px_70px_-15px_rgba(0,0,0,0.85),inset_0_1px_0_0_rgba(255,255,255,0.1)]">
-              <div className="flex items-center justify-between pb-3.5 mb-4 border-b border-white/[0.08]">
-                <div className="flex items-center gap-2">
-                  <span className="h-2.5 w-2.5 rounded-full bg-rose-500/70" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-amber/70" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-cyan/70" />
-                  <span className="ml-2 fig-label text-[0.65rem] text-foreground/80">
+            <div className="rounded-2xl border border-white/10 bg-background-deep/75 backdrop-blur-md p-3.5 sm:p-5 shadow-[0_28px_70px_-15px_rgba(0,0,0,0.85),inset_0_1px_0_0_rgba(255,255,255,0.1)]">
+              <div className="flex items-center justify-between gap-2 pb-3 mb-3.5 border-b border-white/[0.08]">
+                <div className="flex items-center gap-1.5 min-w-0">
+                  <span className="h-2 w-2 sm:h-2.5 sm:w-2.5 rounded-full bg-rose-500/70 shrink-0" />
+                  <span className="h-2 w-2 sm:h-2.5 sm:w-2.5 rounded-full bg-amber/70 shrink-0" />
+                  <span className="h-2 w-2 sm:h-2.5 sm:w-2.5 rounded-full bg-cyan/70 shrink-0" />
+                  <span className="ml-1.5 fig-label text-[0.6rem] sm:text-[0.65rem] text-foreground/80 truncate">
                     {isFr
-                      ? "RÉALISATIONS & INTERFACES EN PRODUCTION"
+                      ? "INTERFACES & PRODUITS EN PRODUCTION"
                       : "SHIPPED INTERFACES & PRODUCTS"}
                   </span>
                 </div>
                 <a
                   href="#realisations"
-                  className="fig-label text-[0.62rem] text-cyan hover:text-amber transition-colors"
+                  className="fig-label text-[0.6rem] sm:text-[0.62rem] text-cyan hover:text-amber transition-colors shrink-0"
                 >
                   {isFr ? "Tout voir ↓" : "See all ↓"}
                 </a>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              <div className="grid grid-cols-2 gap-2.5 sm:gap-3.5">
                 {HERO_SHOWCASE.map((prod) => (
                   <a
                     key={prod.name}
@@ -226,25 +226,25 @@ export default function Hero() {
                         src={prod.image}
                         alt={prod.name}
                         fill
-                        sizes="(min-width: 1024px) 25vw, (min-width: 640px) 45vw, 90vw"
+                        sizes="(min-width: 1024px) 25vw, 45vw"
                         className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
                       />
                       <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-background-deep/80 to-transparent pointer-events-none" />
                     </div>
-                    <div className="p-3 flex items-center justify-between gap-2">
-                      <div>
-                        <p className="font-display uppercase text-base text-foreground group-hover:text-cyan transition-colors leading-tight">
+                    <div className="p-2.5 sm:p-3 flex items-center justify-between gap-1.5">
+                      <div className="min-w-0">
+                        <p className="font-display uppercase text-sm sm:text-base text-foreground group-hover:text-cyan transition-colors leading-tight truncate">
                           {prod.name}
                         </p>
                         <p
-                          className={`fig-label text-[0.6rem] mt-0.5 ${
+                          className={`fig-label text-[0.55rem] sm:text-[0.6rem] mt-0.5 truncate ${
                             prod.accent === "cyan" ? "text-cyan" : "text-amber"
                           }`}
                         >
                           {isFr ? prod.tagFr : prod.tagEn}
                         </p>
                       </div>
-                      <span className="rounded-md border border-white/10 bg-background-deep/80 px-2 py-0.5 font-mono text-[0.62rem] text-muted group-hover:text-foreground transition-colors">
+                      <span className="hidden sm:inline-block rounded-md border border-white/10 bg-background-deep/80 px-2 py-0.5 font-mono text-[0.62rem] text-muted group-hover:text-foreground transition-colors shrink-0">
                         {prod.domain}
                       </span>
                     </div>

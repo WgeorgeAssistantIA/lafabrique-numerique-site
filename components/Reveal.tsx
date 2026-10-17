@@ -18,29 +18,35 @@ export default function Reveal({
     const el = ref.current;
     if (!el) return;
 
-    // Reveal once the element's top crosses into the lower ~92% of the
-    // viewport; anything already scrolled past is revealed immediately.
+    const fallbackTimer = window.setTimeout(() => {
+      setVisible(true);
+    }, 900);
+
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
-          if (entry.isIntersecting || entry.boundingClientRect.top < 0) {
+          if (entry.isIntersecting || entry.boundingClientRect.top < window.innerHeight) {
             setVisible(true);
+            window.clearTimeout(fallbackTimer);
             observer.disconnect();
           }
         }
       },
-      { rootMargin: "0px 0px -8% 0px" },
+      { rootMargin: "0px 0px 80px 0px", threshold: 0.01 },
     );
     observer.observe(el);
-    return () => observer.disconnect();
+    return () => {
+      window.clearTimeout(fallbackTimer);
+      observer.disconnect();
+    };
   }, []);
 
   return (
     <div
       ref={ref}
-      style={{ transitionDelay: visible ? `${delay}ms` : "0ms" }}
-      className={`reveal transition-all duration-700 ease-out ${
-        visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+      style={{ transitionDelay: visible ? `${Math.min(delay, 180)}ms` : "0ms" }}
+      className={`reveal transition-all duration-500 ease-out ${
+        visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
       } ${className}`}
     >
       {children}

@@ -26,7 +26,7 @@ const fr = {
       "VoxCut, InOneShot & VectorPop — publiés sur le Microsoft Store, Google Play et Snapcraft",
   },
   services: {
-    figLabel: "FIG. 02 — SERVICES",
+    figLabel: "NOS SERVICES & DOMAINES D'INTERVENTION",
     title: "Ce que l'on construit",
     items: [
       {
@@ -72,7 +72,7 @@ const fr = {
     ],
   },
   skills: {
-    figLabel: "FIG. 03 — COMPÉTENCES",
+    figLabel: "SAVOIR-FAIRE & MÉTHODE DE TRAVAIL",
     title: "L'atelier maîtrise",
     dev: "Développement",
     design: "Design",
@@ -134,9 +134,9 @@ const fr = {
         ref: "Web & SaaS Artisans",
         title: "VotreAssistantIA",
         type: "Plateforme web & Assistant IA · Artisans & TPE",
-        desc: "Solution web pensée pour les artisans du bâtiment : capture des demandes clients 24h/24, qualification des urgences, prise de rendez-vous et pré-devis automatisés.",
+        desc: "Solution web pensée pour les artisans et indépendants : déploiement d'un assistant IA personnalisé sur WhatsApp et Telegram pour répondre aux clients 24h/24, qualifier les demandes et résumer les échanges.",
         result:
-          "Interface web moderne orientée conversion, parcours client fluide sur mobile et ordinateur.",
+          "Déploiement clé en main en moins de 5 min · Agents IA sur WhatsApp & Telegram · Hébergement souverain en Europe.",
         tags: ["Site & App Web", "Next.js", "Assistant IA"],
         link: "https://votreassistantia.fr",
         linkLabel: "votreassistantia.fr",
@@ -233,15 +233,15 @@ const fr = {
   pricing: {
     figLabel: "TARIFS & INVESTISSEMENT",
     title: "Des offres claires, sans mauvaise surprise",
-    launchBadge: "Offre de lancement",
-    launchNote: "Tarifs préférentiels appliqués sur les nouveaux projets de la saison.",
+    launchBadge: "",
+    launchNote: "",
     scopeNote:
       "Chaque projet fait l'objet d'un devis détaillé et gratuit sous 24 h après un premier échange sur votre besoin.",
     plans: [
       {
         name: "Site One-Page / Essentiel",
-        price: "à partir de 590 €",
-        originalPrice: "Prix habituel : 990 €",
+        price: "à partir de 590\u00A0€",
+        originalPrice: "",
         highlight: false,
         scope:
           "Un site professionnel sur une page unique pour présenter votre activité, rassurer vos clients et recevoir des demandes de devis.",
@@ -255,8 +255,8 @@ const fr = {
       },
       {
         name: "Site vitrine multi-pages",
-        price: "à partir de 790 €",
-        originalPrice: "Prix habituel : 1 190 €",
+        price: "à partir de 790\u00A0€",
+        originalPrice: "",
         highlight: true,
         scope:
           "Un site complet jusqu'à 5 pages pensé pour positionner durablement votre entreprise sur Google et convertir vos visiteurs.",
@@ -271,8 +271,8 @@ const fr = {
       },
       {
         name: "Application web & SaaS",
-        price: "à partir de 1 690 €",
-        originalPrice: "Prix habituel : 2 500 €",
+        price: "à partir de 1\u00A0690\u00A0€",
+        originalPrice: "",
         highlight: false,
         scope:
           "Une plateforme web interactive sur mesure avec comptes utilisateurs, base de données ou tableau de bord métier.",
@@ -285,8 +285,8 @@ const fr = {
       },
       {
         name: "Logiciel & Automatisation",
-        price: "à partir de 2 690 €",
-        originalPrice: "Prix habituel : 3 500 €",
+        price: "à partir de 2\u00A0690\u00A0€",
+        originalPrice: "",
         highlight: false,
         scope:
           "Un logiciel dédié ou un outil d'automatisation pour gagner des heures chaque semaine sur vos tâches répétitives.",
@@ -329,7 +329,7 @@ const fr = {
     ],
   },
   contact: {
-    figLabel: "FIG. 07 — CONTACT",
+    figLabel: "DÉMARRER UN PROJET",
     title: "Lancer un projet",
     desc: "Décrivez votre projet, je reviens vers vous avec une proposition chiffrée et un premier diagnostic.",
     name: "Nom",
@@ -380,7 +380,7 @@ const en: Translation = {
       "VoxCut, InOneShot & VectorPop — published on the Microsoft Store, Google Play and Snapcraft",
   },
   services: {
-    figLabel: "FIG. 02 — SERVICES",
+    figLabel: "SERVICES & EXPERTISE",
     title: "What we build",
     items: [
       {
@@ -426,7 +426,7 @@ const en: Translation = {
     ],
   },
   skills: {
-    figLabel: "FIG. 03 — SKILLS",
+    figLabel: "EXPERTISE & PROCESS",
     title: "The studio masters",
     dev: "Development",
     design: "Design",
@@ -488,9 +488,9 @@ const en: Translation = {
         ref: "Web & SaaS Platform",
         title: "VotreAssistantIA",
         type: "Web platform & AI Assistant · Tradespeople & SMBs",
-        desc: "Web solution tailored for tradespeople: captures client requests 24/7, qualifies urgent jobs, books appointments and generates automated pre-quotes.",
+        desc: "Web solution tailored for tradespeople and freelancers: deploys a custom AI assistant on WhatsApp and Telegram to answer clients 24/7, qualify leads and summarize inquiries.",
         result:
-          "Modern conversion-focused web interface, seamless client flow on mobile and desktop.",
+          "Turnkey deployment in under 5 min · Custom AI agents on WhatsApp & Telegram · Hosted in Europe.",
         tags: ["Web & SaaS", "Next.js", "AI Assistant"],
         link: "https://votreassistantia.fr",
         linkLabel: "votreassistantia.fr",
@@ -587,15 +587,15 @@ const en: Translation = {
   pricing: {
     figLabel: "PRICING & INVESTMENT",
     title: "Clear packages, no surprises",
-    launchBadge: "Launch offer",
-    launchNote: "Preferential launch rates applied to new projects this season.",
+    launchBadge: "",
+    launchNote: "",
     scopeNote:
       "Every project receives a free, detailed quote within 24 hours after an initial conversation about your goals.",
     plans: [
       {
         name: "One-Page / Essentials",
         price: "from €590",
-        originalPrice: "Regular price: €990",
+        originalPrice: "",
         highlight: false,
         scope:
           "A professional single-page website to showcase your services, build trust with clients and receive quote requests.",
@@ -610,7 +610,7 @@ const en: Translation = {
       {
         name: "Multi-page Showcase Site",
         price: "from €790",
-        originalPrice: "Regular price: €1,190",
+        originalPrice: "",
         highlight: true,
         scope:
           "A complete website up to 5 pages engineered to rank strongly on Google and turn visitors into customers.",
@@ -626,7 +626,7 @@ const en: Translation = {
       {
         name: "Web App & SaaS",
         price: "from €1,690",
-        originalPrice: "Regular price: €2,500",
+        originalPrice: "",
         highlight: false,
         scope:
           "A custom interactive web platform with user accounts, database or business dashboard.",
@@ -640,7 +640,7 @@ const en: Translation = {
       {
         name: "Software & Automation",
         price: "from €2,690",
-        originalPrice: "Regular price: €3,500",
+        originalPrice: "",
         highlight: false,
         scope:
           "Dedicated desktop software or custom automation tools to save hours every week on repetitive tasks.",
@@ -683,7 +683,7 @@ const en: Translation = {
     ],
   },
   contact: {
-    figLabel: "FIG. 07 — CONTACT",
+    figLabel: "START A PROJECT",
     title: "Start a project",
     desc: "Describe your project, I'll get back to you with a priced proposal and an initial diagnosis.",
     name: "Name",

@@ -38,22 +38,25 @@ export default function About() {
           </p>
 
           {/* A face behind the studio: a service business is bought on trust */}
-          <div className="mb-8 inline-flex items-center gap-4 rounded-2xl border border-white/[0.08] glass-panel pr-6 p-3">
+          <div className="mb-8 inline-flex items-center gap-5 rounded-2xl border border-cyan/25 glass-panel pr-7 p-4 shadow-[0_10px_30px_-15px_rgba(95,216,232,0.2)]">
             <Image
               src="/img/william.webp"
               alt="William George"
-              width={64}
-              height={64}
-              className="h-16 w-16 rounded-xl border border-cyan/30 object-cover"
+              width={88}
+              height={88}
+              className="h-20 w-20 sm:h-22 sm:w-22 rounded-xl border border-cyan/40 object-cover shrink-0"
             />
             <div>
-              <p className="font-display uppercase text-xl leading-tight text-foreground">
+              <span className="fig-label text-[0.6rem] text-amber block mb-1">
+                {isFr ? "VOTRE INTERLOCUTEUR UNIQUE" : "YOUR SINGLE POINT OF CONTACT"}
+              </span>
+              <p className="font-display uppercase text-2xl leading-tight text-foreground">
                 William George
               </p>
               <p className="fig-label text-cyan mt-1">
                 {isFr
-                  ? "Fondateur · développeur indépendant"
-                  : "Founder · independent developer"}
+                  ? "Fondateur · Concepteur & développeur"
+                  : "Founder · Designer & developer"}
               </p>
             </div>
           </div>

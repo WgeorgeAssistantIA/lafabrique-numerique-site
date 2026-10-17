@@ -9,8 +9,8 @@ import LangToggle from "./LangToggle";
 
 const SECTION_IDS = [
   "services",
-  "competences",
   "realisations",
+  "competences",
   "tarifs",
   "about",
   "contact",
@@ -32,14 +32,14 @@ export default function Header() {
   const navItems = [
     { href: withHome("#services"), label: t.nav.services, id: "services" },
     {
-      href: withHome("#competences"),
-      label: t.nav.competences,
-      id: "competences",
-    },
-    {
       href: withHome("#realisations"),
       label: t.nav.realisations,
       id: "realisations",
+    },
+    {
+      href: withHome("#competences"),
+      label: t.nav.competences,
+      id: "competences",
     },
     { href: withHome("#tarifs"), label: t.nav.tarifs, id: "tarifs" },
     { href: withHome("#about"), label: t.nav.about, id: "about" },
@@ -80,13 +80,13 @@ export default function Header() {
           : ""
       }`}
     >
-      <div className="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between gap-4">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
         <Link
           href={isHome ? "#top" : homePath}
-          className="flex items-center gap-3 group"
+          className="flex items-center gap-2.5 sm:gap-3 group shrink-0"
           onClick={() => setOpen(false)}
         >
-          <div className="relative flex items-center justify-center rounded-full p-0.5 bg-gradient-to-br from-cyan/20 to-amber/10 ring-1 ring-white/10 group-hover:ring-cyan/40 transition-all">
+          <div className="relative flex items-center justify-center rounded-full p-0.5 bg-gradient-to-br from-cyan/20 to-amber/10 ring-1 ring-white/10 group-hover:ring-cyan/40 transition-all shrink-0">
             <Image
               src="/img/logo.png"
               alt="La Fabrik Numérique"
@@ -97,11 +97,11 @@ export default function Header() {
               draggable={false}
             />
           </div>
-          <span className="font-display text-base tracking-[0.14em] uppercase text-foreground group-hover:text-cyan transition-colors">
+          <span className="font-display text-sm sm:text-base tracking-[0.1em] sm:tracking-[0.12em] uppercase text-foreground group-hover:text-cyan transition-colors whitespace-nowrap">
             La Fabrik Numérique
           </span>
         </Link>
-        <nav className="hidden md:flex items-center gap-7 fig-label nav-label">
+        <nav className="hidden lg:flex items-center gap-5 xl:gap-7 fig-label nav-label">
           {navItems.map((item) => {
             const isActive = item.id !== null && activeId === item.id;
             const linkClass = `relative py-1 transition-colors ${
@@ -147,7 +147,7 @@ export default function Header() {
             onClick={() => setOpen((v) => !v)}
             aria-label="Menu"
             aria-expanded={open}
-            className="md:hidden flex flex-col gap-1.5 p-2 rounded-lg border border-white/10 bg-panel/60"
+            className="lg:hidden flex flex-col gap-1.5 p-2 rounded-lg border border-white/10 bg-panel/60"
           >
             <span
               className={`block h-px w-5 bg-foreground transition-transform ${open ? "translate-y-[7px] rotate-45" : ""}`}
@@ -163,7 +163,7 @@ export default function Header() {
       </div>
 
       {open && (
-        <nav className="md:hidden border-t border-white/10 bg-background-deep/95 backdrop-blur-xl">
+        <nav className="lg:hidden border-t border-white/10 bg-background-deep/95 backdrop-blur-xl">
           <div className="mx-auto max-w-6xl px-6 py-5 flex flex-col gap-4 fig-label nav-label">
             {navItems.map((item) =>
               item.href.startsWith("#") ? (

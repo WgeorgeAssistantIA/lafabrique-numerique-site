@@ -7,7 +7,6 @@ import Pricing from "@/components/Pricing";
 import About from "@/components/About";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import Reveal from "@/components/Reveal";
 import { LanguageProvider } from "@/lib/i18n";
 import { translations, type Lang } from "@/lib/translations";
 import { EDITOR_NAME, EDITOR_EMAIL } from "@/lib/legal";
@@ -52,24 +51,12 @@ export default function HomePage({ lang }: { lang: Lang }) {
       <Header />
       <main className="flex-1">
         <Hero />
-        <Reveal>
-          <Services />
-        </Reveal>
-        <Reveal>
-          <Skills />
-        </Reveal>
-        <Reveal>
-          <Portfolio />
-        </Reveal>
-        <Reveal>
-          <Pricing />
-        </Reveal>
-        <Reveal>
-          <About />
-        </Reveal>
-        <Reveal>
-          <Contact />
-        </Reveal>
+        <Services />
+        <Portfolio />
+        <Skills />
+        <Pricing />
+        <About />
+        <Contact />
       </main>
       <Footer />
     </LanguageProvider>

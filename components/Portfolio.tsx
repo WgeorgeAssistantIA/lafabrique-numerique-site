@@ -69,12 +69,12 @@ export default function Portfolio() {
                   </a>
                 ) : null}
 
-                <div className="p-7 flex flex-col flex-1">
+                <div className="p-5 sm:p-7 flex flex-col flex-1">
                   <div className="flex flex-wrap items-baseline justify-between gap-2">
                     <h3 className="font-display uppercase text-2xl sm:text-3xl text-foreground group-hover:text-cyan transition-colors">
                       {item.title}
                     </h3>
-                    <span className="fig-label text-amber text-[0.68rem]">{item.type}</span>
+                    <span className="fig-label text-amber text-[0.65rem] sm:text-[0.68rem]">{item.type}</span>
                   </div>
 
                   <p className="text-muted text-sm sm:text-base leading-relaxed mt-3.5">
@@ -151,14 +151,14 @@ export default function Portfolio() {
           ))}
         </div>
 
-        {/* 3 Secondary Tools & Open-Source Projects */}
+        {/* 3 Secondary Tools & Specialized Apps */}
         {secondaryItems.length > 0 && (
           <div className="mt-16 pt-12 border-t border-white/[0.07]">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-8">
               <h3 className="font-display uppercase text-2xl text-foreground">
                 {isFr
-                  ? "Autres applications, utilitaires & open-source"
-                  : "More apps, utilities & open-source tools"}
+                  ? "Autres applications & utilitaires spécialisés"
+                  : "More specialized apps & utilities"}
               </h3>
               <p className="text-xs text-muted">
                 {isFr

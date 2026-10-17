@@ -10,45 +10,37 @@ export default function Pricing() {
 
   const idealFor = isFr
     ? [
-        "Artisans, commerçants & indépendants",
-        "PME, marques & activités en développement",
-        "Tranquillité d'esprit & suivi continu",
-        "Startups, outils métier & produits numériques",
+        "Artisans, indépendants & lancement d'activité",
+        "Artisans, commerçants, TPE & PME locales",
+        "Porteurs de projet, startups & PME",
+        "Entreprises & processus métier spécifiques",
       ]
     : [
-        "Tradespeople, local shops & freelancers",
-        "Growing SMBs & ambitious brands",
-        "Peace of mind & ongoing support",
-        "Startups, internal tools & digital products",
+        "Tradespeople, freelancers & new businesses",
+        "Local shops, tradespeople & growing SMBs",
+        "Founders, startups & scaling teams",
+        "Businesses with custom technical workflows",
       ];
 
   return (
     <section id="tarifs" className="py-28 border-b border-white/[0.08] circuit-bg">
       <div className="mx-auto max-w-6xl px-6 relative z-10">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
           <div>
             <p className="fig-label text-cyan mb-3">{p.figLabel}</p>
             <h2 className="font-display uppercase text-4xl sm:text-5xl">{p.title}</h2>
           </div>
 
-          {p.launchNote && (
-            <div className="inline-flex flex-wrap items-center gap-2.5 rounded-full border border-amber/35 bg-amber/10 px-4 py-2 self-start md:self-auto">
-              <span className="h-2 w-2 rounded-full bg-amber animate-pulse" />
-              <span className="fig-label text-amber">{p.launchBadge}</span>
-              <span className="text-foreground/95 text-xs sm:text-sm font-medium">{p.launchNote}</span>
-            </div>
+          {p.scopeNote && (
+            <p className="text-muted text-sm sm:text-base max-w-md leading-relaxed">
+              {p.scopeNote}
+            </p>
           )}
         </div>
 
-        {p.scopeNote && (
-          <p className="text-muted text-sm sm:text-base mb-12 max-w-2xl leading-relaxed">
-            {p.scopeNote}
-          </p>
-        )}
-
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {p.plans.map((plan, i) => (
-            <Reveal key={plan.name} delay={i * 80} className="h-full">
+            <Reveal key={plan.name} delay={i * 70} className="h-full">
               <div
                 className={`card-lift relative h-full rounded-2xl border p-6 flex flex-col ${
                   plan.highlight
@@ -56,33 +48,28 @@ export default function Pricing() {
                     : "border-white/[0.08] glass-panel"
                 }`}
               >
-                <div className="flex items-center justify-between gap-2 mb-3">
-                  <span className="fig-label text-[0.6rem] text-muted uppercase">
-                    {isFr ? "Idéal pour" : "Best for"}
+                <div className="flex items-center justify-between gap-2 mb-2 min-h-[24px]">
+                  <span className="font-mono text-[0.65rem] tracking-[0.12em] text-muted">
+                    {isFr ? "IDÉAL POUR" : "BEST FOR"}
                   </span>
                   {plan.highlight && (
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-cyan/15 border border-cyan/40 px-2.5 py-0.5 fig-label text-[0.6rem] text-cyan">
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-cyan/15 border border-cyan/40 px-2.5 py-0.5 font-mono text-[0.62rem] tracking-wider uppercase text-cyan shrink-0">
                       <span className="h-1.5 w-1.5 rounded-full bg-cyan" />
-                      {isFr ? "Le plus choisi" : "Most popular"}
+                      {isFr ? "Recommandé" : "Recommended"}
                     </span>
                   )}
                 </div>
 
-                <p className="text-xs font-medium text-amber/95 mb-3">
+                <p className="text-xs font-medium text-amber/95 mb-4 min-h-[32px]">
                   {idealFor[i]}
                 </p>
 
-                <h3 className="font-display uppercase text-2xl text-foreground">
+                <h3 className="font-display uppercase text-2xl text-foreground leading-tight">
                   {plan.name}
                 </h3>
 
                 <div className="mt-3 mb-4 pb-4 border-b border-white/[0.08]">
-                  {"originalPrice" in plan && plan.originalPrice && (
-                    <span className="block text-muted text-xs line-through mb-0.5">
-                      {plan.originalPrice}
-                    </span>
-                  )}
-                  <span className="text-cyan font-display text-2xl sm:text-3xl">
+                  <span className="text-cyan font-display text-2xl sm:text-[1.7rem] leading-tight whitespace-nowrap">
                     {plan.price}
                   </span>
                 </div>

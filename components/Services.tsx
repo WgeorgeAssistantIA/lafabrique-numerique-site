@@ -1,56 +1,7 @@
 "use client";
 
-import type { ReactNode } from "react";
 import { useLanguage } from "@/lib/i18n";
 import Reveal from "./Reveal";
-
-const SERVICE_ICONS: Record<string, ReactNode> = {
-  "01": (
-    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}>
-      <rect x="3" y="4" width="18" height="16" rx="2" />
-      <path d="M3 9h18M7 6.5h.01M10 6.5h.01" strokeLinecap="round" />
-    </svg>
-  ),
-  "02": (
-    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}>
-      <rect x="3" y="3" width="7" height="7" rx="1.5" />
-      <rect x="14" y="3" width="7" height="7" rx="1.5" />
-      <rect x="14" y="14" width="7" height="7" rx="1.5" />
-      <rect x="3" y="14" width="7" height="7" rx="1.5" />
-    </svg>
-  ),
-  "03": (
-    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-    </svg>
-  ),
-  "04": (
-    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-    </svg>
-  ),
-  "05": (
-    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-    </svg>
-  ),
-  "06": (
-    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
-    </svg>
-  ),
-  "07": (
-    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-      <circle cx="12" cy="12" r="3" />
-    </svg>
-  ),
-  "08": (
-    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-    </svg>
-  ),
-};
 
 export default function Services() {
   const { t, lang } = useLanguage();
@@ -174,11 +125,11 @@ export default function Services() {
         </div>
 
         {/* 3 Main Service Families */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {families.map((fam, idx) => {
             const isCyan = fam.accent === "cyan";
             return (
-              <Reveal key={fam.num} delay={idx * 90} className="h-full">
+              <Reveal key={fam.num} delay={idx * 70} className="h-full">
                 <div
                   className={`card-lift group relative rounded-2xl border p-7 h-full flex flex-col glass-panel ${
                     isCyan
@@ -238,47 +189,6 @@ export default function Services() {
               </Reveal>
             );
           })}
-        </div>
-
-        {/* Detailed 8 Capabilities Strip */}
-        <div className="pt-10 border-t border-white/[0.07]">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-7">
-            <p className="fig-label text-muted">
-              {isFr ? "Toutes les briques d'intervention de l'atelier" : "All studio capabilities at a glance"}
-            </p>
-            <p className="text-xs text-muted">
-              {isFr ? "Prestations à la carte ou projet clé en main" : "Standalone services or turnkey delivery"}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {s.items.map((item, i) => {
-              const isCyan = i % 2 === 0;
-              return (
-                <Reveal key={item.ref} delay={i * 50} className="h-full">
-                  <div className="group rounded-xl border border-white/[0.07] bg-panel/60 p-4 h-full flex items-start gap-3.5 hover:border-white/20 transition-colors">
-                    <div
-                      className={`mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border transition-colors ${
-                        isCyan
-                          ? "border-cyan/25 bg-cyan/10 text-cyan"
-                          : "border-amber/25 bg-amber/10 text-amber"
-                      }`}
-                    >
-                      {SERVICE_ICONS[item.ref]}
-                    </div>
-                    <div className="min-w-0">
-                      <h4 className="font-display uppercase text-base text-foreground group-hover:text-cyan transition-colors">
-                        {item.title}
-                      </h4>
-                      <p className="text-muted text-xs leading-relaxed mt-1">
-                        {item.desc}
-                      </p>
-                    </div>
-                  </div>
-                </Reveal>
-              );
-            })}
-          </div>
         </div>
       </div>
     </section>
