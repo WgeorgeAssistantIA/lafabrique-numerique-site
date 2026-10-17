@@ -49,6 +49,9 @@ export const metadata: Metadata = {
   },
   verification: {
     google: "Mlw16OWL3An9EMgg9flyBrnyn7MWws0_ns9F4yzA0hw",
+    other: {
+      "msvalidate.01": "DEA14F3920FE8134867448E702A8CC29",
+    },
   },
   openGraph: {
     title: TITLE,

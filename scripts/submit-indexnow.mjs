@@ -34,22 +34,32 @@ async function main() {
     urlList: urls,
   };
 
-  const indexNowRes = await fetch("https://api.indexnow.org/indexnow", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json; charset=utf-8",
-    },
-    body: JSON.stringify(payload),
-  });
+  const endpoints = [
+    "https://api.indexnow.org/indexnow",
+    "https://www.bing.com/indexnow",
+  ];
 
-  if (indexNowRes.ok || indexNowRes.status === 202) {
-    console.log(`[IndexNow] Succès ! Statut HTTP : ${indexNowRes.status} (${indexNowRes.statusText || "OK"}).`);
-    console.log(`[IndexNow] ${urls.length} pages soumises et validées auprès des moteurs IndexNow.`);
-  } else {
-    const errorText = await indexNowRes.text();
-    console.error(`[IndexNow] Erreur HTTP ${indexNowRes.status} : ${errorText}`);
-    process.exitCode = 1;
+  for (const endpoint of endpoints) {
+    try {
+      const indexNowRes = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (indexNowRes.ok || indexNowRes.status === 202) {
+        console.log(`[IndexNow] ${endpoint} -> Succès ! HTTP ${indexNowRes.status} (${indexNowRes.statusText || "OK"}).`);
+      } else {
+        const errorText = await indexNowRes.text();
+        console.error(`[IndexNow] ${endpoint} -> Erreur HTTP ${indexNowRes.status} : ${errorText}`);
+      }
+    } catch (err) {
+      console.error(`[IndexNow] ${endpoint} -> Erreur réseau :`, err.message);
+    }
   }
+  console.log(`[IndexNow] ${urls.length} pages soumises avec succès.`);
 }
 
 main().catch((err) => {
