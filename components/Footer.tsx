@@ -18,6 +18,12 @@ export default function Footer() {
             Roanne
           </Link>
           <Link
+            href="/simulateur-roi-logiciel-sur-mesure"
+            className="hover:text-cyan transition-colors"
+          >
+            Simulateur ROI
+          </Link>
+          <Link
             href="/mentions-legales"
             className="hover:text-cyan transition-colors"
           >

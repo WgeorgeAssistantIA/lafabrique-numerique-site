@@ -92,6 +92,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.7,
     },
+    {
+      url: `${SITE_URL}/simulateur-roi-logiciel-sur-mesure`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
     ...blogEntries,
   ];
 }
