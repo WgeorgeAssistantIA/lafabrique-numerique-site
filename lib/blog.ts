@@ -4,6 +4,7 @@ import { newPostsEn } from "@/lib/blog-posts-new-en";
 
 export type BlogSection = { h: string; p: string[] };
 export type BlogLink = { label: string; url: string };
+export type BlogFaq = { q: string; a: string };
 export type BlogPost = {
   // Stable identifier shared across languages, used to map a post to its
   // translation (fr/en slugs differ, e.g. for SEO-friendly URLs).
@@ -13,11 +14,15 @@ export type BlogPost = {
   metaTitle?: string;
   metaDescription?: string;
   date: string; // ISO, e.g. "2026-07-15"
+  // ISO date of the last substantial revision, exposed as dateModified.
+  updated?: string;
   dateLabel: string;
   excerpt: string;
   tags: string[];
   sections: BlogSection[];
   links: BlogLink[];
+  // Rendered after the sections and emitted as FAQPage JSON-LD.
+  faq?: BlogFaq[];
   // Set for posts syndicated from VoxCut/InOneShot: points to the original
   // article so search engines attribute the content to its source instead
   // of treating this copy as duplicate content.
@@ -32,6 +37,7 @@ export type BlogContent = {
   backBlog: string;
   seeAlso: string;
   readMore: string;
+  faqTitle: string;
   posts: BlogPost[];
 };
 
@@ -44,6 +50,7 @@ const fr: BlogContent = {
   backBlog: "← Retour au journal",
   seeAlso: "Voir aussi",
   readMore: "Lire l'article →",
+  faqTitle: "Questions fréquentes",
   posts: [
     ...newPostsFr,
     {
@@ -548,6 +555,7 @@ const en: BlogContent = {
   backBlog: "← Back to the log",
   seeAlso: "See also",
   readMore: "Read the article →",
+  faqTitle: "Frequently asked questions",
   posts: [
     ...newPostsEn,
     {
@@ -952,10 +960,11 @@ const en: BlogContent = {
       id: "business-visible-ai-search",
       slug: "how-to-make-your-business-visible-in-ai-search-engines",
       title: "How to Make Your Business Show Up in AI Search Engines",
-      metaTitle: "How to Make Your Business Show Up in AI Search | Fabrik",
+      metaTitle: "Make Your Business Show Up in AI Search: 5-Step Checklist",
     metaDescription:
-      "How can your business show up in AI search engines like ChatGPT, Gemini and Perplexity? A step-by-step guide to getting cited, for small businesses.",
+      "Want ChatGPT, Gemini and Perplexity to recommend your business? 5 concrete steps to get cited by AI search engines, plus how to check it's working.",
     date: "2026-09-21",
+      updated: "2026-10-24",
       dateLabel: "September 21, 2026",
       excerpt:
         "A customer who asks ChatGPT 'which agency should build my website' or 'what software handles my invoicing' never sees Google's ten blue links. Here's how visibility in AI search engines actually works, and how a business or SMB can build it step by step.",
@@ -1046,6 +1055,28 @@ const en: BlogContent = {
         {
           label: "SEO vs GEO: how is online visibility changing in 2026?",
           url: "/en/blog/seo-vs-geo-online-visibility-2026",
+        },
+      ],
+      faq: [
+        {
+          q: "How can I make my business show up in AI search engines?",
+          a: "Make sure your site is crawlable in plain HTML, publish pages that each answer one precise customer question, earn mentions on trusted third-party sites, and keep your business name and details identical everywhere. Then test a fixed list of questions in ChatGPT, Gemini and Perplexity every month to track progress.",
+        },
+        {
+          q: "How can I get my business featured in articles and reviews that AI search engines use as sources?",
+          a: "List your business in the directories and comparison sites of your industry, ask satisfied customers for detailed reviews on Google or Trustpilot, and offer useful expertise to journalists, podcasts and niche blogs. AI engines trust independent mentions more than what a business says about itself.",
+        },
+        {
+          q: "How can I gain credibility on search engines for both human and AI searches?",
+          a: "The same signals work for both: real expertise shown through concrete examples and numbers, content kept up to date with a visible date, and a consistent presence across your site, social profiles and third-party sources. Organization markup with sameAs links helps machines connect those profiles to one entity.",
+        },
+        {
+          q: "How long does it take to appear in AI search results?",
+          a: "Usually several weeks to a few months. Search indexes and AI sources refresh on their own schedules, so measure progress over a quarter rather than a week.",
+        },
+        {
+          q: "How can I check whether ChatGPT or Perplexity mentions my business?",
+          a: "Ask each engine the questions your customers would ask and note whether your business is cited, and how. Also watch your analytics for referral traffic from chatgpt.com, perplexity.ai and copilot.microsoft.com, which shows real visitors arriving from AI answers.",
         },
       ],
     },

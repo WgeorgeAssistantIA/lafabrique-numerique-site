@@ -59,7 +59,7 @@ function BlogArticle({ post }: { post: BlogPost }) {
     description: post.metaDescription ?? post.excerpt,
     image: [`${SITE_URL}/img/og.png`],
     datePublished: post.date,
-    dateModified: post.date,
+    dateModified: post.updated ?? post.date,
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": post.canonicalUrl ?? `${SITE_URL}${base}/${post.slug}`,
@@ -79,12 +79,30 @@ function BlogArticle({ post }: { post: BlogPost }) {
     },
   };
 
+  const faqJsonLd = post.faq?.length
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: post.faq.map((item) => ({
+          "@type": "Question",
+          name: item.q,
+          acceptedAnswer: { "@type": "Answer", text: item.a },
+        })),
+      }
+    : null;
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
       />
+      {faqJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+      )}
       <Header />
       <main className="flex-1">
         <article className="pt-32 pb-24 circuit-bg">
@@ -124,6 +142,22 @@ function BlogArticle({ post }: { post: BlogPost }) {
                 </section>
               ))}
             </div>
+
+            {post.faq && post.faq.length > 0 && (
+              <section className="mt-10">
+                <h2 className="font-display uppercase text-xl text-cyan">
+                  {b.faqTitle}
+                </h2>
+                <div className="mt-4 space-y-5">
+                  {post.faq.map((item) => (
+                    <div key={item.q}>
+                      <h3 className="font-semibold text-foreground">{item.q}</h3>
+                      <p className="mt-1 text-muted leading-relaxed">{item.a}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
 
             {post.links.length > 0 && (
               <div className="mt-10 border-t border-line pt-8">
