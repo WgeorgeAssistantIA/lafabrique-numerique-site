@@ -44,6 +44,7 @@ export default function Header() {
     { href: withHome("#tarifs"), label: t.nav.tarifs, id: "tarifs" },
     { href: withHome("#about"), label: t.nav.about, id: "about" },
     { href: lang === "en" ? "/en/blog" : "/blog", label: t.nav.blog, id: null },
+    { href: lang === "en" ? "/jeux/index-en.html" : "/jeux/index.html", label: t.nav.games, id: null },
     { href: withHome("#contact"), label: t.nav.contact, id: "contact" },
   ];
 

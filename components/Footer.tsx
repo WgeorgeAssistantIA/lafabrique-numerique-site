@@ -4,13 +4,19 @@ import Link from "next/link";
 import { useLanguage } from "@/lib/i18n";
 
 export default function Footer() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   return (
     <footer className="border-t border-white/[0.08] bg-background-deep py-10">
       <div className="mx-auto max-w-6xl px-6 flex flex-col sm:flex-row items-center justify-between gap-4 fig-label">
         <span>© {new Date().getFullYear()} La Fabrik Numérique</span>
         <nav className="flex flex-wrap items-center justify-center gap-6">
+          <Link
+            href={lang === "en" ? "/jeux/index-en.html" : "/jeux/index.html"}
+            className="hover:text-cyan transition-colors"
+          >
+            {t.nav.games}
+          </Link>
           <Link
             href="/site-internet-roanne"
             className="hover:text-cyan transition-colors"

@@ -7,6 +7,9 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: "/api/",
     },
-    sitemap: "https://www.lafabriknumerique.fr/sitemap.xml",
+    sitemap: [
+      "https://www.lafabriknumerique.fr/sitemap.xml",
+      "https://www.lafabriknumerique.fr/jeux/sitemap.xml",
+    ],
   };
 }

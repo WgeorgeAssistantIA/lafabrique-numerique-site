@@ -89,6 +89,14 @@ const fr: LegalContent = {
         ],
       },
       {
+        h: "Escape Games Univers (/jeux/)",
+        p: [
+          "Les 25 jeux d'escape game en ligne accessibles sous /jeux/ sont jouables gratuitement, sans création de compte et sans collecte de données personnelles sur les joueurs ni sur les enfants.",
+          "La progression dans les salles, les badges débloqués et les préférences (langue, son) sont enregistrés uniquement en local sur votre appareil (localStorage du navigateur) et ne sont jamais transmis à nos serveurs. De même, la personnalisation des kits d'anniversaire imprimables (prénoms, âge, date, lieu, liste d'invités) s'effectue intégralement en local dans votre navigateur.",
+          "Une mesure d'audience strictement anonyme est réalisée via PostHog EU (hébergé dans l'Union européenne, eu.i.posthog.com), sans aucun cookie ni identifiant durable : seul un identifiant de session aléatoire est conservé en sessionStorage et effacé dès la fermeture de l'onglet (aucun profil individuel n'est créé). Aucune donnée saisie par le visiteur (réponses aux énigmes, prénoms, codes) n'est jamais envoyée. Cette mesure est automatiquement désactivée si votre navigateur envoie le signal Do Not Track (DNT) ou Global Privacy Control (GPC).",
+        ],
+      },
+      {
         h: "Finalité et base légale",
         p: [
           "Les données du formulaire de contact sont utilisées uniquement pour répondre à votre demande et, le cas échéant, établir une proposition commerciale.",
@@ -209,6 +217,14 @@ const fr: LegalContent = {
           "Les présentes CGV sont soumises au droit français. En cas de litige, une solution amiable sera recherchée en priorité ; à défaut, les tribunaux français compétents seront seuls saisis.",
         ],
       },
+      {
+        h: "11. Kits anniversaire imprimables (produits numériques)",
+        p: [
+          "Les kits d'escape game d'anniversaire imprimables proposés dans l'espace /jeux/Kits-Anniversaire-Imprimables/ sont des contenus numériques fournis hors support matériel (fichiers autonomes HTML / archive ZIP téléchargeables et imprimables au format A4 pour un usage strictement personnel et familial).",
+          "La commande, le paiement sécurisé, le calcul et la collecte de la TVA applicable ainsi que la facturation sont assurés par notre prestataire Lemon Squeezy (Lemon Squeezy, LLC), agissant en qualité de revendeur officiel (« Merchant of Record »). Les prix sont indiqués en euros toutes taxes comprises (TTC).",
+          `La livraison du fichier numérique est immédiate dès la validation du paiement. L'acheteur dispose d'un délai de 14 jours à compter de l'achat pour exercer son droit de rétractation et demander le remboursement intégral, sans avoir à motiver sa décision, par simple courriel adressé à ${EDITOR_EMAIL} en indiquant le numéro de commande figurant sur le reçu Lemon Squeezy. Le remboursement est alors effectué sur le moyen de paiement utilisé lors de la commande.`,
+        ],
+      },
     ],
   },
 };
@@ -277,6 +293,14 @@ const en: LegalContent = {
         p: [
           "The InOneShot desktop application runs entirely locally: your PDF files, your Excel files and the content of your documents are never collected or transmitted to third parties.",
           "Only the data strictly necessary to activate the Pro license is transmitted to our provider Lemon Squeezy: your license key and your computer name, to validate per-device activation. No other data is sent, and no analytics are performed inside the application.",
+        ],
+      },
+      {
+        h: "Escape Games Univers (/jeux/)",
+        p: [
+          "The 25 online escape games available under /jeux/ can be played for free, without creating an account, and without collecting any personal data from players or children.",
+          "Room progress, unlocked badges and preferences (language, sound) are stored strictly locally on your device (browser localStorage) and are never sent to our servers. Likewise, customizing printable birthday kits (first names, age, date, venue, guest list) takes place entirely locally inside your browser.",
+          "Strictly anonymous audience measurement is performed via PostHog EU (hosted in the European Union, eu.i.posthog.com), without any cookies or persistent identifiers: only a random session identifier is kept in sessionStorage and cleared as soon as the browser tab is closed (no individual profile is created). No visitor-typed input (puzzle answers, first names, codes) is ever transmitted. Analytics are automatically disabled if your browser sends a Do Not Track (DNT) or Global Privacy Control (GPC) signal.",
         ],
       },
       {
@@ -398,6 +422,14 @@ const en: LegalContent = {
         h: "10. Governing law",
         p: [
           "These Terms are governed by French law. In the event of a dispute, an amicable solution will be sought first; failing that, the competent French courts shall have exclusive jurisdiction.",
+        ],
+      },
+      {
+        h: "11. Printable birthday kits (digital products)",
+        p: [
+          "The printable birthday escape game kits offered under /jeux/Kits-Anniversaire-Imprimables/ are digital products supplied without a physical medium (downloadable standalone HTML files / ZIP archive, printable in A4 format for strictly personal and family use).",
+          "Order processing, secure payment, calculation and collection of applicable VAT, and invoicing are handled by our provider Lemon Squeezy (Lemon Squeezy, LLC), acting as Merchant of Record. Prices are displayed in euros inclusive of all applicable taxes.",
+          `Delivery of the digital file takes place immediately upon payment confirmation. The buyer has 14 days from the date of purchase to exercise their right of withdrawal and request a full refund, without having to state a reason, simply by emailing ${EDITOR_EMAIL} with the order number shown on the Lemon Squeezy receipt. The refund is issued back to the original payment method.`,
         ],
       },
     ],
