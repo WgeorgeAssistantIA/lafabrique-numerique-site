@@ -6,12 +6,29 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { playSecretFoundSound, playOwlHoot } from "@/lib/easterEggAudio";
 import { EGG_FLAGS, hasEggFlag, setEggFlag } from "@/lib/easterEggProgress";
+import {
+  ANSWER_HASHES,
+  ANSWER_MAX_LEN,
+  ANSWER_MIN_LEN,
+  PASSWORD_SESSION_KEY,
+  PROOF_STORAGE_KEY,
+  sha256Hex,
+} from "@/lib/secretHunt";
 
-const WORDS = { fr: "hibou", en: "owl" };
-// Level-2 password, answer to the humans.txt riddle. Typing it (after the
-// Konami code) unlocks the circuit-letter reveal on the homepage.
-const PASSWORDS = { fr: "rouage", en: "gear" };
-const MAX_WORD_LEN = 6;
+// The answers (level-2 password from the humans.txt riddle, then the final
+// word) are only known by their hash: the typed buffer's suffixes are hashed
+// and compared, so reading the bundle doesn't give them away.
+const MAX_WORD_LEN = ANSWER_MAX_LEN;
+
+/** Returns the suffix of `buffer` whose hash is `target`, if any. */
+async function matchAnswer(buffer: string, target: string) {
+  const longest = Math.min(ANSWER_MAX_LEN, buffer.length);
+  for (let len = ANSWER_MIN_LEN; len <= longest; len++) {
+    const suffix = buffer.slice(-len);
+    if ((await sha256Hex(suffix)) === target) return suffix;
+  }
+  return null;
+}
 
 // One wink cycle, played in sync with each hoot: neutral -> mid -> closed -> mid -> neutral.
 const WINK_CYCLE = {
@@ -147,27 +164,41 @@ export default function EasterEggWord() {
       buffer.current = (buffer.current + e.key.toLowerCase()).slice(
         -MAX_WORD_LEN,
       );
+      void checkAnswers(buffer.current);
+    };
 
-      if (buffer.current.endsWith(PASSWORDS[lang])) {
+    const checkAnswers = async (typed: string) => {
+      const password = await matchAnswer(typed, ANSWER_HASHES[lang].password);
+      if (password) {
         buffer.current = "";
         if (!hasEggFlag(EGG_FLAGS.konami)) {
           showToast(TOASTS[lang].locked);
         } else {
+          try {
+            sessionStorage.setItem(PASSWORD_SESSION_KEY[lang], password);
+          } catch {
+            // storage disabled — the reward proof just won't be available
+          }
           setEggFlag(EGG_FLAGS.rouage);
           showToast(TOASTS[lang].password);
         }
         return;
       }
 
-      if (buffer.current.endsWith(WORDS[lang])) {
+      const word = await matchAnswer(typed, ANSWER_HASHES[lang].word);
+      if (word) {
         buffer.current = "";
         if (!hasEggFlag(EGG_FLAGS.konami) || !hasEggFlag(EGG_FLAGS.rouage)) {
           showToast(TOASTS[lang].locked);
         } else {
+          pendingWord = word;
           startWaking();
         }
       }
     };
+
+    // Final word typed, kept until the owl is clicked to build the proof.
+    let pendingWord: string | null = null;
 
     let hootInterval: number | null = null;
     let winkTimers: number[] = [];
@@ -197,6 +228,14 @@ export default function EasterEggWord() {
       const activeLang = langRef.current;
       try {
         localStorage.setItem(SECRET_STORAGE_KEY[activeLang], "1");
+        // Proof sent to the API to reveal the reward code (see secretHunt).
+        const password = sessionStorage.getItem(PASSWORD_SESSION_KEY[activeLang]);
+        if (password && pendingWord) {
+          localStorage.setItem(
+            PROOF_STORAGE_KEY[activeLang],
+            JSON.stringify({ password, word: pendingWord }),
+          );
+        }
       } catch {
         // ignore (private browsing / storage disabled)
       }

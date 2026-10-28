@@ -1,5 +1,7 @@
 import { Resend } from "resend";
 import { getRedis } from "@/lib/redis";
+import { isValidProof } from "@/lib/secretHunt";
+import { isRateLimited, tooManyRequests } from "@/lib/rateLimit";
 
 // Reception du formulaire "recompense trouvee" de l'atelier secret :
 // - capture prenom/nom/email (jamais expose publiquement)
@@ -24,6 +26,10 @@ function escapeHtml(s: string) {
 }
 
 export async function POST(request: Request) {
+  if (await isRateLimited(request, "secret-finder", 5, 3600)) {
+    return tooManyRequests();
+  }
+
   let body: Record<string, unknown>;
   try {
     body = await request.json();
@@ -55,6 +61,10 @@ export async function POST(request: Request) {
     !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
   ) {
     return Response.json({ error: "invalid_fields" }, { status: 400 });
+  }
+  // Only players who solved the hunt may join the board (proof = answers).
+  if (!(await isValidProof(track, body))) {
+    return Response.json({ error: "invalid_proof" }, { status: 403 });
   }
 
   const now = Date.now();

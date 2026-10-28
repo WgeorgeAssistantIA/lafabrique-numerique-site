@@ -1,24 +1,27 @@
 import { NextResponse } from "next/server";
+import { isTrack, isValidProof } from "@/lib/secretHunt";
+import { isRateLimited, tooManyRequests } from "@/lib/rateLimit";
 
-// Live redemption counts for the easter-egg reward codes, read from the
-// Lemon Squeezy API. The hidden page uses this to show real scarcity
-// ("3/5 left") and to fall back from the 100% tier to the 50% tier once the
-// first is sold out. Requires LEMONSQUEEZY_API_KEY in the environment; when
-// absent the endpoint degrades gracefully and the page shows static copy.
+// Reveals the easter-egg reward code for one track, only to a client that
+// proves it solved the hunt (both answers, checked against hashes). The codes
+// are never in source (public repo): they come from env vars, so they can be
+// rotated without a commit. Live redemption counts come from the Lemon
+// Squeezy API when LEMONSQUEEZY_API_KEY is set; otherwise remaining/max are
+// null and the page shows static copy.
 
 export const dynamic = "force-dynamic";
 
 const LS_API = "https://api.lemonsqueezy.com/v1";
 
 // Tier order matters: the page offers the first tier with redemptions left.
-const TRACKS = {
+const TIER_ENV = {
   fr: [
-    { code: "KWMDQXOQ", percent: 100 },
-    { code: "ROUAGE50", percent: 50 },
+    { env: "SECRET_CODE_FR_100", percent: 100 },
+    { env: "SECRET_CODE_FR_50", percent: 50 },
   ],
   en: [
-    { code: "WG7F3KQ2", percent: 100 },
-    { code: "OWL50", percent: 50 },
+    { env: "SECRET_CODE_EN_100", percent: 100 },
+    { env: "SECRET_CODE_EN_50", percent: 50 },
   ],
 } as const;
 
@@ -41,12 +44,9 @@ async function lsFetch(path: string, apiKey: string) {
   return res.json();
 }
 
-export async function GET() {
+async function withCounts(tiers: TierStatus[]): Promise<TierStatus[]> {
   const apiKey = process.env.LEMONSQUEEZY_API_KEY;
-  if (!apiKey) {
-    return NextResponse.json({ fallback: true });
-  }
-
+  if (!apiKey) return tiers;
   try {
     const discounts = await lsFetch("/discounts?page[size]=100", apiKey);
     const byCode = new Map<string, { id: string; max: number | null }>();
@@ -61,34 +61,57 @@ export async function GET() {
         });
       }
     }
-
-    const resolveTier = async (tier: {
-      code: string;
-      percent: number;
-    }): Promise<TierStatus> => {
-      const found = byCode.get(tier.code);
-      if (!found) return { ...tier, remaining: null, max: null };
-      if (found.max === null) return { ...tier, remaining: null, max: null };
-      const redemptions = await lsFetch(
-        `/discount-redemptions?filter[discount_id]=${found.id}&page[size]=1`,
-        apiKey,
-      );
-      const used = redemptions.meta?.page?.total ?? 0;
-      return {
-        ...tier,
-        remaining: Math.max(0, found.max - used),
-        max: found.max,
-      };
-    };
-
-    const [fr, en] = await Promise.all([
-      Promise.all(TRACKS.fr.map(resolveTier)),
-      Promise.all(TRACKS.en.map(resolveTier)),
-    ]);
-
-    return NextResponse.json({ fallback: false, fr, en });
+    return await Promise.all(
+      tiers.map(async (tier) => {
+        const found = byCode.get(tier.code.toUpperCase());
+        if (!found || found.max === null) return tier;
+        const redemptions = await lsFetch(
+          `/discount-redemptions?filter[discount_id]=${found.id}&page[size]=1`,
+          apiKey,
+        );
+        const used = redemptions.meta?.page?.total ?? 0;
+        return {
+          ...tier,
+          remaining: Math.max(0, found.max - used),
+          max: found.max,
+        };
+      }),
+    );
   } catch {
-    // Any API hiccup: degrade to static copy rather than erroring the page.
-    return NextResponse.json({ fallback: true });
+    // Any API hiccup: no counts rather than an error.
+    return tiers;
   }
+}
+
+export async function POST(request: Request) {
+  if (await isRateLimited(request, "secret-codes", 20, 600)) {
+    return tooManyRequests();
+  }
+
+  let body: Record<string, unknown>;
+  try {
+    body = await request.json();
+  } catch {
+    return NextResponse.json({ error: "invalid_body" }, { status: 400 });
+  }
+
+  const track = body.track;
+  if (!isTrack(track)) {
+    return NextResponse.json({ error: "invalid_track" }, { status: 400 });
+  }
+  if (!(await isValidProof(track, body))) {
+    return NextResponse.json({ error: "invalid_proof" }, { status: 403 });
+  }
+
+  const tiers: TierStatus[] = [];
+  for (const { env, percent } of TIER_ENV[track]) {
+    const code = process.env[env]?.trim();
+    if (code) tiers.push({ code, percent, remaining: null, max: null });
+  }
+  if (tiers.length === 0) {
+    console.error(`No reward code configured for track ${track}`);
+    return NextResponse.json({ error: "not_configured" }, { status: 503 });
+  }
+
+  return NextResponse.json({ tiers: await withCounts(tiers) });
 }

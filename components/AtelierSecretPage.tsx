@@ -7,6 +7,7 @@ import Footer from "./Footer";
 import { LanguageProvider, useLanguage } from "@/lib/i18n";
 import { SECRET_STORAGE_KEY } from "./EasterEggWord";
 import { FINDERS as STATIC_FINDERS } from "@/lib/secretFinders";
+import { readProof } from "@/lib/secretHunt";
 
 type FindersResponse = Record<"fr" | "en", string[]>;
 
@@ -62,20 +63,13 @@ type TierStatus = {
   remaining: number | null;
   max: number | null;
 };
-type CodesResponse =
-  { fallback: true } | { fallback: false; fr: TierStatus[]; en: TierStatus[] };
-
-// Static fallback when the Lemon Squeezy API is not configured/reachable.
-const FALLBACK_TIERS: Record<"fr" | "en", TierStatus[]> = {
-  fr: [
-    { code: "KWMDQXOQ", percent: 100, remaining: null, max: null },
-    { code: "ROUAGE50", percent: 50, remaining: null, max: null },
-  ],
-  en: [
-    { code: "WG7F3KQ2", percent: 100, remaining: null, max: null },
-    { code: "OWL50", percent: 50, remaining: null, max: null },
-  ],
-};
+// The reward code is fetched from the API with the hunt proof: it is never
+// in the bundle (see lib/secretHunt.ts).
+type RewardState =
+  | { status: "loading" }
+  | { status: "ok"; tiers: TierStatus[] }
+  | { status: "no_proof" }
+  | { status: "error" };
 
 function ordinal(n: number, lang: "fr" | "en"): string {
   if (lang === "fr") return n === 1 ? "1er" : `${n}e`;
@@ -169,7 +163,8 @@ function AtelierSecretContent() {
     owl: boolean;
   } | null>(null);
   const [openTrack, setOpenTrack] = useState<"fr" | "en" | null>(null);
-  const [codes, setCodes] = useState<CodesResponse | null>(null);
+  const [reward, setReward] = useState<RewardState>({ status: "loading" });
+  const rewardTrack = useRef<"fr" | "en" | null>(null);
   const [finders, setFinders] = useState<FindersResponse>(STATIC_FINDERS);
   const [copied, setCopied] = useState(false);
   const [shared, setShared] = useState(false);
@@ -200,30 +195,44 @@ function AtelierSecretContent() {
 
   const anyUnlocked = unlocked?.hibou || unlocked?.owl;
 
-  // Load live redemption counts once the page is unlocked.
+  // Load the public finders' board once the page is unlocked.
   useEffect(() => {
     if (!anyUnlocked || fetched.current) return;
     fetched.current = true;
-    fetch("/api/secret-codes")
-      .then((r) => r.json())
-      .then((data: CodesResponse) => setCodes(data))
-      .catch(() => setCodes({ fallback: true }));
     fetch("/api/secret-finders")
       .then((r) => r.json())
       .then((data: FindersResponse) => setFinders(data))
       .catch(() => {});
   }, [anyUnlocked]);
 
-  const tiersFor = (track: "fr" | "en"): TierStatus[] => {
-    if (codes && !codes.fallback) return codes[track];
-    return FALLBACK_TIERS[track];
-  };
+  // Ask the API for the reward code when the owl is opened, with the proof.
+  useEffect(() => {
+    if (!openTrack || rewardTrack.current === openTrack) return;
+    rewardTrack.current = openTrack;
+    const proof = readProof(openTrack);
+    if (!proof) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setReward({ status: "no_proof" });
+      return;
+    }
+    setReward({ status: "loading" });
+    fetch("/api/secret-codes", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ track: openTrack, ...proof }),
+    })
+      .then(async (r) => {
+        if (r.status === 403) return setReward({ status: "no_proof" });
+        if (!r.ok) throw new Error("request_failed");
+        const data: { tiers: TierStatus[] } = await r.json();
+        setReward({ status: "ok", tiers: data.tiers });
+      })
+      .catch(() => setReward({ status: "error" }));
+  }, [openTrack]);
 
   /** First tier still available (remaining unknown counts as available). */
-  const activeTier = (track: "fr" | "en"): TierStatus | null => {
-    const tiers = tiersFor(track);
-    return tiers.find((t) => t.remaining === null || t.remaining > 0) ?? null;
-  };
+  const activeTier = (tiers: TierStatus[]): TierStatus | null =>
+    tiers.find((t) => t.remaining === null || t.remaining > 0) ?? null;
 
   const copyCode = (code: string) => {
     navigator.clipboard?.writeText(code).catch(() => {});
@@ -260,7 +269,7 @@ function AtelierSecretContent() {
       const res = await fetch("/api/secret-finder", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, track }),
+        body: JSON.stringify({ ...form, track, ...readProof(track) }),
       });
       if (!res.ok) throw new Error("request_failed");
       const data: { ok: true; rank: number | null } = await res.json();
@@ -453,7 +462,38 @@ function AtelierSecretContent() {
         >
           <div className="max-w-md w-full border border-cyan bg-background-deep p-8 text-center shadow-[0_24px_48px_-20px_rgba(95,216,232,0.5)] my-auto">
             {(() => {
-              const tier = activeTier(openTrack);
+              if (reward.status === "loading") {
+                return (
+                  <p className="fig-label text-cyan mb-2">
+                    {lang === "fr" ? "Le hibou cherche ta récompense..." : "The owl is fetching your reward..."}
+                  </p>
+                );
+              }
+              if (reward.status === "no_proof" || reward.status === "error") {
+                return (
+                  <>
+                    <p className="fig-label text-amber mb-2">
+                      {reward.status === "no_proof"
+                        ? lang === "fr"
+                          ? "Le hibou ne te reconnaît pas."
+                          : "The owl doesn't recognise you."
+                        : lang === "fr"
+                          ? "Le hibou s'est assoupi."
+                          : "The owl dozed off."}
+                    </p>
+                    <p className="text-sm text-foreground/90 mb-6">
+                      {reward.status === "no_proof"
+                        ? lang === "fr"
+                          ? "Rejoue la dernière étape du jeu de piste depuis ce navigateur pour réclamer ta récompense."
+                          : "Replay the last step of the hunt from this browser to claim your reward."
+                        : lang === "fr"
+                          ? "Impossible de récupérer ta récompense pour le moment. Réessaie dans quelques minutes."
+                          : "Your reward can't be fetched right now. Try again in a few minutes."}
+                    </p>
+                  </>
+                );
+              }
+              const tier = activeTier(reward.tiers);
               if (!tier) {
                 return (
                   <>

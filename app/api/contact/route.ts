@@ -1,4 +1,5 @@
 import { Resend } from "resend";
+import { isRateLimited, tooManyRequests } from "@/lib/rateLimit";
 
 const CONTACT_TO = process.env.CONTACT_TO ?? "lafabriknumerique@outlook.com";
 const CONTACT_FROM =
@@ -16,6 +17,11 @@ function escapeHtml(s: string) {
 }
 
 export async function POST(request: Request) {
+  // Each accepted request sends a Resend email from a shared daily quota.
+  if (await isRateLimited(request, "contact", 5, 3600)) {
+    return tooManyRequests();
+  }
+
   let body: Record<string, unknown>;
   try {
     body = await request.json();
