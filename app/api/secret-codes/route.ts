@@ -64,7 +64,11 @@ async function withCounts(tiers: TierStatus[]): Promise<TierStatus[]> {
     return await Promise.all(
       tiers.map(async (tier) => {
         const found = byCode.get(tier.code.toUpperCase());
-        if (!found || found.max === null) return tier;
+        if (!found) {
+          console.error(`Lemon Squeezy discount not found for a ${tier.percent}% tier`);
+          return tier;
+        }
+        if (found.max === null) return tier;
         const redemptions = await lsFetch(
           `/discount-redemptions?filter[discount_id]=${found.id}&page[size]=1`,
           apiKey,
@@ -77,8 +81,12 @@ async function withCounts(tiers: TierStatus[]): Promise<TierStatus[]> {
         };
       }),
     );
-  } catch {
-    // Any API hiccup: no counts rather than an error.
+  } catch (err) {
+    // Any API hiccup: no counts rather than an error (logged for diagnosis).
+    console.error(
+      "Lemon Squeezy counts unavailable:",
+      err instanceof Error ? err.message : err,
+    );
     return tiers;
   }
 }
