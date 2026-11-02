@@ -222,7 +222,8 @@ const fr: LegalContent = {
         p: [
           "Les kits d'escape game d'anniversaire imprimables proposés dans l'espace /jeux/Kits-Anniversaire-Imprimables/ sont des contenus numériques fournis hors support matériel (fichiers autonomes HTML / archive ZIP téléchargeables et imprimables au format A4 pour un usage strictement personnel et familial).",
           "La commande, le paiement sécurisé, le calcul et la collecte de la TVA applicable ainsi que la facturation sont assurés par notre prestataire Lemon Squeezy (Lemon Squeezy, LLC), agissant en qualité de revendeur officiel (« Merchant of Record »). Les prix sont indiqués en euros toutes taxes comprises (TTC).",
-          `La livraison du fichier numérique est immédiate dès la validation du paiement. L'acheteur dispose d'un délai de 14 jours à compter de l'achat pour exercer son droit de rétractation et demander le remboursement intégral, sans avoir à motiver sa décision, par simple courriel adressé à ${EDITOR_EMAIL} en indiquant le numéro de commande figurant sur le reçu Lemon Squeezy. Le remboursement est alors effectué sur le moyen de paiement utilisé lors de la commande.`,
+          "La livraison du fichier numérique est immédiate dès la validation du paiement. Conformément à l'article L221-28 13° du Code de la consommation, en cliquant sur le bouton d'achat, l'acheteur demande expressément l'accès immédiat au contenu numérique et reconnaît renoncer à son droit de rétractation dès le début du téléchargement. Cette information est rappelée à côté de chaque bouton d'achat.",
+          `Si le fichier reçu est défectueux, illisible ou ne correspond pas à sa description, l'acheteur nous écrit à ${EDITOR_EMAIL} en indiquant le numéro de commande figurant sur le reçu Lemon Squeezy : nous fournissons un fichier corrigé ou, à défaut, le remboursement intégral sur le moyen de paiement utilisé.`,
         ],
       },
     ],
@@ -429,7 +430,8 @@ const en: LegalContent = {
         p: [
           "The printable birthday escape game kits offered under /jeux/Kits-Anniversaire-Imprimables/ are digital products supplied without a physical medium (downloadable standalone HTML files / ZIP archive, printable in A4 format for strictly personal and family use).",
           "Order processing, secure payment, calculation and collection of applicable VAT, and invoicing are handled by our provider Lemon Squeezy (Lemon Squeezy, LLC), acting as Merchant of Record. Prices are displayed in euros inclusive of all applicable taxes.",
-          `Delivery of the digital file takes place immediately upon payment confirmation. The buyer has 14 days from the date of purchase to exercise their right of withdrawal and request a full refund, without having to state a reason, simply by emailing ${EDITOR_EMAIL} with the order number shown on the Lemon Squeezy receipt. The refund is issued back to the original payment method.`,
+          "Delivery of the digital file takes place immediately upon payment confirmation. In accordance with Article L221-28 13° of the French Consumer Code, by clicking the buy button the buyer expressly requests immediate access to the digital content and acknowledges that they waive their right of withdrawal once the download begins. This is restated next to every buy button.",
+          `If the file received is faulty, unreadable or does not match its description, the buyer can email ${EDITOR_EMAIL} with the order number shown on the Lemon Squeezy receipt: we will supply a corrected file or, failing that, a full refund to the original payment method.`,
         ],
       },
     ],
