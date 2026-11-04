@@ -51,6 +51,7 @@ export const metadata: Metadata = {
     google: "Mlw16OWL3An9EMgg9flyBrnyn7MWws0_ns9F4yzA0hw",
     other: {
       "msvalidate.01": "DEA14F3920FE8134867448E702A8CC29",
+      "p:domain_verify": "5a826487929b7aa555c0ece5f5766c46",
     },
   },
   openGraph: {
