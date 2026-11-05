@@ -262,11 +262,16 @@ export const newPostsFr: BlogPost[] = [
         h: "Conclusion",
         p: [
           "Fixer le prix d'un logiciel consiste à choisir un modèle cohérent avec la fréquence d'usage, à ancrer le chiffre dans la valeur pour le client, à calibrer le gratuit, puis à garder une grille simple et stable. Les repères du marché aident, mais seules vos propres données diront si vous avez raison.",
+          "Le prix se joue aussi sur l'écran de paiement : voyez [comment concevoir un paywall efficace](/blog/comment-concevoir-un-paywall-efficace-pour-une-application), avec nos chiffres réels.",
           "Si vous préparez le lancement d'un logiciel ou d'un SaaS, La Fabrik Numérique peut vous aider à cadrer l'offre comme la mise en œuvre technique. Parlons-en depuis la [page de contact](/#contact), ou lisez d'abord notre article sur la différence entre un [site vitrine et une application web](/blog/site-vitrine-ou-application-web-comment-choisir).",
         ],
       },
     ],
     links: [
+      {
+        label: "Comment concevoir un paywall efficace",
+        url: "/blog/comment-concevoir-un-paywall-efficace-pour-une-application",
+      },
       {
         label: "Freemium, essai gratuit ou abonnement : comment monétiser un logiciel",
         url: "/blog/freemium-essai-gratuit-ou-abonnement-comment-monetiser-un-logiciel",
@@ -530,6 +535,7 @@ export const newPostsFr: BlogPost[] = [
         h: "Conclusion : choisissez un modèle, mesurez, puis ajustez",
         p: [
           "Le modèle de monétisation est une hypothèse. Choisissez celui qui correspond à l'usage réel, mesurez la conversion, et ajustez avec des données. Pour comprendre pourquoi des utilisateurs ne paient pas, lisez [pourquoi un SaaS peut avoir des utilisateurs mais aucune vente](/blog/pourquoi-un-saas-a-des-utilisateurs-mais-aucune-vente). Vous pouvez voir nos modèles à l'œuvre sur [vectorpop.fr](https://www.vectorpop.fr), [voxcutpro.com](https://voxcutpro.com) et [vidscope.fr](https://www.vidscope.fr).",
+          "Une fois le modèle choisi, reste à présenter l'offre : voyez [comment concevoir un paywall efficace pour une application](/blog/comment-concevoir-un-paywall-efficace-pour-une-application).",
         ],
       },
       {
@@ -545,6 +551,10 @@ export const newPostsFr: BlogPost[] = [
       },
     ],
     links: [
+      {
+        label: "Comment concevoir un paywall efficace",
+        url: "/blog/comment-concevoir-un-paywall-efficace-pour-une-application",
+      },
       {
         label: "Créer un SaaS en 2026 : de l'idée aux premiers utilisateurs",
         url: "/blog/creer-un-saas-en-2026-de-l-idee-aux-premiers-utilisateurs",
@@ -567,6 +577,7 @@ export const newPostsFr: BlogPost[] = [
     metaDescription:
       "344 installations, 240 vues du paywall, 0 achat : analyse chiffrée d'un entonnoir réel pour comprendre pourquoi les utilisateurs n'achètent pas.",
     date: "2026-10-08",
+    updated: "2026-11-05",
     dateLabel: "8 octobre 2026",
     excerpt:
       "344 installations, 151 traitements, 240 vues du paywall, 26 clics, aucun achat : l'analyse d'un entonnoir réel et les hypothèses qu'il permet.",
@@ -608,7 +619,7 @@ export const newPostsFr: BlogPost[] = [
           "• Un prix par pays : en Inde, le prix à vie a été ramené de 1 650 à 249 roupies le 5 octobre, en gardant d'autres pays comme témoins, avec un bilan prévu environ quatre semaines plus tard",
           "• Un export partiel à la place du blocage sec, prévu dans une prochaine version",
           "• L'enregistrement de la durée réelle des fichiers au moment du blocage, qui manquait pour comprendre",
-          "Nous publierons les résultats, bons ou mauvais, dans un prochain épisode.",
+          "Mise à jour du 5 novembre 2026 : les résultats sont publiés dans [comment concevoir un paywall efficace](/blog/comment-concevoir-un-paywall-efficace-pour-une-application). Ils nuancent ce que nous écrivons ici sur le blocage sec : trois de nos cinq premières ventes sont venues d'une limite. L'export partiel n'est toujours pas livré sur Android.",
         ],
       },
       {
@@ -633,7 +644,7 @@ export const newPostsFr: BlogPost[] = [
           "Pourquoi les gens téléchargent-ils sans acheter ? Curiosité, besoin occasionnel, prix inadapté au pays, blocage au mauvais moment : un entonnoir chiffré aide à voir laquelle de ces causes domine.",
           "Quel est un taux de conversion normal ? Il varie énormément selon le produit et la manière de mesurer. Comparez-vous à votre propre historique plutôt qu'à des moyennes.",
           "Faut-il baisser le prix ? Peut-être, mais testez-le sans changer autre chose, et par pays si votre public est international.",
-          "Un blocage sec est-il une mauvaise idée ? Souvent oui : montrer d'abord un résultat, comme un export partiel, donne une raison de payer.",
+          "Un blocage sec est-il une mauvaise idée ? Pas toujours : il décourage les curieux, mais trois de nos cinq premières ventes sont venues d'une limite. Montrer d'abord un résultat, comme un export partiel, reste une bonne raison de payer.",
           "Combien de données faut-il pour conclure ? Beaucoup plus que quelques dizaines de clics. Avec de petits nombres, parlez d'hypothèses, pas de conclusions.",
           "---",
         ],
@@ -641,12 +652,142 @@ export const newPostsFr: BlogPost[] = [
     ],
     links: [
       {
+        label: "Comment concevoir un paywall efficace",
+        url: "/blog/comment-concevoir-un-paywall-efficace-pour-une-application",
+      },
+      {
         label: "Pourquoi un SaaS peut avoir des utilisateurs mais aucune vente",
         url: "/blog/pourquoi-un-saas-a-des-utilisateurs-mais-aucune-vente",
       },
       {
         label: "Freemium, essai gratuit ou abonnement",
         url: "/blog/freemium-essai-gratuit-ou-abonnement-comment-monetiser-un-logiciel",
+      },
+      {
+        label: "Découvrir VoxCut → voxcutpro.com",
+        url: "https://voxcutpro.com",
+      },
+    ],
+  },
+  {
+    id: "effective-paywall",
+    slug: "comment-concevoir-un-paywall-efficace-pour-une-application",
+    title: "Comment concevoir un paywall efficace pour une application ?",
+    metaTitle: "Comment concevoir un paywall efficace pour une application ?",
+    metaDescription:
+      "588 vues du paywall, 63 clics, 5 ventes : ce que nos chiffres réels disent du moment, du contenu et du prix d'un écran de paiement, et les erreurs à éviter.",
+    date: "2026-11-05",
+    dateLabel: "5 novembre 2026",
+    excerpt:
+      "588 vues du paywall, 63 clics, 5 ventes : ce que nos chiffres disent du moment, du message et du prix d'un écran de paiement, avec une correction de notre épisode précédent.",
+    tags: ["SaaS", "Conversion", "Données"],
+    sections: [
+      {
+        h: "Introduction",
+        p: [
+          "Un paywall efficace apparaît au moment où l'utilisateur a un besoin réel, annonce clairement ce qu'il obtient et ce que cela coûte, laisse une sortie, et fonctionne techniquement. Son design compte moins que ces quatre points. Nos propres chiffres montrent aussi qu'une limite bien placée vend mieux qu'on ne le croit, et qu'un prix mal adapté au pays fait fuir en quelques secondes.",
+          "Un paywall est l'écran où l'on demande de payer. C'est le quatrième épisode de notre série sur la construction d'un SaaS. Dans le précédent, [pourquoi les utilisateurs téléchargent sans acheter](/blog/pourquoi-les-utilisateurs-telechargent-une-application-sans-l-acheter), nous n'avions aucune vente et promettions de publier la suite, bonne ou mauvaise. La voici, avec une correction de ce que nous avions écrit.",
+        ],
+      },
+      {
+        h: "Que disent nos chiffres réels ?",
+        p: [
+          "Du 1er septembre au 31 octobre 2026, sur VoxCut pour Android, robots de test exclus : 874 installations, 588 personnes ont vu un paywall, 63 ont cliqué pour acheter, 50 ont ouvert la feuille de paiement Google Play, 38 l'ont annulée, et 5 ont réellement acheté. Cela fait environ 0,6 % des installations.",
+          "Cinq ventes, c'est très peu : tout ce qui suit est une piste, pas une loi. Mais c'est plus instructif que zéro, parce qu'on peut regarder qui a acheté, et à quel moment.",
+        ],
+      },
+      {
+        h: "Quand faut-il montrer le paywall ?",
+        p: [
+          "La règle habituelle dit : après que l'utilisateur a vu un résultat. Elle reste bonne, mais nos données la complètent. Le bon moment est celui où le besoin apparaît.",
+          "Dans l'épisode précédent, nous écrivions qu'un blocage sec décourage plus qu'il ne convertit : notre limite de cinq minutes avait bloqué 71 personnes pour 2 clics. Les ventes suivantes nous ont donné en partie tort. Trois de nos cinq acheteurs sont arrivés par une limite : deux podcasteurs dont le fichier dépassait les cinq minutes, une personne arrivée au bout des trois exports quotidiens. Ils ont acheté dans la même séance, 20 à 40 minutes après l'installation. La limite n'a pas fait fuir ceux qui avaient un vrai besoin, elle leur a montré ce qu'ils achetaient.",
+          "Les deux autres ont acheté dans la première minute, avant tout usage : le paywall d'entrée sert les gens déjà décidés. À l'inverse, les personnes qui traitent des vidéos courtes tiennent dans la version gratuite et n'achètent jamais. Une limite ne vend que si elle touche le cas d'usage qui mérite de payer.",
+        ],
+      },
+      {
+        h: "Que doit dire le paywall ?",
+        p: [
+          "• Ce que l'utilisateur obtient, en bénéfices concrets, pas en liste de fonctions",
+          "• Le prix clair, avec sa durée de validité : paiement unique ou récurrent",
+          "• Une réassurance : garantie de remboursement, absence d'abonnement caché",
+          "• Un bouton orienté bénéfice plutôt que générique",
+          "• Une sortie : continuer en version gratuite, sans culpabiliser",
+          "La transparence n'est pas qu'une question de morale. Adapty cite le cas de Blinkist, dont l'écran annonçant à l'avance le jour du rappel et celui de la facturation a augmenté la conversion et réduit les plaintes.",
+        ],
+      },
+      {
+        h: "Le prix se joue-t-il sur le paywall ?",
+        p: [
+          "Oui, et plus vite qu'on ne le pense. Sur 52 annulations de la feuille de paiement, 41 ont eu lieu en moins de dix secondes, alors que nos acheteurs prennent de 17 à 156 secondes. Ces personnes ne se sont pas perdues dans la saisie d'une carte : elles ont regardé le prix et sont parties. Environ 90 % d'entre elles venaient de pays où notre prix, converti automatiquement, restait celui d'un pays riche.",
+          "Notre test en Inde, annoncé dans l'épisode précédent, ne tranche pas : 146 installations et une seule vente à 249 roupies après la baisse. C'est trop peu pour conclure, et il faudrait un volume sans rapport avec le nôtre. Nous gardons l'idée, pas la preuve. Pour le raisonnement complet, lisez [comment fixer le prix d'un logiciel SaaS](/blog/comment-fixer-le-prix-d-un-logiciel-saas).",
+        ],
+      },
+      {
+        h: "Hard paywall ou soft paywall ?",
+        p: [
+          "Les études se contredisent, parce qu'elles ne mesurent pas la même chose. Le [rapport 2026 de RevenueCat](https://www.revenuecat.com/blog/growth/subscription-app-trends-benchmarks-2026/) compte depuis le téléchargement et donne l'avantage au paywall dur : environ 10,7 % contre 2,1 % pour le freemium. Le [rapport d'Adapty](https://adapty.io/state-of-paywalls/report/) compte depuis l'écran de paiement et donne l'avantage au paywall souple. Le premier chiffre comporte un biais : un paywall dur fait partir les curieux dès le début, et il reste surtout les gens décidés.",
+          "Ces deux éditeurs vendent des outils de monétisation d'abonnements mobiles. Leurs chiffres donnent une tendance, pas une référence pour une application à achat unique comme la nôtre. Notre conclusion prudente : pour une petite application, testez, et choisissez d'abord [votre modèle économique](/blog/freemium-essai-gratuit-ou-abonnement-comment-monetiser-un-logiciel).",
+        ],
+      },
+      {
+        h: "Quelle erreur coûte le plus cher ?",
+        p: [
+          "Un paywall qui ne fonctionne pas, ou qui fonctionne mal sans le dire. En septembre, nous avons trouvé deux bugs dans le code d'achat partagé par nos trois applications Android. Le premier : certaines transactions étaient ignorées sans être validées, or Google rembourse automatiquement un achat non validé après trois jours. Le second : un double clic sur « acheter » pouvait lancer deux paiements, et un client a bien été débité deux fois.",
+          "Notre premier correctif a créé un nouveau problème, trouvé à la relecture : après une annulation, le bouton d'achat ne répondait plus jusqu'au redémarrage de l'application. Seul un achat de test complet, sur un vrai appareil, a confirmé que le parcours marchait. Les tests automatiques ne remplacent pas ce geste.",
+        ],
+      },
+      {
+        h: "Comment mesurer un paywall sans se tromper ?",
+        p: [
+          "• Excluez les robots : le rapport de pré-lancement de Google Play installe votre application et clique sur « acheter ». Depuis septembre, tous les clics d'achat enregistrés aux États-Unis venaient de ces robots",
+          "• Excluez vos propres achats de test et les achats pirates",
+          "• Mesurez chaque étape : vue, clic, ouverture du paiement, annulation, achat",
+          "• Changez une variable à la fois : prix, texte ou moment",
+          "• Avec de petits nombres, parlez d'hypothèses : cinq ventes n'autorisent aucune conclusion ferme",
+        ],
+      },
+      {
+        h: "Conclusion : le meilleur paywall arrive quand le besoin est là, et il marche",
+        p: [
+          "Un bon paywall tient en trois points : le bon moment, un message clair avec un prix adapté, un parcours d'achat testé. Le reste, couleurs et animations, vient après. Vous pouvez voir le nôtre sur [VoxCut](https://voxcutpro.com).",
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: "Quand afficher un paywall ?",
+        a:
+          "Quand l'utilisateur a un besoin réel : après un premier résultat, ou au moment où il atteint une limite qui touche son usage.",
+      },
+      {
+        q: "Une limite gratuite fait-elle fuir les utilisateurs ?",
+        a:
+          "Pas ceux qui ont un vrai besoin : trois de nos cinq ventes sont venues d'une limite. Elle ne vend rien si l'usage courant tient dans la version gratuite.",
+      },
+      {
+        q: "Vaut-il mieux un paywall dur ou souple ?",
+        a:
+          "Les études se contredisent selon la méthode de mesure. Testez sur votre produit.",
+      },
+      {
+        q: "Comment vérifier que l'achat fonctionne ?",
+        a:
+          "En faisant un achat de test complet sur un vrai appareil, avant chaque mise en ligne.",
+      },
+      {
+        q: "Faut-il proposer un essai gratuit ?",
+        a:
+          "Souvent utile quand la valeur apparaît avec l'usage, mais vérifiez les règles des boutiques d'applications avant de l'afficher.",
+      },
+    ],
+    links: [
+      {
+        label: "Pourquoi les utilisateurs téléchargent sans acheter",
+        url: "/blog/pourquoi-les-utilisateurs-telechargent-une-application-sans-l-acheter",
+      },
+      {
+        label: "Comment fixer le prix d'un logiciel SaaS",
+        url: "/blog/comment-fixer-le-prix-d-un-logiciel-saas",
       },
       {
         label: "Découvrir VoxCut → voxcutpro.com",

@@ -262,11 +262,16 @@ export const newPostsEn: BlogPost[] = [
         h: "Conclusion",
         p: [
           "Setting a software price means choosing a model consistent with frequency of use, anchoring the number in customer value, calibrating the free tier, then keeping a simple and stable grid. Market benchmarks help, but only your own data will tell you whether you are right.",
+          "The price also plays out on the payment screen: see [how to design an effective paywall](/en/blog/how-to-design-an-effective-paywall-for-an-app), with our real numbers.",
           "If you are preparing to launch software or a SaaS, La Fabrik Numérique can help frame the offer as well as the technical build. Let us talk from the [contact page](/en#contact), or first read our article on the difference between a [showcase website and a web app](/en/blog/showcase-website-or-web-app-how-to-choose).",
         ],
       },
     ],
     links: [
+      {
+        label: "How to design an effective paywall",
+        url: "/en/blog/how-to-design-an-effective-paywall-for-an-app",
+      },
       {
         label: "Freemium, free trial or subscription: how to monetise software",
         url: "/en/blog/freemium-free-trial-or-subscription-how-to-monetise-software",
@@ -529,6 +534,7 @@ export const newPostsEn: BlogPost[] = [
         h: "Conclusion: pick a model, measure, then adjust",
         p: [
           "The monetisation model is a hypothesis. Choose the one that matches real use, measure conversion, and adjust with data. To understand why users do not pay, read [why a SaaS can have users but no sales](/en/blog/why-a-saas-has-users-but-no-sales). You can see our models at work on [vectorpop.fr](https://www.vectorpop.fr), [voxcutpro.com](https://voxcutpro.com) and [vidscope.fr](https://www.vidscope.fr).",
+          "Once the model is chosen, you still have to present the offer: see [how to design an effective paywall for an app](/en/blog/how-to-design-an-effective-paywall-for-an-app).",
         ],
       },
       {
@@ -543,6 +549,10 @@ export const newPostsEn: BlogPost[] = [
       },
     ],
     links: [
+      {
+        label: "How to design an effective paywall",
+        url: "/en/blog/how-to-design-an-effective-paywall-for-an-app",
+      },
       {
         label: "Building a SaaS in 2026: from idea to first users",
         url: "/en/blog/building-a-saas-in-2026-from-idea-to-first-users",
@@ -565,6 +575,7 @@ export const newPostsEn: BlogPost[] = [
     metaDescription:
       "344 installs, 240 paywall views, 0 purchases: dissecting a real software conversion funnel to understand why free users don't convert.",
     date: "2026-10-08",
+    updated: "2026-11-05",
     dateLabel: "October 8, 2026",
     excerpt:
       "344 installs, 151 processed files, 240 paywall views, 26 clicks, no purchase: analysis of a real funnel and the hypotheses it allows.",
@@ -606,7 +617,7 @@ export const newPostsEn: BlogPost[] = [
           "• A per-country price: in India, the lifetime price was lowered from 1,650 to 249 rupees on 5 October, keeping other countries as controls, with a review planned about four weeks later",
           "• A partial export in place of the hard block, planned for a coming version",
           "• Recording the real file duration at the moment of the block, which was missing for understanding",
-          "We will publish the results, good or bad, in a later episode.",
+          "Update, 5 November 2026: the results are published in [how to design an effective paywall](/en/blog/how-to-design-an-effective-paywall-for-an-app). They qualify what we write here about the hard block: three of our first five sales came from a limit. The partial export has still not shipped on Android.",
         ],
       },
       {
@@ -631,12 +642,16 @@ export const newPostsEn: BlogPost[] = [
           "Why do people download without buying? Curiosity, an occasional need, a price unsuited to the country, a block at the wrong moment: a numbered funnel helps see which of these dominates.",
           "What is a normal conversion rate? It varies enormously with the product and how you measure. Compare yourself with your own history rather than averages.",
           "Should you lower the price? Maybe, but test it without changing anything else, and by country if your audience is international.",
-          "Is a hard block a bad idea? Often yes: showing a result first, such as a partial export, gives a reason to pay.",
+          "Is a hard block a bad idea? Not always: it discourages the curious, but three of our first five sales came from a limit. Showing a result first, such as a partial export, is still a good reason to pay.",
           "How much data do you need to conclude? Far more than a few dozen clicks. With small numbers, talk about hypotheses, not conclusions.",
         ],
       },
     ],
     links: [
+      {
+        label: "How to design an effective paywall",
+        url: "/en/blog/how-to-design-an-effective-paywall-for-an-app",
+      },
       {
         label: "Why a SaaS has users but no sales",
         url: "/en/blog/why-a-saas-has-users-but-no-sales",
@@ -644,6 +659,132 @@ export const newPostsEn: BlogPost[] = [
       {
         label: "Freemium, free trial or subscription",
         url: "/en/blog/freemium-free-trial-or-subscription-how-to-monetise-software",
+      },
+      {
+        label: "Discover VoxCut → voxcutpro.com",
+        url: "https://voxcutpro.com",
+      },
+    ],
+  },
+  {
+    id: "effective-paywall",
+    slug: "how-to-design-an-effective-paywall-for-an-app",
+    title: "How to Design an Effective Paywall for an App",
+    metaTitle: "How to Design an Effective Paywall for an App | La Fabrik",
+    metaDescription:
+      "588 paywall views, 63 clicks, 5 sales: what our real numbers say about the timing, content and price of a payment screen, and the mistakes to avoid.",
+    date: "2026-11-05",
+    dateLabel: "November 5, 2026",
+    excerpt:
+      "588 paywall views, 63 clicks, 5 sales: what our numbers say about the timing, message and price of a payment screen, with a correction to our previous episode.",
+    tags: ["SaaS", "Conversion", "Data"],
+    sections: [
+      {
+        h: "Introduction",
+        p: [
+          "An effective paywall appears when the user has a real need, states clearly what they get and what it costs, leaves a way out, and works technically. Its design matters less than these four points. Our own numbers also show that a well-placed limit sells better than you might think, and that a price badly suited to the country drives people away within seconds.",
+          "A paywall is the screen where you ask people to pay. This is the fourth episode of our series on building a SaaS. In the previous one, [why users download without buying](/en/blog/why-users-download-an-app-without-buying-it), we had no sales and promised to publish what came next, good or bad. Here it is, with a correction to what we wrote.",
+        ],
+      },
+      {
+        h: "What do our real numbers say?",
+        p: [
+          "From 1 September to 31 October 2026, on VoxCut for Android, test robots excluded: 874 installs, 588 people saw a paywall, 63 clicked to buy, 50 opened the Google Play payment sheet, 38 cancelled it, and 5 actually bought. That is about 0.6% of installs.",
+          "Five sales is very few: everything below is a lead, not a law. But it teaches more than zero, because we can look at who bought and when.",
+        ],
+      },
+      {
+        h: "When should you show the paywall?",
+        p: [
+          "The usual rule says: after the user has seen a result. It still holds, but our data adds to it. The right moment is when the need appears.",
+          "In the previous episode we wrote that a hard block discourages more than it converts: our five-minute limit had blocked 71 people for 2 clicks. The sales that followed proved us partly wrong. Three of our five buyers came through a limit: two podcasters whose file ran past five minutes, and one person who reached the three daily exports. They bought in the same session, 20 to 40 minutes after installing. The limit did not drive away people with a real need; it showed them what they were buying.",
+          "The other two bought within the first minute, before any use: an entry paywall serves people who have already decided. Conversely, people processing short videos fit within the free version and never buy. A limit only sells if it touches the use case worth paying for.",
+        ],
+      },
+      {
+        h: "What should the paywall say?",
+        p: [
+          "• What the user gets, in concrete benefits, not a list of features",
+          "• The price clearly, with its validity: one-time or recurring",
+          "• Reassurance: money-back guarantee, no hidden subscription",
+          "• A benefit-oriented button rather than a generic one",
+          "• A way out: continue with the free version, without guilt-tripping",
+          "Transparency is not only a matter of ethics. Adapty cites the case of Blinkist, whose screen announcing the reminder day and billing day in advance raised conversion and reduced complaints.",
+        ],
+      },
+      {
+        h: "Is the price decided on the paywall?",
+        p: [
+          "Yes, and faster than you might think. Out of 52 payment sheet cancellations, 41 happened in under ten seconds, while our buyers take 17 to 156 seconds. These people did not get lost typing a card number: they looked at the price and left. About 90% of them came from countries where our automatically converted price was still a rich-country price.",
+          "Our test in India, announced in the previous episode, settles nothing: 146 installs and a single sale at 249 rupees after the cut. That is too little to conclude, and it would take a volume far beyond ours. We keep the idea, not the proof. For the full reasoning, read [how to price a SaaS product](/en/blog/how-to-price-a-saas-product).",
+        ],
+      },
+      {
+        h: "Hard paywall or soft paywall?",
+        p: [
+          "Studies contradict each other because they do not measure the same thing. [RevenueCat's 2026 report](https://www.revenuecat.com/blog/growth/subscription-app-trends-benchmarks-2026/) counts from download and favours the hard paywall: about 10.7% against 2.1% for freemium. [Adapty's report](https://adapty.io/state-of-paywalls/report/) counts from the payment screen and favours the soft paywall. The first figure carries a bias: a hard paywall drives curious users away at the start, leaving mostly people who have already decided.",
+          "Both vendors sell monetisation tools for mobile subscriptions. Their figures give a trend, not a benchmark for a one-time-purchase app like ours. Our cautious conclusion: for a small app, test, and choose [your business model](/en/blog/freemium-free-trial-or-subscription-how-to-monetise-software) first.",
+        ],
+      },
+      {
+        h: "Which mistake costs the most?",
+        p: [
+          "A paywall that does not work, or that fails silently. In September we found two bugs in the purchase code shared by our three Android apps. The first: some transactions were dropped without being acknowledged, and Google automatically refunds an unacknowledged purchase after three days. The second: a double click on buy could launch two payments, and one customer really was charged twice.",
+          "Our first fix created a new problem, caught in review: after a cancellation, the buy button stopped responding until the app was restarted. Only a full test purchase on a real device confirmed that the flow worked. Automated tests do not replace that step.",
+        ],
+      },
+      {
+        h: "How do you measure a paywall without fooling yourself?",
+        p: [
+          "• Exclude robots: the Google Play pre-launch report installs your app and clicks buy. Since September, every buy click recorded in the United States came from these robots",
+          "• Exclude your own test purchases and pirated purchases",
+          "• Measure each step: view, click, payment opened, cancellation, purchase",
+          "• Change one variable at a time: price, text or timing",
+          "• With small numbers, talk about hypotheses: five sales allow no firm conclusion",
+        ],
+      },
+      {
+        h: "Conclusion: the best paywall arrives when the need is there, and it works",
+        p: [
+          "A good paywall comes down to three points: the right moment, a clear message with a suitable price, and a tested purchase flow. The rest, colours and animations, comes after. You can see ours on [VoxCut](https://voxcutpro.com).",
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: "When should you show a paywall?",
+        a:
+          "When the user has a real need: after a first result, or when they reach a limit that affects their use.",
+      },
+      {
+        q: "Does a free limit drive users away?",
+        a:
+          "Not those with a real need: three of our five sales came from a limit. It sells nothing if everyday use fits within the free version.",
+      },
+      {
+        q: "Is a hard or soft paywall better?",
+        a:
+          "Studies contradict each other depending on the measurement method. Test on your product.",
+      },
+      {
+        q: "How do you check that purchase works?",
+        a:
+          "By making a full test purchase on a real device, before every release.",
+      },
+      {
+        q: "Should you offer a free trial?",
+        a:
+          "Often useful when value appears with use, but check app store rules before showing it.",
+      },
+    ],
+    links: [
+      {
+        label: "Why users download without buying",
+        url: "/en/blog/why-users-download-an-app-without-buying-it",
+      },
+      {
+        label: "How to price a SaaS product",
+        url: "/en/blog/how-to-price-a-saas-product",
       },
       {
         label: "Discover VoxCut → voxcutpro.com",
