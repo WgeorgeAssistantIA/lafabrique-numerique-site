@@ -67,6 +67,9 @@ export default function About() {
             <h2 className="font-display uppercase text-4xl sm:text-5xl mb-6">
               {a.title}
             </h2>
+            <p className="font-display uppercase tracking-wide text-amber text-lg sm:text-xl leading-snug mb-5 pl-4 border-l-2 border-amber/50">
+              {a.lead}
+            </p>
             <p className="text-muted leading-relaxed mb-4 text-base sm:text-lg">
               {a.p1}
             </p>

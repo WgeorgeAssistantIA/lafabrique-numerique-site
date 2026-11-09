@@ -17,9 +17,9 @@ const fr = {
   cta: { quote: "Demander un devis" },
   hero: {
     figLabel: "FIG. 01 — ATELIER DE CRÉATION NUMÉRIQUE",
-    titleA: "On dessine vos",
-    titleHighlight: "circuits",
-    titleB: "numériques.",
+    titleA: "Je fabrique votre",
+    titleHighlight: "site internet",
+    titleB: "— et vos outils numériques.",
     desc: "La Fabrik Numérique conçoit et développe sites web, applications et logiciels sur mesure — pensés comme des systèmes précis, robustes et faits pour durer.",
     tagline: "De l'idée au produit publié, un seul interlocuteur.",
     seeWork: "Voir les réalisations",
@@ -304,6 +304,7 @@ const fr = {
   about: {
     figLabel: "L'ATELIER & LE FONDATEUR",
     title: "La rigueur d'un ingénieur, le soin d'un artisan",
+    lead: "J'assemble vos outils numériques comme un horloger : pièce par pièce, pour qu'ils tiennent dans le temps.",
     p1: "La Fabrik Numérique est un studio indépendant basé à Roanne (Loire). J'accompagne aussi bien les artisans, commerçants et PME qui veulent un site internet crédible et rentable, que les porteurs de projets qui souhaitent développer une application web ou un logiciel sur mesure.",
     p2: "Pas de commercial intermédiaire ni de jargon inutile : vous échangez directement avec celui qui conçoit et développe votre projet, du premier croquis jusqu'à la mise en ligne.",
     why: [
@@ -372,9 +373,9 @@ const en: Translation = {
   cta: { quote: "Get a quote" },
   hero: {
     figLabel: "FIG. 01 — DIGITAL CREATION STUDIO",
-    titleA: "We sketch your",
-    titleHighlight: "circuits",
-    titleB: "digitally.",
+    titleA: "I build your",
+    titleHighlight: "website",
+    titleB: "— and your digital tools.",
     desc: "La Fabrik Numérique designs and builds custom websites, applications and software — engineered like precise, robust systems made to last.",
     tagline: "From idea to published product, one point of contact.",
     seeWork: "See the work",
@@ -659,6 +660,7 @@ const en: Translation = {
   about: {
     figLabel: "THE STUDIO & FOUNDER",
     title: "Engineering rigor, artisan care",
+    lead: "I put your digital tools together like a watchmaker: piece by piece, built to stand the test of time.",
     p1: "La Fabrik Numérique is an independent studio based in Roanne, France. I help tradespeople, local businesses and SMBs get a website that actually brings in clients, and I partner with founders and companies to build custom web apps and software.",
     p2: "No middlemen and no unnecessary jargon: you work directly with the person who designs and codes your project, from first sketch to launch.",
     why: [
