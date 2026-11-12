@@ -100,6 +100,7 @@ const fr: BlogContent = {
           h: "Pour aller plus loin",
           p: [
             "Construire ses propres outils conduit vite à des questions de méthode. Nous avons détaillé comment [automatiser les tâches répétitives d'une PME avec l'IA](/blog/automatiser-taches-repetitives-pme-avec-l-ia), et ce que l'expérience de VoxCut nous a appris sur [pourquoi un SaaS peut avoir des utilisateurs mais aucune vente](/blog/pourquoi-un-saas-a-des-utilisateurs-mais-aucune-vente). Un exemple concret : [supprimer automatiquement les silences d'un podcast](/blog/supprimer-automatiquement-les-silences-d-un-podcast).",
+            "Nous construisons ces outils avec l'aide d'assistants IA, et nous racontons sans fard ce que cela change et ce que cela n'évite pas dans [développer un logiciel avec l'IA : opportunités et limites](/blog/developper-un-logiciel-avec-l-ia-opportunites-et-limites).",
           ],
         },
       ],
@@ -119,6 +120,10 @@ const fr: BlogContent = {
         {
           label: "Pourquoi un SaaS peut avoir des utilisateurs mais aucune vente",
           url: "/blog/pourquoi-un-saas-a-des-utilisateurs-mais-aucune-vente",
+        },
+        {
+          label: "Développer un logiciel avec l'IA : opportunités et limites",
+          url: "/blog/developper-un-logiciel-avec-l-ia-opportunites-et-limites",
         },
       ],
     },
@@ -605,6 +610,7 @@ const en: BlogContent = {
           h: "Going further",
           p: [
             "Building your own tools quickly raises questions of method. We detailed how to [automate a small business's repetitive tasks with AI](/en/blog/automate-repetitive-sme-tasks-with-ai), and what VoxCut taught us about [why a SaaS can have users but no sales](/en/blog/why-a-saas-has-users-but-no-sales). A concrete example: [automatically removing silences from a podcast](/en/blog/how-to-remove-silences-from-a-podcast).",
+            "We build these tools with the help of AI assistants, and we describe plainly what that changes and what it does not prevent in [building software with AI: opportunities and limits](/en/blog/building-software-with-ai-opportunities-and-limits).",
           ],
         },
       ],
@@ -624,6 +630,10 @@ const en: BlogContent = {
         {
           label: "Why can a SaaS have users but no sales?",
           url: "/en/blog/why-a-saas-has-users-but-no-sales",
+        },
+        {
+          label: "Building software with AI: opportunities and limits",
+          url: "/en/blog/building-software-with-ai-opportunities-and-limits",
         },
       ],
     },

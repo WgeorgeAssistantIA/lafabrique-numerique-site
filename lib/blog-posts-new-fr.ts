@@ -360,6 +360,7 @@ export const newPostsFr: BlogPost[] = [
         p: [
           "Automatiser les tâches répétitives d'une PME avec l'IA demande moins de technologie que de méthode : repérer les tâches fréquentes et stables, choisir l'outil adapté, qu'il s'agisse d'un script ou d'un modèle de langage, tester sur peu de cas, mesurer le gain réel et protéger les données.",
           "Si vous avez une tâche répétitive qui mériterait ce traitement, La Fabrik Numérique conçoit des outils sur mesure pour les petites entreprises. Écrivez-nous depuis la [page de contact](/#contact), ou découvrez d'abord comment [choisir entre un site vitrine et une application web](/blog/site-vitrine-ou-application-web-comment-choisir).",
+          "Pour aller plus loin : si vous envisagez de faire développer l'outil lui-même avec l'IA, lisez nos cinq erreurs réelles dans [développer un logiciel avec l'IA : opportunités et limites](/blog/developper-un-logiciel-avec-l-ia-opportunites-et-limites).",
         ],
       },
     ],
@@ -371,6 +372,10 @@ export const newPostsFr: BlogPost[] = [
       {
         label: "Découvrir InOneShot → inoneshot.fr",
         url: "https://inoneshot.fr",
+      },
+      {
+        label: "Développer un logiciel avec l'IA : opportunités et limites",
+        url: "/blog/developper-un-logiciel-avec-l-ia-opportunites-et-limites",
       },
     ],
   },
@@ -734,6 +739,7 @@ export const newPostsFr: BlogPost[] = [
         p: [
           "Un paywall qui ne fonctionne pas, ou qui fonctionne mal sans le dire. En septembre, nous avons trouvé deux bugs dans le code d'achat partagé par nos trois applications Android. Le premier : certaines transactions étaient ignorées sans être validées, or Google rembourse automatiquement un achat non validé après trois jours. Le second : un double clic sur « acheter » pouvait lancer deux paiements, et un client a bien été débité deux fois.",
           "Notre premier correctif a créé un nouveau problème, trouvé à la relecture : après une annulation, le bouton d'achat ne répondait plus jusqu'au redémarrage de l'application. Seul un achat de test complet, sur un vrai appareil, a confirmé que le parcours marchait. Les tests automatiques ne remplacent pas ce geste.",
+          "Ce correctif avait été écrit avec un assistant IA, et c'est un second assistant qui l'a relu : nous revenons sur cet épisode et quatre autres dans [développer un logiciel avec l'IA : opportunités et limites](/blog/developper-un-logiciel-avec-l-ia-opportunites-et-limites).",
         ],
       },
       {
@@ -792,6 +798,130 @@ export const newPostsFr: BlogPost[] = [
       {
         label: "Découvrir VoxCut → voxcutpro.com",
         url: "https://voxcutpro.com",
+      },
+      {
+        label: "Développer un logiciel avec l'IA : opportunités et limites",
+        url: "/blog/developper-un-logiciel-avec-l-ia-opportunites-et-limites",
+      },
+    ],
+  },
+  {
+    id: "build-software-with-ai",
+    slug: "developper-un-logiciel-avec-l-ia-opportunites-et-limites",
+    title: "Développer un logiciel avec l'IA : opportunités et limites",
+    metaTitle: "Développer un logiciel avec l'IA : opportunités et limites",
+    metaDescription:
+      "Ce que l'IA change vraiment quand on développe un logiciel, et cinq erreurs réelles, datées, qu'elle n'a pas évitées dans nos propres applications.",
+    date: "2026-11-12",
+    dateLabel: "12 novembre 2026",
+    excerpt:
+      "Nous développons nos applications avec des assistants IA. Ce qu'ils accélèrent vraiment, cinq erreurs réelles qu'ils n'ont pas évitées, et les garde-fous que nous en avons tirés.",
+    tags: ["IA", "Développement", "Retour d'expérience"],
+    sections: [
+      {
+        h: "Introduction",
+        p: [
+          "L'IA accélère nettement l'écriture du code, la recherche d'erreurs et les tâches répétitives, mais elle ne remplace ni la définition du besoin, ni les tests, ni la relecture. Dans nos projets, les erreurs les plus coûteuses n'étaient pas des fautes de syntaxe : c'était du code plausible, qui fonctionnait en apparence, et que seul un test complet ou une relecture attentive a démasqué.",
+          "Nous développons nos logiciels avec l'aide d'assistants IA : VoxCut, VectorPop, Nyctale, VidScope et les autres applications du studio. Cet article ne vante pas la méthode et ne la condamne pas. Il rapporte ce qui a bien marché et cinq erreurs réelles, datées, que l'outil n'a pas évitées. Pour notre philosophie de fond, lisez [pourquoi nous construisons nos propres outils](/blog/pourquoi-construire-ses-propres-outils).",
+        ],
+      },
+      {
+        h: "Qu'est-ce que l'IA change vraiment ?",
+        p: [
+          "Le changement le plus visible est la vitesse, mais ce n'est pas le plus important. Ce qui change vraiment, c'est ce qu'une très petite équipe peut entreprendre.",
+          "• Les tâches répétitives : traduire une interface, écrire des tests, préparer des scripts de publication. L'interface de VoxCut pour Android existe en 15 langues, et ses fiches sur Google Play en 86. Sans assistant, nous ne l'aurions pas fait",
+          "• L'exploration : essayer deux approches avant de choisir. Pour VidScope, nous avons comparé plusieurs tailles de découpage et plusieurs modèles sur la même vidéo avant de décider, un essai qui coûtait trop cher en temps auparavant",
+          "• La relecture : un assistant à qui l'on donne un fichier à lire repère des oublis qu'on ne voit plus, à condition de lui poser la question",
+          "• L'accessibilité : une personne seule peut maintenir plusieurs applications, sur plusieurs plateformes, ce qui demandait autrefois une petite équipe",
+          "Le gain est réel. Mais il porte sur la production. La vérification, elle, reste aussi longue qu'avant, et c'est là que se logent les erreurs qui suivent.",
+        ],
+      },
+      {
+        h: "Quelles erreurs l'IA n'a-t-elle pas évitées chez nous ?",
+        p: [
+          "Cinq exemples réels, tous corrigés depuis.",
+          "• Une fonction payante devenue gratuite (septembre). Dans la version 2.0.0 de VoxCut pour Android, le débruitage et la normalisation du son, censés être réservés à la version Pro, n'avaient aucune vérification : ils étaient gratuits pour tout le monde. C'est un autre assistant IA, à qui nous avions donné le code à relire, qui l'a repéré trois jours après la sortie. Correction le jour même",
+          "• Un correctif qui créait deux bugs (septembre). Notre code d'achat Android ignorait certaines transactions sans les valider. Le premier correctif, écrit avec un assistant, a été relu par un second : il rendait le bouton d'achat inutilisable après une annulation, et dans un cas rare, il validait un vrai paiement sans débloquer la version Pro. L'histoire complète est dans [comment concevoir un paywall efficace](/blog/comment-concevoir-un-paywall-efficace-pour-une-application)",
+          "• Des liens faux présentés comme officiels (septembre). VidScope cherche le site officiel des outils cités dans une vidéo. Le code acceptait une page dès qu'elle contenait le nom de l'outil : la base de données Neon renvoyait vers un studio de cinéma, l'outil Codex vers une norme alimentaire. Nous l'avons corrigé avec une vérification plus stricte et des tests unitaires",
+          "• Une analyse partielle sans avertissement (septembre). Une ligne coupait le texte à 15 000 caractères : une vidéo de 7 h 29 n'était analysée que sur ses 12 premières minutes, sans que l'utilisateur le sache. Le correctif découpe le texte en morceaux et affiche « analyse partielle » quand tout n'a pas pu être traité",
+          "• Un secret affiché à l'écran (octobre). Pendant une session de travail, une commande de vérification a affiché un morceau de jeton de licence dans sa sortie. Il n'a pas été enregistré dans le dépôt, mais il a été traité comme exposé",
+          "Dans chaque cas, ce qui a manqué n'est pas du code. C'est une question que personne n'avait posée : qui a le droit d'utiliser cette fonction ? que se passe-t-il si l'achat est annulé ? cette page est-elle vraiment la bonne ? le texte entier a-t-il été lu ?",
+        ],
+      },
+      {
+        h: "Pourquoi ces erreurs passent-elles inaperçues ?",
+        p: [
+          "Un assistant IA écrit du code plausible. Un code plausible compile, s'affiche et semble marcher sur l'exemple qu'on essaie. Les défauts apparaissent ailleurs : sur les cas limites (une vidéo de sept heures, un nom d'outil qui est aussi un mot courant), sur les parcours complets (acheter, annuler, rouvrir l'application), et au contact des services externes (Google Play, les moteurs de recherche).",
+          "Le correctif lui-même peut se tromper de la même façon. Après la correction de la troncature de VidScope, un filtre censé écarter les outils inventés vérifiait que le nom figurait dans la transcription. Il a écarté FastAPI et PostgreSQL, parce que les sous-titres automatiques écrivaient « fast API » et « postgress ». Le code était logique ; la réalité était plus désordonnée.",
+          "Enfin, l'IA code ce qu'on lui demande. Notre première limite gratuite sur VoxCut Android se mesurait en mégaoctets : une vidéo 4K de 45 secondes était bloquée, un podcast d'une heure passait. Le code était juste ; c'est le critère qui était mauvais, et c'était notre décision. Plus le code s'écrit vite, plus on est tenté de vérifier moins. Le piège est de confondre fluidité et exactitude.",
+        ],
+      },
+      {
+        h: "Quelles pratiques réduisent le risque ?",
+        p: [
+          "• Tester chaque parcours de bout en bout, surtout ceux qui touchent à l'argent : un achat de test complet sur un vrai appareil avant chaque mise en ligne",
+          "• Faire relire le code par un second regard, humain ou autre assistant, avec une question précise : « quelles fonctions payantes sont accessibles sans payer ? » vaut mieux que « relis ce fichier »",
+          "• Garder des tests automatiques sur les règles critiques : accès payants, validation des liens, découpage des longs textes",
+          "• Surveiller les secrets : un jeton ou une clé ne doit apparaître ni dans une sortie, ni dans un message d'erreur, ni dans un dépôt. Nous avons aussi trouvé une clé d'API dans des journaux d'erreur, où elle figurait dans une adresse",
+          "• Mesurer la qualité sur des exemples réels : pour VidScope, quatre vidéos de 47 minutes à 7 h 29, étiquetées à la main, nous servent de référence avant chaque changement de modèle ou de consigne",
+          "• Ne pas faire travailler deux assistants sur le même fichier en même temps : le 9 septembre, deux sessions ont corrigé le même problème en parallèle, et il a fallu vérifier qu'il ne restait pas de doublons",
+          "Pour la sécurité, les références de l'[OWASP](https://owasp.org) rappellent les erreurs les plus courantes, et elles valent aussi pour le code écrit par une IA.",
+        ],
+      },
+      {
+        h: "Faut-il développer son logiciel avec l'IA ?",
+        p: [
+          "Oui pour prototyper, apprendre et accélérer ; avec prudence pour tout ce qui touche à l'argent, à la sécurité et aux données personnelles. Notre règle : aller vite sur ce qui est réversible, lentement sur ce qui ne l'est pas. Une faute de traduction se corrige en cinq minutes ; un client débité sans accès coûte la confiance.",
+          "La question de départ reste la même qu'avant l'IA : faut-il vraiment construire ? L'IA baisse le coût de fabrication, pas celui de se tromper de projet. Pour faire ce calcul, lisez [outil sur mesure ou SaaS : le coût réel sur 3 ans](/blog/outil-sur-mesure-ou-saas-cout-reel-sur-3-ans). Et si votre objectif est d'abord de gagner du temps dans une petite entreprise, voyez [comment automatiser les tâches répétitives d'une PME avec l'IA](/blog/automatiser-taches-repetitives-pme-avec-l-ia).",
+          "Faut-il savoir programmer ? Pas pour obtenir un prototype. Mais pour repérer les erreurs décrites plus haut, il faut comprendre ce que le code fait et savoir quelles questions lui poser. C'est cette compétence qui fait la différence entre un outil qui marche en démonstration et un outil qui marche chez vos clients.",
+        ],
+      },
+      {
+        h: "Conclusion : l'IA accélère, la vérification protège",
+        p: [
+          "L'IA est un excellent assistant, pas un garant de qualité. Elle nous permet de construire et de maintenir des applications qu'un studio d'une personne n'aurait pas pu tenir seul. Elle ne nous a jamais dispensés de tester, de relire et de mesurer, et chaque fois que nous l'avons oublié, un utilisateur l'a remarqué avant nous. Si vous avez un projet d'outil et que vous voulez en parler, [écrivez-nous](/#contact).",
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: "L'IA peut-elle développer un logiciel entier ?",
+        a:
+          "Elle peut produire une grande partie du code. La définition du besoin, les tests, la relecture et les décisions restent à la charge de l'équipe.",
+      },
+      {
+        q: "Quels sont les principaux risques ?",
+        a:
+          "Du code plausible mais faux sur les cas limites, des oublis sur les paiements et la sécurité, et une confiance excessive due à la vitesse.",
+      },
+      {
+        q: "Que faut-il toujours vérifier à la main ?",
+        a:
+          "Les paiements, les accès réservés, les données personnelles et les secrets, avec un test complet sur un vrai appareil.",
+      },
+      {
+        q: "Une IA peut-elle relire le code d'une autre IA ?",
+        a:
+          "Oui, et c'est utile : chez nous, une relecture par un second assistant a trouvé une fonction payante restée gratuite et deux bugs dans un correctif. Mais elle ne remplace pas le test réel du parcours.",
+      },
+      {
+        q: "Cela baisse-t-il le coût d'un projet ?",
+        a:
+          "Cela baisse le coût de construire. Cela ne réduit pas le coût de construire la mauvaise chose.",
+      },
+    ],
+    links: [
+      {
+        label: "Pourquoi nous construisons nos propres outils",
+        url: "/blog/pourquoi-construire-ses-propres-outils",
+      },
+      {
+        label: "Outil sur mesure ou SaaS : le coût réel sur 3 ans",
+        url: "/blog/outil-sur-mesure-ou-saas-cout-reel-sur-3-ans",
+      },
+      {
+        label: "Comment concevoir un paywall efficace",
+        url: "/blog/comment-concevoir-un-paywall-efficace-pour-une-application",
       },
     ],
   },

@@ -360,6 +360,7 @@ export const newPostsEn: BlogPost[] = [
         p: [
           "Automating a small business's repetitive tasks with AI takes less technology than method: spot frequent, stable tasks, pick the right tool, whether a script or a language model, test on few cases, measure the real gain and protect the data.",
           "If you have a repetitive task that deserves this treatment, La Fabrik Numérique builds custom tools for small businesses. Write to us from the [contact page](/en#contact), or first discover how to [choose between a showcase website and a web app](/en/blog/showcase-website-or-web-app-how-to-choose).",
+          "Going further: if you are thinking of having the tool itself built with AI, read our five real errors in [building software with AI: opportunities and limits](/en/blog/building-software-with-ai-opportunities-and-limits).",
         ],
       },
     ],
@@ -371,6 +372,10 @@ export const newPostsEn: BlogPost[] = [
       {
         label: "Discover InOneShot → inoneshot.fr",
         url: "https://inoneshot.fr",
+      },
+      {
+        label: "Building software with AI: opportunities and limits",
+        url: "/en/blog/building-software-with-ai-opportunities-and-limits",
       },
     ],
   },
@@ -731,6 +736,7 @@ export const newPostsEn: BlogPost[] = [
         p: [
           "A paywall that does not work, or that fails silently. In September we found two bugs in the purchase code shared by our three Android apps. The first: some transactions were dropped without being acknowledged, and Google automatically refunds an unacknowledged purchase after three days. The second: a double click on buy could launch two payments, and one customer really was charged twice.",
           "Our first fix created a new problem, caught in review: after a cancellation, the buy button stopped responding until the app was restarted. Only a full test purchase on a real device confirmed that the flow worked. Automated tests do not replace that step.",
+          "That fix had been written with an AI assistant, and a second assistant reviewed it: we come back to this episode and four others in [building software with AI: opportunities and limits](/en/blog/building-software-with-ai-opportunities-and-limits).",
         ],
       },
       {
@@ -789,6 +795,130 @@ export const newPostsEn: BlogPost[] = [
       {
         label: "Discover VoxCut → voxcutpro.com",
         url: "https://voxcutpro.com",
+      },
+      {
+        label: "Building software with AI: opportunities and limits",
+        url: "/en/blog/building-software-with-ai-opportunities-and-limits",
+      },
+    ],
+  },
+  {
+    id: "build-software-with-ai",
+    slug: "building-software-with-ai-opportunities-and-limits",
+    title: "Building Software With AI: Opportunities and Limits",
+    metaTitle: "Building Software With AI: Opportunities and Limits | La Fabrik",
+    metaDescription:
+      "What AI really changes when you build software, and five real, dated errors it did not prevent in our own applications.",
+    date: "2026-11-12",
+    dateLabel: "November 12, 2026",
+    excerpt:
+      "We build our applications with AI assistants. What they really speed up, five real errors they did not prevent, and the safeguards we drew from them.",
+    tags: ["AI", "Development", "Lessons learned"],
+    sections: [
+      {
+        h: "Introduction",
+        p: [
+          "AI clearly speeds up writing code, finding errors and handling repetitive tasks, but it does not replace defining the need, testing or review. In our projects, the costliest errors were not syntax mistakes: they were plausible code that seemed to work, and that only a full test or a careful review exposed.",
+          "We build our software with the help of AI assistants: VoxCut, VectorPop, Nyctale, VidScope and the studio's other applications. This article neither praises the method nor condemns it. It reports what worked and five real, dated errors that the tool did not prevent. For our underlying philosophy, read [why we build our own tools](/en/blog/why-we-build-our-own-tools).",
+        ],
+      },
+      {
+        h: "What does AI really change?",
+        p: [
+          "The most visible change is speed, but it is not the most important one. What really changes is what a very small team can take on.",
+          "• Repetitive tasks: translating an interface, writing tests, preparing release scripts. The VoxCut Android interface exists in 15 languages, and its Google Play listings in 86. Without an assistant, we would not have done it",
+          "• Exploration: trying two approaches before choosing. For VidScope, we compared several chunk sizes and several models on the same video before deciding, a trial that used to cost too much time",
+          "• Review: an assistant given a file to read spots omissions you no longer see, provided you ask it the right question",
+          "• Accessibility: one person can maintain several applications on several platforms, which used to take a small team",
+          "The gain is real. But it is a gain in production. Verification takes as long as before, and that is where the errors below were hiding.",
+        ],
+      },
+      {
+        h: "Which errors did AI not prevent for us?",
+        p: [
+          "Five real examples, all fixed since.",
+          "• A paid feature that became free (September). In version 2.0.0 of VoxCut for Android, noise reduction and audio normalisation, meant to be Pro features, had no check at all: they were free for everyone. Another AI assistant, which we had asked to review the code, spotted it three days after release. Fixed the same day",
+          "• A fix that created two bugs (September). Our Android purchase code ignored some transactions without validating them. The first fix, written with an assistant, was reviewed by a second one: it made the buy button unusable after a cancellation, and in a rare case it validated a real payment without unlocking Pro. The full story is in [how to design an effective paywall](/en/blog/how-to-design-an-effective-paywall-for-an-app)",
+          "• False links presented as official (September). VidScope looks up the official website of the tools mentioned in a video. The code accepted a page as soon as it contained the tool's name: the Neon database led to a film studio, the Codex tool to a food standard. We fixed it with stricter checks and unit tests",
+          "• A partial analysis without warning (September). One line cut the text at 15,000 characters: a 7 h 29 video was analysed only on its first 12 minutes, without the user knowing. The fix splits the text into chunks and shows a partial-analysis warning when not everything could be processed",
+          "• A secret printed on screen (October). During a work session, a check command printed part of a licence token in its output. It was never saved to the repository, but it was treated as exposed",
+          "In each case, what was missing was not code. It was a question nobody had asked: who is allowed to use this feature? what happens if the purchase is cancelled? is this page really the right one? was the whole text read?",
+        ],
+      },
+      {
+        h: "Why do these errors slip through?",
+        p: [
+          "An AI assistant writes plausible code. Plausible code compiles, displays and seems to work on the example you try. Defects show up elsewhere: on edge cases (a seven-hour video, a tool name that is also a common word), on complete flows (buy, cancel, reopen the app), and when dealing with external services (Google Play, search engines).",
+          "The fix itself can go wrong in the same way. After fixing the VidScope truncation, a filter meant to discard invented tools checked that each name appeared in the transcript. It discarded FastAPI and PostgreSQL, because the automatic subtitles spelled them ‘fast API’ and ‘postgress’. The code was logical; reality was messier.",
+          "Finally, AI codes what you ask for. Our first free limit on VoxCut Android was measured in megabytes: a 45-second 4K video was blocked, while a one-hour podcast went through. The code was correct; the criterion was wrong, and that was our decision. The faster code is written, the more tempting it is to check less. The trap is confusing fluency with correctness.",
+        ],
+      },
+      {
+        h: "Which practices reduce the risk?",
+        p: [
+          "• Test every flow end to end, especially those involving money: a full test purchase on a real device before every release",
+          "• Have the code reviewed by a second pair of eyes, human or another assistant, with a precise question: ‘which paid features can be used without paying?’ works better than ‘review this file’",
+          "• Keep automated tests on critical rules: paid access, link validation, splitting long texts",
+          "• Watch secrets: a token or key must never appear in an output, an error message or a repository. We also found an API key in error logs, where it was part of a URL",
+          "• Measure quality on real examples: for VidScope, four videos from 47 minutes to 7 h 29, labelled by hand, are our benchmark before any change of model or prompt",
+          "• Do not let two assistants work on the same file at the same time: on 9 September, two sessions fixed the same problem in parallel, and we had to check that no duplicates were left",
+          "For security, the [OWASP](https://owasp.org) references list the most common mistakes, and they apply to AI-written code too.",
+        ],
+      },
+      {
+        h: "Should you build your software with AI?",
+        p: [
+          "Yes to prototype, learn and speed up; with caution for anything involving money, security and personal data. Our rule: go fast on what is reversible, slowly on what is not. A translation mistake is fixed in five minutes; a customer charged without access costs trust.",
+          "The starting question is the same as before AI: should you really build it? AI lowers the cost of building, not the cost of choosing the wrong project. To run the numbers, read [custom tool vs SaaS: the real cost over 3 years](/en/blog/custom-tool-vs-saas-real-cost-over-3-years). And if your goal is first to save time in a small business, see [how to automate repetitive tasks with AI](/en/blog/automate-repetitive-sme-tasks-with-ai).",
+          "Do you need to know how to code? Not to get a prototype. But to spot the errors described above, you need to understand what the code does and which questions to ask it. That skill is the difference between a tool that works in a demo and one that works for your customers.",
+        ],
+      },
+      {
+        h: "Conclusion: AI accelerates, verification protects",
+        p: [
+          "AI is an excellent assistant, not a quality guarantee. It lets us build and maintain applications that a one-person studio could not have handled alone. It has never spared us from testing, reviewing and measuring, and every time we forgot, a user noticed before we did. If you have a tool project and want to talk about it, [get in touch](/en#contact).",
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: "Can AI build a whole piece of software?",
+        a:
+          "It can produce a large share of the code. Defining the need, testing, review and decisions remain the team's job.",
+      },
+      {
+        q: "What are the main risks?",
+        a:
+          "Plausible but wrong code on edge cases, omissions on payments and security, and overconfidence because of speed.",
+      },
+      {
+        q: "What should you always check by hand?",
+        a:
+          "Payments, restricted access, personal data and secrets, with a full test on a real device.",
+      },
+      {
+        q: "Can one AI review another AI's code?",
+        a:
+          "Yes, and it helps: for us, a review by a second assistant found a paid feature left free and two bugs in a fix. But it does not replace testing the real flow.",
+      },
+      {
+        q: "Does it lower the cost of a project?",
+        a:
+          "It lowers the cost of building. It does not reduce the cost of building the wrong thing.",
+      },
+    ],
+    links: [
+      {
+        label: "Why we build our own tools",
+        url: "/en/blog/why-we-build-our-own-tools",
+      },
+      {
+        label: "Custom tool vs SaaS: the real cost over 3 years",
+        url: "/en/blog/custom-tool-vs-saas-real-cost-over-3-years",
+      },
+      {
+        label: "How to design an effective paywall",
+        url: "/en/blog/how-to-design-an-effective-paywall-for-an-app",
       },
     ],
   },
