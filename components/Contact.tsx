@@ -2,11 +2,19 @@
 
 import { useState, type FormEvent } from "react";
 import { useLanguage } from "@/lib/i18n";
+import {
+  EDITOR_PHONE,
+  EDITOR_PHONE_INTL,
+  EDITOR_PHONE_INTL_DISPLAY,
+  EDITOR_STREET,
+  EDITOR_POSTCODE,
+  EDITOR_CITY,
+} from "@/lib/legal";
 
 type Status = "idle" | "sending" | "success" | "error";
 
 export default function Contact() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const c = t.contact;
   const [status, setStatus] = useState<Status>("idle");
 
@@ -41,13 +49,31 @@ export default function Contact() {
 
           <div className="rounded-2xl border border-white/[0.08] glass-panel p-6 space-y-4">
             <div>
-              <span className="fig-label text-[0.65rem] block mb-1">EMAIL DIRECT</span>
+              <span className="fig-label text-[0.65rem] block mb-1">{c.emailLabel}</span>
               <a
                 href={`mailto:${c.emailAddress}`}
                 className="font-mono text-sm sm:text-base text-cyan hover:text-amber transition-colors"
               >
                 {c.emailAddress}
               </a>
+            </div>
+            <div>
+              <span className="fig-label text-[0.65rem] block mb-1">{c.phoneLabel}</span>
+              <a
+                href={`tel:${EDITOR_PHONE_INTL}`}
+                className="font-mono text-sm sm:text-base text-cyan hover:text-amber transition-colors"
+              >
+                {lang === "en" ? EDITOR_PHONE_INTL_DISPLAY : EDITOR_PHONE}
+              </a>
+            </div>
+            <div>
+              <span className="fig-label text-[0.65rem] block mb-1">{c.addressLabel}</span>
+              <address className="not-italic text-sm sm:text-base text-foreground/90 leading-relaxed">
+                {EDITOR_STREET}
+                <br />
+                {EDITOR_POSTCODE} {EDITOR_CITY}
+                {lang === "en" && ", France"}
+              </address>
             </div>
             <div className="pt-4 border-t border-white/[0.08] flex items-center gap-2.5">
               <span className="node-dot" />

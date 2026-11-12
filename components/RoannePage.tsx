@@ -1,7 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
 import { roanneContent, ROANNE_AREAS } from "@/lib/roanne";
-import { EDITOR_EMAIL } from "@/lib/legal";
+import {
+  EDITOR_EMAIL,
+  EDITOR_PHONE_INTL,
+  EDITOR_STREET,
+  EDITOR_POSTCODE,
+  EDITOR_CITY,
+} from "@/lib/legal";
 
 const SITE_URL = "https://www.lafabriknumerique.fr";
 
@@ -21,10 +27,13 @@ export default function RoannePage() {
     image: `${SITE_URL}/img/og.png`,
     description: r.metaDesc,
     email: EDITOR_EMAIL,
+    telephone: EDITOR_PHONE_INTL,
     address: {
       "@type": "PostalAddress",
-      addressLocality: "Roanne",
-      postalCode: "42300",
+      streetAddress: EDITOR_STREET,
+      addressLocality: EDITOR_CITY,
+      postalCode: EDITOR_POSTCODE,
+      addressRegion: "Loire",
       addressCountry: "FR",
     },
     areaServed: ROANNE_AREAS.map((name) => ({ "@type": "City", name })),

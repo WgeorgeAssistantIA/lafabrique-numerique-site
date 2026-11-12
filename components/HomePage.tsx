@@ -9,7 +9,14 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import { LanguageProvider } from "@/lib/i18n";
 import { translations, type Lang } from "@/lib/translations";
-import { EDITOR_NAME, EDITOR_EMAIL } from "@/lib/legal";
+import {
+  EDITOR_NAME,
+  EDITOR_EMAIL,
+  EDITOR_PHONE_INTL,
+  EDITOR_STREET,
+  EDITOR_POSTCODE,
+  EDITOR_CITY,
+} from "@/lib/legal";
 
 const SITE_URL = "https://www.lafabriknumerique.fr";
 
@@ -26,10 +33,13 @@ export default function HomePage({ lang }: { lang: Lang }) {
     founder: { "@type": "Person", name: EDITOR_NAME },
     areaServed: "France",
     priceRange: "€€",
+    telephone: EDITOR_PHONE_INTL,
     address: {
       "@type": "PostalAddress",
-      addressLocality: "Roanne",
-      postalCode: "42300",
+      streetAddress: EDITOR_STREET,
+      addressLocality: EDITOR_CITY,
+      postalCode: EDITOR_POSTCODE,
+      addressRegion: "Loire",
       addressCountry: "FR",
     },
     knowsLanguage: ["fr", "en"],

@@ -5,8 +5,15 @@ export const EDITOR_SIREN = "518 251 897";
 export const EDITOR_SIRET = "518 251 897 00048";
 
 export const EDITOR_EMAIL = "contact@lafabriknumerique.fr";
-export const LAST_UPDATED = "23 juillet 2026";
-export const LAST_UPDATED_EN = "July 23, 2026";
+export const EDITOR_PHONE = "07 63 92 50 32";
+export const EDITOR_PHONE_INTL = "+33763925032";
+export const EDITOR_PHONE_INTL_DISPLAY = "+33 7 63 92 50 32";
+export const EDITOR_STREET = "18 rue de l'Oiseau Blanc";
+export const EDITOR_POSTCODE = "42155";
+export const EDITOR_CITY = "Saint-Léger-sur-Roanne";
+export const EDITOR_ADDRESS = `${EDITOR_STREET}, ${EDITOR_POSTCODE} ${EDITOR_CITY}`;
+export const LAST_UPDATED = "12 novembre 2026";
+export const LAST_UPDATED_EN = "November 12, 2026";
 
 export type LegalSection = { h: string; p: string[] };
 export type LegalDoc = {
@@ -34,7 +41,8 @@ const fr: LegalContent = {
           `Le présent site est édité par La Fabrik Numérique, entreprise individuelle relevant du régime de la micro-entreprise, exploitée par ${EDITOR_NAME}.`,
           `SIREN : ${EDITOR_SIREN} — SIRET : ${EDITOR_SIRET}. Dispensée d'immatriculation au Registre du commerce et des sociétés (RCS) et au Répertoire des métiers (RM).`,
           "TVA non applicable, article 293 B du Code général des impôts.",
-          "Adresse postale communiquée sur demande par courriel.",
+          `Adresse : ${EDITOR_ADDRESS}, France`,
+          `Téléphone : ${EDITOR_PHONE}`,
           `Courriel : ${EDITOR_EMAIL}`,
         ],
       },
@@ -242,7 +250,8 @@ const en: LegalContent = {
           `This site is published by La Fabrik Numérique, a sole proprietorship under the French micro-entreprise regime, operated by ${EDITOR_NAME}.`,
           `SIREN: ${EDITOR_SIREN} — SIRET: ${EDITOR_SIRET}. Exempt from registration with the Trade and Companies Register (RCS) and the Trades Register (RM).`,
           "VAT not applicable, article 293 B of the French General Tax Code.",
-          "Postal address available on request by email.",
+          `Address: ${EDITOR_ADDRESS}, France`,
+          `Phone: ${EDITOR_PHONE_INTL_DISPLAY}`,
           `Email: ${EDITOR_EMAIL}`,
         ],
       },
