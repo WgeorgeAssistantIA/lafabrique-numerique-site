@@ -39,7 +39,7 @@ export default function Contact() {
 
   return (
     <section id="contact" className="py-24 circuit-bg">
-      <div className="mx-auto max-w-6xl px-6 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      <div className="mx-auto max-w-6xl px-6 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-start lg:items-stretch">
         <div className="lg:col-span-5">
           <p className="fig-label text-cyan mb-3">{c.figLabel}</p>
           <h2 className="font-display uppercase text-4xl sm:text-5xl mb-6">{c.title}</h2>
@@ -84,7 +84,7 @@ export default function Contact() {
 
         <form
           onSubmit={onSubmit}
-          className="lg:col-span-7 space-y-5 rounded-2xl border border-white/10 glass-panel p-6 sm:p-8"
+          className="lg:col-span-7 flex flex-col gap-5 rounded-2xl border border-white/10 glass-panel p-6 sm:p-8"
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <div>
@@ -114,7 +114,7 @@ export default function Contact() {
               />
             </div>
           </div>
-          <div>
+          <div className="flex flex-col flex-1">
             <label className="fig-label block mb-2 text-foreground/80" htmlFor="message">
               {c.message}
             </label>
@@ -124,7 +124,7 @@ export default function Contact() {
               rows={4}
               required
               maxLength={5000}
-              className="w-full rounded-lg bg-background-deep/80 border border-white/10 px-4 py-3 text-foreground focus:outline-none focus:border-cyan focus:ring-2 focus:ring-cyan/20 transition-all"
+              className="w-full flex-1 min-h-[7rem] rounded-lg bg-background-deep/80 border border-white/10 px-4 py-3 text-foreground focus:outline-none focus:border-cyan focus:ring-2 focus:ring-cyan/20 transition-all"
             />
           </div>
           {/* Honeypot: hidden from humans, bots fill it and get silently dropped */}
