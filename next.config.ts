@@ -22,12 +22,12 @@ const nextConfig: NextConfig = {
       {
         source: "/jeux",
         destination: "/jeux/index.html",
-        permanent: false,
+        permanent: true,
       },
       {
         source: "/jeux/",
         destination: "/jeux/index.html",
-        permanent: false,
+        permanent: true,
       },
     ];
   },
