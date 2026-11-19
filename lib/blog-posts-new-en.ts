@@ -939,7 +939,8 @@ export const newPostsEn: BlogPost[] = [
         h: "Introduction",
         p: [
           "Build custom software when your process is truly specific, existing tools force costly workarounds, and the need will last several years. In every other case, an existing tool, possibly combined with others, costs less and is quicker to set up.",
-          "The question comes up in almost every small business: buy off-the-shelf software, patch things together with spreadsheets, or commission something? The answer depends less on technology than on the nature of the need. We build our own tools, and we start from the principle that custom software has to earn its place. For the numbers over time, read [custom tool vs SaaS: the real cost over 3 years](/en/blog/custom-tool-vs-saas-real-cost-over-3-years).",
+          "The question comes up in almost every small business: buy off-the-shelf software, patch things together with spreadsheets, or commission something? The answer depends less on technology than on the nature of the need. We build our own tools, and we start from the principle that custom software has to earn its place.",
+          "This article offers five questions to ask in order, some often-forgotten costs, and a simple way to decide without being carried away by the enthusiasm of the moment. For the numbers over time, also read [custom tool vs SaaS: the real cost over 3 years](/en/blog/custom-tool-vs-saas-real-cost-over-3-years).",
         ],
       },
       {
@@ -947,6 +948,7 @@ export const newPostsEn: BlogPost[] = [
         p: [
           "A need is specific when what sets you apart from competitors runs through that process. Standard invoicing is not: many tools do it well. A quote calculation unique to your trade, a particular scheduling rule or a chain of regulatory checks might be.",
           "The test: describe the process to the vendor of an off-the-shelf product. If they say yes without effort, buy. If you have to spend an hour explaining why your case is different, first check whether the difference is truly useful to your customers or just a habit. Many needs mistaken for specific ones are working habits that a standard tool can absorb with a small adjustment.",
+          "Ask the question the other way round too: if you had to change how you work to use a standard tool, would your customers notice? If not, the need is not specific, it is comfortable. Custom software is justified when adapting to an off-the-shelf tool would degrade what you sell, not when it merely asks you to change a habit.",
         ],
       },
       {
@@ -956,7 +958,8 @@ export const newPostsEn: BlogPost[] = [
           "• Count the real time lost per week, not the perceived time: track it for two weeks.",
           "• Ask whether a connector, an automation or a better-built spreadsheet solves it.",
           "• Check whether another product on the market already has the missing feature.",
-          "Often a small automation between two existing tools is enough, as in [how to automate repetitive tasks in a small business](/en/blog/automate-repetitive-sme-tasks-with-ai).",
+          "• Note the errors the workaround causes: manual re-entry is also a source of omissions and mistakes.",
+          "Often a small automation between two existing tools is enough, as in [how to automate repetitive tasks in a small business](/en/blog/automate-repetitive-sme-tasks-with-ai). Custom software only becomes interesting once these in-between solutions have been tried or ruled out for good reasons, and the workaround remains despite them.",
         ],
       },
       {
@@ -964,6 +967,7 @@ export const newPostsEn: BlogPost[] = [
         p: [
           "Custom software pays back over several years. If the need is tied to a one-off project, an activity still in testing or a process about to change, you risk paying for development that will no longer be used. The more stable the process, the more reasonable a custom build becomes.",
           "Conversely, if you are unsure about your process, start with an existing tool or a light prototype: you will learn what you really need before freezing a development. A thrown-away prototype costs far less than a full piece of software nobody uses.",
+          "Look at your company's horizon too: a change of trade, customers, regulation or size in the coming years can make a tool written for today's situation obsolete. Software designed to evolve, with rules that are easy to change, holds up better than software that freezes your current organisation.",
         ],
       },
       {
@@ -974,7 +978,9 @@ export const newPostsEn: BlogPost[] = [
           "• Hosting and related services, which keep costing money every month.",
           "• Dependence on the person or company that wrote the code, if documentation is weak.",
           "• Internal time: specifying, testing, training users, collecting feedback.",
-          "Plan for these from the start. Software delivered without a maintenance budget ages fast, and the day it breaks, the person who knew it may no longer be available.",
+          "• Changes: a tool people use quickly generates change requests that were not in the original quote.",
+          "Plan for these from the start. Software delivered without a maintenance budget ages fast, and the day it breaks, the person who knew it may no longer be available. Also ask how the supplier documents their work and under what conditions you can take the project elsewhere: that is your insurance against being stuck.",
+          "The same reasoning applies when you build in-house. A tool built by an employee or by yourself is not free: it is time not spent on your customers, and a dependence on a single person if nothing is written down.",
         ],
       },
       {
@@ -986,13 +992,15 @@ export const newPostsEn: BlogPost[] = [
           "• Is the time saved or the advantage measurable?",
           "• Can you fund maintenance, not just development?",
           "• Who will own the code and the documentation?",
-          "If you answer no to the first question and yes to the others, a custom build is justified. For other trade-offs like this one, see [showcase website or web app: how to choose](/en/blog/showcase-website-or-web-app-how-to-choose) and [why we build our own tools](/en/blog/why-we-build-our-own-tools).",
+          "If you answer no to the first question and yes to the others, a custom build is justified. If a single answer makes you hesitate, that is a sign to test smaller: a prototype, an existing tool on a trial, or a limited automation at the most painful point.",
+          "For other trade-offs like this one, see [showcase website or web app: how to choose](/en/blog/showcase-website-or-web-app-how-to-choose) and [why we build our own tools](/en/blog/why-we-build-our-own-tools).",
         ],
       },
       {
         h: "Conclusion: custom is an exception that must earn its place",
         p: [
-          "Custom software is a good choice when the need is specific, lasting and costly to work around. Otherwise buy or assemble. If you hesitate, a light prototype works as a test before a real build. For a first no-obligation conversation, [get in touch](/en#contact). On software project security, the French cybersecurity agency [ANSSI](https://cyber.gouv.fr) is a reference worth checking before choosing a supplier.",
+          "Custom software is a good choice when the need is specific, lasting and costly to work around. Otherwise buy or assemble: you will save time and avoid maintenance charges you had not planned for.",
+          "If you hesitate, a light prototype works as a test before a real build, and your answers to the five questions will tell you whether the project deserves to go further. For a first no-obligation conversation, [get in touch](/en#contact). On software project security, the French cybersecurity agency [ANSSI](https://cyber.gouv.fr) is a reference worth checking before choosing a supplier.",
         ],
       },
     ],
