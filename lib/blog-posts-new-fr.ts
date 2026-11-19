@@ -925,4 +925,120 @@ export const newPostsFr: BlogPost[] = [
       },
     ],
   },
+  {
+    id: "custom-software-when",
+    slug: "quand-developper-un-logiciel-sur-mesure",
+    title: "Quand faut-il développer un logiciel sur mesure ?",
+    metaTitle: "Quand développer un logiciel sur mesure ? 5 questions pour décider",
+    metaDescription:
+      "Un logiciel sur mesure n'est pas toujours la bonne réponse. Cinq questions pour choisir entre outil existant, assemblage et développement, avec les coûts cachés à connaître.",
+    date: "2026-11-19",
+    dateLabel: "19 novembre 2026",
+    excerpt:
+      "Un logiciel sur mesure n'est pas toujours la bonne réponse. Cinq questions pour décider entre un outil existant, un assemblage et un développement, avec les coûts cachés à connaître.",
+    tags: ["Logiciel sur mesure", "Décision", "PME"],
+    sections: [
+      {
+        h: "Introduction",
+        p: [
+          "Développez un logiciel sur mesure quand votre processus est vraiment spécifique, que les outils existants vous obligent à des contournements coûteux, et que le besoin va durer plusieurs années. Dans tous les autres cas, un outil existant, éventuellement assemblé à d'autres, coûte moins cher et se met en place plus vite.",
+          "La question revient dans presque toutes les petites entreprises : faut-il acheter un logiciel du marché, bricoler avec des tableurs ou faire développer quelque chose ? La réponse dépend moins de la technique que de la nature du besoin. Nous construisons nous-mêmes nos outils, et nous partons du principe que le sur-mesure doit justifier sa place. Pour la comparaison chiffrée dans la durée, lisez [outil sur mesure ou SaaS : le coût réel sur 3 ans](/blog/outil-sur-mesure-ou-saas-cout-reel-sur-3-ans).",
+        ],
+      },
+      {
+        h: "Votre besoin est-il vraiment spécifique ?",
+        p: [
+          "Un besoin est spécifique quand ce qui vous distingue de vos concurrents passe par ce processus. Une facturation classique ne l'est pas : de nombreux outils la font très bien. Un calcul de devis propre à votre métier, une règle de planification particulière ou un enchaînement de contrôles réglementaires peut l'être.",
+          "Le test : décrivez le processus à l'éditeur d'un logiciel du marché. S'il répond « oui, on fait ça » sans effort, achetez. S'il faut lui expliquer pendant une heure pourquoi votre cas est différent, regardez d'abord si la différence est vraiment utile à vos clients ou si c'est une habitude. Beaucoup de besoins pris pour spécifiques sont en réalité des habitudes de travail qu'un outil standard peut absorber avec un petit ajustement.",
+        ],
+      },
+      {
+        h: "Quels contournements les outils existants vous imposent-ils ?",
+        p: [
+          "Un contournement est une étape que vous faites à la main parce que l'outil ne sait pas la faire : ressaisir des données d'un logiciel à l'autre, corriger un export, contrôler à l'œil un résultat. Un seul contournement occasionnel n'est pas un argument. Un contournement quotidien, qui consomme des heures chaque semaine, en est un.",
+          "• Comptez le temps réel perdu par semaine, pas le temps perçu : notez-le pendant deux semaines.",
+          "• Demandez-vous si un connecteur, une automatisation ou un tableur mieux construit règle le problème.",
+          "• Vérifiez si une autre offre du marché a déjà la fonction qui manque.",
+          "Souvent, une petite automatisation entre deux outils existants suffit, comme dans [l'automatisation des tâches répétitives d'une PME](/blog/automatiser-taches-repetitives-pme-avec-l-ia).",
+        ],
+      },
+      {
+        h: "Le besoin va-t-il durer ?",
+        p: [
+          "Un logiciel sur mesure se rentabilise sur plusieurs années. Si le besoin est lié à un projet ponctuel, à une activité encore en test ou à un processus qui va changer, le risque est de payer un développement qui ne servira plus. Plus le processus est stable, plus le sur-mesure devient raisonnable.",
+          "À l'inverse, si vous n'êtes pas sûr de votre processus, commencez avec un outil existant ou un prototype léger : vous apprendrez ce dont vous avez vraiment besoin avant de figer le développement. Un prototype jeté coûte beaucoup moins qu'un logiciel complet dont personne ne se sert.",
+        ],
+      },
+      {
+        h: "Quels sont les coûts cachés du sur-mesure ?",
+        p: [
+          "Le prix du développement n'est que le début.",
+          "• La maintenance : mises à jour de sécurité, correction de bugs, adaptation aux changements de votre activité.",
+          "• L'hébergement et les services associés, qui continuent à coûter chaque mois.",
+          "• La dépendance : à la personne ou à l'entreprise qui a écrit le code, si la documentation est faible.",
+          "• Le temps interne : spécifier, tester, former les utilisateurs, recueillir les retours.",
+          "Prévoyez ces postes dès le départ. Un logiciel livré sans budget de maintenance vieillit vite, et le jour où il casse, la personne qui le connaissait n'est plus forcément disponible.",
+        ],
+      },
+      {
+        h: "Comment décider concrètement ?",
+        p: [
+          "Posez cinq questions, dans cet ordre.",
+          "• Un outil du marché couvre-t-il l'essentiel du besoin sans contournement coûteux ? Un repère courant est d'environ 80 %, mais ce n'est pas une norme : c'est le contournement restant qui compte.",
+          "• Le processus est-il stable pour les trois prochaines années ?",
+          "• Le gain de temps ou d'avantage est-il mesurable ?",
+          "• Pouvez-vous financer la maintenance, pas seulement le développement ?",
+          "• Qui sera propriétaire du code et de la documentation ?",
+          "Si vous répondez non à la première question et oui aux suivantes, le sur-mesure se justifie. Pour d'autres arbitrages de ce type, voyez [site vitrine ou application web : comment choisir](/blog/site-vitrine-ou-application-web-comment-choisir) et [pourquoi nous construisons nos propres outils](/blog/pourquoi-construire-ses-propres-outils).",
+        ],
+      },
+      {
+        h: "Conclusion : le sur-mesure est une exception qui se justifie",
+        p: [
+          "Le logiciel sur mesure est un bon choix quand le besoin est spécifique, durable et coûteux à contourner. Sinon, achetez ou assemblez. Si vous hésitez, un prototype léger sert de test avant un vrai développement. Pour une première discussion sans engagement, [contactez-nous](/#contact). Pour la sécurité d'un projet logiciel, le site de l'[ANSSI](https://cyber.gouv.fr) est une ressource de référence à consulter avant de choisir un prestataire.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: "Quand un logiciel sur mesure est-il préférable à un SaaS ?",
+        a:
+          "Quand votre processus est spécifique, stable sur plusieurs années, et que les outils du marché imposent des contournements coûteux.",
+      },
+      {
+        q: "Un logiciel sur mesure coûte-t-il plus cher ?",
+        a:
+          "À court terme souvent oui, mais cela dépend de la durée d'usage et du nombre d'utilisateurs. Comparez sur trois ans, maintenance comprise.",
+      },
+      {
+        q: "Peut-on commencer par un prototype ?",
+        a:
+          "Oui, c'est souvent la bonne approche : un prototype léger permet de valider le besoin avant de lancer un développement complet.",
+      },
+      {
+        q: "Que faut-il prévoir après la livraison ?",
+        a:
+          "La maintenance, l'hébergement, les mises à jour de sécurité et la documentation, pour ne pas dépendre d'une seule personne.",
+      },
+      {
+        q: "Faut-il être propriétaire du code ?",
+        a:
+          "Il vaut mieux le préciser par contrat dès le départ, ainsi que l'accès à la documentation et aux sources.",
+      },
+    ],
+    links: [
+      {
+        label: "Outil sur mesure ou SaaS : le coût réel sur 3 ans",
+        url: "/blog/outil-sur-mesure-ou-saas-cout-reel-sur-3-ans",
+      },
+      {
+        label: "Pourquoi nous construisons nos propres outils",
+        url: "/blog/pourquoi-construire-ses-propres-outils",
+      },
+      {
+        label: "Site vitrine ou application web : comment choisir",
+        url: "/blog/site-vitrine-ou-application-web-comment-choisir",
+      },
+    ],
+  },
 ];

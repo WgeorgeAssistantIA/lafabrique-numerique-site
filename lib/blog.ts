@@ -125,6 +125,10 @@ const fr: BlogContent = {
           label: "Développer un logiciel avec l'IA : opportunités et limites",
           url: "/blog/developper-un-logiciel-avec-l-ia-opportunites-et-limites",
         },
+        {
+          label: "Quand faut-il développer un logiciel sur mesure ?",
+          url: "/blog/quand-developper-un-logiciel-sur-mesure",
+        },
       ],
     },
     {
@@ -384,6 +388,10 @@ const fr: BlogContent = {
           label: "Automatiser les tâches répétitives d'une PME avec l'IA",
           url: "/blog/automatiser-taches-repetitives-pme-avec-l-ia",
         },
+        {
+          label: "Quand faut-il développer un logiciel sur mesure ?",
+          url: "/blog/quand-developper-un-logiciel-sur-mesure",
+        },
       ],
     },
     {
@@ -450,6 +458,10 @@ const fr: BlogContent = {
         {
           label: "Automatiser les tâches répétitives d'une PME avec l'IA",
           url: "/blog/automatiser-taches-repetitives-pme-avec-l-ia",
+        },
+        {
+          label: "Quand faut-il développer un logiciel sur mesure ?",
+          url: "/blog/quand-developper-un-logiciel-sur-mesure",
         },
       ],
     },
@@ -634,6 +646,10 @@ const en: BlogContent = {
         {
           label: "Building software with AI: opportunities and limits",
           url: "/en/blog/building-software-with-ai-opportunities-and-limits",
+        },
+        {
+          label: "When Should You Build Custom Software?",
+          url: "/en/blog/when-to-build-custom-software",
         },
       ],
     },
@@ -897,6 +913,10 @@ const en: BlogContent = {
           label: "How can a small business automate repetitive tasks with AI?",
           url: "/en/blog/automate-repetitive-sme-tasks-with-ai",
         },
+        {
+          label: "When Should You Build Custom Software?",
+          url: "/en/blog/when-to-build-custom-software",
+        },
       ],
     },
     {
@@ -963,6 +983,10 @@ const en: BlogContent = {
         {
           label: "How can a small business automate repetitive tasks with AI?",
           url: "/en/blog/automate-repetitive-sme-tasks-with-ai",
+        },
+        {
+          label: "When Should You Build Custom Software?",
+          url: "/en/blog/when-to-build-custom-software",
         },
       ],
     },

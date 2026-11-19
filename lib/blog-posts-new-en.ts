@@ -922,4 +922,120 @@ export const newPostsEn: BlogPost[] = [
       },
     ],
   },
+  {
+    id: "custom-software-when",
+    slug: "when-to-build-custom-software",
+    title: "When Should You Build Custom Software?",
+    metaTitle: "When to Build Custom Software? 5 Questions to Decide | La Fabrik",
+    metaDescription:
+      "Custom software is not always the answer. Five questions to choose between an existing tool, a patchwork and a build, with the hidden costs to know.",
+    date: "2026-11-19",
+    dateLabel: "November 19, 2026",
+    excerpt:
+      "Custom software is not always the answer. Five questions to choose between an existing tool, a patchwork and a build, with the hidden costs to know.",
+    tags: ["Custom software", "Decision", "Small business"],
+    sections: [
+      {
+        h: "Introduction",
+        p: [
+          "Build custom software when your process is truly specific, existing tools force costly workarounds, and the need will last several years. In every other case, an existing tool, possibly combined with others, costs less and is quicker to set up.",
+          "The question comes up in almost every small business: buy off-the-shelf software, patch things together with spreadsheets, or commission something? The answer depends less on technology than on the nature of the need. We build our own tools, and we start from the principle that custom software has to earn its place. For the numbers over time, read [custom tool vs SaaS: the real cost over 3 years](/en/blog/custom-tool-vs-saas-real-cost-over-3-years).",
+        ],
+      },
+      {
+        h: "Is your need really specific?",
+        p: [
+          "A need is specific when what sets you apart from competitors runs through that process. Standard invoicing is not: many tools do it well. A quote calculation unique to your trade, a particular scheduling rule or a chain of regulatory checks might be.",
+          "The test: describe the process to the vendor of an off-the-shelf product. If they say yes without effort, buy. If you have to spend an hour explaining why your case is different, first check whether the difference is truly useful to your customers or just a habit. Many needs mistaken for specific ones are working habits that a standard tool can absorb with a small adjustment.",
+        ],
+      },
+      {
+        h: "Which workarounds do existing tools force on you?",
+        p: [
+          "A workaround is a step you do by hand because the tool cannot: re-entering data from one program into another, fixing an export, eyeballing a result. One occasional workaround is not an argument. A daily one that eats hours every week is.",
+          "• Count the real time lost per week, not the perceived time: track it for two weeks.",
+          "• Ask whether a connector, an automation or a better-built spreadsheet solves it.",
+          "• Check whether another product on the market already has the missing feature.",
+          "Often a small automation between two existing tools is enough, as in [how to automate repetitive tasks in a small business](/en/blog/automate-repetitive-sme-tasks-with-ai).",
+        ],
+      },
+      {
+        h: "Will the need last?",
+        p: [
+          "Custom software pays back over several years. If the need is tied to a one-off project, an activity still in testing or a process about to change, you risk paying for development that will no longer be used. The more stable the process, the more reasonable a custom build becomes.",
+          "Conversely, if you are unsure about your process, start with an existing tool or a light prototype: you will learn what you really need before freezing a development. A thrown-away prototype costs far less than a full piece of software nobody uses.",
+        ],
+      },
+      {
+        h: "What are the hidden costs of a custom build?",
+        p: [
+          "The development price is only the beginning.",
+          "• Maintenance: security updates, bug fixes, adaptation to changes in your business.",
+          "• Hosting and related services, which keep costing money every month.",
+          "• Dependence on the person or company that wrote the code, if documentation is weak.",
+          "• Internal time: specifying, testing, training users, collecting feedback.",
+          "Plan for these from the start. Software delivered without a maintenance budget ages fast, and the day it breaks, the person who knew it may no longer be available.",
+        ],
+      },
+      {
+        h: "How do you decide in practice?",
+        p: [
+          "Ask five questions, in this order.",
+          "• Does an off-the-shelf tool cover most of the need without costly workarounds? A common rule of thumb is around 80 percent, but it is not a standard: what matters is the workaround that remains.",
+          "• Is the process stable for the next three years?",
+          "• Is the time saved or the advantage measurable?",
+          "• Can you fund maintenance, not just development?",
+          "• Who will own the code and the documentation?",
+          "If you answer no to the first question and yes to the others, a custom build is justified. For other trade-offs like this one, see [showcase website or web app: how to choose](/en/blog/showcase-website-or-web-app-how-to-choose) and [why we build our own tools](/en/blog/why-we-build-our-own-tools).",
+        ],
+      },
+      {
+        h: "Conclusion: custom is an exception that must earn its place",
+        p: [
+          "Custom software is a good choice when the need is specific, lasting and costly to work around. Otherwise buy or assemble. If you hesitate, a light prototype works as a test before a real build. For a first no-obligation conversation, [get in touch](/en#contact). On software project security, the French cybersecurity agency [ANSSI](https://cyber.gouv.fr) is a reference worth checking before choosing a supplier.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: "When is custom software better than a SaaS?",
+        a:
+          "When your process is specific, stable for several years, and off-the-shelf tools force costly workarounds.",
+      },
+      {
+        q: "Does custom software cost more?",
+        a:
+          "In the short term often yes, but it depends on how long and by how many people it is used. Compare over three years, maintenance included.",
+      },
+      {
+        q: "Can you start with a prototype?",
+        a:
+          "Yes, it is often the right approach: a light prototype validates the need before a full development.",
+      },
+      {
+        q: "What should you plan for after delivery?",
+        a:
+          "Maintenance, hosting, security updates and documentation, so you do not depend on a single person.",
+      },
+      {
+        q: "Should you own the code?",
+        a:
+          "It is best to state this in the contract from the start, along with access to documentation and sources.",
+      },
+    ],
+    links: [
+      {
+        label: "Custom tool vs SaaS: the real cost over 3 years",
+        url: "/en/blog/custom-tool-vs-saas-real-cost-over-3-years",
+      },
+      {
+        label: "Why we build our own tools",
+        url: "/en/blog/why-we-build-our-own-tools",
+      },
+      {
+        label: "Showcase website or web app: how to choose",
+        url: "/en/blog/showcase-website-or-web-app-how-to-choose",
+      },
+    ],
+  },
 ];
